@@ -4,15 +4,15 @@ var Require = function () {
 
 Require.files = [];
 
-Require.getBasePath = function() {
+Require.getBasePath = function () {
 	return Require.basePath;
 }
 
-Require.setBasePath = function(path) {
+Require.setBasePath = function (path) {
 	Require.basePath = path;
 }
 
-Require.add = function(path, files) {
+Require.add = function (path, files) {
 	files.forEach(function (file) {
 		var url = Require.getBasePath() + "/" + path + "/" + file + ".js";
 		Require.files.push(url);
@@ -42,7 +42,7 @@ Require.load = function (file, callback) {
 Require.loadFiles = function () {
 	var index = 0;
 	return function (callback) {
-		index += 1;
+		index++;
 		Require.load(Require.files[index - 1], callBackCounter);
 
 		function callBackCounter() {
