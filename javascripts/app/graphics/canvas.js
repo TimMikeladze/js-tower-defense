@@ -25,5 +25,9 @@ var Canvas = function(id) {
 		callback.call();
 	}
 
+	this.addEventListener = function(type, listener, useCapture) {
+		this.canvas.addEventListener(type, listener, useCapture);
+	}
+
 	this.clear();
 }

@@ -1,35 +1,34 @@
 var DEBUG = true;
 
-var baseUrl = "javascripts/app";
-var includes = [];
+Require.setBasePath("javascripts/app");
 
-include("util", ["prototypes", "logging"]);
-include("graphics", ["canvas"]);
-include("entity", ["entity", "something"]);
+Require.add("util", ["prototypes", "logging"]);
+Require.add("engine", ["gameengine", "input"]);
+Require.add("graphics", ["canvas"]);
+Require.add("entity", ["entity", "something"]);
 
-var canvas;
+var gameCanvas;
 
-function main() {
+Require.loadFiles(function () {
+
+	gameCanvas = new Canvas("canvas");
+
 	var entity = new Entity(1, 2);
-	var something = new Something(4, 5, 3);
+	var something = new Something(gameCanvas.width / 2 - 25, gameCanvas.height / 2 - 25);
 
 	log(entity);
 	log(something);
 
-	canvas = new Canvas("canvas");
-
-	canvas.draw(function() {
-		canvas.context.fillStyle = "#FF0000";
-		canvas.context.fillRect(canvas.width / 2 - 25, canvas.height / 2 - 25, 50, 50);
-	});
-}
+	var engine = new GameEngine();
+	engine.init();
+	engine.start();
+	engine.addEntity(something);
+});
 
 
-function include(path, files) {
-	files.forEach(function (file) {
-		includes.push(baseUrl + "/" + path + "/" + file + ".js");
-	});
-}
 
-requirejs.config({baseUrl: baseUrl});
-require(includes, main);
+
+
+
+
+
