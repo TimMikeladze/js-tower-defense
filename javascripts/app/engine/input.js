@@ -1,5 +1,5 @@
 GameEngine.prototype.startInput = function() {
-	var getXandY = function (e) {
+	var getClickedPoint = function (e) {
 		var x = e.clientX - gameCanvas.canvas.getBoundingClientRect().left;
 		var y = e.clientY - gameCanvas.canvas.getBoundingClientRect().top;
 
@@ -8,21 +8,21 @@ GameEngine.prototype.startInput = function() {
 			y = Math.floor(y / 32);
 		}
 
-		return { x: x, y: y };
+		return new Point(x, y);
 	}
 
 	var that = this;
 
-	canvas.addEventListener("click", function (e) {
-		that.click = getXandY(e);
-		log(that.click.x);
+	gameCanvas.addEventListener("click", function (e) {
+		that.click = getClickedPoint(e);
+		log(that.click);
 	}, false);
 
-	canvas.addEventListener("mousemove", function (e) {
-		that.mouse = getXandY(e);
+	gameCanvas.addEventListener("mousemove", function (e) {
+		that.mouse = getClickedPoint(e);
 	}, false);
 
-	canvas.addEventListener("mousewheel", function (e) {
+	gameCanvas.addEventListener("mousewheel", function (e) {
 		that.wheel = e;
 	}, false);
 

@@ -4,7 +4,7 @@ Require.setBasePath("javascripts/app");
 
 Require.add("util", ["prototypes", "logging"]);
 Require.add("engine", ["gameengine", "input"]);
-Require.add("graphics", ["canvas"]);
+Require.add("graphics", ["canvas", "point"]);
 Require.add("entity", ["entity", "something"]);
 
 var gameCanvas;
