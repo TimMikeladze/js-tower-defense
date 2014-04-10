@@ -1,5 +1,6 @@
 function GameEngine() {
 	this.entities = [];
+	this.floatingEntity;
 	this.click = null;
 	this.mouse = null;
 	this.wheel = null;
@@ -26,7 +27,7 @@ function GameEngine() {
 
 	this.update = function() {
 		this.entities.forEach(function (entity) {
-			entity.move();
+		//	entity.move();
 		});
 	}
 
@@ -35,9 +36,25 @@ function GameEngine() {
 		this.entities.forEach(function (entity) {
 			entity.render();
 		});
+
+		if (this.floatingEntity) {
+			this.floatingEntity.render();
+		}
 	}
 
 	this.addEntity = function(entity) {
 		this.entities.push(entity);
+	}
+
+	this.setFloatingEntity = function(entity) {
+		this.floatingEntity = entity;
+	}
+
+	this.clearFloatingEntitiy = function() {
+		this.floatingEntity = null;
+	}
+
+	this.applyFloatingEntity = function() {
+		this.entities.push(this.floatingEntity);
 	}
 }

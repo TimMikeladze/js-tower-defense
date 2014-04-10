@@ -16,13 +16,10 @@ Require.loadFiles(function () {
 	var entity = new Entity(1, 2);
 	var something = new Something(gameCanvas.width / 2 - 25, gameCanvas.height / 2 - 25);
 
-	log(entity);
-	log(something);
-
 	var engine = new GameEngine();
 	engine.init();
 	engine.start();
-	engine.addEntity(something);
+	//engine.addEntity(something);
 });
 
 

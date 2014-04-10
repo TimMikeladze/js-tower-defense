@@ -3,11 +3,6 @@ GameEngine.prototype.startInput = function() {
 		var x = e.clientX - gameCanvas.canvas.getBoundingClientRect().left;
 		var y = e.clientY - gameCanvas.canvas.getBoundingClientRect().top;
 
-		if (x < 1024) {
-			x = Math.floor(x / 32);
-			y = Math.floor(y / 32);
-		}
-
 		return new Point(x, y);
 	}
 
@@ -15,11 +10,17 @@ GameEngine.prototype.startInput = function() {
 
 	gameCanvas.addEventListener("click", function (e) {
 		that.click = getClickedPoint(e);
-		log(that.click);
+		that.applyFloatingEntity();
+		that.clearFloatingEntitiy();
+
 	}, false);
 
 	gameCanvas.addEventListener("mousemove", function (e) {
 		that.mouse = getClickedPoint(e);
+		var something = new Something();
+		something.setCoordinates(that.mouse.getX() - something.getWidth() / 2, that.mouse.getY() - something.getHeight() / 2);
+		that.clearFloatingEntitiy();
+		that.setFloatingEntity(something);
 	}, false);
 
 	gameCanvas.addEventListener("mousewheel", function (e) {
