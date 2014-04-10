@@ -1,5 +1,6 @@
 function GameEngine() {
 	this.entities = [];
+	this.enemies = [];
 	this.floatingEntity;
 	this.click = null;
 	this.mouse = null;
@@ -33,7 +34,12 @@ function GameEngine() {
 
 	this.draw = function() {
 		gameCanvas.clear();
+
 		this.entities.forEach(function (entity) {
+			entity.render();
+		});
+
+		this.enemies.forEach(function (entity) {
 			entity.render();
 		});
 
@@ -44,6 +50,10 @@ function GameEngine() {
 
 	this.addEntity = function(entity) {
 		this.entities.push(entity);
+	}
+
+	this.addEnemy = function(entity) {
+		this.enemies.push(entity);
 	}
 
 	this.setFloatingEntity = function(entity) {

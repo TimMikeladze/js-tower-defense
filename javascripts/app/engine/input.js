@@ -18,7 +18,7 @@ GameEngine.prototype.startInput = function() {
 	gameCanvas.addEventListener("mousemove", function (e) {
 		that.mouse = getClickedPoint(e);
 		var something = new Something();
-		something.setCoordinates(that.mouse.getX() - something.getWidth() / 2, that.mouse.getY() - something.getHeight() / 2);
+		something.setCoordinates(that.mouse.x- something.width / 2, that.mouse.y - something.height / 2);
 		that.clearFloatingEntitiy();
 		that.setFloatingEntity(something);
 	}, false);

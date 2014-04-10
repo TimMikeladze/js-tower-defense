@@ -18,14 +18,6 @@ var Something = function (x, y) {
 		}
 	}
 
-	this.getWidth = function() {
-		return this.width;
-	}
-
-	this.getHeight = function() {
-		return this.height;
-	}
-
 	var old = this.toString;
 	this.toString = function () {
 		return old.call(this);
