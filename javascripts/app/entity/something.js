@@ -5,8 +5,10 @@ var Something = function (x, y) {
 	this.speed = 1;
 
 	this.render = function () {
+		gameCanvas.context.globalAlpha = 0.5;
 		gameCanvas.context.fillStyle = "#FF0000";
 		gameCanvas.context.fillRect(this.x, this.y, this.width, this.height);
+		gameCanvas.context.globalAlpha = 1.0;
 	}
 
 	this.move = function() {

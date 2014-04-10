@@ -1,6 +1,7 @@
 var Entity = function(x, y) {
 	this.x = x;
 	this.y = y;
+	this.alpha = 1;
 
 	this.toString = function() {
 		return "x: " + this.x + ", y: " + this.y;
