@@ -1,16 +1,14 @@
 var Something = function (x, y) {
 	Entity.call(this, x, y);
-	this.width = 50;
-	this.height = 50;
+	this.width = 25;
+	this.height = 25;
 	this.speed = 1;
 
 	this.render = function () {
-		/*
 		gameCanvas.context.globalAlpha = 0.5;
 		gameCanvas.context.fillStyle = "#FF0000";
 		gameCanvas.context.fillRect(this.x, this.y, this.width, this.height);
 		gameCanvas.context.globalAlpha = 1.0;
-		*/
 	}
 
 	this.move = function() {

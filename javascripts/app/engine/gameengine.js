@@ -28,12 +28,15 @@ function GameEngine() {
 
 	this.update = function() {
 		this.entities.forEach(function (entity) {
-		//	entity.move();
+		});
+
+		this.enemies.forEach(function (entity) {
+			entity.move();
 		});
 	}
 
 	this.draw = function() {
-		//gameCanvas.clear();
+		gameCanvas.clear();
 
 		this.entities.forEach(function (entity) {
 			entity.render();

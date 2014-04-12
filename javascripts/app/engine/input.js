@@ -3,7 +3,7 @@ GameEngine.prototype.startInput = function () {
 		var x = e.clientX - gameCanvas.canvas.getBoundingClientRect().left;
 		var y = e.clientY - gameCanvas.canvas.getBoundingClientRect().top;
 
-		return new Point(x, y);
+		return new Vector2(x, y);
 	}
 
 	var that = this;
@@ -13,7 +13,6 @@ GameEngine.prototype.startInput = function () {
 		that.applyFloatingEntity();
 		that.clearFloatingEntitiy();
 
-		points.push("new Vector2(" + that.mouse.x + ", " + that.mouse.y + "),");
 	}, false);
 
 	gameCanvas.addEventListener("mousemove", function (e) {
