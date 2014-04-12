@@ -33,7 +33,7 @@ function GameEngine() {
 	}
 
 	this.draw = function() {
-		gameCanvas.clear();
+		//gameCanvas.clear();
 
 		this.entities.forEach(function (entity) {
 			entity.render();
