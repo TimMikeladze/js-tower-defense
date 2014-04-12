@@ -1,7 +1,7 @@
 function GameEngine() {
 	this.entities = [];
 	this.enemies = [];
-	this.floatingEntity;
+	this.floatingEntity = null;
 	this.click = null;
 	this.mouse = null;
 	this.wheel = null;

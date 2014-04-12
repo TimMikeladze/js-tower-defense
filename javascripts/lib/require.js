@@ -19,6 +19,21 @@ Require.add = function (path, files) {
 	});
 }
 
+Require.getLibraryPath = function () {
+	return Require.libraryPath;
+}
+
+Require.setLibraryPath = function (path) {
+	Require.libraryPath = path;
+}
+
+Require.addLibrary = function (path, files) {
+	files.forEach(function (file) {
+		var url = Require.getLibraryPath() + "/" + path + "/" + file + ".js";
+		Require.files.push(url);
+	});
+}
+
 Require.load = function (file, callback) {
 	callback = callback ||
 		function () {

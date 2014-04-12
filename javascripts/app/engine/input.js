@@ -17,10 +17,13 @@ GameEngine.prototype.startInput = function () {
 
 	gameCanvas.addEventListener("mousemove", function (e) {
 		that.mouse = getClickedPoint(e);
-		var something = new Something();
-		something.setCoordinates(that.mouse.x - something.width / 2, that.mouse.y - something.height / 2);
-		that.clearFloatingEntitiy();
-		that.setFloatingEntity(something);
+		if(that.floatingEntity) {
+			that.floatingEntity.setCoordinates(that.mouse.x - that.floatingEntity.width / 2, that.mouse.y - that.floatingEntity.height / 2);
+		} else {
+			var tower = new Tower();
+			tower.setCoordinates(that.mouse.x - tower.width / 2, that.mouse.y - tower.height / 2);
+			that.setFloatingEntity(tower);
+		}
 
 	}, false);
 
