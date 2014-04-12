@@ -10,7 +10,7 @@ GameEngine.prototype.startInput = function () {
 
 	gameCanvas.addEventListener("click", function (e) {
 		that.click = getClickedPoint(e);
-		that.applyFloatingEntity();
+		that.addTower();
 		that.clearFloatingEntitiy();
 
 	}, false);

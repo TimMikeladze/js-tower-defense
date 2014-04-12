@@ -1,6 +1,16 @@
+var Logging = function() {
+
+}
+
+Logging.DEBUG = true;
+Logging.VERBOSE = false;
+
 function log(message, force) {
-	if (DEBUG || force) {
-		var caller = arguments.callee.caller.name ? arguments.callee.caller.name : "global";
-		console.log(caller + ": " + message);
+	if (Logging.DEBUG || force) {
+		if (Logging.VERBOSE) {
+			var caller = arguments.callee.caller.name ? arguments.callee.caller.name : "global";
+			console.log(caller);
+		}
+		console.log(message);
 	}
 }
