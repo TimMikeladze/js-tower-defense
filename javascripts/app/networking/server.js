@@ -25,14 +25,30 @@ function init() {
 
 var setEventHandlers = function () {
 	socket.sockets.on("connection", onSocketConnection);
+
 };
 
 function onSocketConnection(client) {
 	util.log("New player has connected: " + client.id);
+	players.push(client);
+
+	client.on("disconnect", onClientDisconnect);
 	client.on("getTowers", onGetTowers);
 	client.on("updateTowers", onUpdateTowers);
 };
 
+function onClientDisconnect() {
+	util.log("Player has disconnected: "+this.id);
+
+	var removePlayer = playerById(this.id);
+
+	if (!removePlayer) {
+		util.log("Player not found: "+this.id);
+		return;
+	};
+
+	players.splice(players.indexOf(removePlayer), 1);
+}
 
 function onUpdateTowers(data) {
 	this.broadcast.emit("updateTowers", data);
@@ -48,6 +64,16 @@ function onGetTowers() {
 	socket.sockets.emit("getTowers", towers);
 	util.log(towers);
 	util.log("towers get");
+};
+
+function playerById(id) {
+	var i;
+	for (i = 0; i < players.length; i++) {
+		if (players[i].id == id)
+			return players[i];
+	};
+
+	return false;
 };
 
 init();
