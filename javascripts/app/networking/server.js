@@ -48,6 +48,10 @@ function onClientDisconnect() {
 	};
 
 	players.splice(players.indexOf(removePlayer), 1);
+
+	if (players.length == 0) {
+		towers = [];
+	}
 }
 
 function onUpdateTowers(data) {
