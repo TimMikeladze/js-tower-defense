@@ -1,4 +1,5 @@
-var EnemyQueue = function() {
+var EnemyQueue = function(path) {
+	this.path = path ? path : EnemyQueue.generatePath();
 
 }
 
