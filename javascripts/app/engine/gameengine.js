@@ -1,4 +1,4 @@
-function GameEngine(socket) {
+var GameEngine = function(socket) {
 	this.socket = socket;
 	this.towers = [];
 	this.remoteTowers = [];

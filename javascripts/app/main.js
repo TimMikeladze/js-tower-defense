@@ -11,7 +11,7 @@ Require.addLibrary("socket.io", ["socket.io.min"]);
 Require.add("util", ["prototypes", "logging"]);
 Require.add("math", ["bezier", "vector2", "random"]);
 Require.add("networking", ["connection"]);
-Require.add("engine", ["gameengine", "input", "socketevents"]);
+Require.add("engine", ["gameengine", "input", "socketevents", "enemyqueue"]);
 Require.add("graphics", ["canvas"]);
 Require.add("entity", ["entity", "tower", "enemy"]);
 
