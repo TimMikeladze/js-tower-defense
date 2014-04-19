@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry excluding="javascripts/app/engine/|javascripts/app/math/|javascripts/app/entity/|javascripts/app/util/|javascripts/lib/|javascripts/app/|javascripts/lib/socket.io/|javascripts/app/graphics/|javascripts/app/networking/" kind="src" path=""/>
+	<classpathentry excluding="engine/|math/|entity/|util/|graphics/|networking/" kind="src" path="javascripts/app"/>
+	<classpathentry kind="src" path="javascripts/app/engine"/>
+	<classpathentry kind="src" path="javascripts/app/entity"/>
+	<classpathentry kind="src" path="javascripts/app/graphics"/>
+	<classpathentry kind="src" path="javascripts/app/math"/>
+	<classpathentry kind="src" path="javascripts/app/networking"/>
+	<classpathentry kind="src" path="javascripts/app/util"/>
+	<classpathentry excluding="socket.io/" kind="src" path="javascripts/lib"/>
+	<classpathentry kind="src" path="javascripts/lib/socket.io"/>
+	<classpathentry kind="con" path="org.eclipse.wst.jsdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path=""/>
+</classpath>

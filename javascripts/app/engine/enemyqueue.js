@@ -4,7 +4,7 @@ var EnemyQueue = function(enemies, path, rate) {
 	this.rate = rate ? rate : 1;
 
 	this.nextEnemy = function() {
-		return enemies.length > 0 enemies.shift() : null;
+		return enemies.length > 0 ? enemies.shift() : null;
 	}
 
 	this.getRemainingEnemies = function() {
