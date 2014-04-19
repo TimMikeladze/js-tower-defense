@@ -1,5 +1,5 @@
 var EnemyQueue = function(enemies, path, rate) {
-	this.enemies = Arrays.isArray(enemies) ? enemies : EnemyQueue.generateEnemies();
+	this.enemies = Array.isArray(enemies) ? enemies : EnemyQueue.generateEnemies();
 	this.path = path ? path : EnemyQueue.generatePath();
 	this.rate = rate ? rate : 1;
 
