@@ -10,12 +10,12 @@ var Enemy = function (x, y, width, height, color, speed) {
 			gameCanvas.context.fillStyle = "#FF0000";
 			gameCanvas.context.fillRect(p.x, p.y, 1, 1);
 		});
-	}
+	};
 
 	this.render = function () {
 		gameCanvas.context.fillStyle = color;
 		gameCanvas.context.fillRect(this.x, this.y, this.width, this.height);
-	}
+	};
 
 	this.move = function () {
 		if (this.pointer < this.bezierPoints.length) {
@@ -23,8 +23,8 @@ var Enemy = function (x, y, width, height, color, speed) {
 			this.y = this.bezierPoints[this.pointer].y;
 			this.pointer++;
 		}
-	}
-}
+	};
+};
 
 Enemy.prototype = Object.create(Entity.prototype);
 Enemy.prototype.constructor = Enemy;

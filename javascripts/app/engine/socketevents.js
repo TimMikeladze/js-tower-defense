@@ -27,4 +27,4 @@ GameEngine.prototype.setSocketEventHandler = function () {
 		});
 	});
 
-}
+};

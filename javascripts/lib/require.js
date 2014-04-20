@@ -1,38 +1,38 @@
 var Require = function () {
 
-}
+};
 
 Require.files = [];
 
 Require.getBasePath = function () {
 	return Require.basePath;
-}
+};
 
 Require.setBasePath = function (path) {
 	Require.basePath = path;
-}
+};
 
 Require.add = function (path, files) {
 	files.forEach(function (file) {
 		var url = Require.getBasePath() + "/" + path + "/" + file + ".js";
 		Require.files.push(url);
 	});
-}
+};
 
 Require.getLibraryPath = function () {
 	return Require.libraryPath;
-}
+};
 
 Require.setLibraryPath = function (path) {
 	Require.libraryPath = path;
-}
+};
 
 Require.addLibrary = function (path, files) {
 	files.forEach(function (file) {
 		var url = Require.getLibraryPath() + "/" + path + "/" + file + ".js";
 		Require.files.push(url);
 	});
-}
+};
 
 Require.load = function (file, callback) {
 	callback = callback ||
@@ -52,7 +52,7 @@ Require.load = function (file, callback) {
 		callback();
 	};
 	document.head.appendChild(filenode);
-}
+};
 
 Require.loadFiles = function () {
 	var index = 0;
@@ -68,5 +68,5 @@ Require.loadFiles = function () {
 				Require.loadFiles(callback);
 			}
 		};
-	}
+	};
 }();

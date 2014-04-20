@@ -1,6 +1,6 @@
 var Logging = function () {
 
-}
+};
 
 Logging.DEBUG = true;
 Logging.VERBOSE = false;

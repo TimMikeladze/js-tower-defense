@@ -13,42 +13,42 @@ var Game = function (id) {
 
 	this.toString = function () {
 		return "Players: " + this.players.length;
-	}
+	};
 
 	this.addPlayer = function (player) {
 		this.players.push(player);
 		util.log("Player " + player + " added to game " + this.id);
-	}
+	};
 
 	this.removeAllPlayers = function () {
 		this.players = [];
 		util.log("All players removed from " + this.id);
-	}
+	};
 
 	this.removePlayer = function (player) {
 		this.players.splice(this.players.indexOf(player), 1);
 		util.log("Player " + player + " removed from " + this.id);
-	}
+	};
 
 	this.isFull = function () {
 		return this.players.length >= 2;
-	}
+	};
 
 	this.isEmpty = function () {
 		return this.players.length == 0;
-	}
+	};
 
 	this.setSocket = function (socket) {
 		this.socket = socket;
-	}
+	};
 
 	this.broadcastPlayers = function (handler, data) {
 		this.socket.broadcast.to(this.id).emit(handler, data);
-	}
+	};
 
 	this.broadcastToPlayer = function (handler, data) {
 		this.socket.emit(handler, data);
-	}
+	};
 
 	this.broadcastAllPlayers = function (handler, data) {
 		io.sockets.in(this.id).emit(handler, data);
@@ -63,7 +63,7 @@ var Game = function (id) {
 	this.sendTowers = function () {
 		this.broadcastToPlayer("sendTowers", this.towers);
 		util.log("Towers sent to " + this.socket.id + " on " + this.id);
-	}
+	};
 
 };
 
@@ -120,7 +120,7 @@ var GameFactory = function () {
 				game.addPlayer(player);
 				addedPlayer = true;
 				break;
-			}
+			};
 		}
 		if (!addedPlayer) {
 			var id = this.createGame();
@@ -139,13 +139,13 @@ var GameFactory = function () {
 		if (game.isEmpty()) {
 			delete this.games[game];
 			util.log("Game " + game.id + " deleted");
-		}
+		};
 	}
 
 	this.toString = function () {
-		var s = "\n"
+		var s = "\n";
 		var players = "";
-		var games = ""
+		var games = "";
 		for (var player in this.players) {
 			players += player + " => " + this.players[player].id + "\n";
 		}
@@ -157,7 +157,7 @@ var GameFactory = function () {
 		s += "Games\n";
 		s += games;
 		return s;
-	}
+	};
 
 };
 

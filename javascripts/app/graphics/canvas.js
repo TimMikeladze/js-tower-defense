@@ -19,15 +19,15 @@ var Canvas = function (id) {
 		var color = hex ? hex : "#FFFFFF";
 		this.context.fillStyle = color;
 		this.context.fillRect(0, 0, this.width, this.height);
-	}
+	};
 
 	this.draw = function (callback) {
 		callback.call();
-	}
+	};
 
 	this.addEventListener = function (type, listener, useCapture) {
 		this.canvas.addEventListener(type, listener, useCapture);
-	}
+	};
 
 	this.clear();
-}
+};

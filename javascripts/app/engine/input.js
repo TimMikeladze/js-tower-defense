@@ -6,7 +6,7 @@ GameEngine.prototype.startInput = function () {
 		var y = e.clientY - gameCanvas.canvas.getBoundingClientRect().top;
 
 		return new Vector2(x, y);
-	}
+	};
 
 	gameCanvas.addEventListener("click", function (e) {
 		that.click = getClickedPoint(e);
@@ -28,4 +28,4 @@ GameEngine.prototype.startInput = function () {
 	}, false);
 
 	log("input started");
-}
+};

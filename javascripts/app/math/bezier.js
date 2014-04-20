@@ -1,6 +1,6 @@
 var Bezier = function () {
 
-}
+};
 
 Bezier.smoothing = 200;
 
@@ -18,7 +18,7 @@ Bezier.calculateBezierPoint = function (t, p0, p1, p2, p3) {
 
 	return p;
 
-}
+};
 
 Bezier.calculateCurve = function (controlPoints) {
 	var calculatedPoints = [];
@@ -38,4 +38,4 @@ Bezier.calculateCurve = function (controlPoints) {
 		}
 	}
 	return calculatedPoints;
-}
+};

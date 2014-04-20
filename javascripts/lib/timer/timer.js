@@ -12,10 +12,10 @@ function Timer(delay, callbacks) {
 		that.count++;
 	}, delay);
 	this.__defineGetter__('id', function () {
-		return id
+		return id;
 	});
 	this.__defineGetter__('delay', function () {
-		return delay
+		return delay;
 	});
 	Timer.all.push(this);
 }

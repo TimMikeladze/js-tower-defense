@@ -10,7 +10,7 @@ var GameEngine = function (socket) {
 	this.init = function () {
 		this.startInput();
 		this.setSocketEventHandler();
-	}
+	};
 
 	this.start = function () {
 		log("starting game");
@@ -20,13 +20,13 @@ var GameEngine = function (socket) {
 			that.loop();
 			requestAnimFrame(gameLoop, gameCanvas.canvas);
 		})();
-	}
+	};
 
 	this.loop = function () {
 		this.update();
 		this.draw();
 		this.click = null;
-	}
+	};
 
 	this.update = function () {
 		this.entities.forEach(function (entity) {
@@ -34,8 +34,8 @@ var GameEngine = function (socket) {
 				entity.move();
 			}
 		});
-	}
-
+	};
+	
 	this.draw = function () {
 		gameCanvas.clear();
 		var pathDrawn = false;
@@ -56,19 +56,19 @@ var GameEngine = function (socket) {
 		if (this.floatingEntity) {
 			this.floatingEntity.render();
 		}
-	}
+	};
 
 	this.addEnemy = function (entity) {
 		this.entities.push(entity);
-	}
+	};
 
 	this.setFloatingEntity = function (entity) {
 		this.floatingEntity = entity;
-	}
+	};
 
 	this.clearFloatingEntitiy = function () {
 		this.floatingEntity = null;
-	}
+	};
 
 	this.addTower = function (tower, emit) {
 		tower.placeTower();
@@ -78,4 +78,4 @@ var GameEngine = function (socket) {
 		}
 	};
 
-}
+};

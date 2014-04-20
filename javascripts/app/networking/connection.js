@@ -16,7 +16,7 @@ var Connection = function (url, port, latency) {
 				});
 			}, 2000);
 		}
-	}
+	};
 
 
 };
