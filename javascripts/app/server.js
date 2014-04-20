@@ -17,7 +17,7 @@ var Game = function (id) {
 
 	this.addPlayer = function (player) {
 		this.players.push(player);
-		util.log("Played " + player + " added to game " + this.id);
+		util.log("Player " + player + " added to game " + this.id);
 	}
 
 	this.removeAllPlayers = function () {
@@ -181,6 +181,8 @@ function setEventHandlers() {
 	io.sockets.on('connection', function (client) {
 		var gameID = gameFactory.addPlayer(client.id).id;
 		var game = gameFactory.findGameByID(gameID);
+
+		util.log(gameFactory.toString());
 
 		client.join(gameID);
 		client.on("disconnect", onClientDisconnect);

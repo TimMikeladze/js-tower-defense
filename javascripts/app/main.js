@@ -1,4 +1,4 @@
-var LOCAL_SERVER = true;
+var LOCAL_SERVER = false;
 var SERVER_URL = LOCAL_SERVER ? "http://192.168.1.101" : "http://71.19.151.5";
 var SERVER_PORT = 9191;
 
