@@ -96,6 +96,7 @@ var GameFactory = function () {
 		}
 
 		this.players[player] = game;
+		return game;
 	}
 
 	this.removePlayer = function (id) {
@@ -129,14 +130,14 @@ var GameFactory = function () {
 
 
 var gameFactory;
-var socket;
+var io;
 
 function init() {
-	socket = io.listen(PORT);
+	io = io.listen(PORT);
 
-	socket.configure(function () {
-		socket.set("transports", ["websocket"]);
-		socket.set("log level", 2);
+	io.configure(function () {
+		io.set("transports", ["websocket"]);
+		io.set("log level", 2);
 	});
 
 	gameFactory = new GameFactory;
@@ -146,14 +147,21 @@ function init() {
 
 
 function setEventHandlers() {
-	socket.sockets.on("connection", onSocketConnection);
+	io.sockets.on('connection', function (client) {
+		var gameID = gameFactory.addPlayer(client.id).id;
+		util.log(gameFactory.toString());
+
+		client.join(gameID);
+		client.on("disconnect", onClientDisconnect);
+
+		io.sockets.in(gameID).emit("setGameID", gameID);
+		io.sockets.in(gameID).emit("numberOfPlayers", gameFactory.findGameByID(gameID).players.length);
+	});
 };
 
 function onSocketConnection(client) {
-	gameFactory.addPlayer(client.id);
-	util.log(gameFactory.toString());
-
 	client.on("disconnect", onClientDisconnect);
+
 	//client.on("getTowers", onGetTowers);
 	//client.on("updateTowers", onUpdateTowers);
 };
