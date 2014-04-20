@@ -1,4 +1,4 @@
-var GameEngine = function(socket) {
+var GameEngine = function (socket) {
 	this.socket = socket;
 	this.gameID = null;
 	this.entities = [];
@@ -7,7 +7,7 @@ var GameEngine = function(socket) {
 	this.mouse = null;
 	this.enemyQueue = new EnemyQueue(this);
 
-	this.init = function() {
+	this.init = function () {
 		this.startInput();
 		this.setSocketEventHandler();
 	}
@@ -23,23 +23,30 @@ var GameEngine = function(socket) {
 
 	}
 
-	this.loop = function() {
+	this.loop = function () {
 		this.update();
 		this.draw();
 		this.click = null;
 	}
 
-	this.update = function() {
-		this.enemies.forEach(function (entity) {
-			entity.move();
+	this.update = function () {
+		this.entities.forEach(function (entity) {
+			if (entity instanceof Enemy) {
+				entity.move();
+			}
 		});
 	}
 
-	this.draw = function() {
+	this.draw = function () {
 		gameCanvas.clear();
 
-		this.enemies.forEach(function (entity) {
-			entity.render();
+		this.entities.forEach(function (entity) {
+			if (entity instanceof Enemy) {
+				entity.render();
+			}
+			if (entity instanceof Tower) {
+				entity.render();
+			}
 		});
 
 		if (this.floatingEntity) {
@@ -47,20 +54,21 @@ var GameEngine = function(socket) {
 		}
 	}
 
-	this.addEnemy = function(entity) {
-		this.enemies.push(entity);
+	this.addEnemy = function (entity) {
+		this.entities.push(entity);
 	}
 
-	this.setFloatingEntity = function(entity) {
+	this.setFloatingEntity = function (entity) {
 		this.floatingEntity = entity;
 	}
 
-	this.clearFloatingEntitiy = function() {
+	this.clearFloatingEntitiy = function () {
 		this.floatingEntity = null;
 	}
 
-	this.addTower = function(tower) {
-
+	this.addTower = function (tower) {
+		tower.placeTower();
+		this.entities.push(tower);
 	}
 
 }
