@@ -71,9 +71,12 @@ var GameEngine = function (socket) {
 		this.floatingEntity = null;
 	}
 
-	this.addTower = function (tower) {
+	this.addTower = function (tower, emit) {
 		tower.placeTower();
 		this.entities.push(tower);
-	}
+		if (emit) {
+			this.socket.emit("addTower", tower);
+		}
+	};
 
 }
