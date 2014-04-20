@@ -3,7 +3,6 @@ var io = require("socket.io");
 
 var PORT = 9191;
 
-
 var Game = function (id) {
 	this.id = id;
 	util.log("Game created with ID " + this.id);
@@ -36,7 +35,6 @@ var Game = function (id) {
 		return "Players: " + this.players.length;
 	}
 };
-
 
 var GameFactory = function () {
 	this.games = {};
@@ -128,7 +126,6 @@ var GameFactory = function () {
 
 }
 
-
 var gameFactory;
 var io;
 
@@ -140,10 +137,10 @@ function init() {
 		io.set("log level", 2);
 	});
 
-	gameFactory = new GameFactory;
+	gameFactory = new GameFactory();
 
 	setEventHandlers();
-};
+}
 
 
 function setEventHandlers() {
@@ -157,14 +154,14 @@ function setEventHandlers() {
 		io.sockets.in(gameID).emit("setGameID", gameID);
 		io.sockets.in(gameID).emit("numberOfPlayers", gameFactory.findGameByID(gameID).players.length);
 	});
-};
+}
 
 function onSocketConnection(client) {
 	client.on("disconnect", onClientDisconnect);
 
 	//client.on("getTowers", onGetTowers);
 	//client.on("updateTowers", onUpdateTowers);
-};
+}
 
 function onClientDisconnect() {
 	util.log("Player has disconnected: " + this.id);
@@ -181,14 +178,13 @@ function onUpdateTowers(data) {
 		towers.push(d);
 	});
 	util.log("towers updated");
-};
+}
 
 function onGetTowers() {
 	//this.broadcast.emit("updateTowers", data);
 	socket.sockets.emit("getTowers", towers);
 	util.log(towers);
 	util.log("towers get");
-};
-
+}
 
 init();
