@@ -31,8 +31,6 @@ Require.loadFiles(function () {
 
 	engine.init();
 	engine.start();
-	
-	
 
 });
 

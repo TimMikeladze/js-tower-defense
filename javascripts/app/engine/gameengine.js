@@ -1,5 +1,6 @@
 var GameEngine = function(socket) {
 	this.socket = socket;
+	this.gameID = null;
 	this.towers = [];
 	this.remoteTowers = [];
 	this.enemies = [];
