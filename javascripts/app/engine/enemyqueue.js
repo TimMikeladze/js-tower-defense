@@ -11,14 +11,12 @@ var EnemyQueue = function(engine, enemies, path, rate) {
 	this.getRemainingEnemies = function() {
 		return enemies.length;
 	}
-	
+
 	this.populateEngine = function() {
-		
+		var that = this;
 		this.enemies.forEach(function (p) {
-			this.engine.addEnemy(p);
-			log("test");
+			that.engine.addEnemy(p);
 		});
-		
 	}
 }
 
