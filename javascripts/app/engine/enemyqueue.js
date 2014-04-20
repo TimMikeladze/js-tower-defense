@@ -3,7 +3,6 @@ var EnemyQueue = function(engine, enemies, path, rate) {
 	this.enemies = Array.isArray(enemies) ? enemies : EnemyQueue.generateEnemies();
 	this.path = path ? path : EnemyQueue.generatePath();
 	this.rate = rate ? rate : 1;
-	
 
 	this.nextEnemy = function() {
 		return enemies.length > 0 ? enemies.shift() : null;
@@ -17,11 +16,10 @@ var EnemyQueue = function(engine, enemies, path, rate) {
 		var that = this;
 		new Timer(500, function(){
 			that.engine.addEnemy(that.enemies.shift());
-			if (this.count >= 2) {
+			if (this.count >= 30) {
 				this.stop();
 			}
 		});
-
 	}
 }
 
@@ -30,6 +28,29 @@ EnemyQueue.generatePath = function() {
 }
 
 EnemyQueue.generateEnemies = function() {
-	return [new EnemyOne(),new EnemyTwo(),new EnemyThree()];
-}
+	var result = [];
+	
+	for (var i = 0; i < 30; i++) { 
+		var enemyType = Math.floor((Math.random()*3));
+		log(enemyType);
+		
+		var enemyToAdd = null;
+		
+		switch(enemyType) {
+			case 0:
+				enemyToAdd = new EnemyOne();
+				break;
+			case 1:
+				enemyToAdd = new EnemyTwo();
+				break;
+			case 2:
+				enemyToAdd = new EnemyThree();
+		}
+		
+		result.push(enemyToAdd);
+	}
+	
+	return result;
+};
+
 
