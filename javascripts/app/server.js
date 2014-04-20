@@ -3,10 +3,6 @@ var io = require("socket.io");
 
 var PORT = 9191;
 
-function S4() {
-	return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
-}
-
 
 var Game = function (id) {
 	this.id = id;
@@ -51,7 +47,11 @@ var GameFactory = function () {
 	}
 
 	this.generateGameID = function () {
-		return  (S4() + S4() + "-" + S4() + "-4" + S4().substr(0, 3) + "-" + S4() + "-" + S4() + S4() + S4()).toLowerCase();
+		var s = "";
+		for (var i = 0; i < 32; i++) {
+			s += Math.floor(Math.random() * 0xF).toString(0xF);
+		}
+		return s;
 	}
 
 	this.createGame = function () {
@@ -115,7 +115,7 @@ var GameFactory = function () {
 		for (var player in this.players) {
 			players += player + " => " + this.players[player].id + "\n";
 		}
-		s += "Players\n";
+		s += "Players / Games\n";
 		s += players + "\n";
 		for (var game in this.games) {
 			games += game + " => " + this.games[game] + "\n";
@@ -160,7 +160,9 @@ function onSocketConnection(client) {
 
 function onClientDisconnect() {
 	util.log("Player has disconnected: " + this.id);
+
 	gameFactory.removePlayer(this.id);
+	util.log(gameFactory.toString());
 
 }
 
