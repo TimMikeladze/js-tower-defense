@@ -17,3 +17,5 @@ var Tower = function (x, y) {
 }
 
 
+Tower.prototype = Object.create(Entity.prototype);
+Tower.prototype.constructor = Tower;

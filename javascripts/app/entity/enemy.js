@@ -27,4 +27,7 @@ var Enemy = function (x, y, width, height, color, speed) {
 	}
 }
 
+Enemy.prototype = Object.create(Entity.prototype);
+Enemy.prototype.constructor = Enemy;
+
 

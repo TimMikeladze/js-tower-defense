@@ -12,7 +12,7 @@ var EnemyQueue = function(engine, enemies, path, rate) {
 	this.getRemainingEnemies = function() {
 		return enemies.length;
 	}
-	
+
 	this.populateEngine = function() {
 		var that = this;
 		new Timer(500, function(){
@@ -21,7 +21,7 @@ var EnemyQueue = function(engine, enemies, path, rate) {
 				this.stop();
 			}
 		});
-		
+
 	}
 }
 
