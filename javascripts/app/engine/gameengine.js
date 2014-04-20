@@ -20,7 +20,6 @@ var GameEngine = function (socket) {
 			that.loop();
 			requestAnimFrame(gameLoop, gameCanvas.canvas);
 		})();
-
 	}
 
 	this.loop = function () {
@@ -40,10 +39,10 @@ var GameEngine = function (socket) {
 	this.draw = function () {
 		gameCanvas.clear();
 		var pathDrawn = false;
-		
+
 		this.entities.forEach(function (entity) {
 			if (entity instanceof Enemy) {
-				if(!pathDrawn) {
+				if (!pathDrawn) {
 					entity.renderPath();
 					pathDrawn = true;
 				}

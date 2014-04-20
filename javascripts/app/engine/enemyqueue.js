@@ -14,6 +14,7 @@ var EnemyQueue = function(engine, enemies, path, rate) {
 
 	this.populateEngine = function() {
 		var that = this;
+		
 		new Timer(500, function(){
 			that.engine.addEnemy(that.enemies.shift());
 			if (this.count >= 30) {

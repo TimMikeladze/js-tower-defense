@@ -1,4 +1,4 @@
-var Logging = function() {
+var Logging = function () {
 
 }
 

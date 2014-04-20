@@ -4,7 +4,7 @@ var Tower = function (x, y) {
 	this.height = 25;
 	this.alpha = 0.5;
 
-	this.placeTower = function() {
+	this.placeTower = function () {
 		this.alpha = 1.0;
 	}
 

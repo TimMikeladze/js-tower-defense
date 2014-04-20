@@ -17,7 +17,7 @@ GameEngine.prototype.startInput = function () {
 
 	gameCanvas.addEventListener("mousemove", function (e) {
 		that.mouse = getClickedPoint(e);
-		if(that.floatingEntity) {
+		if (that.floatingEntity) {
 			that.floatingEntity.setCoordinates(that.mouse.x - that.floatingEntity.width / 2, that.mouse.y - that.floatingEntity.height / 2);
 		} else {
 			var tower = new Tower();

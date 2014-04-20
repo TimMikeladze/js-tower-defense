@@ -1,4 +1,4 @@
-var LOCAL_SERVER = false;
+var LOCAL_SERVER = true;
 var SERVER_URL = LOCAL_SERVER ? "http://192.168.1.101" : "http://71.19.151.5";
 var SERVER_PORT = 9191;
 
@@ -24,7 +24,7 @@ Require.loadFiles(function () {
 
 	gameCanvas = new Canvas("canvas");
 
-	connection = new Connection(SERVER_URL, SERVER_PORT, true);
+	connection = new Connection(SERVER_URL, SERVER_PORT, false);
 	connection.connect();
 
 	var engine = new GameEngine(connection.socket);
