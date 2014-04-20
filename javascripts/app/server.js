@@ -191,6 +191,10 @@ function setEventHandlers() {
 
 		game.setSocket(client);
 		game.sendTowers();
+
+		client.on('ping', function() {
+			client.emit('pong');
+		});
 	});
 }
 

@@ -24,7 +24,7 @@ Require.loadFiles(function () {
 
 	gameCanvas = new Canvas("canvas");
 
-	connection = new Connection(SERVER_URL, SERVER_PORT);
+	connection = new Connection(SERVER_URL, SERVER_PORT, true);
 	connection.connect();
 
 	var engine = new GameEngine(connection.socket);
