@@ -5,8 +5,15 @@ var PORT = 9191;
 
 var Game = function (id) {
 	this.id = id;
+	this.socket = null;
+
 	util.log("Game created with ID " + this.id);
 	this.players = [];
+	this.towers = [];
+
+	this.toString = function () {
+		return "Players: " + this.players.length;
+	}
 
 	this.addPlayer = function (player) {
 		this.players.push(player);
@@ -31,9 +38,24 @@ var Game = function (id) {
 		return this.players.length == 0;
 	}
 
-	this.toString = function () {
-		return "Players: " + this.players.length;
+	this.setSocket = function(socket) {
+		this.socket = socket;
 	}
+
+	this.broadcastPlayers = function(handler, data) {
+		util.log(this.id);
+		this.socket.broadcast.to(this.id).emit(handler, data);
+	}
+
+	this.broadcastAllPlayers = function(handler, data) {
+		io.sockets.in(this.id).emit(handler, data);
+	}
+
+	this.addTower = function(tower) {
+		this.towers.push(tower);
+		this.broadcastPlayers("addTower", tower);
+	}
+
 };
 
 var GameFactory = function () {
@@ -42,6 +64,10 @@ var GameFactory = function () {
 
 	this.findGameByID = function (id) {
 		return this.games[id];
+	}
+
+	this.findGameByPlayerID = function(id) {
+		return this.players[id];
 	}
 
 	this.generateGameID = function () {
@@ -54,7 +80,7 @@ var GameFactory = function () {
 
 	this.createGame = function () {
 		var id = this.generateGameID();
-		this.games[id] = (new Game(id));
+		this.games[id] = new Game(id);
 		return id;
 	}
 
@@ -76,13 +102,13 @@ var GameFactory = function () {
 		});
 	}
 
-	this.addPlayer = function (player) {
+	this.addPlayer = function (player, socket) {
 		var addedPlayer = false;
 		var game;
 		for (var id in this.games) {
 			game = this.games[id];
 			if (!game.isFull()) {
-				game.addPlayer(player);
+				game.addPlayer(player, socket);
 				addedPlayer = true;
 				break;
 			}
@@ -90,7 +116,7 @@ var GameFactory = function () {
 		if (!addedPlayer) {
 			var id = this.createGame();
 			game = this.games[id];
-			game.addPlayer(player);
+			game.addPlayer(player, socket);
 		}
 
 		this.players[player] = game;
@@ -142,25 +168,23 @@ function init() {
 	setEventHandlers();
 }
 
-
 function setEventHandlers() {
 	io.sockets.on('connection', function (client) {
-		var gameID = gameFactory.addPlayer(client.id).id;
-		util.log(gameFactory.toString());
+		var gameID = gameFactory.addPlayer(client.id, client).id;
 
 		client.join(gameID);
 		client.on("disconnect", onClientDisconnect);
+		client.on("addTower", onAddTower);
 
 		io.sockets.in(gameID).emit("setGameID", gameID);
 		io.sockets.in(gameID).emit("numberOfPlayers", gameFactory.findGameByID(gameID).players.length);
 	});
 }
 
-function onSocketConnection(client) {
-	client.on("disconnect", onClientDisconnect);
-
-	//client.on("getTowers", onGetTowers);
-	//client.on("updateTowers", onUpdateTowers);
+function onAddTower(tower) {
+	var game = gameFactory.findGameByPlayerID(this.id);
+	game.setSocket(this);
+	game.addTower(tower);
 }
 
 function onClientDisconnect() {
@@ -169,22 +193,6 @@ function onClientDisconnect() {
 	gameFactory.removePlayer(this.id);
 	util.log(gameFactory.toString());
 
-}
-
-function onUpdateTowers(data) {
-	this.broadcast.emit("updateTowers", data);
-	//socket.sockets.emit("updateTowers", data);
-	data.forEach(function (d) {
-		towers.push(d);
-	});
-	util.log("towers updated");
-}
-
-function onGetTowers() {
-	//this.broadcast.emit("updateTowers", data);
-	socket.sockets.emit("getTowers", towers);
-	util.log(towers);
-	util.log("towers get");
 }
 
 init();
