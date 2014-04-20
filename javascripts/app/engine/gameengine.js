@@ -1,6 +1,7 @@
 var GameEngine = function(socket) {
 	this.socket = socket;
 	this.gameID = null;
+	this.entities = [];
 	this.enemies = [];
 	this.click = null;
 	this.mouse = null;
@@ -56,6 +57,10 @@ var GameEngine = function(socket) {
 
 	this.clearFloatingEntitiy = function() {
 		this.floatingEntity = null;
+	}
+
+	this.addTower = function(tower) {
+
 	}
 
 }

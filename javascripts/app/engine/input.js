@@ -1,4 +1,6 @@
 GameEngine.prototype.startInput = function () {
+	var that = this;
+
 	var getClickedPoint = function (e) {
 		var x = e.clientX - gameCanvas.canvas.getBoundingClientRect().left;
 		var y = e.clientY - gameCanvas.canvas.getBoundingClientRect().top;
@@ -6,11 +8,9 @@ GameEngine.prototype.startInput = function () {
 		return new Vector2(x, y);
 	}
 
-	var that = this;
-
 	gameCanvas.addEventListener("click", function (e) {
 		that.click = getClickedPoint(e);
-		that.addTower();
+		that.addTower(x, y);
 		that.clearFloatingEntitiy();
 
 	}, false);
@@ -25,10 +25,6 @@ GameEngine.prototype.startInput = function () {
 			that.setFloatingEntity(tower);
 		}
 
-	}, false);
-
-	gameCanvas.addEventListener("mousewheel", function (e) {
-		that.wheel = e;
 	}, false);
 
 	log("input started");
