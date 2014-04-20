@@ -4,21 +4,24 @@ var SERVER_PORT = 9191;
 
 Require.setBasePath("javascripts/app");
 Require.setLibraryPath("javascripts/lib");
+Require.setImagesPath("assets/img");
 
 Require.addLibrary("timer", ["timer"]);
 Require.addLibrary("socket.io", ["socket.io.min"]);
 
-Require.add("util", ["prototypes", "logging"]);
-Require.add("math", ["bezier", "vector2", "random"]);
-Require.add("networking", ["connection"]);
-Require.add("engine", ["gameengine", "input", "socketevents", "enemyqueue"]);
-Require.add("graphics", ["canvas"]);
-Require.add("entity", ["entity", "tower", "enemy", "enemyone", "enemytwo", "enemythree"]);
+Require.addScript("util", ["prototypes", "logging"]);
+Require.addScript("math", ["bezier", "vector2", "random"]);
+Require.addScript("networking", ["connection"]);
+Require.addScript("engine", ["gameengine", "input", "socketevents", "enemyqueue"]);
+Require.addScript("graphics", ["canvas"]);
+Require.addScript("entity", ["entity", "tower", "enemy", "enemyone", "enemytwo", "enemythree"]);
+
+//Require.addImage("enemy", ["bkg.png"]);
 
 var gameCanvas;
 var connection;
 
-Require.loadFiles(function () {
+Require.load(function () {
 	Logging.DEBUG = true;
 	Logging.VERBOSE = false;
 
