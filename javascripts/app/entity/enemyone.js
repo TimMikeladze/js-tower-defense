@@ -1,3 +1,4 @@
-var EnemyOne = function(x, y, width, height) {
-	Enemy.call(this, x, y, width, height, "#FF0000", 1);
+var EnemyOne = function(x, y) {
+	Enemy.call(this, x, y, 10, 10, "#FF0000", 1);
 }
+ 	

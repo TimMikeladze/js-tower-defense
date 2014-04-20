@@ -7,6 +7,7 @@ var GameEngine = function(socket) {
 	this.click = null;
 	this.mouse = null;
 	this.wheel = null;
+	this.enemyQueue = null;
 
 	this.init = function() {
 		this.startInput();
@@ -16,11 +17,13 @@ var GameEngine = function(socket) {
 
 	this.start = function () {
 		log("starting game");
+		this.enemyQueue.populateEngine();
 		var that = this;
 		(function gameLoop() {
 			that.loop();
 			requestAnimFrame(gameLoop, gameCanvas.canvas);
 		})();
+		
 	}
 
 	this.loop = function() {

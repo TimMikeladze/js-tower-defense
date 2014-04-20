@@ -27,7 +27,6 @@ var Enemy = function (x, y, width, height, color, speed) {
 		this.pointer++;
 
 	}
-
 }
 
 

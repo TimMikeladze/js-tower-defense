@@ -1,3 +1,3 @@
-var EnemyThree = function(x, y, width, height) {
-	Enemy.call(this, x, y, width, height, "#0000FF", 3);
+var EnemyThree = function(x, y) {
+	Enemy.call(this, x, y, 15, 15, "#0000FF", 3);
 }

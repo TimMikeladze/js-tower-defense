@@ -1,5 +1,5 @@
 var EnemyQueue = function(engine, enemies, path, rate) {
-	this.engine = engine ? engine : null;
+	this.engine = engine;
 	this.enemies = Array.isArray(enemies) ? enemies : EnemyQueue.generateEnemies();
 	this.path = path ? path : EnemyQueue.generatePath();
 	this.rate = rate ? rate : 1;
@@ -10,6 +10,15 @@ var EnemyQueue = function(engine, enemies, path, rate) {
 
 	this.getRemainingEnemies = function() {
 		return enemies.length;
+	}
+	
+	this.populateEngine = function() {
+		
+		this.enemies.forEach(function (p) {
+			this.engine.addEnemy(p);
+			log("test");
+		});
+		
 	}
 }
 

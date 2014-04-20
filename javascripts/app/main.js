@@ -31,22 +31,9 @@ Require.loadFiles(function () {
 
 	engine.init();
 	engine.start();
+	
+	
 
-	var enemy = new EnemyOne();
-	enemy.setDimensions(10, 10);
-	
-	engine.addEnemy(enemy);
-	
-	/*
-	var enemyQueue = new EnemyQueue();
-	var enemies = enemyQueue.generateEnemies();
-	
-	enemies.forEach(function (p) {
-		var enemy = p.setDimensions(10, 10);
-		engine.addEnemy(enemy);
-	});
-	*/
-	
 });
 
 
