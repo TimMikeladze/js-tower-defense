@@ -124,7 +124,7 @@ var GameFactory = function () {
 		return s;
 	}
 
-}
+};
 
 var gameFactory;
 var io;
