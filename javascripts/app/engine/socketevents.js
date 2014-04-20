@@ -19,9 +19,11 @@ GameEngine.prototype.setSocketEventHandler = function () {
 		that.addTower(tower, false);
 	});
 
-	this.socket.on("getTowers", function(towers) {
-		towers.forEach(function(t) {
-				
+	this.socket.on("sendTowers", function(towers) {
+		log("Towers recieved");
+		towers.forEach(function(tower) {
+			tower = new Tower(tower.x, tower.y);
+			that.addTower(tower, false);
 		});
 	});
 
