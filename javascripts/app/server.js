@@ -3,11 +3,6 @@ var io = require("socket.io");
 
 var PORT = 9191;
 
-var socket;
-var players;
-var towers;
-
-
 function S4() {
 	return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
 }
@@ -20,7 +15,7 @@ var Game = function (id) {
 
 	this.addPlayer = function (player) {
 		this.players.push(player);
-		util.log("Played added to game " + this.id);
+		util.log("Played " + player + " added to game " + this.id);
 	}
 
 	this.removeAllPlayers = function () {
@@ -28,22 +23,17 @@ var Game = function (id) {
 		util.log("All players removed from " + this.id);
 	}
 
-	this.removePlayer = function (id) {
-		var player = this.findPlayerByID(id);
+	this.removePlayer = function (player) {
 		this.players.splice(this.players.indexOf(player), 1);
-		util.log("Player " + player.id + " removed from " + this.id);
-	}
-
-	this.findPlayerByID = function (id) {
-		this.players.forEach(function (p) {
-			if (p.id == id) {
-				return p;
-			}
-		});
+		util.log("Player " + player + " removed from " + this.id);
 	}
 
 	this.isFull = function () {
 		return this.players.length >= 2;
+	}
+
+	this.isEmpty = function () {
+		return this.players.length == 0;
 	}
 
 	this.toString = function () {
@@ -53,14 +43,11 @@ var Game = function (id) {
 
 
 var GameFactory = function () {
-	this.games = [];
+	this.games = {};
+	this.players = {};
 
 	this.findGameByID = function (id) {
-		this.games.forEach(function (g) {
-			if (g.id == id) {
-				return g;
-			}
-		});
+		return this.games[id];
 	}
 
 	this.generateGameID = function () {
@@ -68,44 +55,83 @@ var GameFactory = function () {
 	}
 
 	this.createGame = function () {
-		this.games.push(new Game(this.generateGameID()));
+		var id = this.generateGameID();
+		this.games[id] = (new Game(id));
+		return id;
 	}
 
 	this.removeAllGames = function () {
-		this.games = [];
+		this.games = {};
+		this.players = {};
 		util.log("All games removed");
+		util.log("All players removed");
 	}
 
 	this.removeGameByID = function (id) {
-		var game = this.findGameByID(id);
-		this.games.splice(this.games.indexOf(game), 1);
-		util.log("Game " + id + " removed");
+		var game = this.games[id];
+		delete this.games[id];
+		util.log("Game " + game.id + " removed");
+		var that = this;
+		game.players.forEach(function (p) {
+			delete that.players[p];
+			util.log("Player " + p + " removed");
+		});
 	}
 
 	this.addPlayer = function (player) {
 		var addedPlayer = false;
-		if (this.games.length > 0) {
-			for (var i = 0; i < this.games.length; i++) {
-				var g = this.games[i];
-				if (!g.isFull()) {
-					g.addPlayer(player);
-					addedPlayer = true;
-				}
+		var game;
+		for (var id in this.games) {
+			game = this.games[id];
+			if (!game.isFull()) {
+				game.addPlayer(player);
+				addedPlayer = true;
+				break;
 			}
 		}
-		if (!addedPlayer || this.games.length == 0) {
-			this.createGame();
-			this.games[this.games.length - 1].addPlayer((player));
+		if (!addedPlayer) {
+			var id = this.createGame();
+			game = this.games[id];
+			game.addPlayer(player);
+		}
+
+		this.players[player] = game;
+	}
+
+	this.removePlayer = function (id) {
+		var game = this.players[id];
+		delete this.players[id];
+		game.removePlayer(id);
+		if (game.isEmpty()) {
+			delete this.games[game];
+			util.log("Game " + game.id + " deleted");
 		}
 	}
+
+	this.toString = function () {
+		var s = "\n"
+		var players = "";
+		var games = ""
+		for (var player in this.players) {
+			players += player + " => " + this.players[player].id + "\n";
+		}
+		s += "Players\n";
+		s += players + "\n";
+		for (var game in this.games) {
+			games += game + " => " + this.games[game] + "\n";
+		}
+		s += "Games\n";
+		s += games;
+		return s;
+	}
+
 }
 
 
-function init() {
-	games = [];
-	players = [];
-	towers = [];
+var gameFactory;
+var socket;
 
+function init() {
 	socket = io.listen(PORT);
 
 	socket.configure(function () {
@@ -113,40 +139,29 @@ function init() {
 		socket.set("log level", 2);
 	});
 
+	gameFactory = new GameFactory;
+
 	setEventHandlers();
 };
 
 
-var setEventHandlers = function () {
+function setEventHandlers() {
 	socket.sockets.on("connection", onSocketConnection);
-
 };
 
 function onSocketConnection(client) {
-	util.log("New player has connected: " + client.id);
-	players.push(client);
+	gameFactory.addPlayer(client.id);
+	util.log(gameFactory.toString());
 
 	client.on("disconnect", onClientDisconnect);
-	client.on("getTowers", onGetTowers);
-	client.on("updateTowers", onUpdateTowers);
+	//client.on("getTowers", onGetTowers);
+	//client.on("updateTowers", onUpdateTowers);
 };
 
 function onClientDisconnect() {
 	util.log("Player has disconnected: " + this.id);
+	gameFactory.removePlayer(this.id);
 
-	var removePlayer = playerById(this.id);
-
-	if (!removePlayer) {
-		util.log("Player not found: " + this.id);
-		return;
-	}
-	;
-
-	players.splice(players.indexOf(removePlayer), 1);
-
-	if (players.length == 0) {
-		towers = [];
-	}
 }
 
 function onUpdateTowers(data) {
@@ -166,14 +181,4 @@ function onGetTowers() {
 };
 
 
-//init();
-
-var gameFactory = new GameFactory();
-
-gameFactory.addPlayer("test player");
-gameFactory.addPlayer("test player");
-gameFactory.addPlayer("test player");
-gameFactory.addPlayer("test player");
-gameFactory.addPlayer("test player");
-
-util.log(gameFactory.games);
+init();
