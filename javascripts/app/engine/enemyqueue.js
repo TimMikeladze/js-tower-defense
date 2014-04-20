@@ -15,12 +15,20 @@ var EnemyQueue = function(engine, enemies, path, rate) {
 	this.populateEngine = function() {
 		var that = this;
 		
+		for (var i = 0; i < 30; i++) { 
+			setInterval(function tick() {
+				that.engine.addEnemy(that.enemies.shift());
+			}, Math.floor((Math.random()*500)));
+		}
+		
+		/*
 		new Timer(500, function(){
 			that.engine.addEnemy(that.enemies.shift());
 			if (this.count >= 30) {
 				this.stop();
 			}
 		});
+		*/
 	}
 }
 
