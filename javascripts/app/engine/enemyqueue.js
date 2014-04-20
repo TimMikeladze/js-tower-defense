@@ -32,8 +32,6 @@ EnemyQueue.generateEnemies = function() {
 	
 	for (var i = 0; i < 30; i++) { 
 		var enemyType = Math.floor((Math.random()*3));
-		log(enemyType);
-		
 		var enemyToAdd = null;
 		
 		switch(enemyType) {
