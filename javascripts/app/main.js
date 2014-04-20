@@ -6,6 +6,7 @@ var SERVER_PORT = 9191;
 Require.setBasePath("javascripts/app");
 Require.setLibraryPath("javascripts/lib");
 
+Require.addLibrary("timer", ["timer"]);
 Require.addLibrary("socket.io", ["socket.io.min"]);
 
 Require.add("util", ["prototypes", "logging"]);
@@ -31,7 +32,6 @@ Require.loadFiles(function () {
 
 	engine.init();
 	engine.start();
-
 });
 
 
