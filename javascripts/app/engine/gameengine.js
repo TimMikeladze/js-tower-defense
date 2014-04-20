@@ -39,9 +39,14 @@ var GameEngine = function (socket) {
 
 	this.draw = function () {
 		gameCanvas.clear();
-
+		var pathDrawn = false;
+		
 		this.entities.forEach(function (entity) {
 			if (entity instanceof Enemy) {
+				if(!pathDrawn) {
+					entity.renderPath();
+					pathDrawn = true;
+				}
 				entity.render();
 			}
 			if (entity instanceof Tower) {
