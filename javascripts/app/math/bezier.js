@@ -6,7 +6,7 @@ Bezier.smoothing = 200;
 
 Bezier.calculateBezierPoint = function (t, p0, p1, p2, p3) {
 	var u = 1 - t;
-	var tt = t*t;
+	var tt = t * t;
 	var uu = u * u;
 	var uuu = uu * u;
 	var ttt = tt * t;

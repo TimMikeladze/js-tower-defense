@@ -4,25 +4,25 @@ var Enemy = function (x, y, width, height, color, speed) {
 	this.pathDrawn = false;
 
 	this.bezierPoints = Bezier.calculateCurve(EnemyQueue.generatePath());
-	
-	this.renderPath = function() {
+
+	this.renderPath = function () {
 		this.bezierPoints.forEach(function (p) {
 			gameCanvas.context.fillStyle = "#FF0000";
 			gameCanvas.context.fillRect(p.x, p.y, 1, 1);
 		});
 	}
-	
-	this.render = function () {	
+
+	this.render = function () {
 		gameCanvas.context.fillStyle = color;
 		gameCanvas.context.fillRect(this.x, this.y, this.width, this.height);
 	}
 
-	this.move = function() {
+	this.move = function () {
 		if (this.pointer < this.bezierPoints.length) {
 			this.x = this.bezierPoints[this.pointer].x;
 			this.y = this.bezierPoints[this.pointer].y;
 			this.pointer++;
-		} 
+		}
 	}
 }
 

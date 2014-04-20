@@ -38,29 +38,29 @@ var Game = function (id) {
 		return this.players.length == 0;
 	}
 
-	this.setSocket = function(socket) {
+	this.setSocket = function (socket) {
 		this.socket = socket;
 	}
 
-	this.broadcastPlayers = function(handler, data) {
+	this.broadcastPlayers = function (handler, data) {
 		this.socket.broadcast.to(this.id).emit(handler, data);
 	}
 
-	this.broadcastToPlayer = function(handler, data) {
+	this.broadcastToPlayer = function (handler, data) {
 		this.socket.emit(handler, data);
 	}
 
-	this.broadcastAllPlayers = function(handler, data) {
+	this.broadcastAllPlayers = function (handler, data) {
 		io.sockets.in(this.id).emit(handler, data);
 	}
 
-	this.addTower = function(tower) {
+	this.addTower = function (tower) {
 		this.towers.push(tower);
 		this.broadcastPlayers("addTower", tower);
 		util.log("Tower added by " + this.socket.id + " to " + this.id);
 	}
 
-	this.sendTowers = function() {
+	this.sendTowers = function () {
 		this.broadcastToPlayer("sendTowers", this.towers);
 		util.log("Towers sent to " + this.socket.id + " on " + this.id);
 	}
@@ -75,7 +75,7 @@ var GameFactory = function () {
 		return this.games[id];
 	}
 
-	this.findGameByPlayerID = function(id) {
+	this.findGameByPlayerID = function (id) {
 		return this.players[id];
 	}
 
@@ -194,7 +194,7 @@ function setEventHandlers() {
 		game.setSocket(client);
 		game.sendTowers();
 
-		client.on('ping', function() {
+		client.on('ping', function () {
 			client.emit('pong');
 		});
 	});
