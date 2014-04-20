@@ -13,7 +13,7 @@ Require.add("math", ["bezier", "vector2", "random"]);
 Require.add("networking", ["connection"]);
 Require.add("engine", ["gameengine", "input", "socketevents", "enemyqueue"]);
 Require.add("graphics", ["canvas"]);
-Require.add("entity", ["entity", "tower", "enemy"]);
+Require.add("entity", ["entity", "tower", "enemy", "enemyone", "enemytwo", "enemythree"]);
 
 var gameCanvas;
 var connection;
@@ -32,9 +32,21 @@ Require.loadFiles(function () {
 	engine.init();
 	engine.start();
 
-	var enemy = new Enemy();
+	var enemy = new EnemyOne();
 	enemy.setDimensions(10, 10);
+	
 	engine.addEnemy(enemy);
+	
+	/*
+	var enemyQueue = new EnemyQueue();
+	var enemies = enemyQueue.generateEnemies();
+	
+	enemies.forEach(function (p) {
+		var enemy = p.setDimensions(10, 10);
+		engine.addEnemy(enemy);
+	});
+	*/
+	
 });
 
 

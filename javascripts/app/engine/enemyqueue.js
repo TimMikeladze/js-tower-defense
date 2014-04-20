@@ -1,4 +1,5 @@
-var EnemyQueue = function(enemies, path, rate) {
+var EnemyQueue = function(engine, enemies, path, rate) {
+	this.engine = engine ? engine : null;
 	this.enemies = Array.isArray(enemies) ? enemies : EnemyQueue.generateEnemies();
 	this.path = path ? path : EnemyQueue.generatePath();
 	this.rate = rate ? rate : 1;
@@ -17,6 +18,6 @@ EnemyQueue.generatePath = function() {
 }
 
 EnemyQueue.generateEnemies = function() {
-
+	return [new EnemyOne(),new EnemyTwo(),new EnemyThree()];
 }
 

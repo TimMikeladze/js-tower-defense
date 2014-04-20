@@ -1,4 +1,4 @@
-var Enemy = function (x, y, width, height) {
+var Enemy = function (x, y, width, height, color, speed) {
 	Entity.call(this, x, y, width, height);
 	this.pointer = 0;
 
@@ -13,7 +13,7 @@ var Enemy = function (x, y, width, height) {
 			gameCanvas.context.fillRect(p.x, p.y, 1, 1);
 		});
 
-		gameCanvas.context.fillStyle = "#0000FF";
+		gameCanvas.context.fillStyle = color;
 		gameCanvas.context.fillRect(this.x, this.y, this.width, this.height);
 
 	}

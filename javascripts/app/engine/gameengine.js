@@ -11,6 +11,7 @@ var GameEngine = function(socket) {
 	this.init = function() {
 		this.startInput();
 		this.setSocketEventHandler();
+		this.enemyQueue = new EnemyQueue(this);
 	}
 
 	this.start = function () {
