@@ -13,7 +13,7 @@ Require.addScript("util", ["prototypes", "logging"]);
 Require.addScript("math", ["bezier", "vector2", "random"]);
 Require.addScript("networking", ["connection"]);
 Require.addScript("engine", ["gameengine", "input", "socketevents", "enemyqueue"]);
-Require.addScript("graphics", ["canvas"]);
+Require.addScript("graphics", ["canvas", "animation"]);
 Require.addScript("entity", ["entity", "tower", "enemy", "enemyone", "enemytwo", "enemythree", "towerone"]);
 
 Require.addImage("towerone", ["sprite.png"]);
