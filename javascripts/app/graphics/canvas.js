@@ -16,9 +16,13 @@ var Canvas = function (id) {
 	this.height = this.canvas.height;
 
 	this.clear = function (hex) {
-		var color = hex ? hex : "#FFFFFF";
-		this.context.fillStyle = color;
-		this.context.fillRect(0, 0, this.width, this.height);
+		if (id === 'main_canvas') {		
+			var background = document.getElementById("bg");
+			this.context.drawImage(background, 0, 0);
+		} else {
+			this.context.fillStyle = '#fff';
+			this.context.fillRect(0, 0, this.width, this.height);
+		}
 	};
 
 	this.draw = function (callback) {

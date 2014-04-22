@@ -258,7 +258,11 @@ canvas {
 }
 #menu_canvas {
     width: 100%;
-    background-color: lightgray;
+    background-color: #fff;
+}
+
+#bg {
+  display:none;
 }
 
 .stop-scrolling {
