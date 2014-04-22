@@ -14,6 +14,8 @@ var Tower = function (sprite, x, y, width, height, scale, rotations) {
 
 	this.animation = new Animation(this.sprite, this.width, this.height);
 
+	//TODO(tim) Rotation bug, rotate really fast, jumps around.
+
 	this.rotateUp = function() {
 		this.rotation++;
 		this.calculateRotationIndex();
