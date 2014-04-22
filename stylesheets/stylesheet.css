@@ -250,3 +250,8 @@ canvas {
     display: block;
     width: 800px;
 }
+
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}

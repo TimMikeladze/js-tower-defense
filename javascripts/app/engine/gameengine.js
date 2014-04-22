@@ -5,6 +5,7 @@ var GameEngine = function (socket) {
 	this.enemies = [];
 	this.click = null;
 	this.mouse = null;
+	this.wheel = null;
 	this.enemyQueue = new EnemyQueue(this);
 
 	this.init = function () {
@@ -35,7 +36,7 @@ var GameEngine = function (socket) {
 			}
 		});
 	};
-	
+
 	this.draw = function () {
 		gameCanvas.clear();
 		var pathDrawn = false;

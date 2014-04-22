@@ -20,12 +20,22 @@ GameEngine.prototype.startInput = function () {
 		if (that.floatingEntity) {
 			that.floatingEntity.setCoordinates(that.mouse.x - that.floatingEntity.width / 2, that.mouse.y - that.floatingEntity.height / 2);
 		} else {
-			var tower = new Tower();
+			var tower = new TowerOne();
 			tower.setCoordinates(that.mouse.x - tower.width / 2, that.mouse.y - tower.height / 2);
 			that.setFloatingEntity(tower);
 		}
 
 	}, false);
+
+	gameCanvas.addEventListener("mousewheel", function (e) {
+		that.wheel = e;
+		if (that.wheel.wheelDelta >= 0) {
+			that.floatingEntity.rotateUp();
+		} else {
+			that.floatingEntity.rotateDown();
+		}
+	}, false);
+
 
 	log("input started");
 };
