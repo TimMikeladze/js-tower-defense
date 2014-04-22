@@ -21,27 +21,28 @@ var Animation = function (image, frameWidth, frameHeight) {
 	var x = 0;
 	var y = 0;
 
-	var framesRow = [];
+	var framesRow = new Array();
 
 	log("width frames " + this.totalWidthFrames);
+	log("total frames " + this.totalFrames);
 
-	for (var i = 0; i < this.totalFrames; i++) {
+	for (var i = 0; i <= this.totalFrames; i++) {
 
 		log("coordinates " + x + " " + y);
-		framesRow.push(new Frame(i, x, y, this.frameWidth, this.frameHeight));
+		var frame = new Frame(i, x, y, this.frameWidth, this.frameHeight);
+		framesRow.push(frame);
 
-		if (i % this.totalWidthFrames == 0) {
+		if (i % this.totalWidthFrames == 0 && i != 0) {
 			log("pushed " + i);
+			log("length " + framesRow.length);
 			this.frames.push(framesRow);
-			if (i > 0) {
-				log("row cleared");
-				framesRow = [];
-			}
+			log("row cleared");
+			framesRow = [];
 		}
 
 		x += this.frameWidth;
 
-		if (x - this.frameWidth >= this.image.width) {
+		if (x >= this.image.width) {
 			x = 0;
 			y += this.frameHeight;
 			log(y + " at " + i);
