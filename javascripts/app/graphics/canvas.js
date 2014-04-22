@@ -16,12 +16,12 @@ var Canvas = function (id) {
 	this.height = this.canvas.height;
 
 	this.clear = function (hex) {
-		if (id === 'main_canvas') {		
+		if (hex) {		
+			this.context.fillStyle = hex;
+			this.context.fillRect(0, 0, this.width, this.height);
+		} else {
 			var background = document.getElementById("bg");
 			this.context.drawImage(background, 0, 0);
-		} else {
-			this.context.fillStyle = '#fff';
-			this.context.fillRect(0, 0, this.width, this.height);
 		}
 	};
 
