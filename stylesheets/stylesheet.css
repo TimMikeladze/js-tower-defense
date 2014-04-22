@@ -12,11 +12,11 @@ body {
 
 .container {
   width: 100%;
-  max-width: 800px;
+  max-width: 950px;
   margin: 0 auto;
 }
 
-section {
+section, aside {
   display: block;
   margin: 0 0 20px 0;
 }
@@ -73,8 +73,12 @@ header h2 {
 */
 
 #main_content {
-  width: 100%;
   -webkit-font-smoothing: antialiased;
+  float: left;
+}
+
+#menu_content {
+  float: right;
 }
 
 section img {
@@ -245,10 +249,16 @@ a {
 canvas {
     padding-left: 0;
     padding-right: 0;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0;
     display: block;
-    width: 800px;
+}
+
+#main_canvas { 
+    width: 100%;
+}
+#menu_canvas {
+    width: 100%;
+    background-color: lightgray;
 }
 
 .stop-scrolling {
