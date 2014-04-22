@@ -7,29 +7,25 @@ var Tower = function (sprite, x, y, width, height, scale, rotations) {
 	this.width = width;
 	this.height = height;
 	this.scale = scale;
-	this.rotations = rotations;
-
-	this.frameIndex = 1;
-	this.frameX = 0;
-	this.frameY = 0;
-
-	this.alpha = 0.5;
 	this.rotation = 0;
+	this.rotationIndex = 0;
+	this.rotations = rotations;
+	this.alpha = 0.5;
 
 	this.animation = new Animation(this.sprite, this.width, this.height);
 
-	this.frame = null;
-
 	this.rotateUp = function() {
 		this.rotation++;
+		this.calculateRotationIndex();
 	};
 
 	this.rotateDown = function() {
 		this.rotation--;
+		this.calculateRotationIndex();
 	};
 
-	this.getRotation = function() {
-		return Math.abs(this.rotation % this.rotations);
+	this.calculateRotationIndex = function() {
+		this.rotationIndex = Math.abs(this.rotation % this.rotations);
 	};
 
 	this.placeTower = function () {
@@ -37,9 +33,10 @@ var Tower = function (sprite, x, y, width, height, scale, rotations) {
 	};
 
 	this.render = function () {
-		var frame = this.animation.getFrame(this.getRotation());
+		var frame = this.animation.getFrame(this.rotationIndex);
+		var image = Require.getImage(this.sprite);
 		gameCanvas.context.globalAlpha = this.alpha;
-		gameCanvas.context.drawImage(this.sprite, frame.x, frame.y, frame.width, frame.height, this.x, this.y, this.width / this.scale, this.height / this.scale);
+		gameCanvas.context.drawImage(image, frame.x, frame.y, frame.width, frame.height, this.x, this.y, this.width / this.scale, this.height / this.scale);
 		gameCanvas.context.globalAlpha = 1.0;
 	};
 

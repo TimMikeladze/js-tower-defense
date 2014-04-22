@@ -1,4 +1,4 @@
-var Animation = function (image, frameWidth, frameHeight) {
+var Animation = function (sprite, frameWidth, frameHeight) {
 
 	var Frame = function(i, x, y, width, height) {
 		this.i = i;
@@ -8,17 +8,16 @@ var Animation = function (image, frameWidth, frameHeight) {
 		this.height = height;
 	};
 
-	this.image = image;
 	this.frameWidth = frameWidth;
 	this.frameHeight = frameHeight;
-
 	this.frames = [];
 
-	this.totalWidthFrames = this.image.width / this.frameWidth;
-	this.totalHeightFrames = this.image.height / this.frameHeight;
-	this.totalFrames = this.totalWidthFrames * this.totalHeightFrames;
+	var image = Require.getImage(sprite);
+	if (image) {
+		this.totalWidthFrames = image.width / this.frameWidth;
+		this.totalHeightFrames = image.height / this.frameHeight;
+		this.totalFrames = this.totalWidthFrames * this.totalHeightFrames;
 
-	this.generateFrames = function() {
 		var x = 0;
 		var y = 0;
 
@@ -33,12 +32,12 @@ var Animation = function (image, frameWidth, frameHeight) {
 				framesRow = [];
 			}
 			x += this.frameWidth;
-			if (x >= this.image.width) {
+			if (x >= image.width) {
 				x = 0;
 				y += this.frameHeight;
 			}
 		}
-	};
+	}
 
 	this.getFrameAt = function (x, y) {
 		return this.frames[y][x];
@@ -51,7 +50,6 @@ var Animation = function (image, frameWidth, frameHeight) {
 		return this.frames[row][column];
 	};
 
-	this.generateFrames();
 };
 
 

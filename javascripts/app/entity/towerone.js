@@ -1,5 +1,5 @@
 var TowerOne = function (x, y) {
-	this.sprite = Require.getImage("towerone/sprite.png");
+	this.sprite = "towerone/sprite.png";
 	this.WIDTH = 118;
 	this.HEIGHT = 118;
 	this.MAX_ROTATION = 8;
