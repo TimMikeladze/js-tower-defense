@@ -1,9 +1,13 @@
-var Entity = function (x, y, width, height) {
+var Entity = function (sprite, x, y, width, height, scale) {
+	this.sprite = sprite;
 	this.x = x;
 	this.y = y;
 	this.width = width;
 	this.height = height;
+	this.scale = scale;
 	this.alpha = 1;
+
+	this.animation = new Animation(this.sprite, this.width, this.height);
 
 	this.toString = function () {
 		return "x: " + this.x + ", y: " + this.y;

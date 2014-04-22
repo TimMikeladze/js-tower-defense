@@ -1,6 +1,4 @@
 var Tower = function (sprite, x, y, width, height, scale, rotations) {
-	Entity.call(this, x, y);
-
 	this.sprite = sprite;
 	this.x = x;
 	this.y = y;
@@ -12,7 +10,7 @@ var Tower = function (sprite, x, y, width, height, scale, rotations) {
 	this.rotations = rotations;
 	this.alpha = 0.5;
 
-	this.animation = new Animation(this.sprite, this.width, this.height);
+	Entity.call(this, this.sprite, this.x, this.y, this.width, this.height, this.scale);
 
 	//TODO(tim) Rotation bug, rotate really fast, jumps around.
 
