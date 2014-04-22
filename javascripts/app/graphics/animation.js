@@ -42,7 +42,7 @@ var Animation = function (image, frameWidth, frameHeight) {
 
 		x += this.frameWidth;
 
-		if (x >= this.image.width) {
+		if (x - this.frameWidth >= this.image.width) {
 			x = 0;
 			y += this.frameHeight;
 			log(y + " at " + i);
