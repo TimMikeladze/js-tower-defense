@@ -19,13 +19,17 @@ Require.addScript("entity", ["entity", "tower", "enemy", "enemyone", "enemytwo",
 Require.addImage("towerone", ["sprite.png"]);
 
 var gameCanvas;
+var menuCanvas;
 var connection;
 
 Require.load(function () {
 	Logging.DEBUG = true;
 	Logging.VERBOSE = false;
 
-	gameCanvas = new Canvas("canvas");
+	gameCanvas = new Canvas("main_canvas");
+	gameCanvas.clear();
+	menuCanvas = new Canvas("menu_canvas");
+	menuCanvas.clear("D3D3D3");
 
 	connection = new Connection(SERVER_URL, SERVER_PORT, false);
 	connection.connect();

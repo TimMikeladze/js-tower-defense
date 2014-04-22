@@ -10,7 +10,7 @@ window.requestAnimFrame = (function () {
 })();
 
 var Canvas = function (id) {
-	this.canvas = document.getElementById("main_canvas");
+	this.canvas = document.getElementById(id);
 	this.context = this.canvas.getContext("2d");
 	this.width = this.canvas.width;
 	this.height = this.canvas.height;
@@ -29,5 +29,4 @@ var Canvas = function (id) {
 		this.canvas.addEventListener(type, listener, useCapture);
 	};
 
-	this.clear();
 };
