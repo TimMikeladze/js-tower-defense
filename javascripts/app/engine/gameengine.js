@@ -52,6 +52,9 @@ var GameEngine = function (socket) {
 			if (entity instanceof Tower) {
 				entity.render();
 			}
+			if (entity instanceof Bullet) {
+				entity.render();
+			}
 		});
 
 		if (this.floatingEntity) {
@@ -77,6 +80,7 @@ var GameEngine = function (socket) {
 		if (emit) {
 			this.socket.emit("addTower", tower);
 		}
+		this.entities.push(new Bullet(50, 50));
 	};
 
 };

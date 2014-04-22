@@ -14,9 +14,9 @@ Require.addScript("math", ["bezier", "vector2", "random"]);
 Require.addScript("networking", ["connection"]);
 Require.addScript("engine", ["gameengine", "input", "socketevents", "enemyqueue"]);
 Require.addScript("graphics", ["canvas", "animation"]);
-Require.addScript("entity", ["entity", "tower", "enemy", "enemyone", "enemytwo", "enemythree", "towerone"]);
+Require.addScript("entity", ["entity", "tower", "enemy", "bullet", "enemyone", "enemytwo", "enemythree", "towerone"]);
 
-Require.addImage("towerone", ["sprite.png"]);
+Require.addImage("towerone", ["sprite.png", "bullet.png"]);
 
 var gameCanvas;
 var menuCanvas;
