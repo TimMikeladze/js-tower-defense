@@ -137,7 +137,7 @@ var GameFactory = function () {
 		delete this.players[id];
 		game.removePlayer(id);
 		if (game.isEmpty()) {
-			delete this.games[game];
+			delete this.games[game.id];
 			util.log("Game " + game.id + " deleted");
 		};
 	}
