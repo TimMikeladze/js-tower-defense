@@ -27,12 +27,14 @@ var Animation = function (image, frameWidth, frameHeight) {
 
 	for (var i = 0; i < this.totalFrames; i++) {
 
+		log("coordinates " + x + " " + y);
 		framesRow.push(new Frame(i, x, y, this.frameWidth, this.frameHeight));
 
 		if (i % this.totalWidthFrames == 0) {
 			log("pushed " + i);
 			this.frames.push(framesRow);
 			if (i > 0) {
+				log("row cleared");
 				framesRow = [];
 			}
 		}
@@ -42,8 +44,9 @@ var Animation = function (image, frameWidth, frameHeight) {
 		if (x - this.frameWidth >= this.image.width) {
 			x = 0;
 			y += this.frameHeight;
-			log(y);
+			log(y + " at " + i);
 		}
+		log("i " + i);
 	}
 
 	console.log(this.frames);
