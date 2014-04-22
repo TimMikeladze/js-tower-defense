@@ -17,54 +17,41 @@ var Animation = function (image, frameWidth, frameHeight) {
 	this.totalWidthFrames = this.image.width / this.frameWidth;
 	this.totalHeightFrames = this.image.height / this.frameHeight;
 	this.totalFrames = this.totalWidthFrames * this.totalHeightFrames;
-	
-	var x = 0;
-	var y = 0;
-	var row = 1;
-	
-	var framesRow = new Array();
 
-	log("width frames " + this.totalWidthFrames);
-	log("total frames " + this.totalFrames);
+	this.generateFrames = function() {
+		var x = 0;
+		var y = 0;
 
-	for (var i = 0; i < this.totalFrames; i++) {
-		log("i " + i);
-		
-		log("coordinates " + x + " " + y);
-		var frame = new Frame(i, x, y, this.frameWidth, this.frameHeight);
-		framesRow.push(frame);
-
-		if ((i + 1) / row == this.totalWidthFrames) {
-			log("pushed length " + framesRow.length);
-			this.frames.push(framesRow);
-			log("row cleared");
-			row++;
-			framesRow = [];
+		var row = 1;
+		var framesRow = [];
+		for (var i = 0; i < this.totalFrames; i++) {
+			var frame = new Frame(i, x, y, this.frameWidth, this.frameHeight);
+			framesRow.push(frame);
+			if ((i + 1) / row == this.totalWidthFrames) {
+				this.frames.push(framesRow);
+				row++;
+				framesRow = [];
+			}
+			x += this.frameWidth;
+			if (x >= this.image.width) {
+				x = 0;
+				y += this.frameHeight;
+			}
 		}
-
-		x += this.frameWidth;
-		
-		if (x >= this.image.width) {
-			x = 0;
-			y += this.frameHeight;
-			log(y + " at " + i);
-		}	
-	}
-
-	console.log(this.frames);
+	};
 
 	this.getFrameAt = function (x, y) {
 		return this.frames[y][x];
 	};
 
 	this.getFrame = function (frameIndex) {
-		var row = parseInt(frameIndex / this.totalWidthFrames);
+		var row = Math.floor(frameIndex / this.totalWidthFrames);
 		var column = frameIndex % this.totalWidthFrames;
-		//log("Row " + row);
-		//log("Column " + column);
 
 		return this.frames[row][column];
 	};
+
+	this.generateFrames();
 };
 
 
