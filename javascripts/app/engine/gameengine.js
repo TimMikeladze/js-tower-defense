@@ -8,6 +8,8 @@ var GameEngine = function (socket) {
 	this.wheel = null;
 	this.enemyQueue = new EnemyQueue(this);
 
+	this.funds = null;
+
 	this.init = function () {
 		this.startInput();
 		this.setSocketEventHandler();
@@ -16,6 +18,7 @@ var GameEngine = function (socket) {
 	this.start = function () {
 		log("starting game");
 		this.enemyQueue.populateEngine();
+		this.funds = new Funds(100);
 		var that = this;
 		(function gameLoop() {
 			that.loop();
@@ -80,7 +83,6 @@ var GameEngine = function (socket) {
 		if (emit) {
 			this.socket.emit("addTower", tower);
 		}
-		this.entities.push(new Bullet(50, 50));
 	};
 
 };

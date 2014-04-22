@@ -1,5 +1,5 @@
 var Enemy = function (x, y, width, height, color, speed) {
-	Entity.call(this, x, y, width, height);
+	Entity.call(this, null, x, y, width, height);
 	this.pointer = 0;
 	this.pathDrawn = false;
 

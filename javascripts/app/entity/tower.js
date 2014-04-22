@@ -30,6 +30,13 @@ var Tower = function (sprite, x, y, width, height, scale, rotations) {
 
 	this.placeTower = function () {
 		this.alpha = 1.0;
+		this.startShooting();
+	};
+
+	this.startShooting = function() {
+		new Timer(500, function() {
+			new Bullet(x, y)
+		});
 	};
 
 	this.render = function () {

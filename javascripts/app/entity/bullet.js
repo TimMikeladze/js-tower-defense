@@ -1,6 +1,16 @@
-var Bullet = function (x, y) {
+var Bullet = function (position, velocity, acceleration, time) {
 	this.sprite = "towerone/bullet.png";
-	Entity.call(this, this.sprite, x, y, 48, 177, 5);
+	this.position = position;
+	this.velocity = velocity;
+	this.acceleration = acceleration;
+	this.time = time;
+	this.index = 0;
+	Entity.call(this, this.sprite, position.x, position.y, 48, 177, 5);
+
+	//TODO(tim) x,y = v_i_xy, * t + 1/2 a_xy + t^2
+
+	this.move = function() {
+	};
 
 	this.render = function () {
 		var image = Require.getImage(this.sprite);
