@@ -12,6 +12,9 @@ var GameEngine = function (socket) {
 	this.localSlingshot = null;
 	this.remoteSlingshot = null;
 
+	//TODO(tim) remove this
+	this.collisionOccured = false;
+
 	this.init = function () {
 		this.startInput();
 		this.setSocketEventHandler();
@@ -47,9 +50,16 @@ var GameEngine = function (socket) {
 	};
 
 	this.update = function () {
+		var that = this;
 		this.entities.forEach(function (entity) {
-			if(entity instanceof Pig) {
+			if (entity instanceof Pig) {
 				entity.move();
+				if (Collisions.isColliding(entity, that.localSlingshot.bird)) {
+					if(!that.collisionOccured) {
+						alert("Collision!");
+						that.collisionOccured = true;
+					}
+				}
 			}
 		});
 	};

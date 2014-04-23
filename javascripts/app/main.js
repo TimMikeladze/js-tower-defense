@@ -12,7 +12,7 @@ Require.addLibrary("socket.io", ["socket.io.min"]);
 Require.addScript("util", ["prototypes", "logging"]);
 Require.addScript("math", ["bezier", "vector2", "random"]);
 Require.addScript("networking", ["connection"]);
-Require.addScript("engine", ["funds", "gameengine", "input", "socketevents", "enemyqueue"]);
+Require.addScript("engine", ["collisions", "funds", "gameengine", "input", "socketevents", "enemyqueue"]);
 Require.addScript("graphics", ["canvas", "animation"]);
 Require.addScript("entity", ["entity", "slingshot", "bird", "pig"]);
 
