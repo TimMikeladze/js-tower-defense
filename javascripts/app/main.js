@@ -17,7 +17,7 @@ Require.addScript("graphics", ["canvas", "animation"]);
 Require.addScript("entity", ["entity", "slingshot", "bird", "pig"]);
 
 Require.addImage("pigs", ["pig2.png"]);
-Require.addImage("birds", ["rbird1.png"]);
+Require.addImage("birds", ["rbird2.png"]);
 
 var gameCanvas;
 var menuCanvas;

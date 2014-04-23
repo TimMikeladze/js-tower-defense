@@ -36,7 +36,7 @@ var GameEngine = function (socket) {
 		var sx = canvasCenter.x - sw / 2;
 		var sy = canvasCenter.y - sh / 2;
 		var s = new Slingshot(sx, sy, sw, sh);
-		s.setBird(new Bird(sx, sy, 65, 75));
+		s.setBird(new Bird(sx, sy, 85, 100));
 		return s;
 	};
 

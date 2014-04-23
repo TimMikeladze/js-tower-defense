@@ -19,7 +19,7 @@ var Slingshot = function (x, y, width, height) {
 		gameCanvas.context.restore();
 
 		if (this.bird) {
-			//this.bird.render();
+			this.bird.render();
 		}
 	};
 
@@ -34,16 +34,11 @@ var Slingshot = function (x, y, width, height) {
 		}
 
 		this.angle += 1.57079633;
-		/*
-		if (position.x > this.position.x && y > 0) {
-			this.angle += 1.57079633;
-		} else if (position.x < this.position.x && y < 0) {
-			this.angle += 1.57079633;
-		} else if (position.x < this.position.x && y > 0) {
-			
-		}
-		*/
 	}
+
+	this.setBird = function (bird) {
+		this.bird = bird;
+	};
 
 };
 
