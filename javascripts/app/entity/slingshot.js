@@ -11,7 +11,7 @@ var Slingshot = function (x, y, width, height) {
 	};
 
 	this.rotateTo = function(position) {
-		
+
 	}
 };
 
