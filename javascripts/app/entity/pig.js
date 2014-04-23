@@ -1,12 +1,16 @@
 var Pig = function (x, y, width, height) {
-	this.sprite = "pigs/pig2.png";
+	this.sprite = "pigs/pig0.png";
 	this.x = x;
 	this.y = y;
 	this.width = width;
 	this.height = height;
 	this.pointer = 0;
 
-	Entity.call(this, this.sprite, this.x, this.y, this.width, this.height);
+	this.currentFrame = 0;
+
+	Entity.call(this, this.sprite, this.x, this.y, this.width, this.height, 2);
+
+	log(this.animation);
 
 	this.bezierPoints = Bezier.calculateCurve(EnemyQueue.generatePath());
 
@@ -18,8 +22,18 @@ var Pig = function (x, y, width, height) {
 	};
 
 	this.render = function () {
+		if(!this.timer) {
+			var that = this;
+			this.timer = new Timer(1000, function() {
+				that.currentFrame++;
+				if (that.currentFrame > 2) {
+					that.currentFrame = 0;
+				}
+			});
+		};
+
 		var image = Require.getImage(this.sprite);
-		var frame = this.animation.getFrame(1);
+		var frame = this.animation.getFrame(this.currentFrame);
 		gameCanvas.context.drawImage(image, frame.x, frame.y, frame.width, frame.height, this.x, this.y, this.width / this.scale, this.height / this.scale);
 	};
 
