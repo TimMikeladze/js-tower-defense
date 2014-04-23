@@ -14,7 +14,7 @@ GameEngine.prototype.startInput = function () {
 
 	gameCanvas.addEventListener("mousemove", function (e) {
 		that.mouse = getClickedPoint(e);
-		this.localSlingshot.rotateTo(that.mouse);
+		that.localSlingshot.rotateTo(that.mouse);
 
 	}, false);
 

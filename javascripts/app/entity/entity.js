@@ -6,6 +6,7 @@ var Entity = function (sprite, x, y, width, height, scale) {
 	this.height = height;
 	this.scale = scale;
 	this.alpha = 1;
+	this.position = new Vector2(this.x, this.y);
 
 	if (this.sprite) {
 		this.animation = new Animation(this.sprite, this.width, this.height);
