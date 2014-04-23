@@ -10,6 +10,8 @@ var Tower = function (sprite, x, y, width, height, scale, rotations) {
 	this.rotations = rotations;
 	this.alpha = 0.5;
 
+	this.bullets = [];
+
 	Entity.call(this, this.sprite, this.x, this.y, this.width, this.height, this.scale);
 
 	//TODO(tim) Rotation bug, rotate really fast, jumps around.
@@ -34,8 +36,9 @@ var Tower = function (sprite, x, y, width, height, scale, rotations) {
 	};
 
 	this.startShooting = function() {
+		var that = this;
 		new Timer(500, function() {
-			new Bullet(x, y)
+			that.bullets.push(new Bullet(that.x, that.y, that.rotationIndex * 45, 1));
 		});
 	};
 
@@ -45,6 +48,10 @@ var Tower = function (sprite, x, y, width, height, scale, rotations) {
 		gameCanvas.context.globalAlpha = this.alpha;
 		gameCanvas.context.drawImage(image, frame.x, frame.y, frame.width, frame.height, this.x, this.y, this.width / this.scale, this.height / this.scale);
 		gameCanvas.context.globalAlpha = 1.0;
+
+		this.bullets.forEach(function(b) {
+			b.render();
+		});
 	};
 
 };
