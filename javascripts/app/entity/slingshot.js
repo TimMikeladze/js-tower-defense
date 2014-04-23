@@ -27,22 +27,23 @@ var Slingshot = function (x, y, width, height) {
 		var distance = position.distanceTo(this.position);
 		var y = position.y - this.position.y;
 
-		this.angle = Math.acos(y / distance);
+		if (position.x > this.position.x) {
+			this.angle = Math.asin(y / distance);
+		} else {
+			this.angle = Math.acos(y / distance);
+		}
 
+		this.angle += 1.57079633;
+		/*
 		if (position.x > this.position.x && y > 0) {
 			this.angle += 1.57079633;
+		} else if (position.x < this.position.x && y < 0) {
+			this.angle += 1.57079633;
+		} else if (position.x < this.position.x && y > 0) {
+			
 		}
-		else if (position.x < this.position.x && y < 0) {
-			this.angle += 1.57079633 * 2;
-		}
-		else if (position.x < this.position.x && y > 0) {
-			this.angle += 1.57079633 * 3;
-		}
-	};
-
-	this.setBird = function (bird) {
-		this.bird = bird;
-	};
+		*/
+	}
 
 };
 
