@@ -15,11 +15,11 @@ var Slingshot = function (x, y, width, height) {
 		}
 	};
 
-	this.rotateTo = function (position) {
-		var distance = position.distanceTo(this.position);
-		var y = position.y - this.position.y;
+	this.rotateTo = function (location) {
+		var distance = location.distanceTo(this.position);
+		var y = location.y - this.position.y;
 
-		if (position.x > this.position.x) {
+		if (location.x > this.position.x) {
 			this.angle = Math.asin(y / distance);
 		} else {
 			this.angle = Math.acos(y / distance);
@@ -30,6 +30,10 @@ var Slingshot = function (x, y, width, height) {
 
 	this.setBird = function (bird) {
 		this.bird = bird;
+	};
+
+	this.shoot = function(location) {
+
 	};
 
 };
