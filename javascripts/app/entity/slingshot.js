@@ -16,16 +16,14 @@ var Slingshot = function (x, y, width, height) {
 	};
 
 	this.rotateTo = function (position) {
-		var distance = position.distanceTo(this.position);
-		var y = position.y - this.position.y;
-
-		if (position.x > this.position.x) {
-			this.angle = Math.asin(y / distance);
-		} else {
-			this.angle = Math.acos(y / distance);
-		}
-
-		this.angle += 1.57079633;
+		// TODO update rotation, flip to always face the right direction
+		var dy = position.y - this.position.y;
+		var dx = position.x - this.position.x;
+			
+		var turn = Math.atan2(dy, dx) * 100 / Math.PI;
+		
+		this.angle =  turn / 32 - 160;
+		
 	}
 
 	this.setBird = function (bird) {
