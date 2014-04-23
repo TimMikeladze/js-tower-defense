@@ -10,16 +10,8 @@ var Slingshot = function (x, y, width, height) {
 	Entity.call(this, null, this.x, this.y, this.width, this.height, null);
 
 	this.render = function () {
-		gameCanvas.context.save();
-		//TODO(tim) move this center of entity calculation to entity
-		gameCanvas.context.translate(this.x + this.width / 2, this.y + this.height / 2);
-		gameCanvas.context.rotate(this.angle);
-		gameCanvas.context.translate(-this.x - this.width / 2, -this.y - this.height / 2);
-		gameCanvas.context.fillRect(this.x, this.y, this.width, this.height);
-		gameCanvas.context.restore();
-
 		if (this.bird) {
-			this.bird.render();
+			this.bird.render(this.angle);
 		}
 	};
 

@@ -15,7 +15,7 @@ var Bird = function (x, y, width, height) {
 
 	};
 
-	this.render = function () {
+	this.render = function (angle) {
 		if(!this.timer) {
 			var that = this;
 			this.timer = new Timer(100, function() {
@@ -27,7 +27,14 @@ var Bird = function (x, y, width, height) {
 		};
 		var image = Require.getImage(this.sprite);
 		var frame = this.animation.getFrame(this.currentFrame);
+
+		gameCanvas.context.save();
+		//TODO(tim) move this center of entity calculation to entity
+		gameCanvas.context.translate(this.x + this.width / 2, this.y + this.height / 2);
+		gameCanvas.context.rotate(angle);
+		gameCanvas.context.translate(-this.x - this.width / 2, -this.y - this.height / 2);
 		gameCanvas.context.drawImage(image, frame.x, frame.y, frame.width, frame.height, this.x, this.y, this.width / this.scale, this.height / this.scale);
+		gameCanvas.context.restore();
 	};
 
 };
