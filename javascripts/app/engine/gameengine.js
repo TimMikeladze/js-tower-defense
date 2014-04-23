@@ -1,14 +1,16 @@
 var GameEngine = function (socket) {
 	this.socket = socket;
 	this.gameID = null;
-	this.entities = [];
-	this.enemies = [];
 	this.click = null;
 	this.mouse = null;
 	this.wheel = null;
-	this.enemyQueue = new EnemyQueue(this);
 
+	this.entities = [];
+//	this.enemyQueue = new EnemyQueue(this);
 	this.funds = null;
+
+	this.localSlingshot = null;
+	this.remoteSlingshot = null;
 
 	this.init = function () {
 		this.startInput();
@@ -16,14 +18,24 @@ var GameEngine = function (socket) {
 	};
 
 	this.start = function () {
-		log("starting game");
-		this.enemyQueue.populateEngine();
+	//	this.enemyQueue.populateEngine();
 		this.funds = new Funds(100);
+		this.localSlingshot = this.createInitialSlinghot();
 		var that = this;
 		(function gameLoop() {
 			that.loop();
 			requestAnimFrame(gameLoop, gameCanvas.canvas);
 		})();
+	};
+
+	this.createInitialSlinghot = function() {
+		var canvasCenter = gameCanvas.getCenter();
+		var sw = 20;
+		var sh = 20;
+		log(canvasCenter);
+		var sx = canvasCenter.x - sw / 2;
+		var sy = canvasCenter.y - sh / 2;
+		return new Slingshot(sx, sy, sw, sh);
 	};
 
 	this.loop = function () {
@@ -34,55 +46,21 @@ var GameEngine = function (socket) {
 
 	this.update = function () {
 		this.entities.forEach(function (entity) {
-			if (entity instanceof Enemy) {
-				entity.move();
-			}
 		});
 	};
 
 	this.draw = function () {
 		gameCanvas.clear();
-		var pathDrawn = false;
-
 		this.entities.forEach(function (entity) {
-			if (entity instanceof Enemy) {
-				if (!pathDrawn) {
-					entity.renderPath();
-					pathDrawn = true;
-				}
-				entity.render();
-			}
-			if (entity instanceof Tower) {
-				entity.render();
-			}
-			if (entity instanceof Bullet) {
-				entity.render();
-			}
+
 		});
-
-		if (this.floatingEntity) {
-			this.floatingEntity.render();
-		}
+		this.localSlingshot.render();
 	};
 
-	this.addEnemy = function (entity) {
-		this.entities.push(entity);
+	this.addRemoteSlingshot = function() {
 	};
 
-	this.setFloatingEntity = function (entity) {
-		this.floatingEntity = entity;
-	};
-
-	this.clearFloatingEntitiy = function () {
-		this.floatingEntity = null;
-	};
-
-	this.addTower = function (tower, emit) {
-		tower.placeTower();
-		this.entities.push(tower);
-		if (emit) {
-			this.socket.emit("addTower", tower);
-		}
+	this.removeRemoteSlingshot = function() {
 	};
 
 };

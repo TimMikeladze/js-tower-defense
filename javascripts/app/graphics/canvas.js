@@ -16,7 +16,7 @@ var Canvas = function (id) {
 	this.height = this.canvas.height;
 
 	this.clear = function (hex) {
-		if (hex) {		
+		if (hex) {
 			this.context.fillStyle = hex;
 			this.context.fillRect(0, 0, this.width, this.height);
 		} else {
@@ -24,6 +24,10 @@ var Canvas = function (id) {
 			this.context.drawImage(background, 0, 0);
 		}
 	};
+
+	this.getCenter = function() {
+		return new Vector2(this.width / 2, this.height / 2);
+	}
 
 	this.draw = function (callback) {
 		callback.call();

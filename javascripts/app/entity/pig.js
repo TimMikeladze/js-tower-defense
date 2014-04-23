@@ -1,4 +1,4 @@
-var Enemy = function (x, y, width, height, color, speed) {
+var Pig = function (x, y, width, height, color, speed) {
 	Entity.call(this, null, x, y, width, height);
 	this.pointer = 0;
 	this.pathDrawn = false;
@@ -26,7 +26,7 @@ var Enemy = function (x, y, width, height, color, speed) {
 	};
 };
 
-Enemy.prototype = Object.create(Entity.prototype);
-Enemy.prototype.constructor = Enemy;
+Pig.prototype = Object.create(Entity.prototype);
+Pig.prototype.constructor = Pig;
 
 

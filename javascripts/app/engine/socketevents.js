@@ -15,19 +15,9 @@ GameEngine.prototype.setSocketEventHandler = function () {
 	});
 
 	this.socket.on("addTower", function (recievedTower) {
-		//TODO(tim) need to make this generic to handle all tower types
-		var tower = new TowerOne(recievedTower.x, recievedTower.y);
-		tower.rotationIndex = recievedTower.rotationIndex;
-		that.addTower(tower, false);
 	});
 
 	this.socket.on("sendTowers", function (towers) {
-		log("Towers recieved");
-		towers.forEach(function (recievedTower) {
-			var tower = new TowerOne(recievedTower.x, recievedTower.y);
-			tower.rotationIndex = recievedTower.rotationIndex;
-			that.addTower(tower, false);
-		});
 	});
 
 };

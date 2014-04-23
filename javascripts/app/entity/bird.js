@@ -1,4 +1,4 @@
-var Bullet = function (x, y, degree, speed) {
+var Bird = function (x, y, degree, speed) {
 	this.sprite = "towerone/bullet.png";
 	this.x = x;
 	this.y = y;
@@ -22,7 +22,7 @@ var Bullet = function (x, y, degree, speed) {
 
 };
 
-Bullet.prototype = Object.create(Entity.prototype);
-Bullet.prototype.constructor = Bullet;
+Bird.prototype = Object.create(Entity.prototype);
+Bird.prototype.constructor = Bird;
 
 
