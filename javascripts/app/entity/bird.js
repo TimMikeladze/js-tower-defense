@@ -9,9 +9,21 @@ var Bird = function (x, y, width, height) {
 	this.timer = null;
 
 	Entity.call(this, this.sprite, this.x, this.y, this.width, this.height);
-	//TODO(tim) x,y = v_i_xy, * t + 1/2 a_xy + t^2
 
-	this.move = function() {
+	//TODO(tim) x,y = v_i_xy, * t + 1/2 a_xy + t^2
+	this.fire = function(location) {
+
+		this.generate = function(a, b, x) {
+			var y = ((a.y - b.y) / (a.x - b.x)) * (x - b.x) + b.x;
+			return new Vector2(x, y);
+		};
+
+		var pos = new Vector2(this.x, this.y);
+		for (var x = pos.x; x < location.x; x++) {
+			this.x = x;
+			this.y = this.generate(location, pos, x);
+
+		};
 
 	};
 

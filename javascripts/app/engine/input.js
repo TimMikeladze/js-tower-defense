@@ -9,7 +9,8 @@ GameEngine.prototype.startInput = function () {
 	};
 
 	gameCanvas.addEventListener("click", function (e) {
-
+		that.click = getClickedPoint(e);
+		that.localSlingshot.fire(that.click);
 	}, false);
 
 	gameCanvas.addEventListener("mousemove", function (e) {
