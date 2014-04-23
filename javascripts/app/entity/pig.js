@@ -1,7 +1,12 @@
-var Pig = function (x, y, width, height, color, speed) {
-	Entity.call(this, null, x, y, width, height);
+var Pig = function (x, y, width, height) {
+	this.sprite = "pigs/pig2.png";
+	this.x = x;
+	this.y = y;
+	this.width = width;
+	this.height = height;
 	this.pointer = 0;
-	this.pathDrawn = false;
+
+	Entity.call(this, this.sprite, this.x, this.y, this.width, this.height);
 
 	this.bezierPoints = Bezier.calculateCurve(EnemyQueue.generatePath());
 
@@ -13,8 +18,9 @@ var Pig = function (x, y, width, height, color, speed) {
 	};
 
 	this.render = function () {
-		gameCanvas.context.fillStyle = color;
-		gameCanvas.context.fillRect(this.x, this.y, this.width, this.height);
+		var image = Require.getImage(this.sprite);
+		var frame = this.animation.getFrame(1);
+		gameCanvas.context.drawImage(image, frame.x, frame.y, frame.width, frame.height, this.x, this.y, this.width / this.scale, this.height / this.scale);
 	};
 
 	this.move = function () {

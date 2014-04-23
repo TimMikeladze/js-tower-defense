@@ -14,10 +14,10 @@ var EnemyQueue = function(engine, enemies, path, rate) {
 
 	this.populateEngine = function() {
 		var that = this;
-		
+
 		new Timer(500, function(){
-			that.engine.addEnemy(that.enemies.shift());
-			if (this.count >= 30) {
+			that.engine.addPig(that.enemies.shift());
+			if (this.count >= 4) {
 				this.stop();
 			}
 		});
@@ -30,25 +30,12 @@ EnemyQueue.generatePath = function() {
 
 EnemyQueue.generateEnemies = function() {
 	var result = [];
-	
-	for (var i = 0; i < 30; i++) { 
-		var enemyType = Random.getRandomInt(0, 3);
-		var enemyToAdd = null;
-		
-		switch(enemyType) {
-			case 0:
-				enemyToAdd = new EnemyOne();
-				break;
-			case 1:
-				enemyToAdd = new EnemyTwo();
-				break;
-			case 2:
-				enemyToAdd = new EnemyThree();
-		}
-		
+
+	for (var i = 4; i < 30; i++) {
+		var enemyToAdd = new Pig(0, 0, 103, 86);
 		result.push(enemyToAdd);
 	}
-	
+
 	return result;
 };
 

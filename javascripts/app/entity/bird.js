@@ -16,9 +16,7 @@ var Bird = function (x, y, width, height) {
 	this.render = function () {
 		var image = Require.getImage(this.sprite);
 		var frame = this.animation.getFrame(0);
-		gameCanvas.context.globalAlpha 	= this.alpha;
 		gameCanvas.context.drawImage(image, frame.x, frame.y, frame.width, frame.height, this.x, this.y, this.width / this.scale, this.height / this.scale);
-		gameCanvas.context.globalAlpha = 1.0;
 	};
 
 };

@@ -19,7 +19,7 @@ var Slingshot = function (x, y, width, height) {
 		gameCanvas.context.restore();
 
 		if (this.bird) {
-			this.bird.render();
+			//this.bird.render();
 		}
 	};
 

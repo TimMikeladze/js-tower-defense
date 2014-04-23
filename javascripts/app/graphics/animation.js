@@ -20,7 +20,6 @@ var Animation = function (sprite, frameWidth, frameHeight) {
 
 		var x = 0;
 		var y = 0;
-		log(this.totalFrames);
 		var row = 1;
 		var framesRow = [];
 		for (var i = 0; i < this.totalFrames; i++) {

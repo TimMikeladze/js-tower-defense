@@ -6,7 +6,7 @@ var GameEngine = function (socket) {
 	this.wheel = null;
 
 	this.entities = [];
-//	this.enemyQueue = new EnemyQueue(this);
+	this.enemyQueue = new EnemyQueue(this);
 	this.funds = null;
 
 	this.localSlingshot = null;
@@ -18,7 +18,7 @@ var GameEngine = function (socket) {
 	};
 
 	this.start = function () {
-	//	this.enemyQueue.populateEngine();
+		this.enemyQueue.populateEngine();
 		this.funds = new Funds(100);
 		this.localSlingshot = this.createInitialSlinghot();
 		var that = this;
@@ -48,13 +48,16 @@ var GameEngine = function (socket) {
 
 	this.update = function () {
 		this.entities.forEach(function (entity) {
+			if(entity instanceof Pig) {
+				entity.move();
+			}
 		});
 	};
 
 	this.draw = function () {
 		gameCanvas.clear();
 		this.entities.forEach(function (entity) {
-
+			entity.render();
 		});
 
 		this.localSlingshot.render();
@@ -64,6 +67,10 @@ var GameEngine = function (socket) {
 	};
 
 	this.removeRemoteSlingshot = function() {
+	};
+
+	this.addPig = function(pig) {
+		this.entities.push(pig);
 	};
 
 };
