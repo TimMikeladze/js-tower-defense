@@ -22,7 +22,6 @@ var Bird = function (x, y, width, height) {
 				if (that.count > 3) {
 					that.currentFrame = 0;
 				}
-			//	that.currentFrame++;
 			});
 		};
 		var image = Require.getImage(this.sprite);

@@ -10,8 +10,6 @@ var Pig = function (x, y, width, height) {
 
 	Entity.call(this, this.sprite, this.x, this.y, this.width, this.height, 2);
 
-	log(this.animation);
-
 	this.bezierPoints = Bezier.calculateCurve(EnemyQueue.generatePath());
 
 	this.renderPath = function () {

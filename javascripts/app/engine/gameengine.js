@@ -32,7 +32,6 @@ var GameEngine = function (socket) {
 		var canvasCenter = gameCanvas.getCenter();
 		var sw = 20;
 		var sh = 20;
-		log(canvasCenter);
 		var sx = canvasCenter.x - sw / 2;
 		var sy = canvasCenter.y - sh / 2;
 		var s = new Slingshot(sx, sy, sw, sh);
