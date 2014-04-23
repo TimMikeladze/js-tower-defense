@@ -14,13 +14,13 @@ var Animation = function (sprite, frameWidth, frameHeight) {
 
 	var image = Require.getImage(sprite);
 	if (image) {
-		this.totalWidthFrames = image.width / this.frameWidth;
-		this.totalHeightFrames = image.height / this.frameHeight;
-		this.totalFrames = this.totalWidthFrames * this.totalHeightFrames;
+		this.totalWidthFrames = Math.floor(image.width / this.frameWidth);
+		this.totalHeightFrames = Math.floor(image.height / this.frameHeight);
+		this.totalFrames = Math.floor(this.totalWidthFrames * this.totalHeightFrames);
 
 		var x = 0;
 		var y = 0;
-
+		log(this.totalFrames);
 		var row = 1;
 		var framesRow = [];
 		for (var i = 0; i < this.totalFrames; i++) {

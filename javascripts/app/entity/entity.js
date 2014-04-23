@@ -4,7 +4,7 @@ var Entity = function (sprite, x, y, width, height, scale) {
 	this.y = y;
 	this.width = width;
 	this.height = height;
-	this.scale = scale;
+	this.scale = scale ? scale : 1;
 	this.alpha = 1;
 	this.position = new Vector2(this.x, this.y);
 

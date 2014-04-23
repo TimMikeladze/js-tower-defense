@@ -1,11 +1,12 @@
-var Bird = function (x, y, degree, speed) {
-	this.sprite = "towerone/bullet.png";
+var Bird = function (x, y, width, height) {
+	this.sprite = "birds/rbird1.png";
 	this.x = x;
 	this.y = y;
-	this.degree = degree;
-	this.speed = speed;
-	this.index = 0;
-	Entity.call(this, this.sprite, this.x, this.y, 48, 177, 5);
+	this.width = width;
+	this.height = height;
+	this.angle = 0;
+
+	Entity.call(this, this.sprite, this.x, this.y, this.width, this.height);
 	//TODO(tim) x,y = v_i_xy, * t + 1/2 a_xy + t^2
 
 	this.move = function() {
