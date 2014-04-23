@@ -28,5 +28,14 @@ var Entity = function (sprite, x, y, width, height, scale) {
 		this.width = width;
 		this.height = height;
 	};
+
+	this.isColliding = function(entities) {
+        var array = [];
+        if(entities instanceof Array) {
+                array = entities;
+        } else {
+                array.push(entities);
+        }
+	};
 };
 
