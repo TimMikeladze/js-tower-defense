@@ -15,7 +15,7 @@ var EnemyQueue = function(engine, enemies, path, rate) {
 	this.populateEngine = function() {
 		var that = this;
 
-		new Timer(1500, function(){
+		new Timer(3000, function(){
 			that.engine.addPig(that.enemies.shift());
 			if (this.count >= 4) {
 				this.stop();
@@ -31,7 +31,7 @@ EnemyQueue.generatePath = function() {
 EnemyQueue.generateEnemies = function() {
 	var result = [];
 
-	for (var i = 4; i < 30; i++) {
+	for (var i = 4; i < 4; i++) {
 		var enemyToAdd = new Pig(0, 0, 100, 97);
 		result.push(enemyToAdd);
 	}
