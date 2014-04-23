@@ -33,7 +33,8 @@ var GameEngine = function (socket) {
 		var sw = 20;
 		var sh = 20;
 		var sx = canvasCenter.x - sw / 2;
-		var sy = canvasCenter.y - sh / 2;
+		//TODO(tim) not adjustment here, confirm that isnt needed
+		var sy = canvasCenter.y - sh;
 		var s = new Slingshot(sx, sy, sw, sh);
 		s.setBird(new Bird(sx, sy, 85, 100));
 		return s;

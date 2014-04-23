@@ -10,31 +10,16 @@ var Bird = function (x, y, width, height) {
 
 	Entity.call(this, this.sprite, this.x, this.y, this.width, this.height);
 
-	this.flightPath = [];
-	this.isFlying = false;
-	this.flightPointer = 0;
-
 	//TODO(tim) x,y = v_i_xy, * t + 1/2 a_xy + t^2
 	this.fire = function(location) {
-		if (!this.isFlying) {
-			this.generate = function(a, b, x) {
-				var y = ((a.y - b.y) / (a.x - b.x)) * (x - b.x) + b.x;
-				return y;
-			};
-
-			for (var x = this.position.x; x < location.x; x += 5) {
-				this.flightPath.push(new Vector2(x, this.generate(location, this.position, x)));
-			};
-			log(this.flightPath);
-			this.isFlying = true;
-		}
 	};
 
 	this.render = function (angle) {
 		if(!this.timer) {
 			var that = this;
-			this.timer = new Timer(100, function() {
-				if (that.count > 3) {
+			this.timer = new Timer(700, function() {
+				that.currentFrame++;
+				if (that.currentFrame > 1) {
 					that.currentFrame = 0;
 				}
 			});
@@ -42,16 +27,6 @@ var Bird = function (x, y, width, height) {
 
 		var image = Require.getImage(this.sprite);
 		var frame = this.animation.getFrame(this.currentFrame);
-
-		if(this.isFlying) {
-			this.flightPointer++;
-			if(this.flightPointer >= this.flightPath.length) {
-				this.flightPath = [];
-			} else {
-				this.x = this.flightPath[this.flightPointer].x;
-				this.y = this.flightPath[this.flightPointer].y;
-			}
-		}
 
 		gameCanvas.context.save();
 		//TODO(tim) move this center of entity calculation to entity
