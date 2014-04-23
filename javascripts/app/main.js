@@ -16,7 +16,7 @@ Require.addScript("engine", ["funds", "gameengine", "input", "socketevents", "en
 Require.addScript("graphics", ["canvas", "animation"]);
 Require.addScript("entity", ["entity", "slingshot", "bird", "pig"]);
 
-Require.addImage("towerone", ["sprite.png", "bullet.png"]);
+Require.addImage("birds", ["rbird1.png"]);
 
 var gameCanvas;
 var menuCanvas;
