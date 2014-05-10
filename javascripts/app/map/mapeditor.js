@@ -13,6 +13,15 @@ var MapEditor = function (canvas) {
 	this.controlPoints = [];
 	this.path = [];
 
+	var that = this;
+	document.getElementById("save").addEventListener("click", function() {
+		var json = JSON.stringify(that.tiles);
+		var pom = document.createElement('a');
+		pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(json));
+		pom.setAttribute('download', "map");
+		pom.click();
+	});
+
 	this.init = function () {
 		this.startInput();
 	};
@@ -95,4 +104,7 @@ var MapEditor = function (canvas) {
 			canvas.context.fillRect(p.x, p.y, 1, 1);
 		});
 	};
+
+
+
 };
