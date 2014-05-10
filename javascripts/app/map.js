@@ -10,39 +10,27 @@ Require.addLibrary("timer", ["timer"]);
 Require.addLibrary("socket.io", ["socket.io.min"]);
 
 Require.addScript("util", ["prototypes", "logging"]);
-Require.addScript("math", ["bezier", "vector2", "random"]);
-Require.addScript("networking", ["connection"]);
-Require.addScript("engine", ["collisions", "funds", "gameengine", "input", "socketevents", "enemyqueue"]);
+Require.addScript("math", ["vector2"]);
+Require.addScript("map", ["mapeditor"]);
 Require.addScript("graphics", ["canvas", "animation"]);
-Require.addScript("entity", ["entity", "slingshot", "bird", "pig"]);
 
 Require.addImage("pigs", ["pig0.png"]);
 Require.addImage("birds", ["rbird2.png"]);
 
-var gameCanvas;
+var mapCanvas;
 var connection;
 
 Require.load(function () {
 	Logging.DEBUG = true;
 	Logging.VERBOSE = false;
 
-	gameCanvas = new Canvas("game_canvas");
-	gameCanvas.clear("#000000");
-	/*
-	menuCanvas = new Canvas("menu_canvas");
-	//menuCanvas.clear("#D3D3D3");
+	mapCanvas = new Canvas("map_canvas");
+	mapCanvas.clear("#458B00");
 
-	connection = new Connection(SERVER_URL, SERVER_PORT, false);
-	connection.connect();
-	*/
+	var mapEditor = new MapEditor(mapCanvas);
 
-	/*
-	var engine = new GameEngine(connection.socket);
-
-	engine.init();
-	engine.start();
-	*/
-
+	mapEditor.init();
+	mapEditor.start();
 
 });
 

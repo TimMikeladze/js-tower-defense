@@ -9,6 +9,8 @@ window.requestAnimFrame = (function () {
 		};
 })();
 
+
+
 var Canvas = function (id) {
 	this.canvas = document.getElementById(id);
 	this.context = this.canvas.getContext("2d");
@@ -19,14 +21,11 @@ var Canvas = function (id) {
 		if (hex) {
 			this.context.fillStyle = hex;
 			this.context.fillRect(0, 0, this.width, this.height);
-		} else {
-			var background = document.getElementById("bg");
-			this.context.drawImage(background, 0, 0);
 		}
 	};
 
 	this.getCenter = function() {
-		return new Vector2(this.width / 2, this.height / 2);
+		//return new Vector2(this.width / 2, this.height / 2);
 	}
 
 	this.draw = function (callback) {
