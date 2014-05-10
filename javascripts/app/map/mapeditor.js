@@ -8,6 +8,9 @@ var MapEditor = function (canvas) {
 
 	this.tiles = [];
 
+	this.controlPoints = [];
+	this.path = [];
+
 	this.init = function () {
 		this.startInput();
 	};
@@ -32,10 +35,16 @@ var MapEditor = function (canvas) {
 		this.canvas.addEventListener("click", function (e) {
 			that.click = getClickedPoint(e);
 
-			if(that.floatingTitle) {
+			if (that.floatingTitle) {
 				var tile = new Tile(that.floatingTitle.color, that.floatingTitle.x, that.floatingTitle.y, that.floatingTitle.width, that.floatingTitle.height);
 				tile.applyTile();
 				that.tiles.push(tile);
+
+				that.controlPoints.push(tile.getCenter());
+				if (that.controlPoints.length > 3) {
+					that.path = Bezier.calculateCurve(that.controlPoints);
+			//		log(that.path);
+				}
 			}
 		}, false);
 
@@ -45,7 +54,7 @@ var MapEditor = function (canvas) {
 			var x = Math.floor(that.mouse.x / that.tileWidth) * that.tileWidth;
 			var y = Math.floor(that.mouse.y / that.tileHeight) * that.tileHeight;
 
-			if(!that.floatingTitle) {
+			if (!that.floatingTitle) {
 				that.floatingTitle = new Tile("#926239", x, y, that.tileWidth, that.tileHeight);
 			} else {
 				that.floatingTitle.x = x;
@@ -69,12 +78,19 @@ var MapEditor = function (canvas) {
 
 	this.draw = function () {
 		this.canvas.clear("#458B00");
-		if(this.floatingTitle) {
+
+		if (this.floatingTitle) {
 			this.floatingTitle.draw(this.canvas);
 		}
+
 		var that = this;
-		this.tiles.forEach(function(t) {
+		this.tiles.forEach(function (t) {
 			t.draw(that.canvas);
+		});
+
+		this.path.forEach(function (p) {
+			canvas.context.fillStyle = "#FF0000";
+			canvas.context.fillRect(p.x, p.y, 1, 1);
 		});
 	};
 };

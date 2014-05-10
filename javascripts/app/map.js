@@ -10,7 +10,7 @@ Require.addLibrary("timer", ["timer"]);
 Require.addLibrary("socket.io", ["socket.io.min"]);
 
 Require.addScript("util", ["prototypes", "logging"]);
-Require.addScript("math", ["vector2"]);
+Require.addScript("math", ["vector2", "bezier"]);
 Require.addScript("map", ["mapeditor", "tile"]);
 Require.addScript("graphics", ["canvas", "animation"]);
 

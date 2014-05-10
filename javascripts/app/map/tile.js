@@ -14,6 +14,10 @@ var Tile = function(color, x, y, width, height) {
 		canvas.context.globalAlpha = 1.0;
 	};
 
+	this.getCenter = function() {
+		return new Vector2(this.x + this.width / 2, this.y + this.height / 2);
+	};
+
 	this.applyTile = function() {
 		this.alpha = 1.0;
 	};
