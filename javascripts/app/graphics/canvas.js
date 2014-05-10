@@ -16,12 +16,11 @@ var Canvas = function (id) {
 	this.context = this.canvas.getContext("2d");
 	this.width = this.canvas.width;
 	this.height = this.canvas.height;
+	this.color = null;
 
 	this.clear = function (hex) {
-		if (hex) {
-			this.context.fillStyle = hex;
-			this.context.fillRect(0, 0, this.width, this.height);
-		}
+		this.context.fillStyle = hex;
+		this.context.fillRect(0, 0, this.width, this.height);
 	};
 
 	this.getCenter = function() {

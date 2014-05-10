@@ -11,7 +11,7 @@ Require.addLibrary("socket.io", ["socket.io.min"]);
 
 Require.addScript("util", ["prototypes", "logging"]);
 Require.addScript("math", ["vector2"]);
-Require.addScript("map", ["mapeditor"]);
+Require.addScript("map", ["mapeditor", "tile"]);
 Require.addScript("graphics", ["canvas", "animation"]);
 
 Require.addImage("pigs", ["pig0.png"]);
