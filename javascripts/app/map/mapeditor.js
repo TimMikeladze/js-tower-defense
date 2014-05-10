@@ -1,8 +1,10 @@
 var MapEditor = function (canvas) {
 	this.canvas = canvas;
 
-	this.tileWidth = this.canvas.width / 20;
-	this.tileHeight = this.canvas.height / 20;
+	this.scale = 30;
+
+	this.tileWidth = this.canvas.width / this.scale;
+	this.tileHeight = this.canvas.height / this.scale;
 
 	this.floatingTitle = null;
 
