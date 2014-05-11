@@ -12,7 +12,7 @@ Require.addLibrary("socket.io", ["socket.io.min"]);
 Require.addScript("util", ["prototypes", "logging"]);
 Require.addScript("math", ["bezier", "vector2", "random"]);
 Require.addScript("networking", ["connection"]);
-Require.addScript("engine", ["collisions", "funds", "gameengine", "input", "socketevents", "enemyqueue"]);
+Require.addScript("engine", ["time", "collisions", "funds", "gameengine", "input", "socketevents", "enemyqueue"]);
 Require.addScript("graphics", ["canvas", "animation"]);
 Require.addScript("entity", ["entity", "slingshot", "bird", "pig"]);
 
@@ -27,7 +27,7 @@ Require.load(function () {
 	Logging.VERBOSE = false;
 
 	gameCanvas = new Canvas("game_canvas");
-	gameCanvas.clear("#000000");
+	gameCanvas.clear("#458B00");
 	/*
 	menuCanvas = new Canvas("menu_canvas");
 	//menuCanvas.clear("#D3D3D3");

@@ -19,7 +19,10 @@ var Canvas = function (id) {
 	this.color = null;
 
 	this.clear = function (hex) {
-		this.context.fillStyle = hex;
+		if (hex) {
+			this.color = hex;
+		}
+		this.context.fillStyle = this.color;
 		this.context.fillRect(0, 0, this.width, this.height);
 	};
 
