@@ -19,29 +19,24 @@ Require.addScript("entity", ["entity", "slingshot", "bird", "pig"]);
 Require.addImage("pigs", ["pig0.png"]);
 Require.addImage("birds", ["rbird2.png"]);
 
-var gameCanvas;
-var connection;
 
 Require.load(function () {
 	Logging.DEBUG = true;
 	Logging.VERBOSE = false;
 
-	gameCanvas = new Canvas("game_canvas");
+	var gameCanvas = new Canvas("game_canvas");
 	gameCanvas.clear("#458B00");
-	/*
-	menuCanvas = new Canvas("menu_canvas");
-	//menuCanvas.clear("#D3D3D3");
 
-	connection = new Connection(SERVER_URL, SERVER_PORT, false);
+	var connection = new Connection(SERVER_URL, SERVER_PORT, false);
 	connection.connect();
-	*/
 
-	/*
-	var engine = new GameEngine(connection.socket);
+
+
+	var engine = new GameEngine(gameCanvas, connection.socket);
 
 	engine.init();
 	engine.start();
-	*/
+
 
 
 });

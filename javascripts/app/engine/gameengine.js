@@ -1,4 +1,6 @@
 var GameEngine = function (canvas, socket) {
+	this.canvas = canvas;
+
 	this.socket = socket;
 	this.gameID = null;
 	this.click = null;
