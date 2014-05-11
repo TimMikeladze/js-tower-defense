@@ -1,6 +1,6 @@
 var Animation = function (sprite, frameWidth, frameHeight) {
 
-	var Frame = function(i, x, y, width, height) {
+	var Frame = function (i, x, y, width, height) {
 		this.i = i;
 		this.x = x;
 		this.y = y;

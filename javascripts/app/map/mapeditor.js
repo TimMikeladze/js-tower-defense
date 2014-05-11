@@ -14,7 +14,7 @@ var MapEditor = function (canvas) {
 	this.path = [];
 
 	var that = this;
-	document.getElementById("save").addEventListener("click", function() {
+	document.getElementById("save").addEventListener("click", function () {
 		var json = JSON.stringify(that.tiles);
 		var pom = document.createElement('a');
 		pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(json));
@@ -54,7 +54,7 @@ var MapEditor = function (canvas) {
 				that.controlPoints.push(tile.getCenter());
 				if (that.controlPoints.length > 3) {
 					that.path = Bezier.calculateCurve(that.controlPoints);
-			//		log(that.path);
+					//		log(that.path);
 				}
 			}
 		}, false);
@@ -104,7 +104,6 @@ var MapEditor = function (canvas) {
 			canvas.context.fillRect(p.x, p.y, 1, 1);
 		});
 	};
-
 
 
 };

@@ -52,13 +52,13 @@ var Game = function (id) {
 
 	this.broadcastAllPlayers = function (handler, data) {
 		io.sockets.in(this.id).emit(handler, data);
-	}
+	};
 
 	this.addTower = function (tower) {
 		this.towers.push(tower);
 		this.broadcastPlayers("addTower", tower);
 		util.log("Tower added by " + this.socket.id + " to " + this.id);
-	}
+	};
 
 	this.sendTowers = function () {
 		this.broadcastToPlayer("sendTowers", this.towers);
@@ -73,11 +73,11 @@ var GameFactory = function () {
 
 	this.findGameByID = function (id) {
 		return this.games[id];
-	}
+	};
 
 	this.findGameByPlayerID = function (id) {
 		return this.players[id];
-	}
+	};
 
 	this.generateGameID = function () {
 		var s = "";
@@ -85,20 +85,20 @@ var GameFactory = function () {
 			s += Math.floor(Math.random() * 0xF).toString(0xF);
 		}
 		return s;
-	}
+	};
 
 	this.createGame = function () {
 		var id = this.generateGameID();
 		this.games[id] = new Game(id);
 		return id;
-	}
+	};
 
 	this.removeAllGames = function () {
 		this.games = {};
 		this.players = {};
 		util.log("All games removed");
 		util.log("All players removed");
-	}
+	};
 
 	this.removeGameByID = function (id) {
 		var game = this.games[id];
@@ -109,7 +109,7 @@ var GameFactory = function () {
 			delete that.players[p];
 			util.log("Player " + p + " removed");
 		});
-	}
+	};
 
 	this.addPlayer = function (player) {
 		var addedPlayer = false;
@@ -120,17 +120,17 @@ var GameFactory = function () {
 				game.addPlayer(player);
 				addedPlayer = true;
 				break;
-			};
+			}
 		}
+
 		if (!addedPlayer) {
 			var id = this.createGame();
 			game = this.games[id];
 			game.addPlayer(player);
 		}
-
 		this.players[player] = game;
 		return game;
-	}
+	};
 
 	this.removePlayer = function (id) {
 		var game = this.players[id];
@@ -139,8 +139,8 @@ var GameFactory = function () {
 		if (game.isEmpty()) {
 			delete this.games[game.id];
 			util.log("Game " + game.id + " deleted");
-		};
-	}
+		}
+	};
 
 	this.toString = function () {
 		var s = "\n";
@@ -211,7 +211,6 @@ function onClientDisconnect() {
 
 	gameFactory.removePlayer(this.id);
 	util.log(gameFactory.toString());
-
 }
 
 init();

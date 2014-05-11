@@ -1,4 +1,4 @@
-var Time = function() {
+var Time = function () {
 	this.gameTime = 0;
 	this.maxStep = 0.05;
 	this.wallLastTimestamp = 0;

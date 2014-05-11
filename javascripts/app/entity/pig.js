@@ -20,15 +20,16 @@ var Pig = function (x, y, width, height) {
 	};
 
 	this.render = function () {
-		if(!this.timer) {
+		if (!this.timer) {
 			var that = this;
-			this.timer = new Timer(1000, function() {
+			this.timer = new Timer(1000, function () {
 				that.currentFrame++;
 				if (that.currentFrame > 2) {
 					that.currentFrame = 0;
 				}
 			});
-		};
+		}
+		;
 
 		var image = Require.getImage(this.sprite);
 		var frame = this.animation.getFrame(this.currentFrame);

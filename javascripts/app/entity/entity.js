@@ -20,23 +20,23 @@ var Entity = function (sprite, x, y, width, height, scale) {
 
 	};
 
-	this.setCoordinates = function(x, y) {
+	this.setCoordinates = function (x, y) {
 		this.x = x;
 		this.y = y;
 	};
 
-	this.setDimensions = function(width, height) {
+	this.setDimensions = function (width, height) {
 		this.width = width;
 		this.height = height;
 	};
 
-	this.isColliding = function(entities) {
-        var array = [];
-        if(entities instanceof Array) {
-                array = entities;
-        } else {
-                array.push(entities);
-        }
+	this.isColliding = function (entities) {
+		var array = [];
+		if (entities instanceof Array) {
+			array = entities;
+		} else {
+			array.push(entities);
+		}
 	};
 };
 

@@ -10,7 +10,6 @@ window.requestAnimFrame = (function () {
 })();
 
 
-
 var Canvas = function (id) {
 	this.canvas = document.getElementById(id);
 	this.context = this.canvas.getContext("2d");
@@ -26,7 +25,7 @@ var Canvas = function (id) {
 		this.context.fillRect(0, 0, this.width, this.height);
 	};
 
-	this.getCenter = function() {
+	this.getCenter = function () {
 		return new Vector2(this.width / 2, this.height / 2);
 	}
 

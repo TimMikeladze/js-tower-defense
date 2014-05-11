@@ -31,12 +31,10 @@ Require.load(function () {
 	connection.connect();
 
 
-
 	var engine = new GameEngine(gameCanvas, connection.socket);
 
 	engine.init();
 	engine.start();
-
 
 
 });
