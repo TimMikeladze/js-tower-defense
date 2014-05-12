@@ -1,10 +1,10 @@
 var Map = function (canvas) {
-	
+
 	this.tiles = [];
 	this.controlPoints = [];
 	this.path = [];
-	
-	function loadJSON(path, success, error)
+
+	this.loadJSON = function(path, success, error)
 	{
 	    var xhr = new XMLHttpRequest();
 	    xhr.onreadystatechange = function()
@@ -22,30 +22,30 @@ var Map = function (canvas) {
 	    xhr.open("GET", path, true);
 	    xhr.send();
 	}
-	
+
 	var that = this;
-	
-	function loadMap(level) {
+
+	this.loadMap = function(level) {
 		var mapToLoad = "assets/maps/map" + level + ".json";
-		
-		loadJSON(mapToLoad,
-		        function(data) { 
-					
+
+		this.loadJSON(mapToLoad,
+		        function(data) {
+
 					for (var i = 0; i < data.length; i++) {
 						var record = data[i];
 						var tile = new Tile("#926239", record.x, record.y, record.width, record.height);
-						
+
 						that.tiles.push(tile);
 						that.controlPoints.push(tile.getCenter());
-						
+
 						if (that.controlPoints.length > 3) {
 							that.path = Bezier.calculateCurve(that.controlPoints);
 						}
 					}
-					
-					//console.log(data); 
+
+					//console.log(data);
 				},
 		        function(xhr) { console.error(xhr); }
 		);
-	}		
-};	
+	}
+};
