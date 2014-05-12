@@ -5,7 +5,7 @@ var RedBird = function (position) {
 
 	this.idlingFrames = [0, 1];
 
-	this.render = function(canvas) {
+	this.render = function (canvas) {
 		canvas.context.globalAlpha = this.alpha;
 		if (this.state == Bird.FLOATING) {
 			canvas.context.drawFrame(this.sprite, this.animation.getFrame(0), this.position, this.width, this.height, this.scale);
@@ -14,7 +14,7 @@ var RedBird = function (position) {
 		}
 	};
 
-	this.tick = function(time) {
+	this.tick = function (time) {
 		this.time = this.time == null ? time.stamp : this.time;
 
 		if (this.state == Bird.IDLING) {

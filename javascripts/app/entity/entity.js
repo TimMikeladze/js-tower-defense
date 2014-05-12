@@ -26,7 +26,7 @@ var Entity = function (sprite, position, width, height, scale) {
 	};
 
 
-	this.tick = function(time) {
+	this.tick = function (time) {
 
 	};
 

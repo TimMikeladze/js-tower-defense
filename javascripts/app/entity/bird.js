@@ -5,15 +5,15 @@ var Bird = function (sprite, position, width, height, scale) {
 
 	this.state = Bird.FLOATING;
 
-	this.render = function(canvas) {
+	this.render = function (canvas) {
 
 	};
 
-	this.tick = function(time) {
+	this.tick = function (time) {
 
 	};
 
-	this.placeBird = function() {
+	this.placeBird = function () {
 		this.alpha = 1;
 		this.state = Bird.IDLING;
 	};
