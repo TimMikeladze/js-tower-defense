@@ -8,6 +8,8 @@ var GameEngine = function (canvas, socket) {
 	this.wheel = null;
 
 	this.entities = [];
+	this.floatingEntity = null;
+
 	this.enemyQueue = new EnemyQueue(this);
 	this.funds = null;
 
@@ -44,9 +46,15 @@ var GameEngine = function (canvas, socket) {
 	};
 
 	this.draw = function () {
+		var that = this;
 		this.canvas.clear();
+
+		if (this.floatingEntity) {
+			this.floatingEntity.render(this.canvas);
+		}
+
 		this.entities.forEach(function (entity) {
-			entity.render();
+			entity.render(that.canvas);
 		});
 	};
 

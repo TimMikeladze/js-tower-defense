@@ -14,10 +14,10 @@ Require.addScript("math", ["bezier", "vector2", "random"]);
 Require.addScript("networking", ["connection"]);
 Require.addScript("engine", ["time", "collisions", "funds", "gameengine", "input", "socketevents", "enemyqueue"]);
 Require.addScript("graphics", ["canvas", "animation"]);
-Require.addScript("entity", ["entity", , "bird", "pig"]);
+Require.addScript("entity", ["entity", , "bird", "pig", "redbird"]);
 
 Require.addImage("pigs", ["pig0.png"]);
-Require.addImage("birds", ["rbird2.png"]);
+Require.addImage("birds", ["rbird1.png"]);
 
 
 Require.load(function () {
