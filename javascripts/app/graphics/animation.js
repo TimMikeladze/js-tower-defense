@@ -1,16 +1,19 @@
-var Animation = function (sprite, frameWidth, frameHeight) {
+var Animation = function (sprite, frameWidth, frameHeight, speeds) {
 
-	var Frame = function (i, x, y, width, height) {
+	var Frame = function (i, x, y, width, height, speed) {
 		this.i = i;
 		this.x = x;
 		this.y = y;
 		this.width = width;
 		this.height = height;
+		this.speed = speed;
 	};
 
 	this.frameWidth = frameWidth;
 	this.frameHeight = frameHeight;
 	this.frames = [];
+
+	this.speeds = speeds ? speeds : [];
 
 	var image = Require.getImage(sprite);
 	if (image) {
@@ -23,7 +26,8 @@ var Animation = function (sprite, frameWidth, frameHeight) {
 		var row = 1;
 		var framesRow = [];
 		for (var i = 0; i < this.totalFrames; i++) {
-			var frame = new Frame(i, x, y, this.frameWidth, this.frameHeight);
+			var speed = this.speeds.length > 0 && i < this.speeds.length ? this.speeds[i] : 1000;
+			var frame = new Frame(i, x, y, this.frameWidth, this.frameHeight, speed);
 			framesRow.push(frame);
 			if ((i + 1) / row == this.totalWidthFrames) {
 				this.frames.push(framesRow);

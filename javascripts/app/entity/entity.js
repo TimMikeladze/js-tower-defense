@@ -5,6 +5,13 @@ var Entity = function (sprite, position, width, height, scale) {
 	this.height = height;
 	this.scale = scale ? scale : 1;
 
+	this.time = null;
+
+	this.currentFrames = [];
+	this.currentFrame = 0;
+
+	this.idlingFrames = [];
+
 	this.toString = function () {
 		return this.position.toString();
 	};
@@ -17,5 +24,12 @@ var Entity = function (sprite, position, width, height, scale) {
 		this.width = width;
 		this.height = height;
 	};
+
+
+	this.tick = function(time) {
+
+	};
+
+
 };
 

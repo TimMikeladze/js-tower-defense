@@ -42,6 +42,7 @@ var GameEngine = function (canvas, socket) {
 	this.update = function () {
 		var that = this;
 		this.entities.forEach(function (entity) {
+			entity.tick(that.time);
 		});
 	};
 
