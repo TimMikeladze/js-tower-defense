@@ -1,5 +1,5 @@
-var Bird = function (sprite, position, width, height) {
-	Entity.call(this, sprite, position, width, height);
+var Bird = function (sprite, position, width, height, scale) {
+	Entity.call(this, sprite, position, width, height, scale);
 
 	this.render = function(canvas) {
 	};
