@@ -34,13 +34,13 @@ function loadJSON(path, success, error)
 
 loadJSON('assets/maps/map1.json',
         function(data) { 
-			/*
+			
 			for (var i = 0; i < data.length; i++) {
 				var record = data[i];
 				console.log(record.x + ", " + record.y);
 			}
-			*/
-			console.log(data); 
+			
+			//console.log(data); 
 		},
         function(xhr) { console.error(xhr); }
 );
