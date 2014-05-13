@@ -24,12 +24,17 @@ Require.addImage("birds", ["rbird1.png"]);
 Require.addFile("maps", ["map1.json"]);
 
 
+Require.addImage("play0", ["play_button.png"]);
+
+
 Require.load(function () {
 	Logging.DEBUG = true;
 	Logging.VERBOSE = false;
 
 	var gameCanvas = new Canvas("game_canvas");
 	gameCanvas.clear("#458B00");
+
+	var sideCanvas = new Canvas("side_canvas");
 
 	var connection = new Connection(SERVER_URL, SERVER_PORT, false);
 	connection.connect();
