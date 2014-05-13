@@ -19,7 +19,7 @@ function draw(elem) {
 		// Fill with gradient
 		ctx.fillStyle = gradient;
 		// Title
-		ctx.fillText("Tims",10,35);
+		//ctx.fillText("Tims",10,35);
 		ctx.fillText("Tower", 15, 60);
 		ctx.fillText("Defense!", 20, 85);
 		// Score, Wave, Towers Left, Gold
