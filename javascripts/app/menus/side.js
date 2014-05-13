@@ -1,20 +1,18 @@
 function draw(elem) {
 	var canvas = document.getElementById(elem);
 	var canvasHeight = 140;
-	var canvasWeight = 540;
+	var canvasWidth = 540;
 
-	if (canvas.getContext){
     	var ctx = canvas.getContext('2d');
     	addStaticText(ctx);
     	initializeValues(ctx);
     	addRect(ctx);
     	createTowerBorders(ctx);
-    }
 
     function addStaticText(ctx) {
     	ctx.font = "30px Verdana";
     	// Create gradient
-    	var gradient = ctx.createLinearGradient(0, 0, canvasWeight, 0);
+    	var gradient = ctx.createLinearGradient(0, 0, canvasWidth, 0);
     	gradient.addColorStop("0","magenta");
 		gradient.addColorStop("0.5","blue");
 		gradient.addColorStop("1.0","red");
@@ -34,21 +32,21 @@ function draw(elem) {
 		ctx.fillText("Towers:", 15, 300);
 		// Pause, Quit
 		ctx.fillText("Pause", 14, 532);
-		ctx.fillText("Quit", ((canvasWeight)/2)+10, 532);
+		ctx.fillText("Quit", ((canvasWidth)/2)+10, 532);
     }
 
     function addRect(ctx) {
 		ctx.fillStyle = "rgba(128,255,0, .5)";
-	    ctx.fillRect (10, 100, canvasWeight-20, 170);
+	    ctx.fillRect (10, 100, canvasWidth-20, 170);
 
 	    ctx.fillStyle = "rgba(128,255,0, .5)";
-	    ctx.fillRect (10, 280, canvasWeight-20, 230);
+	    ctx.fillRect (10, 280, canvasWidth-20, 230);
 
 	    ctx.fillStyle = "rgba(128,255,0, .5)";
-	    ctx.fillRect (10, 515, (canvasWeight-30)/2, 20);
+	    ctx.fillRect (10, 515, (canvasWidth-30)/2, 20);
 
 	    ctx.fillStyle = "rgba(128,255,0, .5)";
-	    ctx.fillRect (((canvasWeight-10)/2)+10, 515, (canvasWeight-30)/2, 20);
+	    ctx.fillRect (((canvasWidth-10)/2)+10, 515, (canvasWidth-30)/2, 20);
 	}
 
 	function initializeValues(ctx) {
@@ -66,8 +64,8 @@ function draw(elem) {
 		ctx.strokeRect(20, 365, 45, 45);
 		ctx.strokeRect(20, 420, 45, 45);
 
-		ctx.strokeRect(((canvasWeight-10)/2)+10, 310, 45, 45);
-		ctx.strokeRect(((canvasWeight-10)/2)+10, 365, 45, 45);
-		ctx.strokeRect(((canvasWeight-10)/2)+10, 420, 45, 45);
+		ctx.strokeRect(((canvasWidth-10)/2)+10, 310, 45, 45);
+		ctx.strokeRect(((canvasWidth-10)/2)+10, 365, 45, 45);
+		ctx.strokeRect(((canvasWidth-10)/2)+10, 420, 45, 45);
 	}
 }

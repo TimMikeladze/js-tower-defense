@@ -14,7 +14,7 @@ Require.addScript("util", ["prototypes", "logging"]);
 Require.addScript("math", ["bezier", "vector2", "random"]);
 Require.addScript("networking", ["connection"]);
 Require.addScript("map", ["map", "tile"]);
-Require.addScript("menus", ["menu"]);
+Require.addScript("menus", ["menu", "side"]);
 Require.addScript("engine", ["time", "collisions", "funds", "gameengine", "input", "socketevents", "enemyqueue"]);
 Require.addScript("graphics", ["canvas", "animation"]);
 Require.addScript("entity", ["entity", , "bird", "pig", "redbird", "greenpig"]);
@@ -45,6 +45,8 @@ Require.load(function () {
 
 	engine.init();
 	engine.start();
+
+	draw("side_canvas");
 
 });
 
