@@ -8,13 +8,20 @@
 
 	<script src="javascripts/lib/require.js"></script>
 	<script src="javascripts/app/main.js"></script>
-
+	<script src="javascripts/app/side.js"></script>
 
 	<title>js-tower-defense</title>
 </head>
 
 <body>
-<canvas id="game_canvas" width = "800" height="600">
+	<div class="container">
+		<section id="main_content">
+			<canvas id="game_canvas" width = "810" height="540">
+		</section>
+		<section id="side_content">
+			<canvas id="sidePane" width = "140" height = "540">
+		</section>
+	</div>
 <p>Your browser does not support HTML5.</p></canvas>
 </body>
 </html>
