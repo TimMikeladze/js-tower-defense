@@ -7,7 +7,10 @@ var GreenPig = function (position) {
 
 	this.render = function (canvas) {
 		if (this.state == Pig.IDLING) {
-			canvas.context.drawFrame(this.sprite, this.animation.getFrame(this.idlingFrames[this.currentFrame]), this.position, this.width, this.height, this.scale);
+			var position = this.position.clone();
+			//TODO(tim) investigate
+			position.set(position.x - this.width / 2, position.y - this.height / 2)
+			canvas.context.drawFrame(this.sprite, this.animation.getFrame(this.idlingFrames[this.currentFrame]), position, this.width, this.height, this.scale);
 		}
 	};
 
@@ -19,6 +22,7 @@ var GreenPig = function (position) {
 			this.currentFrames = this.idlingFrames;
 		}
 
+		//TODO(tim) We need a proper timer for this
 		var speed = this.animation.getFrame(this.currentFrame).speed;
 		if (time.stamp > (this.time + speed)) {
 			this.time = time.stamp;
