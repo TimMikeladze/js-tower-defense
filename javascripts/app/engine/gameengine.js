@@ -10,7 +10,7 @@ var GameEngine = function (canvas, socket) {
 	this.entities = [];
 	this.floatingEntity = null;
 
-	this.enemyQueue = new EnemyQueue(this);
+	this.enemyQueue = null;
 	this.funds = null;
 
 	this.time = null;
@@ -20,8 +20,13 @@ var GameEngine = function (canvas, socket) {
 
 	this.init = function () {
 		this.time = new Time();
+
 		this.map = new Map(Require.getFile("maps/map1.json"));
 		this.map.loadMap();
+
+		this.enemyQueue = new EnemyQueue(this, 10, this.map.path, 3000);
+		this.enemyQueue.populateEngine();
+
 		this.startInput();
 		this.setSocketEventHandler();
 	};
@@ -29,19 +34,19 @@ var GameEngine = function (canvas, socket) {
 	this.start = function () {
 		this.funds = new Funds(100);
 		var that = this;
+		this.startMenu();
 		(function gameLoop() {
 			that.loop();
 			requestAnimFrame(gameLoop, that.canvas.canvas);
 		})();
 	};
 
-	this.startMenu = function() {
+	this.startMenu = function () {
 		var width = 350;
 		var height = 210;
-		this.menu = new Menu(
-			Require.getImagePath("menu/main.png"), width, height);
-		menu.setCoordinates( canvas.width/2 - width/2, canvas.height/2 - height/2 
-			canvas.width/2 + width/2, canvas.height/2 + height/2 );
+		this.menu = new Menu(Require.getImage("menu/main.png"), width, height);
+		this.menu.setCoordinates(this.canvas.width / 2 - width / 2, this.canvas.height / 2 - height / 2,
+			this.canvas.width / 2 + width / 2, this.canvas.height / 2 + height / 2);
 	}
 
 	this.loop = function () {
@@ -53,8 +58,14 @@ var GameEngine = function (canvas, socket) {
 
 	this.update = function () {
 		var that = this;
+
+		var i = 0;
 		this.entities.forEach(function (entity) {
 			entity.tick(that.time);
+			if (entity.destroy) {
+				that.entities.splice(i, 1);
+			}
+			i++;
 		});
 	};
 
@@ -71,6 +82,10 @@ var GameEngine = function (canvas, socket) {
 		this.entities.forEach(function (entity) {
 			entity.render(that.canvas);
 		});
+	};
+
+	this.addPig = function (pig) {
+		this.entities.push(pig);
 	};
 
 };

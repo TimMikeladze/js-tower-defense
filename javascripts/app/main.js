@@ -14,9 +14,10 @@ Require.addScript("util", ["prototypes", "logging"]);
 Require.addScript("math", ["bezier", "vector2", "random"]);
 Require.addScript("networking", ["connection"]);
 Require.addScript("map", ["map", "tile"]);
+Require.addScript("menu", ["menu"]);
 Require.addScript("engine", ["time", "collisions", "funds", "gameengine", "input", "socketevents", "enemyqueue"]);
 Require.addScript("graphics", ["canvas", "animation"]);
-Require.addScript("entity", ["entity", , "bird", "pig", "redbird"]);
+Require.addScript("entity", ["entity", , "bird", "pig", "redbird", "greenpig"]);
 
 Require.addImage("pigs", ["pig0.png"]);
 Require.addImage("birds", ["rbird1.png"]);
@@ -24,8 +25,8 @@ Require.addImage("birds", ["rbird1.png"]);
 Require.addFile("maps", ["map1.json"]);
 
 
-Require.addImage("main_button", ["main.png"]);
-Require.addImage("play_button", ["play.png"]);
+Require.addImage("menu", ["main.png"]);
+Require.addImage("menu", ["play.png"]);
 
 
 Require.load(function () {

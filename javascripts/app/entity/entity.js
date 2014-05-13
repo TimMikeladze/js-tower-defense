@@ -7,6 +7,8 @@ var Entity = function (sprite, position, width, height, scale) {
 
 	this.time = null;
 
+	this.destroy = false;
+
 	this.currentFrames = [];
 	this.currentFrame = 0;
 
