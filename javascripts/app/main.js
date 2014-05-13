@@ -5,6 +5,7 @@ var SERVER_PORT = 9191;
 Require.setBasePath("javascripts/app");
 Require.setLibraryPath("javascripts/lib");
 Require.setImagesPath("assets/img");
+Require.setFilesPath("assets");
 
 Require.addLibrary("timer", ["timer"]);
 Require.addLibrary("socket.io", ["socket.io.min"]);
@@ -18,6 +19,8 @@ Require.addScript("entity", ["entity", , "bird", "pig", "redbird"]);
 
 Require.addImage("pigs", ["pig0.png"]);
 Require.addImage("birds", ["rbird1.png"]);
+
+Require.addFile("maps", ["map1.json"]);
 
 
 Require.load(function () {
@@ -35,6 +38,8 @@ Require.load(function () {
 
 	engine.init();
 	engine.start();
+
+	log(Require.getFile("maps/map1.json"));
 
 
 });
