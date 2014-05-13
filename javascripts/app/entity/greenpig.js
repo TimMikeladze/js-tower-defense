@@ -1,5 +1,5 @@
 var GreenPig = function (position) {
-	Pig.call(this, "pigs/pig0.png", position, 5, 100, 97, 0.65);
+	Pig.call(this, "pigs/pig0.png", position, 3, 100, 97, 0.45);
 
 	this.animation = new Animation(this.sprite, this.width, this.height, [1500, 500, 1000]);
 

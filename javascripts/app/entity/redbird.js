@@ -1,5 +1,5 @@
 var RedBird = function (position) {
-	Bird.call(this, "birds/rbird1.png", position, 62, 62, 1);
+	Bird.call(this, "birds/rbird1.png", position, 62, 62, 0.75);
 
 	this.animation = new Animation(this.sprite, this.width, this.height, [1500, 500]);
 
