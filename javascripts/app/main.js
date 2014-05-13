@@ -13,6 +13,7 @@ Require.addLibrary("socket.io", ["socket.io.min"]);
 Require.addScript("util", ["prototypes", "logging"]);
 Require.addScript("math", ["bezier", "vector2", "random"]);
 Require.addScript("networking", ["connection"]);
+Require.addScript("map", ["map", "tile"]);
 Require.addScript("engine", ["time", "collisions", "funds", "gameengine", "input", "socketevents", "enemyqueue"]);
 Require.addScript("graphics", ["canvas", "animation"]);
 Require.addScript("entity", ["entity", , "bird", "pig", "redbird"]);
@@ -38,9 +39,6 @@ Require.load(function () {
 
 	engine.init();
 	engine.start();
-
-	log(Require.getFile("maps/map1.json"));
-
 
 });
 

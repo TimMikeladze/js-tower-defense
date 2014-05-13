@@ -1,13 +1,13 @@
-var Tile = function (color, x, y, width, height) {
+var Tile = function (color, x, y, width, height, applied) {
 	this.color = color;
 	this.x = x;
 	this.y = y;
 	this.width = width;
 	this.height = height;
 
-	this.alpha = 0.5;
+	this.alpha = applied ? 1.0 : 0.5;
 
-	this.draw = function (canvas) {
+	this.render = function (canvas) {
 		canvas.context.globalAlpha = this.alpha;
 		canvas.context.fillStyle = this.color;
 		canvas.context.fillRect(this.x, this.y, this.width, this.height);

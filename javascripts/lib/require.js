@@ -110,7 +110,6 @@ Require.loadFiles = function (file, callback) {
 			Require.images[path] = img;
 			break;
 		case "file":
-			console.log(file.url);
 			var xhr = new XMLHttpRequest();
 			xhr.onreadystatechange = function () {
 				if (xhr.readyState === 4) {

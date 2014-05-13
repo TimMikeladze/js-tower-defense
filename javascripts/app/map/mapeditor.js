@@ -18,7 +18,7 @@ var MapEditor = function (canvas) {
 		var json = JSON.stringify(that.tiles);
 		var pom = document.createElement('a');
 		pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(json));
-		pom.setAttribute('download', "map");
+		pom.setAttribute('download', "map.json");
 		pom.click();
 	});
 
@@ -91,12 +91,12 @@ var MapEditor = function (canvas) {
 		this.canvas.clear("#458B00");
 
 		if (this.floatingTitle) {
-			this.floatingTitle.draw(this.canvas);
+			this.floatingTitle.render(this.canvas);
 		}
 
 		var that = this;
 		this.tiles.forEach(function (t) {
-			t.draw(that.canvas);
+			t.render(that.canvas);
 		});
 
 		this.path.forEach(function (p) {

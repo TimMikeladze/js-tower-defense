@@ -1,51 +1,36 @@
-var Map = function (canvas) {
+var Map = function (mapFile) {
 
 	this.tiles = [];
 	this.controlPoints = [];
 	this.path = [];
+	this.mapFile = mapFile;
 
-	this.loadJSON = function (path, success, error) {
-		var xhr = new XMLHttpRequest();
-		xhr.onreadystatechange = function () {
-			if (xhr.readyState === 4) {
-				if (xhr.status === 200) {
-					if (success)
-						success(JSON.parse(xhr.responseText));
-				} else {
-					if (error)
-						error(xhr);
-				}
+	this.loadMap = function () {
+		var data = JSON.parse(this.mapFile);
+
+		for (var i = 0; i < data.length; i++) {
+			var record = data[i];
+			var tile = new Tile("#926239", record.x, record.y, record.width, record.height, true);
+
+			this.tiles.push(tile);
+			this.controlPoints.push(tile.getCenter());
+
+			if (this.controlPoints.length > 3) {
+				this.path = Bezier.calculateCurve(this.controlPoints);
 			}
-		};
-		xhr.open("GET", path, true);
-		xhr.send();
-	}
+		}
+	};
 
-	var that = this;
+	this.render = function (canvas, drawPath) {
+		this.tiles.forEach(function (tile) {
+			tile.render(canvas);
+		});
 
-	this.loadMap = function (level) {
-		var mapToLoad = "assets/maps/map" + level + ".json";
-
-		this.loadJSON(mapToLoad,
-			function (data) {
-
-				for (var i = 0; i < data.length; i++) {
-					var record = data[i];
-					var tile = new Tile("#926239", record.x, record.y, record.width, record.height);
-
-					that.tiles.push(tile);
-					that.controlPoints.push(tile.getCenter());
-
-					if (that.controlPoints.length > 3) {
-						that.path = Bezier.calculateCurve(that.controlPoints);
-					}
-				}
-
-				//console.log(data);
-			},
-			function (xhr) {
-				console.error(xhr);
-			}
-		);
-	}
+		if (drawPath) {
+			this.path.forEach(function (p) {
+				canvas.context.fillStyle = "#FF0000";
+				canvas.context.fillRect(p.x, p.y, 1, 1);
+			});
+		}
+	};
 };

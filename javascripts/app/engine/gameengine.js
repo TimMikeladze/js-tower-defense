@@ -16,9 +16,12 @@ var GameEngine = function (canvas, socket) {
 	this.time = null;
 	this.clockTick = null;
 
+	this.map = null;
 
 	this.init = function () {
 		this.time = new Time();
+		this.map = new Map(Require.getFile("maps/map1.json"));
+		this.map.loadMap();
 		this.startInput();
 		this.setSocketEventHandler();
 	};
@@ -49,6 +52,8 @@ var GameEngine = function (canvas, socket) {
 	this.draw = function () {
 		var that = this;
 		this.canvas.clear();
+
+		this.map.render(this.canvas, true);
 
 		if (this.floatingEntity) {
 			this.floatingEntity.render(this.canvas);
