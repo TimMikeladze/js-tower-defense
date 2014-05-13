@@ -35,6 +35,15 @@ var GameEngine = function (canvas, socket) {
 		})();
 	};
 
+	this.startMenu = function() {
+		var width = 350;
+		var height = 210;
+		this.menu = new Menu(
+			Require.getImagePath("menu/main.png"), width, height);
+		menu.setCoordinates( canvas.width/2 - width/2, canvas.height/2 - height/2 
+			canvas.width/2 + width/2, canvas.height/2 + height/2 );
+	}
+
 	this.loop = function () {
 		this.clockTick = this.time.tick();
 		this.update();

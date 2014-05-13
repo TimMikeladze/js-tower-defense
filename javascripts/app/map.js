@@ -17,6 +17,8 @@ Require.addScript("graphics", ["canvas", "animation"]);
 Require.addImage("pigs", ["pig0.png"]);
 Require.addImage("birds", ["rbird2.png"]);
 
+Require.addimage("menu", ["play.png", "main.png"] )
+
 var mapCanvas;
 var connection;
 
