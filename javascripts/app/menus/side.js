@@ -1,6 +1,6 @@
 function draw(elem) {
 	var canvas = document.getElementById(elem);
-	var canvasHeight = 140;
+	var canvasHeight = 150;
 	var canvasWidth = 540;
 
     	var ctx = canvas.getContext('2d');
