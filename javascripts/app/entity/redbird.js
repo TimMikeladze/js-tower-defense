@@ -15,7 +15,8 @@ var RedBird = function (position) {
 		}
 	};
 
-	this.tick = function (time) {
+	var parent = this.tick;
+	this.tick = function (time, engine) {
 		this.time = this.time == null ? time.stamp : this.time;
 
 		if (this.state == Bird.IDLING) {
@@ -28,6 +29,7 @@ var RedBird = function (position) {
 			this.currentFrame++;
 			this.currentFrame = this.currentFrame % this.currentFrames.length;
 		}
+		parent.call(this, time, engine);
 	};
 };
 

@@ -61,7 +61,7 @@ var GameEngine = function (canvas, socket) {
 
 		var i = 0;
 		this.entities.forEach(function (entity) {
-			entity.tick(that.time);
+			entity.tick(that.time, that);
 			if (entity.destroy) {
 				that.entities.splice(i, 1);
 			}
