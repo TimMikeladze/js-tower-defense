@@ -24,7 +24,8 @@ Require.addImage("birds", ["rbird1.png"]);
 Require.addFile("maps", ["map1.json"]);
 
 
-Require.addImage("play0", ["play_button.png"]);
+Require.addImage("main_button", ["main.png"]);
+Require.addImage("play_button", ["play.png"]);
 
 
 Require.load(function () {
