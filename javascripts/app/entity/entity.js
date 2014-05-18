@@ -34,8 +34,6 @@ var Entity = function (sprite, position, width, height, scale) {
 		}
 	};
 
-	this.renderParent = this.render;
-
 
 };
 
