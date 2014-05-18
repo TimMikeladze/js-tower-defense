@@ -16,7 +16,7 @@ var GreenPig = function (position) {
 
 
 	var tickParent = this.tick;
-	this.tick = function (time) {
+	this.tick = function (time, engine) {
 		this.time = this.time == null ? time.stamp : this.time;
 
 		if (this.state == Pig.IDLING) {
@@ -24,7 +24,7 @@ var GreenPig = function (position) {
 		}
 
 		this.animator.tick(time, this.animation, this.currentFrames);
-		tickParent.call(this, time);
+		tickParent.call(this, time, engine);
 	};
 };
 

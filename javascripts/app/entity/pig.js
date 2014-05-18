@@ -13,7 +13,7 @@ var Pig = function (sprite, position, speed, width, height, scale) {
 		renderParent.call(this, canvas);
 	};
 
-	this.tick = function (time) {
+	this.tick = function (time, engine) {
 		this.currentPathIndex += speed;
 		if (this.currentPathIndex < this.path.length) {
 			this.position = this.path[this.currentPathIndex];
