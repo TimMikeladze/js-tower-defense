@@ -5,9 +5,8 @@ var RedBird = function (position) {
 
 	this.idlingFrames = [0, 1];
 
-	var renderParent = this.render;
 	this.render = function (canvas) {
-		renderParent.call(this, canvas);
+		this.renderParent.call(this, canvas);
 		if (this.state == Bird.FLOATING) {
 			canvas.context.globalAlpha = this.alpha;
 			canvas.context.drawFrame(this.sprite, this.animation.getFrame(0), this.position, this.width, this.height);
