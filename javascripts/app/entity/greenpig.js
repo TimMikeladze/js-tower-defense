@@ -10,9 +10,10 @@ var GreenPig = function (position) {
 		renderParent.call(this, canvas);
 		if (this.state == Pig.IDLING) {
 			var position = this.position.clone();
-			canvas.context.drawFrame(this.sprite, this.animation.getFrame(this.idlingFrames[this.currentFrame]), position, this.width, this.height);
+			canvas.context.drawFrame(this.sprite, this.animation.getFrame(this.animator.currentFrameIndex()), position, this.width, this.height);
 		}
 	};
+
 
 	var tickParent = this.tick;
 	this.tick = function (time) {
@@ -22,15 +23,7 @@ var GreenPig = function (position) {
 			this.currentFrames = this.idlingFrames;
 		}
 
-		//TODO(tim) We need a proper timer for this
-		var speed = this.animation.getFrame(this.currentFrame).speed;
-		if (time.stamp > (this.time + speed)) {
-			this.time = time.stamp;
-			this.currentFrame++;
-			this.currentFrame = this.currentFrame % this.currentFrames.length;
-
-		}
-
+		this.animator.tick(time, this.animation, this.currentFrames);
 		tickParent.call(this, time);
 	};
 };

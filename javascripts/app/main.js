@@ -18,7 +18,7 @@ Require.addScript("networking", ["connection"]);
 Require.addScript("map", ["map", "tile"]);
 Require.addScript("menus", ["menu", "sidebar"]);
 Require.addScript("engine", ["time", "collisions", "funds", "gameengine", "input", "socketevents", "enemyqueue"]);
-Require.addScript("graphics", ["canvas", "animation"]);
+Require.addScript("graphics", ["canvas", "animation", "animator"]);
 Require.addScript("entity", ["entity", , "bird", "pig", "redbird", "greenpig"]);
 
 Require.addImage("pigs", ["pig0.png"]);

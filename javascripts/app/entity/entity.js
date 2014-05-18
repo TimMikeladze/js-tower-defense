@@ -14,6 +14,8 @@ var Entity = function (sprite, position, width, height, scale) {
 
 	this.idlingFrames = [];
 
+	this.animator = new Animator();
+
 	this.toString = function () {
 		return this.position.toString();
 	};

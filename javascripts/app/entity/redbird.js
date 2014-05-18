@@ -13,7 +13,7 @@ var RedBird = function (position) {
 			canvas.context.drawFrame(this.sprite, this.animation.getFrame(0), this.position, this.width, this.height);
 			canvas.context.globalAlpha = 1.0;
 		} else {
-			canvas.context.drawFrame(this.sprite, this.animation.getFrame(this.idlingFrames[this.currentFrame]), this.position, this.width, this.height);
+			canvas.context.drawFrame(this.sprite, this.animation.getFrame(this.animator.currentFrameIndex()), this.position, this.width, this.height);
 		}
 	};
 
@@ -25,12 +25,8 @@ var RedBird = function (position) {
 			this.currentFrames = this.idlingFrames;
 		}
 
-		var speed = this.animation.getFrame(this.currentFrame).speed;
-		if (time.stamp > (this.time + speed)) {
-			this.time = time.stamp;
-			this.currentFrame++;
-			this.currentFrame = this.currentFrame % this.currentFrames.length;
-		}
+		this.animator.tick(time, this.animation, this.currentFrames);
+
 		tickParent.call(this, time, engine);
 	};
 };
