@@ -1,20 +1,20 @@
 var GreenPig = function (position) {
 	Pig.call(this, "pigs/pig0.png", position, 3, 100, 97, 0.45);
 
-	this.animation = new Animation(this.sprite, this.width, this.height, [1500, 500, 1000]);
+	this.animation = new Animation(this.sprite, this.width, this.height, this.scale, [1500, 500, 1000]);
 
 	this.idlingFrames = [0, 1, 2];
 
+	var renderParent = this.render;
 	this.render = function (canvas) {
+		renderParent.call(this, canvas);
 		if (this.state == Pig.IDLING) {
 			var position = this.position.clone();
-			//TODO(tim) investigate
-			position.set(position.x - this.width / 2, position.y - this.height / 2)
-			canvas.context.drawFrame(this.sprite, this.animation.getFrame(this.idlingFrames[this.currentFrame]), position, this.width, this.height, this.scale);
+			canvas.context.drawFrame(this.sprite, this.animation.getFrame(this.idlingFrames[this.currentFrame]), position, this.width, this.height);
 		}
 	};
 
-	var parent = this.tick;
+	var tickParent = this.tick;
 	this.tick = function (time) {
 		this.time = this.time == null ? time.stamp : this.time;
 
@@ -31,7 +31,7 @@ var GreenPig = function (position) {
 
 		}
 
-		parent.call(this, time);
+		tickParent.call(this, time);
 	};
 };
 

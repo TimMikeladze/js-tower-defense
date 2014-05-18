@@ -6,12 +6,10 @@ Object.prototype.getName = function () {
 
 CanvasRenderingContext2D.prototype.drawFrame = function (sprite, frame, x, y, width, height, scale) {
 	var image = Require.getImage(sprite);
-	scale = scale ? scale : 1;
-	this.drawImage(image, frame.x, frame.y, frame.width, frame.height, x, y, width * scale, height * scale);
+	this.drawImage(image, frame.x, frame.y, frame.width, frame.height, x, y, width, height);
 }
 
-CanvasRenderingContext2D.prototype.drawFrame = function (sprite, frame, position, width, height, scale) {
+CanvasRenderingContext2D.prototype.drawFrame = function (sprite, frame, position, width, height) {
 	var image = Require.getImage(sprite);
-	scale = scale ? scale : 1;
-	this.drawImage(image, frame.x, frame.y, frame.width, frame.height, position.x, position.y, width * scale, height * scale);
+	this.drawImage(image, frame.x, frame.y, frame.width, frame.height, position.x, position.y, width, height);
 }

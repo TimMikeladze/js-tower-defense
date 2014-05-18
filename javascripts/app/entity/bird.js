@@ -5,8 +5,9 @@ var Bird = function (sprite, position, width, height, scale) {
 
 	this.state = Bird.FLOATING;
 
+	var renderParent = this.render;
 	this.render = function (canvas) {
-
+		renderParent.call(this, canvas);
 	};
 
 	this.tick = function (time, engine) {
@@ -31,8 +32,6 @@ var Bird = function (sprite, position, width, height, scale) {
 						minPig = pig;
 					}
 				});
-
-
 			}
 		}
 	};

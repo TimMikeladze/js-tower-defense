@@ -1,9 +1,9 @@
 var Entity = function (sprite, position, width, height, scale) {
 	this.sprite = sprite;
 	this.position = position;
-	this.width = width;
-	this.height = height;
 	this.scale = scale ? scale : 1;
+	this.width = width * scale
+	this.height = height * scale;
 
 	this.time = null;
 
@@ -22,14 +22,16 @@ var Entity = function (sprite, position, width, height, scale) {
 		this.position = v.clone();
 	};
 
-	this.setDimensions = function (width, height) {
-		this.width = width;
-		this.height = height;
-	};
-
-
 	this.tick = function (time, engine) {
 
+	};
+
+	this.render = function (canvas) {
+		if (canvas && SHOW_BOUNDING_RECTANGLE) {
+			canvas.context.beginPath();
+			canvas.context.rect(this.position.x, this.position.y, this.width, this.height);
+			canvas.context.stroke();
+		}
 	};
 
 

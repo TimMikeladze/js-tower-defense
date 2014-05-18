@@ -8,8 +8,9 @@ var Pig = function (sprite, position, speed, width, height, scale) {
 
 	this.currentPathIndex = 0;
 
+	var renderParent = this.render;
 	this.render = function (canvas) {
-
+		renderParent.call(this, canvas);
 	};
 
 	this.tick = function (time) {

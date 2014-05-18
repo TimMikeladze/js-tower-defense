@@ -1,4 +1,4 @@
-var Animation = function (sprite, frameWidth, frameHeight, speeds) {
+var Animation = function (sprite, frameWidth, frameHeight, scale, speeds) {
 
 	var Frame = function (i, x, y, width, height, speed) {
 		this.i = i;
@@ -9,8 +9,9 @@ var Animation = function (sprite, frameWidth, frameHeight, speeds) {
 		this.speed = speed;
 	};
 
-	this.frameWidth = frameWidth;
-	this.frameHeight = frameHeight;
+	this.frameWidth = frameWidth / scale;
+	this.frameHeight = frameHeight / scale;
+	this.frameScale = scale;
 	this.frames = [];
 
 	this.speeds = speeds ? speeds : [];
