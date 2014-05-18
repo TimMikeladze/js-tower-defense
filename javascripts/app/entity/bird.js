@@ -13,7 +13,7 @@ var Bird = function (sprite, position, width, height, scale) {
 		var that = this;
 		var pigs = [];
 		if (engine.entities) {
-			engine.entities.forEach(function(entity) {
+			engine.entities.forEach(function (entity) {
 				if (entity instanceof Pig) {
 					pigs.push(entity);
 				}
@@ -24,7 +24,7 @@ var Bird = function (sprite, position, width, height, scale) {
 				var minPig;
 				var minDistance;
 
-				pigs.forEach(function(pig) {
+				pigs.forEach(function (pig) {
 					var distance = pig.position.distanceTo(that.position);
 					if (minDistance == null || distance < minDistance) {
 						minDistance = distance;

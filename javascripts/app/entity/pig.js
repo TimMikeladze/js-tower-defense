@@ -21,7 +21,7 @@ var Pig = function (sprite, position, speed, width, height, scale) {
 		}
 	};
 
-	this.setPath = function(path) {
+	this.setPath = function (path) {
 		this.path = path;
 	};
 };
