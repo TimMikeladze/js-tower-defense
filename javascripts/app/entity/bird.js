@@ -20,7 +20,6 @@ var Bird = function (sprite, position, width, height, scale) {
 				}
 			});
 
-
 			if (pigs.length > 0) {
 				var minPig;
 				var minDistance;
@@ -46,8 +45,6 @@ var Bird = function (sprite, position, width, height, scale) {
 		var tiles = engine.map.tiles;
 		var that = this;
 		var answer = true;
-		
-		var birds = [];
 		
 		tiles.forEach(function(tile) {
 			if (!((tile.y + tile.height < that.position.y)
