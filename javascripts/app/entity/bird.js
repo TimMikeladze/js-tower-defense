@@ -42,12 +42,13 @@ var Bird = function (sprite, position, width, height, scale) {
 		this.state = Bird.IDLING;
 	};
 
-	this.canPlace = function(map) {
-		var tiles = map.tiles;
+	this.canPlace = function(engine) {
+		var tiles = engine.map.tiles;
 		var that = this;
-
 		var answer = true;
-
+		
+		var birds = [];
+		
 		tiles.forEach(function(tile) {
 			if (!((tile.y + tile.height < that.position.y)
 					|| (tile.y > that.position.y + that.height)
@@ -58,10 +59,30 @@ var Bird = function (sprite, position, width, height, scale) {
 				return;
 			}
 		});
+		
+		if (answer) {
+			if (engine.entities) {
+				engine.entities.forEach(function (entity) {
+					if (entity instanceof Bird) {
+						birds.push(entity);
+					}
+				});
 
-		return answer;
-	};
-
+				if (birds.length > 0) {
+					birds.forEach(function (bird) {
+						if (!((bird.position.y + bird.height < that.position.y)
+								|| (bird.position.y > that.position.y + that.height)
+								|| (bird.position.x > that.position.x + that.width)
+								|| (bird.position.x + bird.width < that.position.x))) {
+							answer = false;
+							return;
+						}
+					});
+				}
+			}
+			return answer;
+		}
+	};	
 };
 
 Bird.FLOATING = 0;

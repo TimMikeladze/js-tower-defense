@@ -27,7 +27,7 @@ var Canvas = function (id) {
 
 	this.getCenter = function () {
 		return new Vector2(this.width / 2, this.height / 2);
-	}
+	};
 
 	this.draw = function (callback) {
 		callback.call();
