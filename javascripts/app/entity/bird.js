@@ -42,6 +42,14 @@ var Bird = function (sprite, position, width, height, scale) {
 		this.state = Bird.IDLING;
 	};
 
+	this.canPlace = function(map) {
+		var tiles = map.tiles;
+		var that = this;
+		tiles.forEach(function(tile) {
+
+		});
+	};
+
 };
 
 Bird.FLOATING = 0

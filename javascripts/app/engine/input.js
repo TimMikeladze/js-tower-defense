@@ -11,7 +11,7 @@ GameEngine.prototype.startInput = function () {
 	this.gameCanvas.addEventListener("click", function (e) {
 		that.click = getClickedPoint(e);
 
-		if (that.floatingEntity != null) {
+		if (that.floatingEntity && that.floatingEntity.canPlace(that.map)) {
 			that.floatingEntity.placeBird();
 			that.entities.push(that.floatingEntity);
 			that.floatingEntity = null;
