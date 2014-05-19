@@ -45,19 +45,20 @@ var Bird = function (sprite, position, width, height, scale) {
 	this.canPlace = function(map) {
 		var tiles = map.tiles;
 		var that = this;
-		
+
 		var answer = true;
-		
+
 		tiles.forEach(function(tile) {
-			if (!((tile.y + tile.height < that.position.y) 
-					|| (tile.y > that.position.y + that.height) 
-					|| (tile.x > that.position.x + that.width) 
+			if (!((tile.y + tile.height < that.position.y)
+					|| (tile.y > that.position.y + that.height)
+					|| (tile.x > that.position.x + that.width)
 					|| (tile.x + tile.width < that.position.x))) {
-				
+
 				answer = false;
+				return;
 			}
 		});
-		
+
 		return answer;
 	};
 
