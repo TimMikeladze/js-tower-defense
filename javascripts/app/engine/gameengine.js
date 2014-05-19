@@ -39,7 +39,7 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 	this.start = function () {
 		this.funds = new Funds(100);
 		var that = this;
-		this.startMenu();
+		//this.startMenu();
 		(function gameLoop() {
 			that.loop();
 			requestAnimFrame(gameLoop, that.gameCanvas.canvas);
@@ -47,11 +47,6 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 	};
 
 	this.startMenu = function () {
-		var width = 350;
-		var height = 210;
-		this.menu = new Menu(Require.getImage("menu/main.png"), width, height);
-		this.menu.setCoordinates(this.gameCanvas.width / 2 - width / 2, this.gameCanvas.height / 2 - height / 2,
-			this.gameCanvas.width / 2 + width / 2, this.gameCanvas.height / 2 + height / 2);
 	};
 
 	this.loop = function () {
