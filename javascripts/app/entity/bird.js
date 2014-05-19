@@ -45,14 +45,25 @@ var Bird = function (sprite, position, width, height, scale) {
 	this.canPlace = function(map) {
 		var tiles = map.tiles;
 		var that = this;
+		
+		var answer = true;
+		
 		tiles.forEach(function(tile) {
-
+			if (!((tile.y + tile.height < that.position.y) 
+					|| (tile.y > that.position.y + that.height) 
+					|| (tile.x > that.position.x + that.width) 
+					|| (tile.x + tile.width < that.position.x))) {
+				
+				answer = false;
+			}
 		});
+		
+		return answer;
 	};
 
 };
 
-Bird.FLOATING = 0
+Bird.FLOATING = 0;
 Bird.IDLING = 1;
 
 Bird.prototype = Object.create(Entity.prototype);

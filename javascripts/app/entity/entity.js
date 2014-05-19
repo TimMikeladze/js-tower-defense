@@ -2,7 +2,7 @@ var Entity = function (sprite, position, width, height, scale) {
 	this.sprite = sprite;
 	this.position = position;
 	this.scale = scale ? scale : 1;
-	this.width = width * scale
+	this.width = width * scale;
 	this.height = height * scale;
 
 	this.time = null;
@@ -35,7 +35,5 @@ var Entity = function (sprite, position, width, height, scale) {
 			canvas.context.stroke();
 		}
 	};
-
-
 };
 
