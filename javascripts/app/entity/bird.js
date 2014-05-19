@@ -64,21 +64,15 @@ var Bird = function (sprite, position, width, height, scale) {
 			if (engine.entities) {
 				engine.entities.forEach(function (entity) {
 					if (entity instanceof Bird) {
-						birds.push(entity);
-					}
-				});
-
-				if (birds.length > 0) {
-					birds.forEach(function (bird) {
-						if (!((bird.position.y + bird.height < that.position.y)
-								|| (bird.position.y > that.position.y + that.height)
-								|| (bird.position.x > that.position.x + that.width)
-								|| (bird.position.x + bird.width < that.position.x))) {
+						if (!((entity.position.y + entity.height < that.position.y)
+								|| (entity.position.y > that.position.y + that.height)
+								|| (entity.position.x > that.position.x + that.width)
+								|| (entity.position.x + entity.width < that.position.x))) {
 							answer = false;
 							return;
 						}
-					});
-				}
+					}
+				});
 			}
 			return answer;
 		}
