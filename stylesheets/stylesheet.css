@@ -7,6 +7,11 @@ canvas {
 	width: 1000px;
     margin-left: auto;
     margin-right: auto;
+	text-align:center;
+}
+
+.container img {
+	margin-bottom:40px;
 }
 
 .clear { clear: both; }
