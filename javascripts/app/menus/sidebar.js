@@ -1,73 +1,91 @@
 var SideBar = function () {
 
 	this.render = function (canvas) {
-		var canvasHeight = 150;
-		var canvasWidth = 540;
-
+		// Global Variables
 		var ctx = canvas.context;
-		addStaticText(ctx);
-		initializeValues(ctx);
-		addRect(ctx);
-		createTowerBorders(ctx);
+		var borderSize = 10;
+		var width = canvas.width;
+		var height = canvas.length;
+		// Score,waves, ememies and gold variables
+		var scoreLabel = 0;
+		var wavesLeftLabel = 0;
+		var enemiesLeftLabel = 0;
+		var goldLabel = 0;
 
-		function addStaticText(ctx) {
-			ctx.font = "30px Verdana";
-			// Create gradient
-			var gradient = ctx.createLinearGradient(0, 0, canvasWidth, 0);
-			gradient.addColorStop("0", "magenta");
-			gradient.addColorStop("0.5", "blue");
-			gradient.addColorStop("1.0", "red");
-			// Fill with gradient
-			ctx.fillStyle = gradient;
+		initShapes(ctx);
+		initStaticText(ctx);
+		initValues(ctx);
+
+		function initStaticText(ctx) {
+			var textBorder = 5;
+			ctx.save();
 			// Title
-			//ctx.fillText("Tims",10,35);
-			ctx.fillText("Tower", 15, 60);
-			ctx.fillText("Defense!", 20, 85);
+			ctx.font = "30px Verdana";
+			ctx.fillText("Tower",40,35);
+			ctx.fillText("Defense", 40, 60);
+			ctx.fillText("Logo", 40, 85);
 			// Score, Wave, Towers Left, Gold
 			ctx.font = "20px Verdana";
-			ctx.fillText("Score:", 15, 120);
-			ctx.fillText("Wave:", 15, 160);
-			ctx.fillText("Left:", 15, 200);
-			ctx.fillText("Gold:", 15, 240);
+			ctx.fillText("Score:", (borderSize + textBorder), 120);
+			ctx.fillText("Wave:", (borderSize + textBorder), 160);
+			ctx.fillText("Left:", (borderSize + textBorder), 200);
+			ctx.fillText("Gold:", (borderSize + textBorder), 240);
 			// Towers
-			ctx.fillText("Towers:", 15, 300);
+			ctx.fillText("Towers:", (borderSize + textBorder), 300);
 			// Pause, Quit
-			ctx.fillText("Pause", 14, 532);
-			ctx.fillText("Quit", ((canvasWidth) / 2) + 10, 532);
+			ctx.fillText("Pause", (borderSize + textBorder), 532);
+			ctx.fillText("Quit", ((width) / 2) + 10, 532);
+			ctx.restore();
 		}
 
-		function addRect(ctx) {
-			ctx.fillStyle = "rgba(128,255,0, .5)";
-			ctx.fillRect(10, 100, canvasWidth - 20, 170);
+		function initShapes(ctx) {
+			ctx.save();
+			ctx.globalAlpha = 0.2;	
+			ctx.fillStyle = "rgba(34,139,34, .5)";
+			// Logo Box TODO!! REMOVE THIS WHEN THE LOGO IS ADDED!!!
+			ctx.strokeRect(borderSize, borderSize, width - (2 * borderSize), 80);
+			// Score and info box
+			ctx.fillRect(borderSize, 100, width - (2 * borderSize), 170);
+			// Towers box
+			ctx.fillRect(borderSize, 280, width - 2 * borderSize, 230);
+			// Pause button
+			ctx.fillRect(borderSize, 515, (width - 30) / 2, 20);
+			// Quit button
+			ctx.fillRect(((width - borderSize) / 2) + borderSize, 515, (width - (3 * borderSize)) / 2, (2 * borderSize));
 
-			ctx.fillStyle = "rgba(128,255,0, .5)";
-			ctx.fillRect(10, 280, canvasWidth - 20, 230);
-
-			ctx.fillStyle = "rgba(128,255,0, .5)";
-			ctx.fillRect(10, 515, (canvasWidth - 30) / 2, 20);
-
-			ctx.fillStyle = "rgba(128,255,0, .5)";
-			ctx.fillRect(((canvasWidth - 10) / 2) + 10, 515, (canvasWidth - 30) / 2, 20);
+			// Tower borders
+			ctx.strokeRect(20, 310, 60, 60);
+			ctx.strokeRect(20, 375, 60, 60);
+			ctx.strokeRect(20, 440, 60, 60);
+			ctx.strokeRect(((width - 10) / 2) + 10, 310, 60, 60);
+			ctx.strokeRect(((width - 10) / 2) + 10, 375, 60, 60);
+			ctx.strokeRect(((width - 10) / 2) + 10, 440, 60, 60);
+			ctx.restore();
 		}
 
-		function initializeValues(ctx) {
+		function initValues(ctx) {
 			ctx.font = "20px Verdana";
 			// Init Score, Wave, Left, Gold
-			ctx.fillText("0", 70, 140);
-			ctx.fillText("0", 70, 180);
-			ctx.fillText("0", 70, 220);
-			ctx.fillText("0", 70, 260);
+			ctx.fillText(scoreLabel, 70, 140);
+			ctx.fillText(wavesLeftLabel, 70, 180);
+			ctx.fillText(enemiesLeftLabel, 70, 220);
+			ctx.fillText(goldLabel, 70, 260);
 		}
 
-		function createTowerBorders(ctx) {
-			//ctx.strokeStyle = "orange";
-			ctx.strokeRect(20, 310, 45, 45);
-			ctx.strokeRect(20, 365, 45, 45);
-			ctx.strokeRect(20, 420, 45, 45);
+		function updateScore(newScore) {
+			scoreLabel = newScore;
+		}
 
-			ctx.strokeRect(((canvasWidth - 10) / 2) + 10, 310, 45, 45);
-			ctx.strokeRect(((canvasWidth - 10) / 2) + 10, 365, 45, 45);
-			ctx.strokeRect(((canvasWidth - 10) / 2) + 10, 420, 45, 45);
+		function updateWaves(wavesLeft) {
+			wavesLeftLabel = wavesLeft;
+		}
+
+		function updateEnemiesLeft(enemiesLeft) {
+			enemiesLeftLabel = enemiesLeft;
+		}
+
+		function updateGold(newGold) {
+			goldLabel = newGold;
 		}
 	}
 };
