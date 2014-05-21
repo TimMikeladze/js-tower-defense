@@ -37,6 +37,11 @@ var Entity = function (sprite, position, width, height, scale) {
 			canvas.context.stroke();
 		}
 	};
+
+	this.getCenter = function() {
+		return new Vector2(this.position.x + this.width / 2, this.position.y + this.height / 2);
+	}
+
 };
 
 Entity.generateID = function() {

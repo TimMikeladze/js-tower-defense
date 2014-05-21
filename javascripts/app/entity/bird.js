@@ -13,26 +13,35 @@ var Bird = function (sprite, position, width, height, scale, speed, fireRadius) 
 	this.flightPath = null;
 	this.lastShotTime = null;
 	this.shotInterval = 3000;
+	this.flightPathIndex = 0;
+	this.inFlight = false;
+
+	this.clone = function () {
+
+	};
 
 	var renderParent = this.render;
 	this.render = function (canvas) {
 		renderParent.call(this, canvas);
 
-		canvas.context.beginPath();
-		canvas.context.arc(this.position.x, this.position.y, this.fireRadius, 0, Math.PI * 2, true);
-		canvas.context.stroke();
-		canvas.context.closePath();
+		/*
+		 canvas.context.beginPath();
+		 canvas.context.arc(this.getCenter().x, this.getCenter().y, this.fireRadius, 0, Math.PI * 2, true);
+		 canvas.context.stroke();
+		 canvas.context.closePath();
+		 */
 
-
+		/*
 		if (this.minPig && this.minPig.position.distanceTo(this.position) <= this.fireRadius && this.flightPath) {
 			this.flightPath.forEach(function (p) {
 				canvas.context.fillStyle = "#FF0000";
 				canvas.context.fillRect(p.x, p.y, 1, 1);
 			});
 		}
+		*/
 	};
 
-	this.generateFlightPath = function(positionA, positionB) {
+	this.generateFlightPath = function (positionA, positionB) {
 		var midpoint = new Vector2((positionA.x + positionB.x) / 2, (positionA.y + positionB.y) / 2);
 		var midpointA = new Vector2((positionA.x + positionB.x) / 2, (positionA.y + positionB.y) / 2);
 		var midpointB = new Vector2((positionB.x + midpoint.x) / 2, (positionB.y + midpoint.y) / 2);
@@ -71,10 +80,37 @@ var Bird = function (sprite, position, width, height, scale, speed, fireRadius) 
 			}
 		}
 
-		if (this.minPig && (this.lastShotTime + this.shotInterval <= time.stamp || !this.flightPath)) {
+		//TODO(tim) fix firing
+		if (!this.inFlight && this.minPig && (this.lastShotTime + this.shotInterval <= time.stamp)) {
 			this.lastShotTime = time.stamp;
-			log("generated")
-			this.flightPath = this.generateFlightPath(this.position, this.minPig.position);
+			this.flightPath = this.generateFlightPath(this.getCenter(), this.minPig.getCenter());
+			var bird = new RedBird(this.position.clone());
+			//TODO(tim) fix bird scaling when shot
+			//bird.animation = new Animation(bird.sprite, bird.width, bird.height, 0.5, bird.frameSpeeds);
+			bird.placeBird();
+			bird.flightPath = this.flightPath;
+			bird.inFlight = true;
+			//TODO(tim) fix tick bug
+			bird.tick(time, engine);
+			engine.entities.push(bird);
+		}
+
+		if (this.inFlight) {
+			this.flightPathIndex += this.speed;
+			if (this.flightPathIndex < this.flightPath.length) {
+				this.position = this.flightPath[this.flightPathIndex];
+			} else {
+				this.destroy = true;
+			}
+
+			var that = this;
+			pigs.forEach(function (pig) {
+				if (Collisions.isColliding(pig, that)) {
+					pig.destroy = true;
+					that.destroy = true;
+					return;
+				}
+			});
 		}
 
 	};

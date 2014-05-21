@@ -1,7 +1,8 @@
 var RedBird = function (position) {
 	Bird.call(this, "birds/rbird1.png", position, 62, 62, 0.75, 3, 150);
 
-	this.animation = new Animation(this.sprite, this.width, this.height, this.scale, [1500, 500]);
+	this.frameSpeeds = [1500, 500];
+	this.animation = new Animation(this.sprite, this.width, this.height, this.scale, this.frameSpeeds);
 
 	this.idlingFrames = [4, 3];
 

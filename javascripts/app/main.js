@@ -2,7 +2,7 @@ var LOCAL_SERVER = window.location.host == "timmikeladze.github.io" ? false : tr
 var SERVER_URL = LOCAL_SERVER ? "http://192.168.1.101" : "http://71.19.151.5";
 var SERVER_PORT = 9191;
 
-var SHOW_BOUNDING_RECTANGLE = true;
+var SHOW_BOUNDING_RECTANGLE = false;
 
 Require.setBasePath("javascripts/app");
 Require.setLibraryPath("javascripts/lib");
@@ -32,7 +32,7 @@ Require.load(function () {
 
 	var canvasArea = document.getElementById("canvas_area");
 	var menuArea = document.getElementById("menu_area");
-	
+
 	canvasArea.style.display="none";
 	menuArea.style.display="block";
 
@@ -50,7 +50,7 @@ Require.load(function () {
 			+ "\nJordan Matthews, and Cathryn Castillo."
 			+ "\n(TCSS 491, Computational Worlds Project, Spring 2014)");
 	});
-	
+
 	playButton.bindButton("play_button", function() {
 		canvasArea.style.display="block";
 		menuArea.style.display="none";

@@ -50,7 +50,6 @@ var Animation = function (sprite, frameWidth, frameHeight, scale, speeds) {
 	this.getFrame = function (frameIndex) {
 		var row = Math.floor(frameIndex / this.totalWidthFrames);
 		var column = frameIndex % this.totalWidthFrames;
-
 		return this.frames[row][column];
 	};
 

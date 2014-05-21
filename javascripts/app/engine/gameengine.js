@@ -31,7 +31,7 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 		this.map = new Map();
 		this.map.loadMap();
 
-		this.enemyQueue = new EnemyQueue(this, 10, this.map.path, 3000);
+		this.enemyQueue = new EnemyQueue(this, 10, this.map.path, 1000);
 		this.enemyQueue.populateEngine();
 
 		this.startInput();
@@ -79,6 +79,8 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 		var that = this;
 
 		var i = 0;
+		//TODO(tim) split up entities into sub entities
+
 		this.entities.forEach(function (entity) {
 			entity.tick(that.time, that);
 			if (entity.destroy) {
@@ -86,7 +88,15 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 			}
 			i++;
 		});
-		if (this.enemyQueue && this.enemyQueue.getRemainingEnemies() === 0) {
+
+		var hasPig = false;
+		this.entities.forEach(function (entity) {
+			if (entity instanceof Pig) {
+				hasPig = true;
+			}
+		});
+
+		if (!hasPig && this.enemyQueue.getRemainingEnemies() == 0) {
 			var answer = confirm("Game over! Play again?");
 			if (answer === true) {
 				this.empty();
