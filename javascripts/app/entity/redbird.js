@@ -1,5 +1,5 @@
 var RedBird = function (position) {
-	Bird.call(this, "birds/rbird1.png", position, 62, 62, 0.75);
+	Bird.call(this, "birds/rbird1.png", position, 62, 62, 0.75, 150);
 
 	this.animation = new Animation(this.sprite, this.width, this.height, this.scale, [1500, 500]);
 
@@ -24,7 +24,7 @@ var RedBird = function (position) {
 				canvas.context.restore();
 			} else {
 				canvas.context.drawFrame(this.sprite, this.animation.getFrame(this.animator.currentFrameIndex()), this.position, this.width, this.height);
-			}	
+			}
 		}
 	};
 
