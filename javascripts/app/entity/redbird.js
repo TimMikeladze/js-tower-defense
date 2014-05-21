@@ -13,13 +13,13 @@ var RedBird = function (position) {
 			canvas.context.drawFrame(this.sprite, this.animation.getFrame(this.idlingFrames[0]), this.position, this.width, this.height);
 			canvas.context.globalAlpha = 1.0;
 		} else {
-			canvas.context.save();
-			var tempX = this.position.x;
-			var tempY = this.position.y;
 			if (this.rotationAngle !== 0) {
+				canvas.context.save();
+				var tempX = this.position.x;
+				var tempY = this.position.y;
 				canvas.context.translate(tempX, tempY);
 				canvas.context.scale(-1, 1);
-				canvas.context.translate(-tempX - 45, -tempY);
+				canvas.context.translate(-tempX - this.width, -tempY);
 				canvas.context.drawFrame(this.sprite, this.animation.getFrame(this.animator.currentFrameIndex()), this.position, this.width, this.height);
 				canvas.context.restore();
 			} else {
