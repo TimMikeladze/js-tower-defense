@@ -5,11 +5,11 @@ var EnemyQueue = function (engine, enemies, path, rate) {
 	this.rate = rate ? rate : 1000;
 
 	this.nextEnemy = function () {
-		return enemies.length > 0 ? enemies.shift() : null;
+		return this.enemies.length > 0 ? enemies.shift() : null;
 	};
 
 	this.getRemainingEnemies = function () {
-		return enemies.length;
+		return this.enemies.length;
 	};
 
 	this.populateEngine = function () {

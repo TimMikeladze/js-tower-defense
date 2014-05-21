@@ -11,6 +11,7 @@ var Bird = function (sprite, position, width, height, scale, speed, fireRadius) 
 	this.speed = speed;
 	this.fireRadius = fireRadius;
 	this.flightPath = null;
+	this.lastShotTime = null;
 
 	var renderParent = this.render;
 	this.render = function (canvas) {
