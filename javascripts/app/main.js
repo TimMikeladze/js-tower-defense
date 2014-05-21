@@ -32,7 +32,7 @@ Require.load(function () {
 
 	var menu = new Menu();
 
-	menu.bindButton("play_button", function() {
+//	menu.bindButton("play_button", function() {
 		var gameCanvas = new Canvas("game_canvas");
 		gameCanvas.clear("#458B00");
 
@@ -45,7 +45,7 @@ Require.load(function () {
 
 		engine.init();
 		engine.start();
-	});
+//	});
 
 });
 
