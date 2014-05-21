@@ -22,10 +22,10 @@ canvas {
 	background-color: cornflowerblue;
 }
 
-.menu { 
+#menu_area { 
 	background-image: 
 		url('../assets/img/menu/menu-background0.png');
 	height: 540px;
 }
-.menu img { margin-bottom: 0px;}
-.menu #logo { margin: 5% 0% }
+#menu_area img { margin-bottom: 0px;}
+#menu_area #logo { margin: 5% 0% }

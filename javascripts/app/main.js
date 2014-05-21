@@ -16,7 +16,7 @@ Require.addScript("util", ["prototypes", "logging"]);
 Require.addScript("math", ["bezier", "vector2", "random"]);
 Require.addScript("networking", ["connection"]);
 Require.addScript("map", ["map", "tile"]);
-Require.addScript("menus", ["menu", "sidebar"]);
+Require.addScript("menus", ["menubutton", "sidebar"]);
 Require.addScript("engine", ["time", "collisions", "funds", "gameengine", "input", "socketevents", "enemyqueue"]);
 Require.addScript("graphics", ["canvas", "animation", "animator"]);
 Require.addScript("entity", ["entity", , "bird", "pig", "redbird", "greenpig"]);
@@ -30,9 +30,18 @@ Require.load(function () {
 	Logging.DEBUG = true;
 	Logging.VERBOSE = false;
 
-	var menu = new Menu();
+	var canvasArea = document.getElementById("canvas_area");
+	var menuArea = document.getElementById("menu_area");
+	
+	canvasArea.style.display="none";
+	menuArea.style.display="block";
 
-//	menu.bindButton("play_button", function() {
+	var playButton = new MenuButton();
+
+	playButton.bindButton("play_button", function() {
+		canvasArea.style.display="block";
+		menuArea.style.display="none";
+
 		var gameCanvas = new Canvas("game_canvas");
 		gameCanvas.clear("#458B00");
 
@@ -45,8 +54,19 @@ Require.load(function () {
 
 		engine.init();
 		engine.start();
-//	});
+	});
 
+	var scoresButton = new MenuButton();
+	scoresButton.bindButton("high_scores_button", function() {
+		alert('high scores~!');
+	});
+
+	var credits = new MenuButton();
+	scoresButton.bindButton("credits_button", function() {
+		alert("Created by Tim Mikeladze, Srdjan Stojcic,"
+			+ "\nMohammad Juma, Jordan Matthews, & Cathryn Castillo"
+			+ "\n(TCSS 491, Computational Worlds Project, Spring 2014)");
+	});
 });
 
 
