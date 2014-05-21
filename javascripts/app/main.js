@@ -30,25 +30,24 @@ Require.load(function () {
 	Logging.DEBUG = true;
 	Logging.VERBOSE = false;
 
-	var gameCanvas = new Canvas("game_canvas");
-	gameCanvas.clear("#458B00");
+	var menu = new Menu();
 
-	var sideCanvas = new Canvas("side_canvas");
+	menu.bindButton("play_button", function() {
+		var gameCanvas = new Canvas("game_canvas");
+		gameCanvas.clear("#458B00");
 
-	var connection = new Connection(SERVER_URL, SERVER_PORT, false);
-	connection.connect();
+		var sideCanvas = new Canvas("side_canvas");
 
-	var engine = new GameEngine(gameCanvas, sideCanvas, connection.socket);
+		var connection = new Connection(SERVER_URL, SERVER_PORT, false);
+		connection.connect();
 
-	engine.init();
-	engine.start();
+		var engine = new GameEngine(gameCanvas, sideCanvas, connection.socket);
+
+		engine.init();
+		engine.start();
+	});
 
 });
-
-var p = document.getElementById("play_button");
-p.onclick = function() {
-	alert("Test!");
-};
 
 
 
