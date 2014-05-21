@@ -21,6 +21,8 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 
 	this.sideBar = null;
 
+	var halt = false;
+
 	this.init = function () {
 		this.time = new Time();
 
@@ -36,17 +38,34 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 		this.setSocketEventHandler();
 	};
 
+	this.empty = function() {
+		this.gameID = null;
+		this.click = null;
+		this.mouse = null;
+		this.wheel = null;
+		this.entities = [];
+		this.floatingEntity = null;
+		this.enemyQueue = null;
+		this.funds = null;
+		this.time = null;
+		this.clockTick = null;
+		this.map = null;
+		this.sideBar = null;
+
+		this.init();
+		this.start();
+	}
+
 	this.start = function () {
 		this.funds = new Funds(100);
 		var that = this;
 		(function gameLoop() {
 			that.loop();
+			if (halt == true) {
+				return;
+			}
 			requestAnimFrame(gameLoop, that.gameCanvas.canvas);
 		})();
-	};
-
-	this.startMenu = function () {
-		
 	};
 
 	this.loop = function () {
@@ -69,12 +88,11 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 		});
  		log(this.enemyQueue.getRemainingEnemies());
 		if (this.enemyQueue && this.enemyQueue.getRemainingEnemies() === 0) {
-			var answer = confirm("Play again?");
+			var answer = confirm("Game over! Play again?");
 			if (answer === true) {
-				alert("Again!");
-				//return;
+				this.empty();
 			} else {
-				alert("Canceled!");
+				halt = true;
 			}
 		}
 	};
