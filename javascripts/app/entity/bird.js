@@ -4,6 +4,8 @@ var Bird = function (sprite, position, width, height, scale) {
 	this.alpha = 0.5;
 
 	this.state = Bird.FLOATING;
+	
+	this.rotationAngle = 0;
 
 	var renderParent = this.render;
 	this.render = function (canvas) {
@@ -31,6 +33,12 @@ var Bird = function (sprite, position, width, height, scale) {
 						minPig = pig;
 					}
 				});
+				
+				if (minPig.position.x > that.position.x) {
+					that.rotationAngle = 180;
+				} else {
+					that.rotationAngle = 0;
+				}
 			}
 		}
 	};
