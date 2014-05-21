@@ -39,7 +39,6 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 	this.start = function () {
 		this.funds = new Funds(100);
 		var that = this;
-		//this.startMenu();
 		(function gameLoop() {
 			that.loop();
 			requestAnimFrame(gameLoop, that.gameCanvas.canvas);
@@ -47,9 +46,7 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 	};
 
 	this.startMenu = function () {
-		var that = this;
-		//var main_menu = new Menu(gameCanvas, "menu/main.png", 0, 0);
-		//main_menu.start();
+		
 	};
 
 	this.loop = function () {
@@ -70,6 +67,16 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 			}
 			i++;
 		});
+ 		log(this.enemyQueue.getRemainingEnemies());
+		if (this.enemyQueue && this.enemyQueue.getRemainingEnemies() === 0) {
+			var answer = confirm("Play again?");
+			if (answer === true) {
+				alert("Again!");
+				//return;
+			} else {
+				alert("Canceled!");
+			}
+		}
 	};
 
 	this.render = function () {
