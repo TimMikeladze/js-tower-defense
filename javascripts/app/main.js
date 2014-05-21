@@ -42,10 +42,6 @@ Require.load(function () {
 		canvasArea.style.display="block";
 		menuArea.style.display="none";
 
-<<<<<<< HEAD
-=======
-//	menu.bindButton("play_button", function() {
->>>>>>> 75bef80c8d925df11e69678b859807df6c694262
 		var gameCanvas = new Canvas("game_canvas");
 		gameCanvas.clear("#458B00");
 
@@ -58,7 +54,7 @@ Require.load(function () {
 
 		engine.init();
 		engine.start();
-//	});
+	});
 
 	var scoresButton = new MenuButton();
 	scoresButton.bindButton("high_scores_button", function() {
