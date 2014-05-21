@@ -1,4 +1,4 @@
-var Bird = function (sprite, position, width, height, scale, fireRadius) {
+var Bird = function (sprite, position, width, height, scale, speed, fireRadius) {
 	Entity.call(this, sprite, position, width, height, scale);
 
 	this.alpha = 0.5;
@@ -8,19 +8,34 @@ var Bird = function (sprite, position, width, height, scale, fireRadius) {
 	this.rotationAngle = 0;
 
 	this.minPig = null;
+	this.speed = speed;
 	this.fireRadius = fireRadius;
-
+	this.flightPath = null;
 
 	var renderParent = this.render;
 	this.render = function (canvas) {
 		renderParent.call(this, canvas);
 
+		canvas.context.beginPath();
+		canvas.context.arc(this.position.x, this.position.y, this.fireRadius, 0, Math.PI * 2, true);
+		canvas.context.stroke();
+		canvas.context.closePath();
+
+
 		if (this.minPig && this.minPig.position.distanceTo(this.position) <= this.fireRadius) {
-			canvas.context.beginPath();
-			canvas.context.moveTo(this.position.x, this.position.y);
-			canvas.context.lineTo(this.minPig.position.x, this.minPig.position.y);
-			canvas.context.stroke();
+			this.flightPath = this.flightPath ? this.flightPath : this.generateFlightPath(this.position, this.minPig.position);
+			this.flightPath.forEach(function (p) {
+				canvas.context.fillStyle = "#FF0000";
+				canvas.context.fillRect(p.x, p.y, 1, 1);
+			});
 		}
+	};
+
+	this.generateFlightPath = function(positionA, positionB) {
+		var midpoint = new Vector2((positionA.x + positionB.x) / 2, (positionA.y + positionB.y) / 2);
+		var midpointA = new Vector2((positionA.x + positionB.x) / 2, (positionA.y + positionB.y) / 2);
+		var midpointB = new Vector2((positionB.x + midpoint.x) / 2, (positionB.y + midpoint.y) / 2);
+		return Bezier.calculateCurve([positionA.clone(), midpointA, midpointB, positionB.clone()]);
 	};
 
 	this.tick = function (time, engine) {
@@ -60,16 +75,16 @@ var Bird = function (sprite, position, width, height, scale, fireRadius) {
 		this.state = Bird.IDLING;
 	};
 
-	this.canPlace = function(engine) {
+	this.canPlace = function (engine) {
 		var tiles = engine.map.tiles;
 		var that = this;
 		var answer = true;
 
-		tiles.forEach(function(tile) {
+		tiles.forEach(function (tile) {
 			if (!((tile.y + tile.height < that.position.y)
-					|| (tile.y > that.position.y + that.height)
-					|| (tile.x > that.position.x + that.width)
-					|| (tile.x + tile.width < that.position.x))) {
+				|| (tile.y > that.position.y + that.height)
+				|| (tile.x > that.position.x + that.width)
+				|| (tile.x + tile.width < that.position.x))) {
 
 				answer = false;
 				return;
@@ -81,9 +96,9 @@ var Bird = function (sprite, position, width, height, scale, fireRadius) {
 				engine.entities.forEach(function (entity) {
 					if (entity instanceof Bird) {
 						if (!((entity.position.y + entity.height < that.position.y)
-								|| (entity.position.y > that.position.y + that.height)
-								|| (entity.position.x > that.position.x + that.width)
-								|| (entity.position.x + entity.width < that.position.x))) {
+							|| (entity.position.y > that.position.y + that.height)
+							|| (entity.position.x > that.position.x + that.width)
+							|| (entity.position.x + entity.width < that.position.x))) {
 							answer = false;
 							return;
 						}

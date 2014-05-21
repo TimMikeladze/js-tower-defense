@@ -20,7 +20,8 @@ Bezier.calculateBezierPoint = function (t, p0, p1, p2, p3) {
 
 };
 
-Bezier.calculateCurve = function (controlPoints) {
+Bezier.calculateCurve = function (controlPoints, smoothing) {
+	smoothing = smoothing ? smoothing : Bezier.smoothing;
 	var calculatedPoints = [];
 
 	for (var i = 0; i < controlPoints.length - 3; i += 3) {
@@ -34,7 +35,7 @@ Bezier.calculateCurve = function (controlPoints) {
 		}
 
 		for (var j = 1; j <= Bezier.smoothing; j++) {
-			calculatedPoints.push(Bezier.calculateBezierPoint(j * 1.0 / Bezier.smoothing, p0, p1, p2, p3));
+			calculatedPoints.push(Bezier.calculateBezierPoint(j * 1.0 / smoothing, p0, p1, p2, p3));
 		}
 	}
 	return calculatedPoints;
