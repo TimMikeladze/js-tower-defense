@@ -1,4 +1,4 @@
-var Menu = function () {
+var MenuButton = function () {
 
 	this.bindButton = function(id, callback) {
 		var button = document.getElementById(id);
