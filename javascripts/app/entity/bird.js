@@ -1,4 +1,4 @@
-var Bird = function (sprite, position, width, height, scale) {
+var Bird = function (sprite, position, width, height, scale, fireRadius) {
 	Entity.call(this, sprite, position, width, height, scale);
 
 	this.alpha = 0.5;
@@ -8,12 +8,14 @@ var Bird = function (sprite, position, width, height, scale) {
 	this.rotationAngle = 0;
 
 	this.minPig = null;
+	this.fireRadius = fireRadius;
+
 
 	var renderParent = this.render;
 	this.render = function (canvas) {
 		renderParent.call(this, canvas);
 
-		if(this.minPig) {
+		if (this.minPig && this.minPig.position.distanceTo(this.position) <= this.fireRadius) {
 			canvas.context.beginPath();
 			canvas.context.moveTo(this.position.x, this.position.y);
 			canvas.context.lineTo(this.minPig.position.x, this.minPig.position.y);
