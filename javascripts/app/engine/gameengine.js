@@ -48,8 +48,8 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 
 	this.startMenu = function () {
 		var that = this;
-		var main_menu = new Menu(gameCanvas, "menu/main.png", 0, 0);
-		main_menu.start();
+		//var main_menu = new Menu(gameCanvas, "menu/main.png", 0, 0);
+		//main_menu.start();
 	};
 
 	this.loop = function () {

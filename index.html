@@ -15,16 +15,33 @@
 <body>
 	<div class="container">
 
-		<canvas id="game_canvas" width = "810" height="540">
+		<canvas id="game_canvas" width ="810" height="540">
 		</canvas>
-		<canvas id="side_canvas" width = "180" height = "540">
+		<canvas id="side_canvas" width="180" height ="540">
 		</canvas>
 
+		<div class="clear"></div>
+		<div class="menu" height="540">
+			<img id="logo" src="assets/img/menu/title_logo.png" 
+				width="500" height="155">
+			<p></p>
+			<img id="play_button" 
+				src="assets/img/menu/play0.png"
+				onmouseover="this.src='assets/img/menu/play1.png'"
+				onmouseout="this.src='assets/img/menu/play0.png'"> 
+			<p></p>
+			<img id="high_scores_button" 
+				src="assets/img/menu/highscores0.png"
+				onmouseover="this.src='assets/img/menu/highscores1.png'"
+				onmouseout="this.src='assets/img/menu/highscores0.png'"> 
+			<p></p>
+			<img id="credits_button" 
+				src="assets/img/menu/credits0.png"
+				onmouseover="this.src='assets/img/menu/credits1.png'"
+				onmouseout="this.src='assets/img/menu/credits0.png'"> 
+		</div>
 
-		<img id="logo" src="assets/img/menu/title_logo.png" width="600" height="185">
-		<img id="menu" src="assets/img/menu/main.png" width="400" height="265">
 	</div>
-	<div class="clear"></div>
 
 </body>
 </html>

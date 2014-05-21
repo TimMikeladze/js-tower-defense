@@ -26,9 +26,6 @@ Require.addImage("birds", ["rbird1.png"]);
 
 //Require.addFile("maps", ["map1.json"]);
 
-Require.addImage("menu", ["main.png", "play.png"]);
-
-
 Require.load(function () {
 	Logging.DEBUG = true;
 	Logging.VERBOSE = false;
@@ -41,18 +38,17 @@ Require.load(function () {
 	var connection = new Connection(SERVER_URL, SERVER_PORT, false);
 	connection.connect();
 
-
 	var engine = new GameEngine(gameCanvas, sideCanvas, connection.socket);
 
 	engine.init();
 	engine.start();
 
-
 });
 
-
-
-
+var p = document.getElementById("play_button");
+p.onclick = function() {
+	alert("Test!");
+};
 
 
 
