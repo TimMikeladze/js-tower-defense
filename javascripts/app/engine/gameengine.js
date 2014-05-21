@@ -46,7 +46,7 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 	};
 
 	this.startMenu = function () {
-		
+
 	};
 
 	this.loop = function () {
@@ -67,7 +67,6 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 			}
 			i++;
 		});
- 		log(this.enemyQueue.getRemainingEnemies());
 		if (this.enemyQueue && this.enemyQueue.getRemainingEnemies() === 0) {
 			var answer = confirm("Play again?");
 			if (answer === true) {

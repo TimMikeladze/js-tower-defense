@@ -12,6 +12,7 @@ var Bird = function (sprite, position, width, height, scale, speed, fireRadius) 
 	this.fireRadius = fireRadius;
 	this.flightPath = null;
 	this.lastShotTime = null;
+	this.shotInterval = 3000;
 
 	var renderParent = this.render;
 	this.render = function (canvas) {
@@ -23,8 +24,7 @@ var Bird = function (sprite, position, width, height, scale, speed, fireRadius) 
 		canvas.context.closePath();
 
 
-		if (this.minPig && this.minPig.position.distanceTo(this.position) <= this.fireRadius) {
-			this.flightPath = this.flightPath ? this.flightPath : this.generateFlightPath(this.position, this.minPig.position);
+		if (this.minPig && this.minPig.position.distanceTo(this.position) <= this.fireRadius && this.flightPath) {
 			this.flightPath.forEach(function (p) {
 				canvas.context.fillStyle = "#FF0000";
 				canvas.context.fillRect(p.x, p.y, 1, 1);
@@ -42,6 +42,8 @@ var Bird = function (sprite, position, width, height, scale, speed, fireRadius) 
 	this.tick = function (time, engine) {
 		var that = this;
 		var pigs = [];
+		this.lastShotTime = this.lastShotTime == null ? time.stamp : this.lastShotTime;
+
 		if (engine.entities) {
 			engine.entities.forEach(function (entity) {
 				if (entity instanceof Pig) {
@@ -68,6 +70,13 @@ var Bird = function (sprite, position, width, height, scale, speed, fireRadius) 
 				}
 			}
 		}
+
+		if (this.minPig && (this.lastShotTime + this.shotInterval <= time.stamp || !this.flightPath)) {
+			this.lastShotTime = time.stamp;
+			log("generated")
+			this.flightPath = this.generateFlightPath(this.position, this.minPig.position);
+		}
+
 	};
 
 
