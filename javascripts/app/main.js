@@ -31,8 +31,15 @@ Require.load(function () {
 	Logging.VERBOSE = false;
 
 	var menu = new Menu();
+	
+	var canvasArea = document.getElementById("canvas_area");
+	var menuArea = document.getElementById("menu_area");
+	canvasArea.style.display="none";
+	menuArea.style.display="block";
 
 	menu.bindButton("play_button", function() {
+		canvasArea.style.display="block";
+		menuArea.style.display="none";
 		var gameCanvas = new Canvas("game_canvas");
 		gameCanvas.clear("#458B00");
 
