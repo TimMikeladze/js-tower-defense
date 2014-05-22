@@ -72,11 +72,10 @@ var Bird = function (sprite, position, width, height, scale, speed, fireRadius) 
 					}
 				});
 
-				if (this.minPig.position.x > that.position.x) {
-					that.rotationAngle = 180;
-				} else {
-					that.rotationAngle = 0;
-				}
+				var deltaX = that.minPig.position.x - that.position.x;
+				var deltaY = that.minPig.position.y - that.position.y;
+				
+				that.rotationAngle = 360 - (Math.atan2(deltaX, deltaY) * 180 / Math.PI) - 90;
 			}
 		}
 

@@ -16,11 +16,16 @@ var RedBird = function (position) {
 		} else {
 			if (this.rotationAngle !== 0) {
 				canvas.context.save();
-				var tempX = this.position.x;
-				var tempY = this.position.y;
-				canvas.context.translate(tempX, tempY);
-				canvas.context.scale(-1, 1);
-				canvas.context.translate(-tempX - this.width, -tempY);
+				var cX = this.position.x + 0.5 * this.width;
+				var cY = this.position.y + 0.5 * this.height;
+				canvas.context.translate(cX, cY);
+				if (this.minPig.position.x > this.position.x) {
+					canvas.context.rotate(360 - ((Math.PI / 180) * -this.rotationAngle) + 45);
+					canvas.context.scale(-1, 1);
+				} else {
+					canvas.context.rotate( (Math.PI / 180) * this.rotationAngle);
+				}
+				canvas.context.translate(-cX, -cY);
 				canvas.context.drawFrame(this.sprite, this.animation.getFrame(this.animator.currentFrameIndex()), this.position, this.width, this.height);
 				canvas.context.restore();
 			} else {
