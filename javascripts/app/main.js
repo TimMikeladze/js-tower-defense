@@ -33,9 +33,6 @@ Require.load(function () {
 	var canvasArea = document.getElementById("canvas_area");
 	var menuArea = document.getElementById("menu_area");
 
-	canvasArea.style.display="none";
-	menuArea.style.display="block";
-
 	var playButton = new MenuButton();
 
 	var scoresButton = new MenuButton();

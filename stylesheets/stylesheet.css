@@ -22,8 +22,12 @@ canvas {
 	background-color: cornflowerblue;
 }
 
-#menu_area { 
-	background-image: 
+#canvas_area {
+    display: none;
+}
+
+#menu_area {
+	background-image:
 		url('../assets/img/menu/menu-background0.png');
 	height: 540px;
 }
