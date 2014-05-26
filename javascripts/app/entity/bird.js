@@ -1,4 +1,4 @@
-var Bird = function (sprite, position, width, height, scale, fireRadius) {
+var Bird = function (sprite, position, fireRadius, width, height, scale) {
 	Entity.call(this, sprite, position, width, height, scale);
 
 	this.alpha = 0.5;
@@ -12,61 +12,48 @@ var Bird = function (sprite, position, width, height, scale, fireRadius) {
 	this.lastShotTime = null;
 	this.shotInterval = 3000;
 
-	this.clone = function () {
-
-	};
-
 	var renderParent = this.render;
 	this.render = function (canvas) {
 		renderParent.call(this, canvas);
 
-		/*
-		 canvas.context.beginPath();
-		 canvas.context.arc(this.getCenter().x, this.getCenter().y, this.fireRadius, 0, Math.PI * 2, true);
-		 canvas.context.stroke();
-		 canvas.context.closePath();
-		*/
+
+		canvas.context.beginPath();
+		canvas.context.arc(this.getCenter().x, this.getCenter().y, this.fireRadius, 0, Math.PI * 2, true);
+		canvas.context.stroke();
+		canvas.context.closePath();
+
 	};
 
 	this.tick = function (time, engine) {
 		var that = this;
-		var pigs = [];
 		this.lastShotTime = this.lastShotTime == null ? time.stamp : this.lastShotTime;
 
-		if (engine.entities) {
-			engine.entities.forEach(function (entity) {
-				if (entity instanceof Pig) {
-					pigs.push(entity);
+
+		if (engine.pigs.length > 0) {
+			var minDistance;
+			engine.pigs.forEach(function (pig) {
+				var distance = pig.position.distanceTo(that.position);
+				if (minDistance == null || distance < minDistance) {
+					minDistance = distance;
+					that.minPig = pig;
+					return;
 				}
 			});
 
-			if (pigs.length > 0) {
-				var minDistance;
+			var deltaX = that.minPig.position.x - that.position.x;
+			var deltaY = that.minPig.position.y - that.position.y;
 
-				pigs.forEach(function (pig) {
-					var distance = pig.position.distanceTo(that.position);
-					if (minDistance == null || distance < minDistance) {
-						minDistance = distance;
-						that.minPig = pig;
-						return;
-					}
-				});
-
-				var deltaX = that.minPig.position.x - that.position.x;
-				var deltaY = that.minPig.position.y - that.position.y;
-
-				that.rotationAngle = 360 - (Math.atan2(deltaX, deltaY) * 180 / Math.PI) - 90;
-			}
+			that.rotationAngle = 360 - (Math.atan2(deltaX, deltaY) * 180 / Math.PI) - 90;
 		}
 
-		if (this.minPig && (this.lastShotTime + this.shotInterval <= time.stamp)) {
+		if (this.minPig && this.fireRadius >= Math.abs(this.minPig.position.distanceTo(this.position)) && (this.lastShotTime + this.shotInterval <= time.stamp)) {
 			this.lastShotTime = time.stamp;
 			this.fire(this.minPig.position, engine);
 		}
 
 	};
 
-	this.fire = function(destination, engine) {
+	this.fire = function (destination, engine) {
 
 	};
 
@@ -85,26 +72,21 @@ var Bird = function (sprite, position, width, height, scale, fireRadius) {
 				|| (tile.y > that.position.y + that.height)
 				|| (tile.x > that.position.x + that.width)
 				|| (tile.x + tile.width < that.position.x))) {
-
 				answer = false;
 				return;
 			}
 		});
 
 		if (answer) {
-			if (engine.entities) {
-				engine.entities.forEach(function (entity) {
-					if (entity instanceof Bird) {
-						if (!((entity.position.y + entity.height < that.position.y)
-							|| (entity.position.y > that.position.y + that.height)
-							|| (entity.position.x > that.position.x + that.width)
-							|| (entity.position.x + entity.width < that.position.x))) {
-							answer = false;
-							return;
-						}
-					}
-				});
-			}
+			engine.birds.forEach(function (entity) {
+				if (!((entity.position.y + entity.height < that.position.y)
+					|| (entity.position.y > that.position.y + that.height)
+					|| (entity.position.x > that.position.x + that.width)
+					|| (entity.position.x + entity.width < that.position.x))) {
+					answer = false;
+					return;
+				}
+			});
 			return answer;
 		}
 	};

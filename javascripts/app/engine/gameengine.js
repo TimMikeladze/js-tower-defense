@@ -4,24 +4,21 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 	this.socket = socket;
 
 	this.gameID = null;
+	this.time = null;
+
 	this.click = null;
 	this.mouse = null;
 	this.wheel = null;
 
-	this.entities = [];
+	this.pigs = [];
+	this.birds = [];
+	this.projectiles = [];
 	this.floatingEntity = null;
-
 	this.enemyQueue = null;
-	this.funds = null;
 
-	this.time = null;
-	this.clockTick = null;
 
 	this.map = null;
-
 	this.sideBar = null;
-
-	var halt = false;
 
 	this.init = function () {
 		this.time = new Time();
@@ -40,15 +37,19 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 
 	this.empty = function() {
 		this.gameID = null;
+		this.time = null;
+
 		this.click = null;
 		this.mouse = null;
 		this.wheel = null;
-		this.entities = [];
+
+		this.pigs = [];
+		this.birds = [];
+		this.projectiles = [];
 		this.floatingEntity = null;
 		this.enemyQueue = null;
-		this.funds = null;
-		this.time = null;
-		this.clockTick = null;
+
+
 		this.map = null;
 		this.sideBar = null;
 
@@ -61,49 +62,33 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 		var that = this;
 		(function gameLoop() {
 			that.loop();
-			if (halt == true) {
-				return;
-			}
 			requestAnimFrame(gameLoop, that.gameCanvas.canvas);
 		})();
 	};
 
 	this.loop = function () {
-		this.clockTick = this.time.tick();
+		this.time.tick();
 		this.update();
 		this.render();
 		this.click = null;
 	};
 
 	this.update = function () {
+		this.updateEntities(this.pigs);
+		this.updateEntities(this.birds);
+		this.updateEntities(this.projectiles);
+	};
+
+	this.updateEntities = function(entities) {
 		var that = this;
-
 		var i = 0;
-		//TODO(tim) split up entities into sub entities
-
-		this.entities.forEach(function (entity) {
+		entities.forEach(function(entity) {
 			entity.tick(that.time, that);
 			if (entity.destroy) {
-				that.entities.splice(i, 1);
+				entities.splice(i, 1);
 			}
 			i++;
 		});
-
-		var hasPig = false;
-		this.entities.forEach(function (entity) {
-			if (entity instanceof Pig) {
-				hasPig = true;
-			}
-		});
-
-		if (!hasPig && this.enemyQueue.getRemainingEnemies() == 0) {
-			var answer = confirm("Game over! Play again?");
-			if (answer === true) {
-				this.empty();
-			} else {
-				halt = true;
-			}
-		}
 	};
 
 	this.render = function () {
@@ -118,13 +103,28 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 			this.floatingEntity.render(this.gameCanvas);
 		}
 
-		this.entities.forEach(function (entity) {
+		this.renderEntities(this.pigs);
+		this.renderEntities(this.birds);
+		this.renderEntities(this.projectiles);
+	};
+
+	this.renderEntities = function(entities) {
+		var that = this;
+		entities.forEach(function (entity) {
 			entity.render(that.gameCanvas);
 		});
 	};
 
 	this.addPig = function (pig) {
-		this.entities.push(pig);
+		this.pigs.push(pig);
 	};
+
+	this.addBird = function(bird) {
+		this.birds.push(bird);
+	}
+
+	this.addProjectile = function(projectile) {
+		this.projectiles.push(projectile);
+	}
 
 };

@@ -40,7 +40,7 @@ var SideBar = function () {
 
 		function initShapes(ctx) {
 			ctx.save();
-			ctx.globalAlpha = 0.2;	
+			ctx.globalAlpha = 0.2;
 			ctx.fillStyle = "rgba(34,139,34, .5)";
 			// Logo Box TODO!! REMOVE THIS WHEN THE LOGO IS ADDED!!!
 			ctx.strokeRect(borderSize, borderSize, width - (2 * borderSize), 80);

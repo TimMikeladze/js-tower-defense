@@ -1,8 +1,10 @@
-var Projectile = function (sprite, position, destination, velocity, width, height, scale) {
+var Projectile = function (sprite, position, destination, velocity, maxFlightDistance, width, height, scale) {
 	Entity.call(this, sprite, position, width, height, scale);
 
 	this.destination = destination;
 	this.velocity = Projectile.getAdjustedVelocityVector(position, destination, velocity)
+	this.maxFlightDistance = maxFlightDistance;
+
 	this.state = Projectile.IDLE;
 	this.rotationAngle = 0;
 
@@ -45,9 +47,9 @@ var Projectile = function (sprite, position, destination, velocity, width, heigh
 		this.animator.tick(time, this.animation, this.currentFrames);
 
 		var that = this;
-		engine.entities.forEach(function (entity) {
-			if (entity instanceof Pig && Collisions.isColliding(entity, that)) {
-				entity.destroy = true;
+		engine.pigs.forEach(function (pig) {
+			if (Collisions.isColliding(pig, that)) {
+				pig.destroy = true;
 				that.destroy = true;
 				return;
 			}

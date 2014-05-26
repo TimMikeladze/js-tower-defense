@@ -13,7 +13,7 @@ GameEngine.prototype.startInput = function () {
 
 		if (that.floatingEntity && that.floatingEntity.canPlace(that)) {
 			that.floatingEntity.placeBird();
-			that.entities.push(that.floatingEntity);
+			that.addBird(that.floatingEntity);
 			that.floatingEntity = null;
 		}
 	}, false);
