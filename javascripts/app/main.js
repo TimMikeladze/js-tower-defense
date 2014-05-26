@@ -2,7 +2,7 @@ var LOCAL_SERVER = window.location.host == "timmikeladze.github.io" ? false : tr
 var SERVER_URL = LOCAL_SERVER ? "http://192.168.1.101" : "http://71.19.151.5";
 var SERVER_PORT = 9191;
 
-var SHOW_BOUNDING_RECTANGLE = false;
+var SHOW_BOUNDING_RECTANGLE = true;
 
 Require.setBasePath("javascripts/app");
 Require.setLibraryPath("javascripts/lib");
@@ -19,7 +19,7 @@ Require.addScript("map", ["map", "tile"]);
 Require.addScript("menus", ["menubutton", "sidebar"]);
 Require.addScript("engine", ["time", "collisions", "funds", "gameengine", "input", "socketevents", "enemyqueue"]);
 Require.addScript("graphics", ["canvas", "animation", "animator"]);
-Require.addScript("entity", ["entity", , "bird", "pig", "redbird", "greenpig"]);
+Require.addScript("entity", ["entity", "bird", "pig", "redbird", "greenpig", "projectile", "redbirdprojectile"]);
 
 Require.addImage("pigs", ["pig0.png"]);
 Require.addImage("birds", ["rbird1.png"]);

@@ -3,6 +3,12 @@ var Animator = function() {
 	this.currentFrames = [];
 	this.time = null;
 
+	this.defaultFrame = 0;
+
+	this.setDefaultFrame = function(frame) {
+		this.defaultFrame = frame;
+	}
+
 	this.tick = function(time, animation, frames) {
 		this.currentFrames = frames;
 		var speed = animation.getFrame(this.currentFrame).speed;
@@ -14,6 +20,6 @@ var Animator = function() {
 	};
 
 	this.currentFrameIndex = function() {
-		return this.currentFrames[this.currentFrame];
+		return isNaN(this.currentFrames[this.currentFrame]) ? this.defaultFrame : this.currentFrames[this.currentFrame];
 	};
 };

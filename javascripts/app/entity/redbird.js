@@ -1,8 +1,9 @@
 var RedBird = function (position) {
-	Bird.call(this, "birds/rbird1.png", position, 62, 62, 0.75, 3, 150);
+	Bird.call(this, "birds/rbird1.png", position, 62, 62, 0.75, 150);
 
 	this.frameSpeeds = [1500, 500];
 	this.animation = new Animation(this.sprite, this.width, this.height, this.scale, this.frameSpeeds);
+	this.animator.setDefaultFrame(0);
 
 	this.idlingFrames = [4, 3];
 
@@ -46,6 +47,13 @@ var RedBird = function (position) {
 
 		tickParent.call(this, time, engine);
 	};
+
+	this.fire = function(destination, engine) {
+		var projectile = new RedBirdProjectile(this.position.clone(), destination.clone());
+		projectile.setRotationAngle(this.rotationAngle);
+		projectile.fire();
+		engine.entities.push(projectile);
+	}
 };
 
 RedBird.prototype = Object.create(Bird.prototype);
