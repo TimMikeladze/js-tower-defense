@@ -24,7 +24,7 @@ var RedBird = function (position) {
 					canvas.context.rotate(360 - ((Math.PI / 180) * -this.rotationAngle) + 45);
 					canvas.context.scale(-1, 1);
 				} else {
-					canvas.context.rotate( (Math.PI / 180) * this.rotationAngle);
+					canvas.context.rotate((Math.PI / 180) * this.rotationAngle);
 				}
 				canvas.context.translate(-cX, -cY);
 				canvas.context.drawFrame(this.sprite, this.animation.getFrame(this.animator.currentFrameIndex()), this.position, this.width, this.height);
@@ -48,7 +48,7 @@ var RedBird = function (position) {
 		tickParent.call(this, time, engine);
 	};
 
-	this.fire = function(destination, engine) {
+	this.fire = function (destination, engine) {
 		var projectile = new RedBirdProjectile(this.position.clone(), destination.clone());
 		projectile.setRotationAngle(this.rotationAngle);
 		projectile.fire();

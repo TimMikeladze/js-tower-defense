@@ -1,8 +1,8 @@
 var MenuButton = function () {
 
-	this.bindButton = function(id, callback) {
+	this.bindButton = function (id, callback) {
 		var button = document.getElementById(id);
-		button.onclick = function() {
+		button.onclick = function () {
 			callback();
 		}
 	};

@@ -35,7 +35,7 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 		this.setSocketEventHandler();
 	};
 
-	this.empty = function() {
+	this.empty = function () {
 		this.gameID = null;
 		this.time = null;
 
@@ -79,10 +79,10 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 		this.updateEntities(this.projectiles);
 	};
 
-	this.updateEntities = function(entities) {
+	this.updateEntities = function (entities) {
 		var that = this;
 		var i = 0;
-		entities.forEach(function(entity) {
+		entities.forEach(function (entity) {
 			entity.tick(that.time, that);
 			if (entity.destroy) {
 				entities.splice(i, 1);
@@ -108,7 +108,7 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 		this.renderEntities(this.projectiles);
 	};
 
-	this.renderEntities = function(entities) {
+	this.renderEntities = function (entities) {
 		var that = this;
 		entities.forEach(function (entity) {
 			entity.render(that.gameCanvas);
@@ -119,11 +119,11 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 		this.pigs.push(pig);
 	};
 
-	this.addBird = function(bird) {
+	this.addBird = function (bird) {
 		this.birds.push(bird);
 	}
 
-	this.addProjectile = function(projectile) {
+	this.addProjectile = function (projectile) {
 		this.projectiles.push(projectile);
 	}
 

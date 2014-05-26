@@ -21,7 +21,7 @@ var SideBar = function () {
 			ctx.save();
 			// Title
 			ctx.font = "30px Verdana";
-			ctx.fillText("Tower",40,35);
+			ctx.fillText("Tower", 40, 35);
 			ctx.fillText("Defense", 40, 60);
 			ctx.fillText("Logo", 40, 85);
 			// Score, Wave, Towers Left, Gold

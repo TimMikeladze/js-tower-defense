@@ -38,13 +38,13 @@ var Entity = function (sprite, position, width, height, scale) {
 		}
 	};
 
-	this.getCenter = function() {
+	this.getCenter = function () {
 		return new Vector2(this.position.x + this.width / 2, this.position.y + this.height / 2);
 	}
 
 };
 
-Entity.generateID = function() {
+Entity.generateID = function () {
 	var s = "";
 	for (var i = 0; i < 32; i++) {
 		s += Math.floor(Math.random() * 0xF).toString(0xF);
