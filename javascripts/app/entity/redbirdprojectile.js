@@ -1,8 +1,8 @@
-var RedBirdProjectile = function (position, destination, maxFlightDistance) {
+var RedBirdProjectile = function (position, destination) {
 	var velocity = new Vector2(1, 1);
-	Projectile.call(this, "birds/rbird1.png", position, destination, velocity, maxFlightDistance, 62, 62, 0.75);
+	Projectile.call(this, "birds/rbird1.png", position, destination, velocity, 62, 62, 0.75);
 
-	this.frameSpeeds = [500];
+	this.frameSpeeds = [500, 500];
 	this.animation = new Animation(this.sprite, this.width, this.height, this.scale, this.frameSpeeds);
 	this.animator.setDefaultFrame(0);
 

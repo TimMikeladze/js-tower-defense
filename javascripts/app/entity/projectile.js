@@ -1,15 +1,23 @@
-var Projectile = function (sprite, position, destination, velocity, maxFlightDistance, width, height, scale) {
+var Projectile = function (sprite, position, destination, velocity, width, height, scale) {
 	Entity.call(this, sprite, position, width, height, scale);
 
 	this.destination = destination;
 	this.velocity = Projectile.getAdjustedVelocityVector(position, destination, velocity)
-	this.maxFlightDistance = maxFlightDistance;
 
 	this.state = Projectile.IDLE;
 	this.rotationAngle = 0;
+	this.maxFlightDistance = 0;
 
 	this.animation = null;
 	this.inFlightFrames = null;
+	this.maxFlightDistanceFrames = null;
+
+
+	this.originalPosition = this.position.clone();
+
+	this.setMaxFlightDistance = function(distance) {
+		this.maxFlightDistance = distance;
+	};
 
 	this.setRotationAngle = function (angle) {
 		this.rotationAngle = angle;
@@ -40,10 +48,22 @@ var Projectile = function (sprite, position, destination, velocity, maxFlightDis
 	};
 
 	this.tick = function (time, engine) {
+		if (Math.abs(this.originalPosition.distanceTo(this.position)) > this.maxFlightDistance) {
+			this.state = Projectile.MAXDISTANCE;
+		}
+
 		if (this.state == Projectile.INFLIGHT) {
 			this.currentFrames = this.inFlightFrames;
+		}
+
+		if (this.state == Projectile.MAXDISTANCE) {
+			this.currentFrames = this.maxFlightDistanceFrames;
+		}
+
+		if (this.state == Projectile.INFLIGHT || this.state == Projectile.MAXDISTANCE) {
 			this.position = this.position.addSelf(this.velocity);
 		}
+
 		this.animator.tick(time, this.animation, this.currentFrames);
 
 		var that = this;
@@ -67,6 +87,7 @@ Projectile.getAdjustedVelocityVector = function (origin, destination, velocity) 
 Projectile.IDLE = 0;
 Projectile.INFLIGHT = 1;
 Projectile.COLLISION = 2;
+Projectile.MAXDISTANCE = 3;
 
 Projectile.prototype = Object.create(Entity.prototype);
 Projectile.prototype.constructor = Projectile;

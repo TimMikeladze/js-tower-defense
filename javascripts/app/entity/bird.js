@@ -46,9 +46,13 @@ var Bird = function (sprite, position, fireRadius, width, height, scale) {
 			that.rotationAngle = 360 - (Math.atan2(deltaX, deltaY) * 180 / Math.PI) - 90;
 		}
 
-		if (this.minPig && this.fireRadius >= Math.abs(this.minPig.position.distanceTo(this.position)) && (this.lastShotTime + this.shotInterval <= time.stamp)) {
-			this.lastShotTime = time.stamp;
-			this.fire(this.minPig.position, engine);
+		if (this.position) {
+			//var inRange = this.fireRadius >= Math.abs(this.minPig.position.distanceTo(this.position));
+			var inRange = true;
+			if (this.minPig && inRange && (this.lastShotTime + this.shotInterval <= time.stamp)) {
+				this.lastShotTime = time.stamp;
+				this.fire(this.minPig.position, engine);
+			}
 		}
 
 	};
