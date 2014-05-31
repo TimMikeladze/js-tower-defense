@@ -34,10 +34,7 @@ GameEngine.prototype.startInput = function () {
 	}, false);
 
 	window.addEventListener("keydown", function (e) {
-		if(e.keyCode === 80 && that.time) {
-			e.preventDefault();
-			this.pauseFlag = true;
-		}
-
+		e.preventDefault();
+		that.pauseFlag = e.keyCode === 80 && !that.pauseFlag ? true : false;
 	}, false);
 };

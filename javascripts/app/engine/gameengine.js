@@ -15,7 +15,7 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 	this.projectiles = [];
 	this.floatingEntity = null;
 	this.enemyQueue = null;
-	
+
 	this.pauseFlag = false;
 
 	this.map = null;
@@ -71,15 +71,16 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 		this.time.tick();
 		if (this.pauseFlag === false) {
 			this.update();
-			this.render();			
+			this.render();
 		} else {
 			this.pause();
 		}
 		this.click = null;
 	};
 
-	this.pause = function() {
-		alert('test');
+	this.pause = function () {
+		log("paused");
+		//render your pause menu here
 	}
 
 	this.update = function () {
@@ -123,10 +124,6 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 			entity.render(that.gameCanvas);
 		});
 	};
-
-	this.pause = function () {
-		alert('paused');
-	}
 
 	this.addPig = function (pig) {
 		this.pigs.push(pig);
