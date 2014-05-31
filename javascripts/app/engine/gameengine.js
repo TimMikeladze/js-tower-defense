@@ -9,7 +9,7 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 	this.click = null;
 	this.mouse = null;
 	this.wheel = null;
-
+	
 	this.pigs = [];
 	this.birds = [];
 	this.projectiles = [];
@@ -72,6 +72,10 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 		this.render();
 		this.click = null;
 	};
+
+	this.pause = function() {
+
+	}
 
 	this.update = function () {
 		this.updateEntities(this.pigs);

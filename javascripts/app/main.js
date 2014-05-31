@@ -66,6 +66,13 @@ Require.load(function () {
 		engine.start();
 	});
 
+	window.addEventListener("keydown", function (e) {
+		if(e.keyCode === 80) {
+			e.preventDefault();
+			alert('P key pressed!');
+		}
+
+	}, false);
 });
 
 
