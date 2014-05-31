@@ -6,7 +6,7 @@ var RedBirdProjectile = function (position, destination) {
 	this.animation = new Animation(this.sprite, this.width, this.height, this.scale, this.frameSpeeds);
 	this.animator.setDefaultFrame(0);
 
-	this.inFlightFrames = [0];
+	this.inFlightFrames = [2];
 	this.maxFlightDistanceFrames = [1];
 
 

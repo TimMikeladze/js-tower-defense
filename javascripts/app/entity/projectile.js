@@ -15,7 +15,7 @@ var Projectile = function (sprite, position, destination, velocity, width, heigh
 
 	this.originalPosition = this.position.clone();
 
-	this.setMaxFlightDistance = function(distance) {
+	this.setMaxFlightDistance = function (distance) {
 		this.maxFlightDistance = distance;
 	};
 
@@ -30,21 +30,19 @@ var Projectile = function (sprite, position, destination, velocity, width, heigh
 	var renderParent = this.render;
 	this.render = function (canvas) {
 		renderParent.call(this, canvas);
-		if (this.state == Projectile.INFLIGHT) {
-			canvas.context.save();
-			var cX = this.position.x + 0.5 * this.width;
-			var cY = this.position.y + 0.5 * this.height;
-			canvas.context.translate(cX, cY);
-			if (this.destination.x > this.position.x) {
-				canvas.context.rotate(360 - ((Math.PI / 180) * -this.rotationAngle) + 45);
-				canvas.context.scale(-1, 1);
-			} else {
-				canvas.context.rotate((Math.PI / 180) * this.rotationAngle);
-			}
-			canvas.context.translate(-cX, -cY);
-			canvas.context.drawFrame(this.sprite, this.animation.getFrame(this.animator.currentFrameIndex()), this.position, this.width, this.height);
-			canvas.context.restore();
+		canvas.context.save();
+		var cX = this.position.x + 0.5 * this.width;
+		var cY = this.position.y + 0.5 * this.height;
+		canvas.context.translate(cX, cY);
+		if (this.destination.x > this.position.x) {
+			canvas.context.rotate(360 - ((Math.PI / 180) * -this.rotationAngle) + 45);
+			canvas.context.scale(-1, 1);
+		} else {
+			canvas.context.rotate((Math.PI / 180) * this.rotationAngle);
 		}
+		canvas.context.translate(-cX, -cY);
+		canvas.context.drawFrame(this.sprite, this.animation.getFrame(this.animator.currentFrameIndex()), this.position, this.width, this.height);
+		canvas.context.restore();
 	};
 
 	this.tick = function (time, engine) {
@@ -74,6 +72,10 @@ var Projectile = function (sprite, position, destination, velocity, width, heigh
 				return;
 			}
 		});
+
+		if (this.position.x + this.width > engine.gameCanvas.width || this.position.x + this.width < 0 || this.position.y - this.height > engine.gameCanvas.height || this.position.y + this.height < 0) {
+			this.destroy = true;
+		}
 	};
 
 };
