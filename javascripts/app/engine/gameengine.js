@@ -9,13 +9,14 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 	this.click = null;
 	this.mouse = null;
 	this.wheel = null;
-	
+
 	this.pigs = [];
 	this.birds = [];
 	this.projectiles = [];
 	this.floatingEntity = null;
 	this.enemyQueue = null;
-
+	
+	this.pauseFlag = false;
 
 	this.map = null;
 	this.sideBar = null;
@@ -49,7 +50,7 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 		this.floatingEntity = null;
 		this.enemyQueue = null;
 
-
+		this.pauseFlag = false;
 		this.map = null;
 		this.sideBar = null;
 
@@ -68,13 +69,17 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 
 	this.loop = function () {
 		this.time.tick();
-		this.update();
-		this.render();
+		if (this.pauseFlag === false) {
+			this.update();
+			this.render();			
+		} else {
+			this.pause();
+		}
 		this.click = null;
 	};
 
 	this.pause = function() {
-
+		alert('test');
 	}
 
 	this.update = function () {
@@ -118,6 +123,10 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 			entity.render(that.gameCanvas);
 		});
 	};
+
+	this.pause = function () {
+		alert('paused');
+	}
 
 	this.addPig = function (pig) {
 		this.pigs.push(pig);

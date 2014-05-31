@@ -33,11 +33,10 @@ GameEngine.prototype.startInput = function () {
 		that.wheel = e;
 	}, false);
 
-
 	window.addEventListener("keydown", function (e) {
 		if(e.keyCode === 80 && that.time) {
 			e.preventDefault();
-			alert('P key pressed!');
+			this.pauseFlag = true;
 		}
 
 	}, false);
