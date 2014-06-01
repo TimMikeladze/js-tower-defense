@@ -13,21 +13,41 @@ var Bird = function (sprite, position, fireRadius, width, height, scale) {
 	this.shotInterval = 3000;
 
 	var renderParent = this.render;
-	this.render = function (canvas) {
+	this.render = function (canvas, animation) {
 		renderParent.call(this, canvas);
-
-
 		canvas.context.beginPath();
 		canvas.context.arc(this.getCenter().x, this.getCenter().y, this.fireRadius, 0, Math.PI * 2, true);
 		canvas.context.stroke();
 		canvas.context.closePath();
-
+		
+		if (this.state == Bird.FLOATING) {
+			canvas.context.globalAlpha = this.alpha;
+			canvas.context.drawFrame(this.sprite, animation.getFrame(this.idlingFrames[0]), this.position, this.width, this.height);
+			canvas.context.globalAlpha = 1.0;
+		} else {
+			if (this.rotationAngle !== 0) {
+				canvas.context.save();
+				var cX = this.position.x + 0.5 * this.width;
+				var cY = this.position.y + 0.5 * this.height;
+				canvas.context.translate(cX, cY);
+				if (this.minPig.position.x > this.position.x) {
+					canvas.context.rotate(360 - ((Math.PI / 180) * -this.rotationAngle) + 45);
+					canvas.context.scale(-1, 1);
+				} else {
+					canvas.context.rotate((Math.PI / 180) * this.rotationAngle);
+				}
+				canvas.context.translate(-cX, -cY);
+				canvas.context.drawFrame(this.sprite, animation.getFrame(this.animator.currentFrameIndex()), this.position, this.width, this.height);
+				canvas.context.restore();
+			} else {
+				canvas.context.drawFrame(this.sprite, animation.getFrame(this.animator.currentFrameIndex()), this.position, this.width, this.height);
+			}
+		}
 	};
 
 	this.tick = function (time, engine) {
 		var that = this;
 		this.lastShotTime = this.lastShotTime == null ? time.stamp : this.lastShotTime;
-
 
 		if (engine.pigs.length > 0) {
 			var minDistance;
@@ -54,7 +74,6 @@ var Bird = function (sprite, position, fireRadius, width, height, scale) {
 				this.fire(this.minPig.position, engine);
 			}
 		}
-
 	};
 
 	this.fire = function (destination, engine) {
