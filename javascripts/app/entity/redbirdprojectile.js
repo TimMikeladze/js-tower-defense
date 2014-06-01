@@ -9,12 +9,6 @@ var RedBirdProjectile = function (position, destination) {
 	this.inFlightFrames = [2];
 	this.maxFlightDistanceFrames = [1];
 
-
-	var renderParent = this.render;
-	this.render = function (canvas) {
-		renderParent.call(this, canvas);
-	};
-
 };
 
 RedBirdProjectile.prototype = Object.create(Projectile.prototype);
