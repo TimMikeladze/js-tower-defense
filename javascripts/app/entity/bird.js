@@ -19,7 +19,7 @@ var Bird = function (sprite, position, fireRadius, width, height, scale) {
 		canvas.context.arc(this.getCenter().x, this.getCenter().y, this.fireRadius, 0, Math.PI * 2, true);
 		canvas.context.stroke();
 		canvas.context.closePath();
-		
+
 		if (this.state == Bird.FLOATING) {
 			canvas.context.globalAlpha = this.alpha;
 			canvas.context.drawFrame(this.sprite, animation.getFrame(this.idlingFrames[0]), this.position, this.width, this.height);

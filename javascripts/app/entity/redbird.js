@@ -6,7 +6,7 @@ var RedBird = function (position) {
 	this.animator.setDefaultFrame(0);
 
 	this.idlingFrames = [4, 3];
-
+	this.test = "Asdasdasdasd"
 	var renderParent = this.render;
 	this.render = function (canvas) {
 		renderParent.call(this, canvas, this.animation);

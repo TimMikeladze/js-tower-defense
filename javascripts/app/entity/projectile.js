@@ -32,12 +32,13 @@ var Projectile = function (sprite, position, destination, velocity, width, heigh
 
 	var renderParent = this.render;
 	this.render = function (canvas) {
+		log(this.test);
 		renderParent.call(this, canvas);
 		canvas.context.save();
 		var cX = this.position.x + 0.5 * this.width;
 		var cY = this.position.y + 0.5 * this.height;
 		canvas.context.translate(cX, cY);
-		
+
 		if (!this.rotationFreeze) {
 			if (this.destination.x > this.position.x) {
 				this.freezeAngle = 360 - ((Math.PI / 180) * -this.rotationAngle) + 45;
@@ -48,8 +49,8 @@ var Projectile = function (sprite, position, destination, velocity, width, heigh
 			}
 			this.rotationFreeze = true;
 		}
-		
-		canvas.context.rotate(this.freezeAngle);	
+
+		canvas.context.rotate(this.freezeAngle);
 		canvas.context.scale(this.freezeSide, 1);
 		canvas.context.translate(-cX, -cY);
 		canvas.context.drawFrame(this.sprite, this.animation.getFrame(this.animator.currentFrameIndex()), this.position, this.width, this.height);
