@@ -2,7 +2,7 @@ var Projectile = function (sprite, position, destination, velocity, width, heigh
 	Entity.call(this, sprite, position, width, height, scale);
 
 	this.destination = destination;
-	this.velocity = Projectile.getAdjustedVelocityVector(position, destination, velocity)
+	this.velocity = Projectile.getAdjustedVelocityVector(position, destination, velocity);
 
 	this.state = Projectile.IDLE;
 	this.rotationAngle = 0;
@@ -12,6 +12,9 @@ var Projectile = function (sprite, position, destination, velocity, width, heigh
 	this.inFlightFrames = null;
 	this.maxFlightDistanceFrames = null;
 
+	this.rotationFreeze = false;
+	this.freezeAngle = 0;
+	this.freezeSide = 1;
 
 	this.originalPosition = this.position.clone();
 
@@ -34,12 +37,20 @@ var Projectile = function (sprite, position, destination, velocity, width, heigh
 		var cX = this.position.x + 0.5 * this.width;
 		var cY = this.position.y + 0.5 * this.height;
 		canvas.context.translate(cX, cY);
-		if (this.destination.x > this.position.x) {
-			canvas.context.rotate(360 - ((Math.PI / 180) * -this.rotationAngle) + 45);
-			canvas.context.scale(-1, 1);
-		} else {
-			canvas.context.rotate((Math.PI / 180) * this.rotationAngle);
+		
+		if (!this.rotationFreeze) {
+			if (this.destination.x > this.position.x) {
+				this.freezeAngle = 360 - ((Math.PI / 180) * -this.rotationAngle) + 45;
+				this.freezeSide = -1;
+			} else {
+				this.freezeAngle = (Math.PI / 180) * this.rotationAngle;
+				this.freezeSide = 1;
+			}
+			this.rotationFreeze = true;
 		}
+		
+		canvas.context.rotate(this.freezeAngle);	
+		canvas.context.scale(this.freezeSide, 1);
 		canvas.context.translate(-cX, -cY);
 		canvas.context.drawFrame(this.sprite, this.animation.getFrame(this.animator.currentFrameIndex()), this.position, this.width, this.height);
 		canvas.context.restore();
