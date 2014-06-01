@@ -92,9 +92,12 @@ var Projectile = function (sprite, position, destination, velocity, width, heigh
 };
 
 Projectile.getAdjustedVelocityVector = function (origin, destination, velocity) {
-	var x = destination.x < origin.x ? -1 : 1;
-	var y = destination.y < origin.y ? -1 : 1;
-	return new Vector2(velocity.x * x, velocity.y * y);
+	var x = destination.x - origin.x;
+	var y = destination.y - origin.y;
+	var result = new Vector2(x, y);
+	result.normalize();
+	result.set(result.x * velocity.x, result.y * velocity.y);
+	return result;
 };
 
 Projectile.IDLE = 0;
