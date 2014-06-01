@@ -32,7 +32,6 @@ var Projectile = function (sprite, position, destination, velocity, width, heigh
 
 	var renderParent = this.render;
 	this.render = function (canvas) {
-		log(this.test);
 		renderParent.call(this, canvas);
 		canvas.context.save();
 		var cX = this.position.x + 0.5 * this.width;
