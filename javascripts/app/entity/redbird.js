@@ -9,7 +9,7 @@ var RedBird = function (position) {
 	this.test = "Asdasdasdasd"
 	var renderParent = this.render;
 	this.render = function (canvas) {
-		renderParent.call(this, canvas, this.animation);
+		renderParent.call(this, canvas);
 	};
 
 	var tickParent = this.tick;
