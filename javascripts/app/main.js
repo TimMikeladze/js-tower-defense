@@ -66,6 +66,7 @@ Require.load(function () {
 	//play game
 	playButton.bindButton("play_button", function () {
 		canvasArea.style.display = "block";
+		canvasArea.style.background = "none";
 		menuArea.style.display = "none";
 
 		var gameCanvas = new Canvas("game_canvas");
