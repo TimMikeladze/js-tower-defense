@@ -21,6 +21,8 @@ img { margin-bottom: 0px; }
 		url('../assets/img/menu/menu-background0.png');
 }
 
+.area { height: 540px; }
+
 .clear { clear: both; }
 
 .menu_title { margin: 5% 0 1% 0;}
@@ -32,6 +34,7 @@ img { margin-bottom: 0px; }
 #scores_area { 
 	font-family: 'BadaBoom BB'; 
 	font-size: 40px;
+  	letter-spacing: 2px;
 }
 
 #credits_area img { text-align: center; }
