@@ -22,14 +22,19 @@ canvas {
 	background-color: cornflowerblue;
 }
 
-#canvas_area {
+#canvas_area, #credits_area {
     display: none;
 }
 
-#menu_area {
+#menu_area, #credits_area {
 	background-image:
 		url('../assets/img/menu/menu-background0.png');
 	height: 540px;
 }
-#menu_area img { margin-bottom: 0px;}
-#menu_area #logo { margin: 5% 0% }
+#menu_area, #credits_area img { margin-bottom: 0px;}
+#menu_area #logo{ margin: 5% 0% }
+
+#credits_area img { text-align: center;}
+#credits_area #credits_title { margin: 5% 0 1% 0;}
+
+#back_button { margin-top: 2%; }

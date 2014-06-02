@@ -32,6 +32,7 @@ Require.load(function () {
 
 	var canvasArea = document.getElementById("canvas_area");
 	var menuArea = document.getElementById("menu_area");
+	var creditsArea = document.getElementById("credits_area");
 
 	var playButton = new MenuButton();
 
@@ -42,11 +43,15 @@ Require.load(function () {
 
 	var creditsButton = new MenuButton();
 	creditsButton.bindButton("credits_button", function () {
-		alert("'Angry Birds Tower Defense' was developed by: "
-			+ "\nTim Mikeladze, Srdjan Stojcic, Mohammad Juma,"
-			+ "\nJordan Matthews, and Cathryn Castillo."
-			+ "\n(TCSS 491, Computational Worlds Project, Spring 2014)");
+		creditsArea.style.display = "block";
+		menuArea.style.display="none";
 	});
+	
+	var backButton = new MenuButton();
+	backButton.bindButton("back_button", function() {
+		creditsArea.style.display = "none";
+		menuArea.style.display="block";
+	})
 
 	playButton.bindButton("play_button", function () {
 		canvasArea.style.display = "block";
