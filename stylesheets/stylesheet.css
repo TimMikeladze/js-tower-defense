@@ -37,4 +37,11 @@ canvas {
 #credits_area img { text-align: center;}
 #credits_area #credits_title { margin: 5% 0 1% 0;}
 
+@font-face { 
+	font-family: 'BadaBoom BB';
+  	src: url('../assets/fonts/BADABB__.ttf');
+}
+
+#scores_area { font-family: 'BadaBoom BB';}
+
 #back_button { margin-top: 2%; }
