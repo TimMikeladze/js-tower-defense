@@ -33,14 +33,24 @@ Require.load(function () {
 	var canvasArea = document.getElementById("canvas_area");
 	var menuArea = document.getElementById("menu_area");
 	var creditsArea = document.getElementById("credits_area");
+	var scoresArea = document.getElementById("scores_area");
 
 	var playButton = new MenuButton();
 
+	//high scores
 	var scoresButton = new MenuButton();
 	scoresButton.bindButton("high_scores_button", function () {
-		alert('high scores~!');
+		scoresArea.style.display = "block";
+		menuArea.style.display="none";
 	});
 
+	var backButton2= new MenuButton();
+	backButton2.bindButton("back_button2", function() {
+		scoresArea.style.display = "none";
+		menuArea.style.display="block";
+	})
+
+	//credits
 	var creditsButton = new MenuButton();
 	creditsButton.bindButton("credits_button", function () {
 		creditsArea.style.display = "block";
@@ -53,6 +63,7 @@ Require.load(function () {
 		menuArea.style.display="block";
 	})
 
+	//play game
 	playButton.bindButton("play_button", function () {
 		canvasArea.style.display = "block";
 		menuArea.style.display = "none";
