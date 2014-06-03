@@ -1,4 +1,5 @@
 <?
+require("config.php");
 foreach (glob("classes/*.php") as $Filename)
 {
     include $Filename;
