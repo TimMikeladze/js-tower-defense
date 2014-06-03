@@ -51,7 +51,7 @@ var SideBar = function () {
 
 	this.initShapes = function (ctx) {
 		ctx.save();
-		ctx.globalAlpha = 0.2;
+		ctx.globalAlpha = 1;
 		ctx.fillStyle = "rgba(34,139,34, .5)";
 		// Logo Box TODO!! REMOVE THIS WHEN THE LOGO IS ADDED!!!
 		ctx.strokeRect(this.borderSize, this.borderSize, this.width - (2 * this.borderSize), 80);
@@ -63,6 +63,7 @@ var SideBar = function () {
 		ctx.fillRect(this.borderSize, 515, (this.width - 30) / 2, 20);
 		// Quit button
 		ctx.fillRect(((this.width - this.borderSize) / 2) + this.borderSize, 515, (this.width - (3 * this.borderSize)) / 2, (2 * this.borderSize));
+		ctx.globalAlpha = 1;
 
 		// Tower borders
 		ctx.strokeRect(20, 310, 60, 60);
@@ -83,19 +84,33 @@ var SideBar = function () {
 		ctx.fillText(this.goldLabel, 70, 260);
 	}
 
-	this.updateScore = function () {
-		this.scoreLabel += 1;
+	this.repaint = function (ctx, y, label) {
+		ctx.clearRect(this.borderSize, y - 20, this.width - (2 * this.borderSize), 20);
+		ctx.save();
+		ctx.globalAlpha = 1;
+		ctx.fillStyle = "rgba(34,139,34, .5)";
+		ctx.fillRect(this.borderSize, y - 20, this.width - (2 * this.borderSize), 20);
+		ctx.restore();
+		ctx.fillText(label, 70, y);
 	}
 
-	this.updateWaves = function (wavesLeft) {
-		this.wavesLeftLabel = wavesLeft;
+	this.updateScore = function () {
+		this.scoreLabel += 1;
+		this.repaint(this.ctx, 140, this.scoreLabel);
+	}
+
+	this.updateWaves = function () {
+		this.wavesLeftLabel -= 1;
+		this.repaint(this.ctx, 180, this.wavesLeftLabel);
 	}
 
 	this.updateEnemiesLeft = function () {
 		this.enemiesLeftLabel -= 1;
+		this.repaint(this.ctx, 220, this.enemiesLeftLabel);
 	}
 
 	this.updateGold = function () {
 		this.goldLabel += 100;
+		this.repaint(this.ctx, 260, this.goldLabel);
 	}
 };
