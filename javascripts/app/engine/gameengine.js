@@ -25,6 +25,7 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 		this.time = new Time();
 
 		this.sideBar = new SideBar();
+		this.sideBar.initSideBar(this.sideCanvas);
 
 		this.map = new Map();
 		this.map.loadMap();
@@ -95,6 +96,9 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 		entities.forEach(function (entity) {
 			entity.tick(that.time, that);
 			if (entity.destroy) {
+				//this.sideBar.updateScore();
+				//this.sideBar.updateGold();
+				//this.sideBar.updateEnemiesLeft();	
 				entities.splice(i, 1);
 			}
 			i++;
