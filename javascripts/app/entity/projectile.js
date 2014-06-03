@@ -78,6 +78,9 @@ var Projectile = function (sprite, position, destination, velocity, width, heigh
 		var that = this;
 		engine.pigs.forEach(function (pig) {
 			if (Collisions.isColliding(pig, that)) {
+				engine.sideBar.updateScore();
+				engine.sideBar.updateGold();
+				engine.sideBar.updateEnemiesLeft(-1);
 				pig.destroy = true;
 				that.destroy = true;
 				return;
