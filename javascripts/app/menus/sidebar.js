@@ -11,12 +11,6 @@ var SideBar = function () {
 	this.enemiesLeftLabel = 0;
 	this.goldLabel = 0;
 
-	this.render = function (canvas) {
-
-
-
-	}
-
 	this.initSideBar = function (canvas) {
 		this.ctx = canvas.context;
 		this.width = canvas.width;

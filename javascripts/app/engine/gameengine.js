@@ -108,8 +108,6 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 	this.render = function () {
 		var that = this;
 		this.gameCanvas.clear();
-		//TODO(tim) The render call for sidebar should only be done when it's updated, not on every frame,
-		this.sideBar.render(this.sideCanvas);
 
 		this.map.render(this.gameCanvas, true);
 
