@@ -57,8 +57,61 @@
 
 		<div id="scores_area" class="area">
 			<img class="menu_title" src="assets/img/menu/highscores_title.png"> 
-			<p>Thea - 11670<br/>Ryan - 9500<br/>Taylor - 8100
-				<br/>Janice - 401</p>
+			<script type="text/javascript" >
+			
+			var isIE8 = window.XDomainRequest ? true : false;
+			var url = 'http://71.19.151.5/highscores/get_highscores.php';
+			var resultText = '';
+			var invocation = createCrossDomainRequest();
+			makeRequest();
+			function createCrossDomainRequest(url, handler) {
+			    var request;
+			    if (isIE8) {
+			        request = new window.XDomainRequest();
+			    } else {
+			        request = new XMLHttpRequest();
+			    }
+			    return request;
+			}
+
+			function makeRequest() {
+			    if (invocation) {
+			        if (isIE8) {
+			            invocation.onload = requestSucceeded;
+			            invocation.open("GET", url, true);
+			            invocation.send();
+			        } else {
+			            invocation.open('GET', url, true);
+			            invocation.onreadystatechange = handler;
+			            invocation.send();
+			        }
+			    } else {
+			        resultText = "No Invocation TookPlace At All";
+			    }
+			}
+
+			function handler(evtXHR) {
+			    if (invocation.readyState == 4) {
+			        if (invocation.status == 200) {
+			            requestSucceeded();
+			        } else {
+			            resultText = "Invocation Errors Occured";
+			        }
+			    }
+			}
+
+			function requestSucceeded() {
+			    resultText = invocation.responseText;
+			    outputResult();
+			}
+
+			function outputResult() {
+			    var myHeader = document.getElementById("scores_area");
+			    myHeader.firstChild.nodeValue = "text";
+			}
+
+		
+			</script>
 			<img id="back_button2" 
 				src="assets/img/menu/back0.png"
 				onmouseover="this.src='assets/img/menu/back1.png'"
