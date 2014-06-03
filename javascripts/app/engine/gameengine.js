@@ -96,9 +96,11 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 		entities.forEach(function (entity) {
 			entity.tick(that.time, that);
 			if (entity.destroy) {
-				that.sideBar.updateScore();
-				that.sideBar.updateGold();
-				that.sideBar.updateEnemiesLeft();	
+				if (entity instanceof Pig) {
+					that.sideBar.updateScore();
+					that.sideBar.updateGold();
+					that.sideBar.updateEnemiesLeft();
+				}	
 				entities.splice(i, 1);
 			}
 			i++;
