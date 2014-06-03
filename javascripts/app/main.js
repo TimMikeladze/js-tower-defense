@@ -17,13 +17,12 @@ Require.addScript("math", ["bezier", "vector2", "random"]);
 Require.addScript("networking", ["connection"]);
 Require.addScript("map", ["map", "tile"]);
 Require.addScript("menus", ["menubutton", "sidebar"]);
-Require.addScript("engine", ["time", "collisions", "funds", "gameengine", "input", "socketevents", "enemyqueue"]);
+Require.addScript("engine", ["time", "collisions", "funds", "gameengine", "input", "socketevents", "enemyqueue", "sounds"]);
 Require.addScript("graphics", ["canvas", "animation", "animator"]);
 Require.addScript("entity", ["entity", "bird", "pig", "redbird", "greenpig", "projectile", "redbirdprojectile"]);
 
 Require.addImage("pigs", ["pig0.png"]);
 Require.addImage("birds", ["rbird1.png"]);
-
 //Require.addFile("maps", ["map1.json"]);
 
 Require.load(function () {
