@@ -5,7 +5,7 @@ var EnemyQueue = function (engine, path) {
 	this.rate = 1000;
 
 	this.nextEnemy = function () {
-		return this.enemies.length > 0 ? enemies.shift() : null;
+		return this.enemies.length > 0 ? this.enemies.shift() : null;
 	};
 
 	this.getRemainingEnemies = function () {
@@ -22,7 +22,7 @@ var EnemyQueue = function (engine, path) {
 			}
 		});
 	};
-	
+
 	this.addWave = function(level) {
 		this.enemies = EnemyQueue.generateEnemies(path, 10 + (level * 2));
 		this.populateEngine();
@@ -32,7 +32,7 @@ var EnemyQueue = function (engine, path) {
 
 EnemyQueue.generateEnemies = function (path, amount) {
 	var result = [];
-	
+
 	for (var i = 0; i < amount; i++) {
 		var enemyToAdd = new GreenPig(path[0]);
 		enemyToAdd.setPath(path);
