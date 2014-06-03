@@ -22,7 +22,7 @@ var EnemyQueue = function (engine, path) {
 			}
 		});
 	};
-	
+
 	this.addWave = function(level) {
 		var numEnemiesWave = 10 + (level * 2);
 		this.enemies = EnemyQueue.generateEnemies(path, numEnemiesWave);
@@ -34,7 +34,7 @@ var EnemyQueue = function (engine, path) {
 
 EnemyQueue.generateEnemies = function (path, amount) {
 	var result = [];
-	
+
 	for (var i = 0; i < amount; i++) {
 		var enemyToAdd = new GreenPig(path[0]);
 		enemyToAdd.setPath(path);
