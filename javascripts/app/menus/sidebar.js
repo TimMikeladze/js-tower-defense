@@ -100,12 +100,12 @@ var SideBar = function () {
 	}
 
 	this.updateWaves = function () {
-		this.wavesLeftLabel -= 1;
+		this.wavesLeftLabel += 1;
 		this.repaint(this.ctx, 180, this.wavesLeftLabel);
 	}
 
-	this.updateEnemiesLeft = function () {
-		this.enemiesLeftLabel -= 1;
+	this.updateEnemiesLeft = function (left) {
+		this.enemiesLeftLabel += left;
 		this.repaint(this.ctx, 220, this.enemiesLeftLabel);
 	}
 

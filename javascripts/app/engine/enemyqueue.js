@@ -26,6 +26,7 @@ var EnemyQueue = function (engine, path) {
 	this.addWave = function(level) {
 		this.enemies = EnemyQueue.generateEnemies(path, 10 + (level * 2));
 		this.populateEngine();
+		this.engine.sideBar.updateWaves();
 	};
 };
 

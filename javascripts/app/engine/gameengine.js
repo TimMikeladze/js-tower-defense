@@ -99,7 +99,7 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 				if (entity instanceof Pig) {
 					that.sideBar.updateScore();
 					that.sideBar.updateGold();
-					that.sideBar.updateEnemiesLeft();
+					that.sideBar.updateEnemiesLeft(-1);
 				}	
 				entities.splice(i, 1);
 			}
@@ -133,6 +133,7 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 
 	this.addPig = function (pig) {
 		this.pigs.push(pig);
+		this.sideBar.updateEnemiesLeft(1);
 	};
 
 	this.addBird = function (bird) {
