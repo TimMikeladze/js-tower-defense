@@ -133,7 +133,6 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 
 	this.addPig = function (pig) {
 		this.pigs.push(pig);
-		this.sideBar.updateEnemiesLeft(1);
 	};
 
 	this.addBird = function (bird) {

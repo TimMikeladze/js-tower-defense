@@ -5,7 +5,7 @@ var EnemyQueue = function (engine, path) {
 	this.rate = 1000;
 
 	this.nextEnemy = function () {
-		return this.enemies.length > 0 ? enemies.shift() : null;
+		return this.enemies.length > 0 ? this.enemies.shift() : null;
 	};
 
 	this.getRemainingEnemies = function () {
@@ -24,9 +24,11 @@ var EnemyQueue = function (engine, path) {
 	};
 	
 	this.addWave = function(level) {
-		this.enemies = EnemyQueue.generateEnemies(path, 10 + (level * 2));
+		var numEnemiesWave = 10 + (level * 2);
+		this.enemies = EnemyQueue.generateEnemies(path, numEnemiesWave);
 		this.populateEngine();
 		this.engine.sideBar.updateWaves();
+		this.engine.sideBar.updateEnemiesLeft(numEnemiesWave);
 	};
 };
 
