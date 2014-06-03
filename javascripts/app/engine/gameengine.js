@@ -96,9 +96,9 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 		entities.forEach(function (entity) {
 			entity.tick(that.time, that);
 			if (entity.destroy) {
-				//this.sideBar.updateScore();
-				//this.sideBar.updateGold();
-				//this.sideBar.updateEnemiesLeft();	
+				that.sideBar.updateScore();
+				that.sideBar.updateGold();
+				that.sideBar.updateEnemiesLeft();	
 				entities.splice(i, 1);
 			}
 			i++;
