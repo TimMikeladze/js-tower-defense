@@ -2,6 +2,7 @@ var SideBar = function () {
 
 	// Global Variables
 	this.ctx = null;
+	this.gameEngine = null;
 	this.borderSize = 10;
 	this,width = null;
 	this.height = null;;
@@ -10,9 +11,23 @@ var SideBar = function () {
 	this.wavesLeftLabel = 0;
 	this.enemiesLeftLabel = 0;
 	this.goldLabel = 0;
+	// Buttons
+	this.pauseButtonX1 = null;
+	this.pauseButtonX2 = null;
+	this.pauseButtonY1 = null;
+	this.pauseButtonY2 = null;
+	this.quitButtonX1 = null;
+	this.quitButtonX2 = null;
+	this.quitButtonY1 = null;
+	this.quitButtonY2 = null;
+	this.nextButtonX1 = null;
+	this.nextButtonX2 = null;
+	this.nextButtonY1 = null;
+	this.nextButtonY2 = null;
 
-	this.initSideBar = function (canvas) {
+	this.initSideBar = function (canvas, gameEngine) {
 		this.ctx = canvas.context;
+		this.gameEngine = gameEngine;
 		this.width = canvas.width;
 		this.height = canvas.length;
 
@@ -37,6 +52,10 @@ var SideBar = function () {
 		ctx.fillText("Gold:", (this.borderSize + textBorder), 240);
 		// Towers
 		ctx.fillText("Towers:", (this.borderSize + textBorder), 300);
+		// Next button
+		ctx.font = "33px Verdana";
+		ctx.fillText("Next Wave", (this.borderSize + textBorder), 490);
+		ctx.font = "20px Verdana";
 		// Pause, Quit
 		ctx.fillText("Pause", (this.borderSize + textBorder), 532);
 		ctx.fillText("Quit", ((this.width) / 2) + 10, 532);
@@ -52,20 +71,34 @@ var SideBar = function () {
 		// Score and info box
 		ctx.fillRect(this.borderSize, 100, this.width - (2 * this.borderSize), 170);
 		// Towers box
-		ctx.fillRect(this.borderSize, 280, this.width - 2 * this.borderSize, 230);
+		ctx.fillRect(this.borderSize, 280, this.width - 2 * this.borderSize, 165);
+		// Next Wave box
+		ctx.fillRect(this.borderSize, 450, this.width - 2 * this.borderSize, 60);
 		// Pause button
 		ctx.fillRect(this.borderSize, 515, (this.width - 30) / 2, 20);
 		// Quit button
-		ctx.fillRect(((this.width - this.borderSize) / 2) + this.borderSize, 515, (this.width - (3 * this.borderSize)) / 2, (2 * this.borderSize));
+		ctx.fillRect(((this.width - this.borderSize) / 2) + this.borderSize, 515, 
+					 (this.width - (3 * this.borderSize)) / 2, (2 * this.borderSize));
 		ctx.globalAlpha = 1;
+
+		this.pauseButtonX1 = this.borderSize;
+		this.pauseButtonX2 = this.pauseButtonX1 + (this.width - 30) / 2;
+		this.pauseButtonY1 = 515;
+		this.pauseButtonY2 = this.pauseButtonY1 + 20;
+		this.quitButtonX1 = ((this.width - this.borderSize) / 2) + this.borderSize;
+		this.quitButtonX2 = this.quitButtonX1 + (this.width - (3 * this.borderSize)) / 2;
+		this.quitButtonY1 = 515;
+		this.quitButtonY2 = this.quitButtonY1 + (2 * this.borderSize);
+		this.nextButtonX1 = this.borderSize;
+		this.nextButtonX2 = this.nextButtonX1 + this.width - 2 * this.borderSize;
+		this.nextButtonY1 = 450;
+		this.nextButtonY2 = this.nextButtonY1 + 60;
 
 		// Tower borders
 		ctx.strokeRect(20, 310, 60, 60);
 		ctx.strokeRect(20, 375, 60, 60);
-		ctx.strokeRect(20, 440, 60, 60);
 		ctx.strokeRect(((this.width - 10) / 2) + 10, 310, 60, 60);
 		ctx.strokeRect(((this.width - 10) / 2) + 10, 375, 60, 60);
-		ctx.strokeRect(((this.width - 10) / 2) + 10, 440, 60, 60);
 		ctx.restore();
 	}
 
@@ -106,5 +139,20 @@ var SideBar = function () {
 	this.updateGold = function () {
 		this.goldLabel += 100;
 		this.repaint(this.ctx, 260, this.goldLabel);
+	}
+
+	this.checkButton = function (x, y) {
+		if (x > this.pauseButtonX1 && x < this.pauseButtonX2 &&
+			y > this.pauseButtonY1 && y < this.pauseButtonY2) {
+			this.gameEngine.pauseFlag = !this.gameEngine.pauseFlag;
+		}
+		else if (x > this.quitButtonX1 && x < this.quitButtonX2 &&
+			y > this.quitButtonY1 && y < this.quitButtonY2) {
+			console.log("quit");
+		}
+		else if (x > this.nextButtonX1 && x < this.nextButtonX2 &&
+			y > this.nextButtonY1 && y < this.nextButtonY2) {
+			console.log("next wave");
+		}
 	}
 };

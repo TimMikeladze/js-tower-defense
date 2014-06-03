@@ -25,7 +25,7 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 		this.time = new Time();
 
 		this.sideBar = new SideBar();
-		this.sideBar.initSideBar(this.sideCanvas);
+		this.sideBar.initSideBar(this.sideCanvas, this);
 
 		this.map = new Map();
 		this.map.loadMap();
