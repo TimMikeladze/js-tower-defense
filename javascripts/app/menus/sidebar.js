@@ -34,7 +34,7 @@ var SideBar = function () {
 		this.initShapes(this.ctx);
 		this.initStaticText(this.ctx);
 		this.initValues(this.ctx);
-	}
+	};
 
 	this.initStaticText = function (ctx) {
 		var textBorder = 5;
@@ -53,14 +53,14 @@ var SideBar = function () {
 		// Towers
 		ctx.fillText("Towers:", (this.borderSize + textBorder), 300);
 		// Next button
-		ctx.font = "33px Verdana";
-		ctx.fillText("Next Wave", (this.borderSize + textBorder), 490);
+		ctx.font = "27px Verdana";
+		ctx.fillText("Send Wave", (this.borderSize + textBorder), 490);
 		ctx.font = "20px Verdana";
 		// Pause, Quit
 		ctx.fillText("Pause", (this.borderSize + textBorder), 532);
 		ctx.fillText("Quit", ((this.width) / 2) + 10, 532);
 		ctx.restore();
-	}
+	};
 
 	this.initShapes = function (ctx) {
 		ctx.save();
@@ -100,7 +100,7 @@ var SideBar = function () {
 		ctx.strokeRect(((this.width - 10) / 2) + 10, 310, 60, 60);
 		ctx.strokeRect(((this.width - 10) / 2) + 10, 375, 60, 60);
 		ctx.restore();
-	}
+	};
 
 	this.initValues = function (ctx) {
 		ctx.font = "20px Verdana";
@@ -109,7 +109,7 @@ var SideBar = function () {
 		ctx.fillText(this.wavesLeftLabel, 70, 180);
 		ctx.fillText(this.enemiesLeftLabel, 70, 220);
 		ctx.fillText(this.goldLabel, 70, 260);
-	}
+	};
 
 	this.repaint = function (ctx, y, label) {
 		ctx.clearRect(this.borderSize, y - 20, this.width - (2 * this.borderSize), 20);
@@ -119,27 +119,27 @@ var SideBar = function () {
 		ctx.fillRect(this.borderSize, y - 20, this.width - (2 * this.borderSize), 20);
 		ctx.restore();
 		ctx.fillText(label, 70, y);
-	}
+	};
 
 	this.updateScore = function () {
 		this.scoreLabel += 1;
 		this.repaint(this.ctx, 140, this.scoreLabel);
-	}
+	};
 
 	this.updateWaves = function () {
 		this.wavesLeftLabel += 1;
 		this.repaint(this.ctx, 180, this.wavesLeftLabel);
-	}
+	};
 
 	this.updateEnemiesLeft = function (left) {
 		this.enemiesLeftLabel += left;
 		this.repaint(this.ctx, 220, this.enemiesLeftLabel);
-	}
+	};
 
 	this.updateGold = function () {
 		this.goldLabel += 100;
 		this.repaint(this.ctx, 260, this.goldLabel);
-	}
+	};
 
 	this.checkButton = function (x, y) {
 		if (x > this.pauseButtonX1 && x < this.pauseButtonX2 &&
@@ -152,7 +152,7 @@ var SideBar = function () {
 		}
 		else if (x > this.nextButtonX1 && x < this.nextButtonX2 &&
 			y > this.nextButtonY1 && y < this.nextButtonY2) {
-			console.log("next wave");
+			this.gameEngine.enemyQueue.addWave(1);
 		}
-	}
+	};
 };

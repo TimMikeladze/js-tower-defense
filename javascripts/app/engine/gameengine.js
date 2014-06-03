@@ -31,7 +31,6 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 		this.map.loadMap();
 
 		this.enemyQueue = new EnemyQueue(this, this.map.path);
-		this.enemyQueue.addWave(1);
 
 		this.startInput();
 		this.setSocketEventHandler();
