@@ -17,7 +17,7 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 	this.enemyQueue = null;
 
 	this.pauseFlag = false;
-
+	
 	this.map = null;
 	this.sideBar = null;
 
@@ -30,8 +30,8 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 		this.map = new Map();
 		this.map.loadMap();
 
-		this.enemyQueue = new EnemyQueue(this, 10, this.map.path, 1000);
-		this.enemyQueue.populateEngine();
+		this.enemyQueue = new EnemyQueue(this, this.map.path);
+		this.enemyQueue.addWave(1);
 
 		this.startInput();
 		this.setSocketEventHandler();
@@ -57,7 +57,7 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 
 		this.init();
 		this.start();
-	}
+	};
 
 	this.start = function () {
 		this.funds = new Funds(100);
@@ -82,12 +82,12 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 	this.pause = function () {
 		log("paused");
 		//render your pause menu here
-	}
+	};
 
 	this.update = function () {
 		this.updateEntities(this.pigs);
 		this.updateEntities(this.birds);
-		this.updateEntities(this.projectiles);
+		this.updateEntities(this.projectiles);	
 	};
 
 	this.updateEntities = function (entities) {
@@ -135,10 +135,9 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 
 	this.addBird = function (bird) {
 		this.birds.push(bird);
-	}
+	};
 
 	this.addProjectile = function (projectile) {
 		this.projectiles.push(projectile);
-	}
-
+	};
 };
