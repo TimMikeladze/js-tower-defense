@@ -43,26 +43,26 @@ Require.load(function () {
 	var scoresButton = new MenuButton();
 	scoresButton.bindButton("high_scores_button", function () {
 		scoresArea.style.display = "block";
-		menuArea.style.display="none";
+		menuArea.style.display = "none";
 	});
 
-	var backButton2= new MenuButton();
-	backButton2.bindButton("back_button2", function() {
+	var backButton2 = new MenuButton();
+	backButton2.bindButton("back_button2", function () {
 		scoresArea.style.display = "none";
-		menuArea.style.display="block";
+		menuArea.style.display = "block";
 	})
 
 	//credits
 	var creditsButton = new MenuButton();
 	creditsButton.bindButton("credits_button", function () {
 		creditsArea.style.display = "block";
-		menuArea.style.display="none";
+		menuArea.style.display = "none";
 	});
 
 	var backButton = new MenuButton();
-	backButton.bindButton("back_button", function() {
+	backButton.bindButton("back_button", function () {
 		creditsArea.style.display = "none";
-		menuArea.style.display="block";
+		menuArea.style.display = "block";
 	})
 
 	//play game

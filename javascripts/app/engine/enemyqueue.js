@@ -23,7 +23,7 @@ var EnemyQueue = function (engine, path) {
 		});
 	};
 
-	this.addWave = function(level) {
+	this.addWave = function (level) {
 		var numEnemiesWave = 10 + (level * 2);
 		this.enemies = EnemyQueue.generateEnemies(path, numEnemiesWave);
 		this.populateEngine();

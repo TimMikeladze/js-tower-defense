@@ -4,7 +4,7 @@ var SideBar = function () {
 	this.ctx = null;
 	this.gameEngine = null;
 	this.borderSize = 10;
-	this,width = null;
+	this, width = null;
 	this.height = null;
 	this.background = "rgba(34,139,34, .5)";
 	// Score,waves, ememies and gold variables
@@ -78,8 +78,8 @@ var SideBar = function () {
 		// Pause button
 		ctx.fillRect(this.borderSize, 515, (this.width - 30) / 2, 20);
 		// Quit button
-		ctx.fillRect(((this.width - this.borderSize) / 2) + this.borderSize, 515, 
-					 (this.width - (3 * this.borderSize)) / 2, (2 * this.borderSize));
+		ctx.fillRect(((this.width - this.borderSize) / 2) + this.borderSize, 515,
+			(this.width - (3 * this.borderSize)) / 2, (2 * this.borderSize));
 		ctx.globalAlpha = 1;
 
 		this.pauseButtonX1 = this.borderSize;

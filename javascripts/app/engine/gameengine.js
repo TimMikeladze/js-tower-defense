@@ -85,23 +85,23 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 		var ctx = this.gameCanvas.context;
 		var img = Require.getImage("menu/paused_title.png");
 
-		var x = this.gameCanvas.width/2;
-		var y = this.gameCanvas.height/2;
+		var x = this.gameCanvas.width / 2;
+		var y = this.gameCanvas.height / 2;
 
 		ctx.drawImage(Require.getImage("canvasbg/bg1.png"), 0, 0);
-		ctx.drawImage(img, x - img.width/3, y - img.height);
+		ctx.drawImage(img, x - img.width / 3, y - img.height);
 
-     	ctx.font = "28pt BadaBoom";
-     	ctx.fillStyle = "#000";
-     	ctx.textAlign = "center";
-     	ctx.textBaseline = "top";
-      	ctx.fillText("press P to unpause", x + 30, y + 20);
+		ctx.font = "28pt BadaBoom";
+		ctx.fillStyle = "#000";
+		ctx.textAlign = "center";
+		ctx.textBaseline = "top";
+		ctx.fillText("press P to unpause", x + 30, y + 20);
 	};
 
 	this.update = function () {
 		this.updateEntities(this.pigs);
 		this.updateEntities(this.birds);
-		this.updateEntities(this.projectiles);	
+		this.updateEntities(this.projectiles);
 	};
 
 	this.updateEntities = function (entities) {
@@ -112,7 +112,7 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 			if (entity.destroy) {
 				if (entity instanceof Pig) {
 					that.sideBar.updateEnemiesLeft(-1);
-				}	
+				}
 				entities.splice(i, 1);
 			}
 			i++;
