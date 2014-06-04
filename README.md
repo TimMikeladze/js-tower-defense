@@ -16,8 +16,6 @@
 
 [ ] disable/enable next wave button when needed 
 
-[ ] get lives functional
-
 [ ] loading screen
 
 [ ] wave management
@@ -29,3 +27,5 @@
 [ ] game over screen
 
 [ ] quit button needs to work
+
+[ ] figure out why red bird kills 2 pigs at once sometimes
