@@ -12,6 +12,7 @@ var SideBar = function () {
 	this.wavesLeftLabel = 0;
 	this.enemiesLeftLabel = 0;
 	this.goldLabel = 100;
+	this.livesLabel = 20;
 	// Buttons
 	this.pauseButtonX1 = null;
 	this.pauseButtonX2 = null;
@@ -47,17 +48,32 @@ var SideBar = function () {
 		ctx.fillText("Defense", 40, 60);
 		ctx.fillText("Logo", 40, 85);*/
 		// Score, Wave, Towers Left, Gold
+<<<<<<< HEAD
 		ctx.font = "22px BadaBoom";
 		ctx.fillText("Score:", (this.borderSize + textBorder), 120);
 		ctx.fillText("Wave:", (this.borderSize + textBorder), 160);
 		ctx.fillText("Remaining:", (this.borderSize + textBorder), 200);
 		ctx.fillText("Gold:", (this.borderSize + textBorder), 240);
+=======
+		ctx.font = "18px Verdana";
+		ctx.fillText("Score:", (this.borderSize + textBorder), 119);
+		ctx.fillText("Wave:", (this.borderSize + textBorder), 158);
+		ctx.fillText("Left:", (this.borderSize + textBorder), 197);
+		ctx.fillText("Gold:", (this.borderSize + textBorder), 236);
+		ctx.fillText("Lives:", (this.borderSize + textBorder), 275);
+>>>>>>> FETCH_HEAD
 		// Towers
-		ctx.fillText("Towers:", (this.borderSize + textBorder), 300);
+		ctx.fillText("Towers:", (this.borderSize + textBorder), 330);
 		// Next button
+<<<<<<< HEAD
 		ctx.font = "30px BadaBoom";
 		ctx.fillText("Send Wave", (this.borderSize + textBorder), 490);
 		ctx.font = "22px BadaBoom";
+=======
+		ctx.font = "27px Verdana";
+		ctx.fillText("Send Wave", (this.borderSize + textBorder), 505);
+		ctx.font = "20px Verdana";
+>>>>>>> FETCH_HEAD
 		// Pause, Quit
 		ctx.fillText("Pause", (this.borderSize + textBorder), 532);
 		ctx.fillText("Quit", ((this.width) / 2) + 10, 532);
@@ -71,11 +87,11 @@ var SideBar = function () {
 		// Logo Box TODO!! REMOVE THIS WHEN THE LOGO IS ADDED!!!
 		ctx.strokeRect(this.borderSize, this.borderSize, this.width - (2 * this.borderSize), 80);
 		// Score and info box
-		ctx.fillRect(this.borderSize, 100, this.width - (2 * this.borderSize), 170);
+		ctx.fillRect(this.borderSize, 100, this.width - (2 * this.borderSize), 200);
 		// Towers box
-		ctx.fillRect(this.borderSize, 280, this.width - 2 * this.borderSize, 165);
+		ctx.fillRect(this.borderSize, 310, this.width - 2 * this.borderSize, 165);
 		// Next Wave box
-		ctx.fillRect(this.borderSize, 450, this.width - 2 * this.borderSize, 60);
+		ctx.fillRect(this.borderSize, 480, this.width - 2 * this.borderSize, 30);
 		// Pause button
 		ctx.fillRect(this.borderSize, 515, (this.width - 30) / 2, 20);
 		// Quit button
@@ -93,14 +109,14 @@ var SideBar = function () {
 		this.quitButtonY2 = this.quitButtonY1 + (2 * this.borderSize);
 		this.nextButtonX1 = this.borderSize;
 		this.nextButtonX2 = this.nextButtonX1 + this.width - 2 * this.borderSize;
-		this.nextButtonY1 = 450;
-		this.nextButtonY2 = this.nextButtonY1 + 60;
+		this.nextButtonY1 = 480;
+		this.nextButtonY2 = this.nextButtonY1 + 30;
 
 		// Tower borders
-		ctx.strokeRect(20, 310, 60, 60);
-		ctx.strokeRect(20, 375, 60, 60);
-		ctx.strokeRect(((this.width - 10) / 2) + 10, 310, 60, 60);
-		ctx.strokeRect(((this.width - 10) / 2) + 10, 375, 60, 60);
+		ctx.strokeRect(20, 340, 60, 60);
+		ctx.strokeRect(20, 405, 60, 60);
+		ctx.strokeRect(((this.width - 10) / 2) + 10, 340, 60, 60);
+		ctx.strokeRect(((this.width - 10) / 2) + 10, 405, 60, 60);
 		ctx.restore();
 	};
 
@@ -111,6 +127,7 @@ var SideBar = function () {
 		ctx.fillText(this.wavesLeftLabel, 70, 180);
 		ctx.fillText(this.enemiesLeftLabel, 70, 220);
 		ctx.fillText(this.goldLabel, 70, 260);
+		ctx.fillText(this.livesLabel, 70, 295);
 	};
 
 	this.repaint = function (ctx, y, label) {
@@ -142,6 +159,11 @@ var SideBar = function () {
 		this.goldLabel += amount;
 		this.repaint(this.ctx, 260, this.goldLabel);
 	};
+
+	this.updateLives = function () {
+		this.livesLabel -= 1;
+		this.repaint(this.ctx, 295);
+	}
 
 	this.checkButton = function (x, y) {
 		if (x > this.pauseButtonX1 && x < this.pauseButtonX2 &&

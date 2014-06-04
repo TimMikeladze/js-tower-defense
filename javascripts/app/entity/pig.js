@@ -20,6 +20,7 @@ var Pig = function (sprite, position, speed, width, height, scale) {
 			this.position = this.position.clone().set(this.position.x - this.width / 2, this.position.y - this.height / 2);
 		} else {
 			this.destroy = true;
+			engine.sideBar.updateLives();
 		}
 	};
 
