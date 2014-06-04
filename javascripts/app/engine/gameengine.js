@@ -1,7 +1,6 @@
-var GameEngine = function (gameCanvas, sideCanvas, socket) {
+var GameEngine = function (gameCanvas, sideCanvas) {
 	this.gameCanvas = gameCanvas;
 	this.sideCanvas = sideCanvas;
-	this.socket = socket;
 
 	this.gameID = null;
 	this.time = null;
@@ -33,7 +32,6 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 		this.enemyQueue = new EnemyQueue(this, this.map.path);
 
 		this.startInput();
-		this.setSocketEventHandler();
 	};
 
 	this.empty = function () {

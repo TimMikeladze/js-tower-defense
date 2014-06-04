@@ -15,7 +15,6 @@ Require.addLibrary("howler", ["howler.min"]);
 
 Require.addScript("util", ["prototypes", "logging"]);
 Require.addScript("math", ["bezier", "vector2", "random"]);
-Require.addScript("networking", ["connection"]);
 Require.addScript("map", ["map", "tile"]);
 Require.addScript("menus", ["menubutton", "sidebar"]);
 Require.addScript("engine", ["time", "collisions", "funds", "gameengine", "input", "socketevents", "enemyqueue"]);
@@ -76,10 +75,7 @@ Require.load(function () {
 
 		var sideCanvas = new Canvas("side_canvas");
 
-		var connection = new Connection(SERVER_URL, SERVER_PORT, false);
-		connection.connect();
-
-		var engine = new GameEngine(gameCanvas, sideCanvas, connection.socket);
+		var engine = new GameEngine(gameCanvas, sideCanvas);
 
 		engine.init();
 		engine.start();
