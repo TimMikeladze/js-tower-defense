@@ -41,14 +41,10 @@ var SideBar = function () {
 	this.initStaticText = function (ctx) {
 		var textBorder = 5;
 		ctx.save();
-		// Title
-		//ctx.font = "30px BadaBoom";
-		ctx.drawImage(Require.getImage("menu/mini_logo.png"), 7, 20);
-		/*ctx.fillText("Tower", 40, 35);
-		ctx.fillText("Defense", 40, 60);
-		ctx.fillText("Logo", 40, 85);*/
-		// Score, Wave, Towers Left, Gold
+		// Title Logo
+		ctx.drawImage(Require.getImage("menu/mini_log	o.png"), 7, 20);
 
+		// Score, Wave, Towers Left, Gold
 		ctx.font = "16pt BadaBoom";
 		ctx.fillText("Score:", (this.borderSize + textBorder), 120);
 		ctx.fillText("Wave:", (this.borderSize + textBorder), 160);
