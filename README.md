@@ -1,27 +1,31 @@
-[ ] use menu drawn
-
-[ ] adding more birds and pigs, trivial for the most part, just need sprites.
+[ ] adding more birds (4) and pigs (?)
 
 [ ] add damage and health to pigs
 
-[ ] get high scores functional (we have the button set up already)
+[ ] get high scores functional 
 
-[ ] limit the number of towers u can place somehow (by points or something)
+[ ] get points by killing piggies (different number of points for each type)
 
-[x] get points by killing piggies
-
-[ ] lose points by placing towers
+[ ] different price for each tower
 
 [ ] sound
 
-[ ] enemy queue for different levels
+[ ] different levels(maps) for enemy queue
 
 [ ] Maps, improve tiles and make more maps
 
-[ ] Downtime between levels to place towers, button to send next wave when player is ready
+[ ] disable/enable next wave button when needed 
 
-[ ] Prices for each tower
+[ ] get lives functional
 
-[ ] lives
+[ ] loading screen
 
-[ ] functioning sidebar
+[ ] wave management
+
+[ ] variable difficulty for each level (weaker/stronger types of pigs)
+
+[ ] selection of towers from side bar (maybe have them black/white if not available and in color when available)
+
+[ ] game over screen
+
+[ ] quit button needs to work
