@@ -5,7 +5,7 @@ var Pig = function (sprite, position, speed, width, height, scale) {
 	this.state = Pig.IDLING;
 	this.path = null;
 	this.moveTime = null;
-	this.health = 300;
+	this.health = 200;
 	this.currentPathIndex = 0;
 
 	var renderParent = this.render;
