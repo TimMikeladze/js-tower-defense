@@ -44,6 +44,38 @@ Require.load(function () {
 	scoresButton.bindButton("high_scores_button", function () {
 		scoresArea.style.display = "block";
 		menuArea.style.display = "none";
+		ajax.get("http://71.19.151.5/highscores/get_highscores.php", function (response) {
+  			log(response);
+  			var json = JSON.parse(response);
+  			log(json);
+  			// enforce number of high scores at 6
+  			var length;
+  			if (json.length > 6) {
+  				length = 6;
+  			} else {
+  				length = json.length;
+  			}
+
+  			for(var i = 0; i < length; i++) {
+    			var obj = json[i];
+    			var tableRef = document.getElementById('scoreTable').getElementsByTagName('tbody')[0];
+
+  				// Insert a row in the table at row index 0
+  				var newRow   = tableRef.insertRow(tableRef.rows.length);
+
+  				// Insert a cell in the row at index 0
+  				var newCell  = newRow.insertCell(0);
+  				var newCell2 = newRow.insertCell(1);
+
+  				// Append a text node to the cell
+  				var newText  = document.createTextNode(obj.Name);
+  				var newText2 = document.createTextNode(obj.Score);
+  				newCell.appendChild(newText);
+  				newCell2.appendChild(newText2);
+    			log(obj.Name);
+			}
+
+ 		});
 	});
 
 	var backButton2 = new MenuButton();
