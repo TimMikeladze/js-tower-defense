@@ -37,9 +37,9 @@ GameEngine.prototype.startInput = function () {
 
 	this.sideCanvas.addEventListener("click", function (e) {
 		that.click = getClickedPoint(e, that.sideCanvas);
-
-		that.sideBar.checkButton(that.click.x, that.click.y);
-		
+		if (!that.pauseFlag) {
+			that.sideBar.checkButton(that.click.x, that.click.y);
+		}
 	}, false);
 
 	window.addEventListener("keydown", function (e) {

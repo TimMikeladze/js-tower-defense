@@ -58,5 +58,6 @@ img { margin-bottom: 0px; }
 #side_canvas {
 	border: 0px solid red;
 	float: right;
-	background-color: cornflowerblue;
+	background-image: url('../assets/img/canvasbg/bg3.png');
+	background-position:bottom right; 
 }
