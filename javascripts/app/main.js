@@ -12,6 +12,7 @@ Require.setFilesPath("assets");
 Require.addLibrary("timer", ["timer"]);
 Require.addLibrary("socket.io", ["socket.io.min"]);
 Require.addLibrary("howler", ["howler.min"]);
+Require.addLibrary("ajax", ["ajax"]);
 
 Require.addScript("util", ["prototypes", "logging"]);
 Require.addScript("math", ["bezier", "vector2", "random"]);
@@ -80,6 +81,7 @@ Require.load(function () {
 		engine.init();
 		engine.start();
 	});
+
 
 });
 

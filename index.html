@@ -19,7 +19,7 @@
 			</canvas>
 			<canvas id="side_canvas" width="180" height ="540">
 			</canvas>
-			<div class="clear">l</div>
+			<div class="clear"></div>
 		</div>
 
 		<div id="menu_area" class="area">
@@ -57,51 +57,6 @@
 
 		<div id="scores_area" class="area">
 			<img class="menu_title" src="assets/img/menu/highscores_title.png">
-			<body onLoad="loadData('71.19.151.5/highscores/get_highscores.php')">
-			<script type="text/javascript" >
-
-			var myRequest;
-
-			function loadData(url) {
-
-				if (window.XMLHttpRequest) {
-
-					myRequest = new XMLHttpRequest();
-
-				} else {
-
-					myRequest = new ActiveXObject("Microsoft.XMLHTTP");
-
-				}
-				myRequest.open("GET", url, true);
-
-				myRequest.send(null);
-
-				myRequest.onreadystatechange = getData;
-
-			}
-
-			//This function handles the server response
-
-			function getData() {
-
-				var myHeader = document.getElementById("scores_area");
-
-				if (myRequest.readyState ===4) {
-
-					if (myRequest.status === 200) {
-
-						var text = myRequest.responseText;
-
-						myHeader.firstChild.nodeValue = text;
-
-					}
-
-				}
-
-			}
-
-			</script>
 			<br/>
 			<img id="back_button2"
 				src="assets/img/menu/back0.png"
