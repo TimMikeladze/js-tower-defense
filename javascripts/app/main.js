@@ -23,7 +23,6 @@ Require.addScript("graphics", ["canvas", "animation", "animator"]);
 Require.addScript("entity", ["entity", "bird", "pig", "redbird", "greenpig", "projectile", "redbirdprojectile"]);
 
 Require.addImage("pigs", ["pig0.png"]);
-Require.addImage("pigs", ["testpig.png"]);
 Require.addImage("birds", ["rbird1.png"]);
 Require.addImage("canvasbg", ["bg1.png"]);
 Require.addImage("menu", ["paused_title.png", "mini_logo.png"]);
