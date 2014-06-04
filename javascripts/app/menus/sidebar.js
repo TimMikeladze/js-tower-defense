@@ -41,22 +41,23 @@ var SideBar = function () {
 		var textBorder = 5;
 		ctx.save();
 		// Title
-		ctx.font = "30px Verdana";
-		ctx.fillText("Tower", 40, 35);
+		//ctx.font = "30px BadaBoom";
+		ctx.drawImage(Require.getImage("menu/mini_logo.png"), 9, 20);
+		/*ctx.fillText("Tower", 40, 35);
 		ctx.fillText("Defense", 40, 60);
-		ctx.fillText("Logo", 40, 85);
+		ctx.fillText("Logo", 40, 85);*/
 		// Score, Wave, Towers Left, Gold
-		ctx.font = "20px Verdana";
+		ctx.font = "22px BadaBoom";
 		ctx.fillText("Score:", (this.borderSize + textBorder), 120);
 		ctx.fillText("Wave:", (this.borderSize + textBorder), 160);
-		ctx.fillText("Left:", (this.borderSize + textBorder), 200);
+		ctx.fillText("Remaining:", (this.borderSize + textBorder), 200);
 		ctx.fillText("Gold:", (this.borderSize + textBorder), 240);
 		// Towers
 		ctx.fillText("Towers:", (this.borderSize + textBorder), 300);
 		// Next button
-		ctx.font = "27px Verdana";
+		ctx.font = "30px BadaBoom";
 		ctx.fillText("Send Wave", (this.borderSize + textBorder), 490);
-		ctx.font = "20px Verdana";
+		ctx.font = "22px BadaBoom";
 		// Pause, Quit
 		ctx.fillText("Pause", (this.borderSize + textBorder), 532);
 		ctx.fillText("Quit", ((this.width) / 2) + 10, 532);
