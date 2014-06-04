@@ -17,7 +17,7 @@ Require.addScript("util", ["prototypes", "logging"]);
 Require.addScript("math", ["bezier", "vector2", "random"]);
 Require.addScript("map", ["map", "tile"]);
 Require.addScript("menus", ["menubutton", "sidebar"]);
-Require.addScript("engine", ["time", "collisions", "funds", "gameengine", "input", "socketevents", "enemyqueue"]);
+Require.addScript("engine", ["time", "collisions", "funds", "gameengine", "input", "enemyqueue"]);
 Require.addScript("graphics", ["canvas", "animation", "animator"]);
 Require.addScript("entity", ["entity", "bird", "pig", "redbird", "greenpig", "projectile", "redbirdprojectile"]);
 
