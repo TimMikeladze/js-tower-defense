@@ -1,4 +1,5 @@
 <?
+header('Access-Control-Allow-Origin: *'); 
 require("init.php");
 
 G::$DB->query("SELECT ID, Name, Score FROM highscores ORDER BY Score DESC");

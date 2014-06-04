@@ -1,4 +1,5 @@
 <?
+header('Access-Control-Allow-Origin: *'); 
 require("init.php");
 
 $Name = db_string($_POST['name']);
