@@ -28,4 +28,4 @@
 
 [ ] quit button needs to work
 
-[ ] figure out why red bird kills 2 pigs at once sometimes
+[ ] add levels to sidebar
