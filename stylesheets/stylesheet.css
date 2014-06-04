@@ -6,8 +6,13 @@ canvas {
 img { margin-bottom: 0px; }
 
 @font-face { 
-	font-family: 'BadaBoom BB';
+	font-family: 'BadaBoom';
   	src: url('../assets/fonts/BADABB__.ttf');
+}
+
+@font-face { 
+	font-family: 'FeastOfFlesh';
+  	src: url('../assets/fonts/FEASFBRG.ttf');
 }
 
 .container {
@@ -32,7 +37,7 @@ img { margin-bottom: 0px; }
 }
 
 #scores_area { 
-	font-family: 'BadaBoom BB'; 
+	font-family: 'BadaBoom'; 
 	font-size: 40px;
   	letter-spacing: 2px;
 }
@@ -42,6 +47,10 @@ img { margin-bottom: 0px; }
 #back_button, #back_button2 { margin-top: 2%; }
 
 #game_canvas {
+	font-family: 'BadaBoom'; 
+	font-size: 80px;
+	color: #FFFFFF;
+  	letter-spacing: 2px;
 	border: 0px solid red;
 	float: left;
 }

@@ -10,8 +10,10 @@ GameEngine.prototype.startInput = function () {
 
 	this.gameCanvas.addEventListener("click", function (e) {
 		that.click = getClickedPoint(e, that.gameCanvas);
+		if ( that.pauseFlag ) {
+			log("clicked on pause: " + that.click.x + " "  + that.click.y);
 
-		if (that.floatingEntity && that.floatingEntity.canPlace(that)) {
+		} else if (!that.pauseFlag && that.floatingEntity && that.floatingEntity.canPlace(that)) {
 			that.floatingEntity.placeBird();
 			that.addBird(that.floatingEntity);
 			that.floatingEntity = null;
@@ -42,6 +44,8 @@ GameEngine.prototype.startInput = function () {
 
 	window.addEventListener("keydown", function (e) {
 		e.preventDefault();
-		that.pauseFlag = e.keyCode === 80 && !that.pauseFlag ? true : false;
+		if (e.keyCode === 80) {
+			that.pauseFlag = !that.pauseFlag;
+		}
 	}, false);
 };

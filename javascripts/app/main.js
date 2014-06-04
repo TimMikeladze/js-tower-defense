@@ -23,6 +23,8 @@ Require.addScript("entity", ["entity", "bird", "pig", "redbird", "greenpig", "pr
 
 Require.addImage("pigs", ["pig0.png"]);
 Require.addImage("birds", ["rbird1.png"]);
+Require.addImage("canvasbg", ["bg1.png"]);
+Require.addImage("menu", ["resume0.png", "resume1.png", "quit0.png", "quit1.png"]);
 //Require.addFile("maps", ["map1.json"]);
 
 Require.load(function () {

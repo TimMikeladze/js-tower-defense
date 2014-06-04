@@ -80,7 +80,26 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 
 	this.pause = function () {
 		log("paused");
-		//render your pause menu here
+
+		/*ctx.fillStyle = "#FFFFFF";
+		ctx.strokeStyle = "#000000";
+		ctx.letterSpacing = "2";
+		ctx.font = "normal 70px FeastOfFlesh";
+		ctx.textAlign = "center";
+		ctx.textBaseline = "middle";*/
+		this.gameCanvas.clear();
+		var ctx = this.gameCanvas.context;
+		ctx.drawImage(Require.getImage("canvasbg/bg1.png"), 0, 0);
+		var img1 = Require.getImage("menu/resume0.png");
+		var img2 = Require.getImage("menu/quit0.png");
+		ctx.drawImage(img1, gameCanvas.width/2 - img1.width/3, gameCanvas.height/2-60);
+		ctx.drawImage(img2, gameCanvas.width/2 - img2.width/3, gameCanvas.height/2+0);
+		
+		//ctx.lineWidth = "3";
+		//ctx.strokeText("Resume", gameCanvas.width/2, gameCanvas.height/2-30);
+		//ctx.fillText("Resume", gameCanvas.width/2, gameCanvas.height/2-30);		
+		//ctx.fillText("Quit", gameCanvas.width/2, gameCanvas.height/2+30);
+		//ctx.strokeText("Quit", gameCanvas.width/2, gameCanvas.height/2+30);
 	};
 
 	this.update = function () {
