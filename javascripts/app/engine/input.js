@@ -1,4 +1,4 @@
-GameEngine.prototype.startInput = function (engine) {
+GameEngine.prototype.startInput = function () {
 	var that = this;
 
 	var getClickedPoint = function (e, currentCanvas) {
@@ -14,7 +14,7 @@ GameEngine.prototype.startInput = function (engine) {
 			log("clicked on pause: " + that.click.x + " "  + that.click.y);
 
 		} else if (!that.pauseFlag && that.floatingEntity && that.floatingEntity.canPlace(that)) {
-			that.floatingEntity.placeBird(engine);
+			that.floatingEntity.placeBird(that);
 			that.addBird(that.floatingEntity);
 			that.floatingEntity = null;
 		}
