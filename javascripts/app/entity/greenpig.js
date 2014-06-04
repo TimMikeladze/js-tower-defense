@@ -23,18 +23,13 @@ var GreenPig = function (position) {
 		
 		if (this.health <= 100) {
 			this.state = Pig.BADLY_HURT;
+			this.currentFrames = this.badlyHurtFrames;
 		} else if (this.health <= 200) {
 			this.state = Pig.HURT;
+			this.currentFrames = this.hurtFrames;
 		} else {
 			this.state = Pig.IDLING;
-		}
-
-		if (this.state == Pig.IDLING) {
 			this.currentFrames = this.idlingFrames;
-		} else if (this.state == Pig.HURT) {
-			this.currentFrames = this.hurtFrames;
-		} else if (this.state == Pig.BADLY_HURT) {
-			this.currentFrames = this.badlyHurtFrames;
 		}
 
 		this.animator.tick(time, this.animation, this.currentFrames);
