@@ -60,19 +60,20 @@ var Bird = function (sprite, position, fireRadius, width, height, scale) {
 				}
 			});
 
-			var deltaX = that.minPig.position.x - that.position.x;
-			var deltaY = that.minPig.position.y - that.position.y;
-
-			that.rotationAngle = 360 - (Math.atan2(deltaX, deltaY) * 180 / Math.PI) - 90;
-		}
-
-		if (this.position) {
-			//var inRange = this.fireRadius >= Math.abs(this.minPig.position.distanceTo(this.position));
-			var inRange = true;
-			if (this.minPig && inRange && (this.lastShotTime + this.shotInterval <= time.stamp)) {
-				this.lastShotTime = time.stamp;
-				this.fire(this.minPig.position, engine);
-			}
+			if (this.minPig && this.position) {
+				var inRange = this.fireRadius >= Math.abs(this.minPig.position.distanceTo(that.position));
+				if (inRange) {
+					var deltaX = that.minPig.position.x - that.position.x;
+					var deltaY = that.minPig.position.y - that.position.y;
+					
+					that.rotationAngle = 360 - (Math.atan2(deltaX, deltaY) * 180 / Math.PI) - 90;
+					
+					if (this.lastShotTime + this.shotInterval <= time.stamp) {
+						this.lastShotTime = time.stamp;
+						this.fire(this.minPig.position, engine);
+					}
+				}
+			}		
 		}
 	};
 

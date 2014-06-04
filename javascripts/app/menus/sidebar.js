@@ -10,7 +10,7 @@ var SideBar = function () {
 	this.scoreLabel = 0;
 	this.wavesLeftLabel = 0;
 	this.enemiesLeftLabel = 0;
-	this.goldLabel = 0;
+	this.goldLabel = 100;
 	// Buttons
 	this.pauseButtonX1 = null;
 	this.pauseButtonX2 = null;
@@ -137,7 +137,7 @@ var SideBar = function () {
 	};
 
 	this.updateGold = function () {
-		this.goldLabel += 100;
+		this.goldLabel += 10;
 		this.repaint(this.ctx, 260, this.goldLabel);
 	};
 
