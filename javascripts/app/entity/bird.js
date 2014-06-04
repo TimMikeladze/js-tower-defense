@@ -66,15 +66,15 @@ var Bird = function (sprite, position, fireRadius, price, width, height, scale) 
 				if (inRange) {
 					var deltaX = that.minPig.position.x - that.position.x;
 					var deltaY = that.minPig.position.y - that.position.y;
-					
+
 					that.rotationAngle = 360 - (Math.atan2(deltaX, deltaY) * 180 / Math.PI) - 90;
-					
+
 					if (this.lastShotTime + this.shotInterval <= time.stamp) {
 						this.lastShotTime = time.stamp;
 						this.fire(this.minPig.position, engine);
 					}
 				}
-			}		
+			}
 		}
 	};
 
@@ -92,12 +92,12 @@ var Bird = function (sprite, position, fireRadius, price, width, height, scale) 
 		var tiles = engine.map.tiles;
 		var that = this;
 		var answer = true;
-		
-		if (engine.sideBar.goldLabel < that.price) {
+
+		if (engine.sideBar.goldLabel < this.price) {
 			answer = false;
 			return;
 		}
-		
+
 		tiles.forEach(function (tile) {
 			if (!((tile.y + tile.height < that.position.y)
 				|| (tile.y > that.position.y + that.height)

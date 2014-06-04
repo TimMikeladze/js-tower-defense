@@ -11,6 +11,7 @@ Require.setFilesPath("assets");
 
 Require.addLibrary("timer", ["timer"]);
 Require.addLibrary("socket.io", ["socket.io.min"]);
+Require.addLibrary("howler", ["howler.min"]);
 
 Require.addScript("util", ["prototypes", "logging"]);
 Require.addScript("math", ["bezier", "vector2", "random"]);
@@ -57,7 +58,7 @@ Require.load(function () {
 		creditsArea.style.display = "block";
 		menuArea.style.display="none";
 	});
-	
+
 	var backButton = new MenuButton();
 	backButton.bindButton("back_button", function() {
 		creditsArea.style.display = "none";
