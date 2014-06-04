@@ -17,7 +17,6 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 	this.enemyQueue = null;
 
 	this.pauseFlag = false;
-	this.pauseButtons = [];
 
 	this.map = null;
 	this.sideBar = null;
@@ -68,21 +67,9 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 		})();
 	};
 
-	this.makeButtons = function() {		
-		var img1 = Require.getImage("menu/resume0.png");
-		var img2 = Require.getImage("menu/quit0.png");
-		
-		var btn = new PauseButton("menu/resume0.png", gameCanvas.width/2 - img1.width/3,
-			 gameCanvas.height/2, 0, -60)
-		var btn2 = new PauseButton("menu/quit0.png", gameCanvas.width/2 - img1.width/3,
-			 gameCanvas.height/2, 0, 0)
-		this.pauseButtons.push(btn);
-		this.pauseButtons.push(btn2);
-	}
-
 	this.loop = function () {
 		this.time.tick();
-		if (this.pauseFlag === false) {
+		if (!this.pauseFlag) {
 			this.update();
 			this.render();
 		} else {
@@ -96,7 +83,19 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 		this.gameCanvas.clear();
 
 		var ctx = this.gameCanvas.context;
+		var img = Require.getImage("menu/paused_title.png");
+
+		var x = this.gameCanvas.width/2;
+		var y = this.gameCanvas.height/2;
+
 		ctx.drawImage(Require.getImage("canvasbg/bg1.png"), 0, 0);
+		ctx.drawImage(img, x - img.width/3, y - img.height);
+
+     	ctx.font = "28pt BadaBoom";
+     	ctx.fillStyle = "#000";
+     	ctx.textAlign = "center";
+     	ctx.textBaseline = "top";
+      	ctx.fillText("press P to unpause", x + 30, y + 20);
 	};
 
 	this.update = function () {
