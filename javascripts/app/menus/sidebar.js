@@ -5,7 +5,8 @@ var SideBar = function () {
 	this.gameEngine = null;
 	this.borderSize = 10;
 	this,width = null;
-	this.height = null;;
+	this.height = null;
+	this.background = "rgba(34,139,34, .5)";
 	// Score,waves, ememies and gold variables
 	this.scoreLabel = 0;
 	this.wavesLeftLabel = 0;
@@ -65,7 +66,7 @@ var SideBar = function () {
 	this.initShapes = function (ctx) {
 		ctx.save();
 		ctx.globalAlpha = 1;
-		ctx.fillStyle = "rgba(34,139,34, .5)";
+		ctx.fillStyle = this.background;
 		// Logo Box TODO!! REMOVE THIS WHEN THE LOGO IS ADDED!!!
 		ctx.strokeRect(this.borderSize, this.borderSize, this.width - (2 * this.borderSize), 80);
 		// Score and info box
@@ -115,7 +116,7 @@ var SideBar = function () {
 		ctx.clearRect(this.borderSize, y - 20, this.width - (2 * this.borderSize), 20);
 		ctx.save();
 		ctx.globalAlpha = 1;
-		ctx.fillStyle = "rgba(34,139,34, .5)";
+		ctx.fillStyle = this.background;
 		ctx.fillRect(this.borderSize, y - 20, this.width - (2 * this.borderSize), 20);
 		ctx.restore();
 		ctx.fillText(label, 70, y);
