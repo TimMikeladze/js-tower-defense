@@ -33,7 +33,7 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 
 		this.enemyQueue = new EnemyQueue(this, this.map.path);
 
-		this.startInput();
+		this.startInput(this);
 		this.setSocketEventHandler();
 	};
 
@@ -94,7 +94,6 @@ var GameEngine = function (gameCanvas, sideCanvas, socket) {
 	this.pause = function () {
 		log("paused");
 		this.gameCanvas.clear();
-
 
 		var ctx = this.gameCanvas.context;
 		ctx.drawImage(Require.getImage("canvasbg/bg1.png"), 0, 0);

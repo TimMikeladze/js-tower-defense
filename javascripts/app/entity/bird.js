@@ -1,4 +1,4 @@
-var Bird = function (sprite, position, fireRadius, width, height, scale) {
+var Bird = function (sprite, position, fireRadius, price, width, height, scale) {
 	Entity.call(this, sprite, position, width, height, scale);
 
 	this.alpha = 0.5;
@@ -11,6 +11,7 @@ var Bird = function (sprite, position, fireRadius, width, height, scale) {
 	this.fireRadius = fireRadius;
 	this.lastShotTime = null;
 	this.shotInterval = 3000;
+	this.price = price;
 
 	var renderParent = this.render;
 	this.render = function (canvas) {
@@ -81,16 +82,22 @@ var Bird = function (sprite, position, fireRadius, width, height, scale) {
 
 	};
 
-	this.placeBird = function () {
+	this.placeBird = function (engine) {
 		this.alpha = 1;
 		this.state = Bird.IDLING;
+		engine.sideBar.updateGold(-this.price);
 	};
 
 	this.canPlace = function (engine) {
 		var tiles = engine.map.tiles;
 		var that = this;
 		var answer = true;
-
+		
+		if (engine.sideBar.goldLabel < that.price) {
+			answer = false;
+			return;
+		}
+		
 		tiles.forEach(function (tile) {
 			if (!((tile.y + tile.height < that.position.y)
 				|| (tile.y > that.position.y + that.height)

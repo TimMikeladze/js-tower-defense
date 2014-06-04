@@ -136,8 +136,8 @@ var SideBar = function () {
 		this.repaint(this.ctx, 220, this.enemiesLeftLabel);
 	};
 
-	this.updateGold = function () {
-		this.goldLabel += 10;
+	this.updateGold = function (amount) {
+		this.goldLabel += amount;
 		this.repaint(this.ctx, 260, this.goldLabel);
 	};
 
