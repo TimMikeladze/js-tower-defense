@@ -12,7 +12,7 @@ var SideBar = function () {
 	this.wavesLeftLabel = 0;
 	this.enemiesLeftLabel = 0;
 	this.goldLabel = 100;
-	this.livesLabel = 20;
+	this.livesLabel = 5;
 	// Buttons
 	this.pauseButtonX1 = null;
 	this.pauseButtonX2 = null;
@@ -144,8 +144,8 @@ var SideBar = function () {
 
 	this.updateLives = function () {
 		this.livesLabel -= 1;
-		this.repaint(this.ctx, 295);
-	}
+		this.repaint(this.ctx, 295, this.livesLabel);
+	};
 
 	this.checkButton = function (x, y) {
 		if (x > this.pauseButtonX1 && x < this.pauseButtonX2 &&
