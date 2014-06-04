@@ -42,15 +42,15 @@ var SideBar = function () {
 		var textBorder = 5;
 		ctx.save();
 		// Title Logo
-		ctx.drawImage(Require.getImage("menu/mini_log	o.png"), 7, 20);
+		ctx.drawImage(Require.getImage("menu/mini_logo.png"), 7, 10);
 
 		// Score, Wave, Towers Left, Gold
-		ctx.font = "16pt BadaBoom";
-		ctx.fillText("Score:", (this.borderSize + textBorder), 120);
-		ctx.fillText("Wave:", (this.borderSize + textBorder), 160);
-		ctx.fillText("Remaining:", (this.borderSize + textBorder), 199);
-		ctx.fillText("Gold:", (this.borderSize + textBorder), 238);
-		ctx.fillText("Lives:", (this.borderSize + textBorder), 277);
+		ctx.font = "15pt BadaBoom";
+		ctx.fillText("Score:", (this.borderSize + textBorder), 100);
+		ctx.fillText("Wave:", (this.borderSize + textBorder), 140);
+		ctx.fillText("Remaining:", (this.borderSize + textBorder), 180);
+		ctx.fillText("Gold:", (this.borderSize + textBorder), 225);
+		ctx.fillText("Lives:", (this.borderSize + textBorder), 265);
 
 		// Towers
 		ctx.fillText("Towers:", (this.borderSize + textBorder), 330);
@@ -69,7 +69,7 @@ var SideBar = function () {
 		ctx.globalAlpha = 1;
 		ctx.fillStyle = this.background;
 		// Score and info box
-		ctx.fillRect(this.borderSize, 100, this.width - (2 * this.borderSize), 200);
+		ctx.fillRect(this.borderSize, 80, this.width - (2 * this.borderSize), 220);
 		// Towers box
 		ctx.fillRect(this.borderSize, 310, this.width - 2 * this.borderSize, 165);
 		// Next Wave box
@@ -105,11 +105,11 @@ var SideBar = function () {
 	this.initValues = function (ctx) {
 		ctx.font = "20px Verdana";
 		// Init Score, Wave, Left, Gold
-		ctx.fillText(this.scoreLabel, 70, 140);
-		ctx.fillText(this.wavesLeftLabel, 70, 180);
-		ctx.fillText(this.enemiesLeftLabel, 70, 220);
-		ctx.fillText(this.goldLabel, 70, 260);
-		ctx.fillText(this.livesLabel, 70, 295);
+		ctx.fillText(this.scoreLabel, 70, 120);
+		ctx.fillText(this.wavesLeftLabel, 70, 160);
+		ctx.fillText(this.enemiesLeftLabel, 70, 205);
+		ctx.fillText(this.goldLabel, 70, 245);
+		ctx.fillText(this.livesLabel, 70, 290);
 	};
 
 	this.repaint = function (ctx, y, label) {
@@ -124,27 +124,27 @@ var SideBar = function () {
 
 	this.updateScore = function () {
 		this.scoreLabel += 1;
-		this.repaint(this.ctx, 140, this.scoreLabel);
+		this.repaint(this.ctx, 120, this.scoreLabel);
 	};
 
 	this.updateWaves = function () {
 		this.wavesLeftLabel += 1;
-		this.repaint(this.ctx, 180, this.wavesLeftLabel);
+		this.repaint(this.ctx, 160, this.wavesLeftLabel);
 	};
 
 	this.updateEnemiesLeft = function (left) {
 		this.enemiesLeftLabel += left;
-		this.repaint(this.ctx, 220, this.enemiesLeftLabel);
+		this.repaint(this.ctx, 205, this.enemiesLeftLabel);
 	};
 
 	this.updateGold = function (amount) {
 		this.goldLabel += amount;
-		this.repaint(this.ctx, 260, this.goldLabel);
+		this.repaint(this.ctx, 245, this.goldLabel);
 	};
 
 	this.updateLives = function () {
 		this.livesLabel -= 1;
-		this.repaint(this.ctx, 295, this.livesLabel);
+		this.repaint(this.ctx, 290, this.livesLabel);
 	};
 
 	this.checkButton = function (x, y) {
@@ -155,6 +155,7 @@ var SideBar = function () {
 		else if (x > this.quitButtonX1 && x < this.quitButtonX2 &&
 			y > this.quitButtonY1 && y < this.quitButtonY2) {
 			console.log("quit");
+			this.gameEngine.init();
 		}
 		else if (x > this.nextButtonX1 && x < this.nextButtonX2 &&
 			y > this.nextButtonY1 && y < this.nextButtonY2) {
