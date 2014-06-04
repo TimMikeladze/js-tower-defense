@@ -5,23 +5,36 @@ var GreenPig = function (position) {
 	this.animator.setDefaultFrame(0);
 
 	this.idlingFrames = [0, 1, 2];
+	this.hurtFrames = [3, 4, 5];
+	this.badlyHurtFrames = [6, 7, 8];
 
 	var renderParent = this.render;
 	this.render = function (canvas) {
 		renderParent.call(this, canvas);
-		if (this.state == Pig.IDLING) {
+		if (this.state == Pig.IDLING || this.state == Pig.HURT || this.state == Pig.BADLY_HURT) {
 			var position = this.position.clone();
 			canvas.context.drawFrame(this.sprite, this.animation.getFrame(this.animator.currentFrameIndex()), position, this.width, this.height);
-		}
+		} 
 	};
-
 
 	var tickParent = this.tick;
 	this.tick = function (time, engine) {
 		this.time = this.time == null ? time.stamp : this.time;
+		
+		if (this.health <= 100) {
+			this.state = Pig.BADLY_HURT;
+		} else if (this.health <= 200) {
+			this.state = Pig.HURT;
+		} else {
+			this.state = Pig.IDLING;
+		}
 
 		if (this.state == Pig.IDLING) {
 			this.currentFrames = this.idlingFrames;
+		} else if (this.state == Pig.HURT) {
+			this.currentFrames = this.hurtFrames;
+		} else if (this.state == Pig.BADLY_HURT) {
+			this.currentFrames = this.badlyHurtFrames;
 		}
 
 		this.animator.tick(time, this.animation, this.currentFrames);

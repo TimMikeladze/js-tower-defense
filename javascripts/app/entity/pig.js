@@ -5,7 +5,7 @@ var Pig = function (sprite, position, speed, width, height, scale) {
 	this.state = Pig.IDLING;
 	this.path = null;
 	this.moveTime = null;
-
+	this.health = 300;
 	this.currentPathIndex = 0;
 
 	var renderParent = this.render;
@@ -29,7 +29,9 @@ var Pig = function (sprite, position, speed, width, height, scale) {
 	};
 };
 
-Pig.IDLING = 0
+Pig.IDLING = 0;
+Pig.HURT = 1;
+Pig.BADLY_HURT = 2;
 
 Pig.prototype = Object.create(Entity.prototype);
 Pig.prototype.constructor = Pig;
