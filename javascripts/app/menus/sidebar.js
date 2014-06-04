@@ -43,13 +43,13 @@ var SideBar = function () {
 		ctx.save();
 		// Title
 		//ctx.font = "30px BadaBoom";
-		ctx.drawImage(Require.getImage("menu/mini_logo.png"), 9, 20);
+		ctx.drawImage(Require.getImage("menu/mini_logo.png"), 7, 20);
 		/*ctx.fillText("Tower", 40, 35);
 		ctx.fillText("Defense", 40, 60);
 		ctx.fillText("Logo", 40, 85);*/
 		// Score, Wave, Towers Left, Gold
 
-		ctx.font = "22px BadaBoom";
+		ctx.font = "16pt BadaBoom";
 		ctx.fillText("Score:", (this.borderSize + textBorder), 120);
 		ctx.fillText("Wave:", (this.borderSize + textBorder), 160);
 		ctx.fillText("Remaining:", (this.borderSize + textBorder), 199);
@@ -59,10 +59,10 @@ var SideBar = function () {
 		// Towers
 		ctx.fillText("Towers:", (this.borderSize + textBorder), 330);
 		// Next button
-		ctx.font = "30px BadaBoom";
+		ctx.font = "20pt BadaBoom";
 		ctx.fillText("Send Wave", (this.borderSize + textBorder), 505);
-		ctx.font = "22px BadaBoom";
 		// Pause, Quit
+		ctx.font = "14pt BadaBoom";
 		ctx.fillText("Pause", (this.borderSize + textBorder), 532);
 		ctx.fillText("Quit", ((this.width) / 2) + 10, 532);
 		ctx.restore();
@@ -72,8 +72,6 @@ var SideBar = function () {
 		ctx.save();
 		ctx.globalAlpha = 1;
 		ctx.fillStyle = this.background;
-		// Logo Box TODO!! REMOVE THIS WHEN THE LOGO IS ADDED!!!
-		ctx.strokeRect(this.borderSize, this.borderSize, this.width - (2 * this.borderSize), 80);
 		// Score and info box
 		ctx.fillRect(this.borderSize, 100, this.width - (2 * this.borderSize), 200);
 		// Towers box
