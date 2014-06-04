@@ -83,10 +83,6 @@ Require.load(function () {
 	});
 
 
-	ajax.post("http://71.19.151.5/highscores/add_highscore.php", {"name": "strawberry cows", score: "700"}, function () {
-		log(this);
-	});
-
 });
 
 
