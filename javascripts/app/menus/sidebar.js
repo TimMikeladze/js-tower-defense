@@ -48,32 +48,20 @@ var SideBar = function () {
 		ctx.fillText("Defense", 40, 60);
 		ctx.fillText("Logo", 40, 85);*/
 		// Score, Wave, Towers Left, Gold
-<<<<<<< HEAD
+
 		ctx.font = "22px BadaBoom";
 		ctx.fillText("Score:", (this.borderSize + textBorder), 120);
 		ctx.fillText("Wave:", (this.borderSize + textBorder), 160);
-		ctx.fillText("Remaining:", (this.borderSize + textBorder), 200);
-		ctx.fillText("Gold:", (this.borderSize + textBorder), 240);
-=======
-		ctx.font = "18px Verdana";
-		ctx.fillText("Score:", (this.borderSize + textBorder), 119);
-		ctx.fillText("Wave:", (this.borderSize + textBorder), 158);
-		ctx.fillText("Left:", (this.borderSize + textBorder), 197);
-		ctx.fillText("Gold:", (this.borderSize + textBorder), 236);
-		ctx.fillText("Lives:", (this.borderSize + textBorder), 275);
->>>>>>> FETCH_HEAD
+		ctx.fillText("Remaining:", (this.borderSize + textBorder), 199);
+		ctx.fillText("Gold:", (this.borderSize + textBorder), 238);
+		ctx.fillText("Lives:", (this.borderSize + textBorder), 277);
+
 		// Towers
 		ctx.fillText("Towers:", (this.borderSize + textBorder), 330);
 		// Next button
-<<<<<<< HEAD
 		ctx.font = "30px BadaBoom";
-		ctx.fillText("Send Wave", (this.borderSize + textBorder), 490);
-		ctx.font = "22px BadaBoom";
-=======
-		ctx.font = "27px Verdana";
 		ctx.fillText("Send Wave", (this.borderSize + textBorder), 505);
-		ctx.font = "20px Verdana";
->>>>>>> FETCH_HEAD
+		ctx.font = "22px BadaBoom";
 		// Pause, Quit
 		ctx.fillText("Pause", (this.borderSize + textBorder), 532);
 		ctx.fillText("Quit", ((this.width) / 2) + 10, 532);
