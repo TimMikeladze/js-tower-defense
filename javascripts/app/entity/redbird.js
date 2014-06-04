@@ -30,7 +30,6 @@ var RedBird = function (position) {
 		projectile.setMaxFlightDistance(this.fireRadius);
 		projectile.fire();
 		engine.addProjectile(projectile);
-		sounds.play("firing");
 	};
 };
 
