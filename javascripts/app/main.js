@@ -20,9 +20,12 @@ Require.addScript("map", ["map", "tile"]);
 Require.addScript("menus", ["menubutton", "sidebar"]);
 Require.addScript("engine", ["time", "collisions", "funds", "gameengine", "input", "enemyqueue"]);
 Require.addScript("graphics", ["canvas", "animation", "animator"]);
-Require.addScript("entity", ["entity", "bird", "pig", "redbird", "greenpig", "projectile", "redbirdprojectile"]);
+Require.addScript("entity", ["entity", "bird", "pig", "redbird", "greenpig", "projectile", "redbirdprojectile", "mustachepig"]);
 
 Require.addImage("pigs", ["pig0.png"]);
+Require.addImage("pigs", ["pig1.png"]);
+Require.addImage("pigs", ["pig2.png"]);
+Require.addImage("pigs", ["pig3.png"]);
 Require.addImage("birds", ["rbird1.png"]);
 Require.addImage("canvasbg", ["bg1.png"]);
 Require.addImage("menu", ["paused_title.png", "mini_logo.png"]);

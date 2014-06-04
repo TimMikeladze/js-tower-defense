@@ -36,7 +36,7 @@ EnemyQueue.generateEnemies = function (path, amount) {
 	var result = [];
 
 	for (var i = 0; i < amount; i++) {
-		var enemyToAdd = new GreenPig(path[0]);
+		var enemyToAdd = new MustachePig(path[0]);
 		enemyToAdd.setPath(path);
 		result.push(enemyToAdd);
 	}
