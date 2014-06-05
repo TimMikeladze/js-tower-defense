@@ -22,22 +22,13 @@ Require.addScript("engine", ["time", "collisions", "funds", "gameengine", "input
 Require.addScript("graphics", ["canvas", "animation", "animator"]);
 Require.addScript("entity", ["entity", "bird", "pig", "redbird", "greenpig", "projectile", "redbirdprojectile", "mustachepig", "kingpig", "helmetpig", "yellowbird", "yellowbirdprojectile", "greenbird", "greenbirdprojectile", "blackbird", "blackbirdprojectile"]);
 
-Require.addImage("pigs", ["pig0.png"]);
-Require.addImage("pigs", ["pig1.png"]);
-Require.addImage("pigs", ["pig2.png"]);
-Require.addImage("pigs", ["pig3.png"]);
-Require.addImage("birds", ["rbird1.png"]);
-Require.addImage("birds", ["ybird0.png"]);
-Require.addImage("birds", ["gbird0.png"]);
-Require.addImage("birds", ["bbird0.png"]);
+Require.addImage("pigs", ["pig0.png", "pig1.png", "pig2.png", "pig3.png"]);
+Require.addImage("birds", ["rbird1.png", "ybird0.png", "gbird0.png", "bbird0.png"]);
 Require.addImage("canvasbg", ["bg1.png"]);
 Require.addImage("menu", ["paused_title.png", "mini_logo.png", "gameover_title.png"]);
 //Require.addFile("maps", ["map1.json"]);
 
-Require.addImage("towers", ["redbird.png"]);
-Require.addImage("towers", ["yellowbird.png"]);
-Require.addImage("towers", ["greenbird.png"]);
-Require.addImage("towers", ["blackbird.png"]);
+Require.addImage("towers", ["redbird.png", "yellowbird.png", "greenbird.png", "blackbird.png"]);
 
 Require.load(function () {
 	Logging.DEBUG = true;
