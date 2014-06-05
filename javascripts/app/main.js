@@ -31,10 +31,10 @@ Require.addImage("canvasbg", ["bg1.png"]);
 Require.addImage("menu", ["paused_title.png", "mini_logo.png"]);
 //Require.addFile("maps", ["map1.json"]);
 
+	
 Require.load(function () {
 	Logging.DEBUG = true;
 	Logging.VERBOSE = false;
-
 
 	var canvasArea = document.getElementById("canvas_area");
 	var menuArea = document.getElementById("menu_area");

@@ -8,6 +8,10 @@ img { margin-bottom: 0px; }
 @font-face {
 	font-family: 'BadaBoom';
   	src: url('../assets/fonts/BADABB.ttf');
+  	src: local(BadaBoom BB),
+  		url('../assets/fonts/BADABB.ttf') format('TrueType');
+  	font-weight: normal;
+  	font-style: normal;
 }
 
 .container {
