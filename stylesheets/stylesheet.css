@@ -6,10 +6,12 @@ canvas {
 img { margin-bottom: 0px; }
 
 @font-face {
-	font-family: 'BadaBoom';
-  	src: url('../assets/fonts/BADABB.ttf');
-  	src: local(BadaBoom BB),
-  		url('../assets/fonts/BADABB.ttf') format('TrueType');
+    font-family: 'BadaBoom';
+    src: url('../assets/fonts/BADABB.eot');
+    src: url('../assets/fonts/BADABB.eot') format('embedded-opentype'),
+         url('../assets/fonts/BADABB.woff') format('woff'),
+         url('../assets/fonts/BADABB.ttf') format('truetype'),
+         url('../assets/fonts/BADABB.svg#BadaBoomBBRegular') format('svg');
   	font-weight: normal;
   	font-style: normal;
 }
