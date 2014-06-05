@@ -124,14 +124,14 @@ var GameEngine = function (gameCanvas, sideCanvas) {
 		ctx.textAlign = "center";
 		ctx.textBaseline = "top";
 		//ctx.fillText("press P to unpause", x + 30, y + 20);
-	}
+	};
 
 	this.highScores = function() {
 		//ajax.post("http://71.19.151.5/highscores/add_highscore.php", {"name": "choclate cows", score: "700"}, function (response) {
   			//log(response);
  		//});
 
-	}
+	};
 
 	this.update = function () {
 		this.updateEntities(this.pigs);

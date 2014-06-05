@@ -11,8 +11,8 @@ var SideBar = function () {
 	this.scoreLabel = 0;
 	this.wavesLeftLabel = 0;
 	this.enemiesLeftLabel = 0;
-	this.level = 0;
-	this.goldLabel = 100;
+	this.level = 1;
+	this.goldLabel = 200;
 	this.livesLabel = 5;
 	// Buttons
 	this.pauseButtonX1 = null;
@@ -144,7 +144,7 @@ var SideBar = function () {
 	this.updateLevel = function () {
 		this.level += 1;
 		this.repaint(this.ctx, 205, this.level);
-	}
+	};
 
 	this.updateGold = function (amount) {
 		this.goldLabel += amount;
@@ -157,15 +157,17 @@ var SideBar = function () {
 	};
 
 	this.newWave = function () {
-		if ( this.enemiesLeftLabel == 0 ) {
-			this.gameEngine.enemyQueue.addWave(1);
+		if (this.enemiesLeftLabel <= 0) {
+			if (this.wavesLeftLabel > 10) {
+				this.wavesLeftLabel = 0;
+				this.updateLevel();
+			}
+			this.gameEngine.enemyQueue.addWave(this.wavesLeftLabel, this.level);
 			this.wavesEnabled(false);
-			console.log("dis")
-		}
-		else {
+		} else {
 			console.log("There are still enemies out there bud!");
 		}
-	}
+	};
 
 	this.wavesEnabled = function (status) {
 		if (status) {
@@ -189,7 +191,7 @@ var SideBar = function () {
 			this.ctx.fillRect(this.borderSize, 480, this.width - 2 * this.borderSize, 30);
 			this.ctx.restore();
 		}
-	}
+	};
 
 	this.checkButton = function (x, y) {
 		if (x > this.pauseButtonX1 && x < this.pauseButtonX2 &&
