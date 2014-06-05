@@ -79,7 +79,9 @@ var MapEditor = function (canvas, socket) {
 				that.tiles.push(that.floatingTile.clone());
 				that.socket.emit("addTile", that.floatingTile.clone());
 				if (that.recordingPath) {
-					that.controlPoints.push({id: that.pathID, point: that.floatingTile.getCenter()});
+					var cp = {id: that.pathID, point: that.floatingTile.getCenter()};
+					that.controlPoints.push(cp);
+					that.socket.emit("addControlPoint", cp);
 				}
 
 			}
@@ -124,9 +126,20 @@ var MapEditor = function (canvas, socket) {
 			that.tiles.push(new Tile(recievedTile.key, recievedTile.x, recievedTile.y, recievedTile.width, recievedTile.height, recievedTile.scale, true))
 		});
 
-		this.socket.on("sendTiles", function (tiles) {
+		this.socket.on("addControlPoint", function (controlPoint) {
+			that.controlPoints.push({id: controlPoint.pathID, point: controlPoint.point});
+		});
+
+		this.socket.on("sendAll", function (everything) {
+			var tiles = everything.tiles;
 			tiles.forEach(function(recievedTile) {
 				that.tiles.push(new Tile(recievedTile.key, recievedTile.x, recievedTile.y, recievedTile.width, recievedTile.height, recievedTile.scale, true))
+			});
+
+			var controlPoints = everything.controlPoints;
+			controlPoints.forEach(function(cp) {
+				log(cp);
+				that.controlPoints.push({id: cp.pathID, point: cp.point});
 			});
 		});
 	};

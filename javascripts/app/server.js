@@ -10,6 +10,7 @@ var Game = function (id) {
 
 	this.players = [];
 	this.tiles = [];
+	this.controlPoints = [];
 
 	this.toString = function () {
 		return "Players: " + this.players.length;
@@ -60,9 +61,15 @@ var Game = function (id) {
 		util.log("Tiles added by " + this.socket.id + " to " + this.id);
 	};
 
-	this.sendTiles = function () {
-		this.broadcastToPlayer("sendTiles", this.tiles);
-		util.log("Tiles sent to " + this.socket.id + " on " + this.id);
+	this.addControlPoint = function(point) {
+		this.controlPoints.push(point);
+		this.broadcastPlayers("addControlPoint", point);
+		util.log("Control Point added by " + this.socket.id + " to " + this.id);
+	};
+
+	this.sendAll = function () {
+		this.broadcastToPlayer("sendAll", {tiles : this.tiles, controlPoints: this.controlPoints});
+		util.log("Everything sent to " + this.socket.id + " on " + this.id);
 	};
 
 };
@@ -187,12 +194,13 @@ function setEventHandlers() {
 		client.join(gameID);
 		client.on("disconnect", onClientDisconnect);
 		client.on("addTile", onAddTile);
+		client.on("addControlPoint", onAddControlPoint);
 
 		game.broadcastAllPlayers("setGameID", gameID);
 		game.broadcastAllPlayers("numberOfPlayers", gameFactory.findGameByID(gameID).players.length);
 
 		game.setSocket(client);
-		game.sendTiles();
+		game.sendAll();
 
 		client.on('ping', function () {
 			client.emit('pong');
@@ -201,9 +209,17 @@ function setEventHandlers() {
 }
 
 function onAddTile(tile) {
-	var game = gameFactory.findGameByPlayerID(this.id);
-	game.setSocket(this);
-	game.addTile(tile);
+	getGame(this).addTile(tile);
+}
+
+function onAddControlPoint(point) {
+	getGame(this).addControlPoint(point);
+}
+
+function getGame(reference) {
+	var game = gameFactory.findGameByPlayerID(reference.id);
+	game.setSocket(reference);
+	return game;
 }
 
 function onClientDisconnect() {
