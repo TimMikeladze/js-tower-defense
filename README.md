@@ -1,12 +1,6 @@
-[ ] adding more birds (4) and pigs (?)
-
-[ ] add damage and health to pigs
+[ ] adding more birds (3) (add different damage, price)
 
 [ ] get high scores functional 
-
-[ ] get points by killing piggies (different number of points for each type)
-
-[ ] different price for each tower
 
 [ ] sound
 
