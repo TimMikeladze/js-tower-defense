@@ -24,7 +24,7 @@ GameEngine.prototype.startInput = function () {
 		that.mouse = getClickedPoint(e, that.gameCanvas);
 
 		if (that.floatingEntity == null) {
-			that.floatingEntity = new GreenBird(that.mouse);
+			that.floatingEntity = new BlackBird(that.mouse);
 		} else {
 			that.floatingEntity.setPosition(that.mouse);
 		}

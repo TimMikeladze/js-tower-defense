@@ -20,7 +20,7 @@ Require.addScript("map", ["map", "tile"]);
 Require.addScript("menus", ["menubutton", "sidebar", "ingamemenus", "highscores"]);
 Require.addScript("engine", ["time", "collisions", "funds", "gameengine", "input", "enemyqueue"]);
 Require.addScript("graphics", ["canvas", "animation", "animator"]);
-Require.addScript("entity", ["entity", "bird", "pig", "redbird", "greenpig", "projectile", "redbirdprojectile", "mustachepig", "kingpig", "helmetpig", "yellowbird", "yellowbirdprojectile", "greenbird", "greenbirdprojectile"]);
+Require.addScript("entity", ["entity", "bird", "pig", "redbird", "greenpig", "projectile", "redbirdprojectile", "mustachepig", "kingpig", "helmetpig", "yellowbird", "yellowbirdprojectile", "greenbird", "greenbirdprojectile", "blackbird", "blackbirdprojectile"]);
 
 Require.addImage("pigs", ["pig0.png"]);
 Require.addImage("pigs", ["pig1.png"]);
@@ -29,6 +29,7 @@ Require.addImage("pigs", ["pig3.png"]);
 Require.addImage("birds", ["rbird1.png"]);
 Require.addImage("birds", ["ybird0.png"]);
 Require.addImage("birds", ["gbird0.png"]);
+Require.addImage("birds", ["bbird0.png"]);
 Require.addImage("canvasbg", ["bg1.png"]);
 Require.addImage("menu", ["paused_title.png", "mini_logo.png", "gameover_title.png"]);
 //Require.addFile("maps", ["map1.json"]);
