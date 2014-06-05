@@ -1,27 +1,31 @@
-canvas {
-    padding-left: 0;
-    padding-right: 0;
-}
-
-img { margin-bottom: 0px; }
 
 @font-face {
     font-family: 'BadaBoom';
-   /* src: url('../assets/fonts/BADABB.eot');
+    src: url('../assets/fonts/BADABB.eot');
     src: url('../assets/fonts/BADABB.eot') format('embedded-opentype'),
          url('../assets/fonts/BADABB.woff') format('woff'),
          url('../assets/fonts/badabb.ttf') format('truetype'),
-         url('../assets/fonts/BADABB.svg#BadaBoomBBRegular') format('svg');*/
-
+         url('../assets/fonts/BADABB.svg#BadaBoomBBRegular') format('svg');
+/*
     src: url('fonts/badabb.eot');
     src: url('fonts/badabb.eot') format('embedded-opentype'),
          url('fonts/badabb.woff') format('woff'),
          url('fonts/badabb.ttf') format('truetype'),
-         url('fonts/badabb.svg#BadaBoomBBRegular') format('svg');
+         url('fonts/badabb.svg#BadaBoomBBRegular') format('svg');*/
     font-weight: normal;
   	font-style: normal;
   	letter-spacing: 2px;
 }
+
+body { 
+	font-family: 'BadaBoom'; 
+}
+
+canvas {
+    padding: 0;
+}
+
+img { margin-bottom: 0px; }
 
 .container {
 	width: 990px;
@@ -36,7 +40,7 @@ img { margin-bottom: 0px; }
 
 .area { height: 540px; }
 
-.clear { clear: both; }
+.clear { clear: both; display: none; }
 
 .menu_title { margin: 5% 0 1% 0;}
 
