@@ -34,6 +34,13 @@ var InGameMenus = function (canvas) {
 
 		//Something needed here to go back to the main menu
 
+		new Timer(2000, function () {
+			canvasArea.style.display = "none";
+			menuArea.style.display = "block";
+			this.stop();
+		});
+
+
 		ctx.font = "28pt BadaBoom";
 		ctx.fillStyle = "#000";
 		ctx.textAlign = "center";

@@ -40,6 +40,11 @@ Require.load(function () {
 	Logging.DEBUG = true;
 	Logging.VERBOSE = false;
 
+	var backgroundMusic = new Howl({
+			urls: ['assets/sounds/theme.mp3'],
+			loop: true
+		}).play();
+
 	document.getElementById("loading_div").style.display = "none";
 	document.getElementById("menu_div").style.display = "block";
 

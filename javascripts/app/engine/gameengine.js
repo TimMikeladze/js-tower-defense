@@ -21,6 +21,7 @@ var GameEngine = function (gameCanvas, sideCanvas) {
 
 	this.map = null;
 	this.sideBar = null;
+	this.stopFlag = false;
 
 	this.menus = new InGameMenus(this.gameCanvas);
 
@@ -36,14 +37,24 @@ var GameEngine = function (gameCanvas, sideCanvas) {
 			that.enemyQueue = new EnemyQueue(that);
 			that.startInput();
 		});
-
-		var sound = new Howl({
-			urls: ['assets/sounds/theme.mp3'],
-			loop: true
-		}).play();
 	};
 
-	this.empty = function () {
+	this.start = function () {
+		var that = this;
+		this.funds = new Funds(100);
+		
+		(function gameLoop() {
+			that.loop();
+			requestAnimFrame(gameLoop, that.gameCanvas.canvas);
+		})();
+	};
+
+	this.stop = function() {
+		this.stopFlag = true;
+
+		this.gameCanvas = gameCanvas;
+		this.sideCanvas = sideCanvas;
+
 		this.gameID = null;
 		this.time = null;
 
@@ -58,38 +69,32 @@ var GameEngine = function (gameCanvas, sideCanvas) {
 		this.enemyQueue = null;
 
 		this.pauseFlag = false;
+		this.gameOverFlag = false;
+		this.gameEnd = 0;
+
 		this.map = null;
 		this.sideBar = null;
-
-		this.init();
-		this.start();
-	};
-
-	this.start = function () {
-		this.funds = new Funds(100);
-		var that = this;
-		(function gameLoop() {
-			that.loop();
-			requestAnimFrame(gameLoop, that.gameCanvas.canvas);
-		})();
+		this.menus = new InGameMenus(this.gameCanvas);
 	};
 
 	this.loop = function () {
-		if (this.map.loaded) {
-			if (this.sideBar.livesLabel == 0) {
-				this.gameOverFlag = true;
-			}
-			if (!this.gameOverFlag) {
-				this.time.tick();
-				if (!this.pauseFlag) {
-					this.update();
-					this.render();
-				} else {
-					this.pause();
+		if (!this.stopFlag) {
+			if (this.map.loaded) {
+				if (this.sideBar.livesLabel == 0) {
+					this.gameOverFlag = true;
 				}
-				this.click = null;
-			} else {
-				this.gameOver();
+				if (!this.gameOverFlag) {
+					this.time.tick();
+					if (!this.pauseFlag) {
+						this.update();
+						this.render();
+					} else {
+						this.pause();
+					}
+					this.click = null;
+				} else {
+					this.gameOver();
+				}
 			}
 		}
 	};
@@ -100,7 +105,7 @@ var GameEngine = function (gameCanvas, sideCanvas) {
 
 	this.gameOver = function () {
 		this.menus.showGameOver();
-
+		this.stop();
 		if (this.gameOverFlag == true && this.gameEnd == 0) {
 			this.menus.showHighscorePrompt(this);
 			this.gameEnd++;
