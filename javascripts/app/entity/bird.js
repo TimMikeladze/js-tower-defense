@@ -90,7 +90,6 @@ var Bird = function (sprite, position, fireRadius, price, width, height, scale) 
 	};
 
 	this.canPlace = function (engine) {
-		var tiles = engine.map.tiles;
 		var that = this;
 		var answer = true;
 
@@ -98,6 +97,15 @@ var Bird = function (sprite, position, fireRadius, price, width, height, scale) 
 			answer = false;
 			return;
 		}
+
+		var controlPoints = engine.map.controlPoints;
+		var tileWidth = engine.map.tiles[0].width;
+		var tileHeight = engine.map.tiles[0].height;
+		var tiles = [];
+
+		controlPoints.forEach(function(cp) {
+			tiles.push(new Tile(null, cp.x - tileWidth / 2, cp.y - tileHeight / 2, tileWidth, tileHeight));
+		});
 
 		tiles.forEach(function (tile) {
 			if (!((tile.y + tile.height < that.position.y)
