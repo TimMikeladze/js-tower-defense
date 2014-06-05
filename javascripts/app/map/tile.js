@@ -16,8 +16,7 @@ var Tile = function (key, x, y, width, height, scale, applied) {
 
 	this.render = function (canvas) {
 		canvas.context.globalAlpha = this.alpha;
-		canvas.context.fillStyle = "#FFFFFF"
-		canvas.context.fillRect(this.x, this.y, this.width, this.height);
+		canvas.context.drawImage(Require.getImage(this.key), this.x, this.y, this.width, this.height);
 		canvas.context.globalAlpha = 1.0;
 	};
 

@@ -2,7 +2,7 @@ var MapEditor = function (canvas, socket) {
 	this.canvas = canvas;
 	this.socket = socket;
 
-	this.scale = 30;
+	this.scale = 25;
 
 	this.tileWidth = this.canvas.width / this.scale;
 	this.tileHeight = this.canvas.height / this.scale;
@@ -16,13 +16,22 @@ var MapEditor = function (canvas, socket) {
 	this.pathID = null;
 	this.recordingPath = false;
 
+	this.key = "maptiles/grass1.png";
+
 	var that = this;
 	document.getElementById("save").addEventListener("click", function () {
-		var json = JSON.stringify(that.tiles);
+		var json = JSON.stringify({tiles: that.tiles, controlPoints : that.controlPoints});
 		var pom = document.createElement('a');
 		pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(json));
 		pom.setAttribute('download', "map.json");
 		pom.click();
+	});
+
+	var tileElements = document.getElementsByClassName("tile");
+	Array.prototype.filter.call(tileElements, function(element){
+		element.addEventListener("click", function () {
+			that.key = "maptiles/" + this.src.substr(this.src.lastIndexOf('/') + 1);
+		});
 	});
 
 	document.getElementById("path").addEventListener("click", function () {
@@ -35,6 +44,21 @@ var MapEditor = function (canvas, socket) {
 			that.recordingPath = false;
 		}
 	});
+
+	document.getElementById("clear").addEventListener("click", function () {
+		that.floatingTile = null;
+
+		that.tiles = [];
+		that.controlPoints = [];
+		that.paths = [];
+
+		that.pathID = null;
+		that.recordingPath = false;
+
+		document.getElementById("path").innerText = "Start Path";
+		that.socket.emit("clear");
+	});
+
 
 	document.getElementById("clear").addEventListener("click", function () {
 		that.floatingTile = null;
@@ -95,10 +119,11 @@ var MapEditor = function (canvas, socket) {
 			var y = Math.floor(that.mouse.y / that.tileHeight) * that.tileHeight;
 
 			if (!that.floatingTile) {
-				that.floatingTile = new Tile(that.currentPathIndex, x, y, that.tileWidth, that.tileHeight, that.scale);
+				that.floatingTile = new Tile(that.key, x, y, that.tileWidth, that.tileHeight, that.scale);
 			} else {
 				that.floatingTile.x = x;
 				that.floatingTile.y = y;
+				that.floatingTile.key = that.key;
 			}
 		}, false);
 
@@ -144,7 +169,6 @@ var MapEditor = function (canvas, socket) {
 
 			var controlPoints = everything.controlPoints;
 			controlPoints.forEach(function (cp) {
-				log(cp);
 				that.controlPoints.push({id: cp.pathID, point: cp.point});
 			});
 		});
