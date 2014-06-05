@@ -1,10 +1,10 @@
 var BlackBird = function (position) {
-	Bird.call(this, "birds/bbird0.png", position, 200, 160, 70, 91, 0.75);
+	Bird.call(this, "birds/bbird0.png", position, 140, 500, 70, 91, 0.75);
 
 	this.frameSpeeds = [1500, 500, 1000];
 	this.animation = new Animation(this.sprite, this.width, this.height, this.scale, this.frameSpeeds);
 	this.animator.setDefaultFrame(0);
-	this.shotInterval = 1000;
+	this.shotInterval = 2000;
 	this.damage = 200;
 
 	this.idlingFrames = [0, 1, 2];
