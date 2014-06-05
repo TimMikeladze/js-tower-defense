@@ -27,6 +27,11 @@ var SideBar = function () {
 	this.nextButtonX2 = null;
 	this.nextButtonY1 = null;
 	this.nextButtonY2 = null;
+	// Birds (towers)
+	this.redbird = Require.getImage("towers/redbird.png");
+	this.yellowbird = Require.getImage("towers/yellowbird.png");
+	this.greenbird = Require.getImage("towers/greenbird.png");
+	this.blackbird = Require.getImage("towers/blackbird.png");
 
 	this.initSideBar = function (canvas, gameEngine) {
 		this.ctx = canvas.context;
@@ -105,17 +110,60 @@ var SideBar = function () {
 	};
 
 	this.loadImages = function () {
-		var redbird = Require.getImage("towers/redbird.png");
-		this.ctx.drawImage(redbird, 20, 340);
+		this.ctx.save();
+		var secondColumn = ((this.width - 10) / 2) + 10;
 
-		var yellowbird = Require.getImage("towers/yellowbird.png");
-		this.ctx.drawImage(yellowbird, ((this.width - 10) / 2) + 10, 340);
+		if (this.goldLabel >= 100) {
+			this.ctx.clearRect(20, 340, 60, 60);
+			this.ctx.drawImage(this.redbird, 20, 340);
+			console.log("r y");
+		}
+		else {
+			this.ctx.clearRect(20, 340, 60, 60);
+			this.ctx.drawImage(this.redbird, 20, 340);
+			this.ctx.fillStyle = this.background;
+			this.ctx.fillRect(20, 340, 60, 60);
+			console.log("r n");
+		}
 
-		var greenbird = Require.getImage("towers/greenbird.png");
-		this.ctx.drawImage(greenbird, 20, 405);
+		if (this.goldLabel >= 200) {
+			this.ctx.clearRect(secondColumn, 340, 60, 60);
+			this.ctx.drawImage(this.yellowbird, secondColumn, 340);
+			console.log("y y");
+		}
+		else {
+			this.ctx.clearRect(secondColumn, 340, 60, 60);
+			this.ctx.drawImage(this.yellowbird, secondColumn, 340);
+			this.ctx.fillStyle = this.background;
+			this.ctx.fillRect(secondColumn, 340, 60, 60);
+			console.log("y n");
+		}
 
-		var blackbird = Require.getImage("towers/blackbird.png");
-		this.ctx.drawImage(blackbird, ((this.width - 10) / 2) + 10, 405);
+		if (this.goldLabel >= 300) {
+			this.ctx.clearRect(20, 405, 60, 60);
+			this.ctx.drawImage(this.greenbird, 20, 405);
+			console.log("r y");
+		}
+		else {
+			this.ctx.clearRect(20, 405, 60, 60);
+			this.ctx.drawImage(this.greenbird, 20, 405);
+			this.ctx.fillStyle = this.background;
+			this.ctx.fillRect(20, 405, 60, 60);
+			console.log("r n");
+		}
+
+		if (this.goldLabel >= 400) {
+			this.ctx.clearRect(secondColumn, 405, 60, 60);
+			this.ctx.drawImage(this.blackbird, secondColumn, 405);
+		}
+		else {
+			this.ctx.clearRect(secondColumn, 405, 60, 60);
+			this.ctx.drawImage(this.blackbird, secondColumn, 405);
+			this.ctx.fillStyle = this.background;
+			this.ctx.fillRect(secondColumn, 405, 60, 60);
+		}
+
+		this.ctx.restore();
 	}
 
 	this.initValues = function (ctx) {
@@ -153,7 +201,6 @@ var SideBar = function () {
 		this.enemiesLeftLabel += left;
 		if (this.enemiesLeftLabel <= 0) {
 			this.wavesEnabled(true);
-			console.log("en");
 		}
 	};
 
@@ -165,6 +212,7 @@ var SideBar = function () {
 	this.updateGold = function (amount) {
 		this.goldLabel += amount;
 		this.repaint(this.ctx, 245, this.goldLabel);
+		this.loadImages();
 	};
 
 	this.updateLives = function () {
@@ -217,7 +265,6 @@ var SideBar = function () {
 		}
 		else if (x > this.quitButtonX1 && x < this.quitButtonX2 &&
 			y > this.quitButtonY1 && y < this.quitButtonY2) {
-			console.log("quit");
 			this.gameEngine.gameOver();
 		}
 		else if (x > this.nextButtonX1 && x < this.nextButtonX2 &&
