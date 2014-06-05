@@ -2,7 +2,7 @@ body { font-family: Arial, Verdana, sans-serif; }
 
 .box { 
 	margin: auto; 
-	border: 0px solid yellow; 
+	border: 0px solid gray; 
 	padding: 10px 0;
 }
 
@@ -21,4 +21,9 @@ body { font-family: Arial, Verdana, sans-serif; }
 
 #tile_box {
 	background-color: white;
+	border: 0px solid gray;
+}
+
+#map_canvas {
+	border: 3px solid gray;
 }
