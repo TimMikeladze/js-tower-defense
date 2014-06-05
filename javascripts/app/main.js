@@ -62,6 +62,10 @@ Require.load(function () {
 	backButton2.bindButton("back_button2", function () {
 		scoresArea.style.display = "none";
 		menuArea.style.display = "block";
+		var table = document.getElementById("scoreTable");
+		for(var i = table.rows.length - 1; i > 0; i--) {
+    		table.deleteRow(i);
+		}
 	})
 
 	//credits
