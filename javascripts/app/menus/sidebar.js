@@ -37,6 +37,7 @@ var SideBar = function () {
 		this.initShapes(this.ctx);
 		this.initStaticText(this.ctx);
 		this.initValues(this.ctx);
+		this.loadImages();
 	};
 
 	this.initStaticText = function (ctx) {
@@ -102,6 +103,24 @@ var SideBar = function () {
 		ctx.strokeRect(((this.width - 10) / 2) + 10, 405, 60, 60);
 		ctx.restore();
 	};
+
+	this.loadImages = function () {
+		/*
+		var birds = ["assets/img/towers/redbird/redbird.png","assets/img/towers/redbird/yellowbird.png"];
+		var images = null;
+
+		for (i = 0; i < birds.length; i++) {
+			images[i] = new Image();
+			images[i].src = birds[i];
+			images[i].onLoad
+		}*/
+
+		redbird = new Image();
+		redbird.src = "assets/img/towers/redbird.png";
+		redbird.onLoad = function () {
+			this.ctx.drawImage(redbird, 20, 340);
+		}
+	}
 
 	this.initValues = function (ctx) {
 		ctx.font = "20px BadaBoom";

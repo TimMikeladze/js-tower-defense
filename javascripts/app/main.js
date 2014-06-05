@@ -32,6 +32,8 @@ Require.addImage("canvasbg", ["bg1.png"]);
 Require.addImage("menu", ["paused_title.png", "mini_logo.png", "gameover_title.png"]);
 //Require.addFile("maps", ["map1.json"]);
 
+Require.addImage("towers", ["redbird.png"]);
+Require.addImage("towers", ["yellowbird.png"]);
 
 Require.load(function () {
 	Logging.DEBUG = true;
