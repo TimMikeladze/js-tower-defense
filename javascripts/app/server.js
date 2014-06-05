@@ -72,6 +72,12 @@ var Game = function (id) {
 		util.log("Everything sent to " + this.socket.id + " on " + this.id);
 	};
 
+	this.clear = function() {
+		this.tiles = [];
+		this.controlPoints = [];
+		this.broadcastPlayers("clear");
+	};
+
 };
 
 var GameFactory = function () {
@@ -195,6 +201,7 @@ function setEventHandlers() {
 		client.on("disconnect", onClientDisconnect);
 		client.on("addTile", onAddTile);
 		client.on("addControlPoint", onAddControlPoint);
+		client.on("clear", onClear);
 
 		game.broadcastAllPlayers("setGameID", gameID);
 		game.broadcastAllPlayers("numberOfPlayers", gameFactory.findGameByID(gameID).players.length);
@@ -206,6 +213,10 @@ function setEventHandlers() {
 			client.emit('pong');
 		});
 	});
+}
+
+function onClear() {
+	getGame(this).clear();
 }
 
 function onAddTile(tile) {
