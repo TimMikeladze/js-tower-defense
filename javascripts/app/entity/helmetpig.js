@@ -1,5 +1,5 @@
 var HelmetPig = function (position) {
-	Pig.call(this, "pigs/pig3.png", position, 4, 110, 93, 0.50);
+	Pig.call(this, "pigs/pig3.png", position, 5, 110, 93, 0.50);
 
 	this.animation = new Animation(this.sprite, this.width, this.height, this.scale, [1500, 500, 1000]);
 	this.animator.setDefaultFrame(0);
