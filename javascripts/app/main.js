@@ -35,6 +35,7 @@ Require.load(function () {
 	Logging.DEBUG = true;
 	Logging.VERBOSE = false;
 
+
 	var canvasArea = document.getElementById("canvas_area");
 	var menuArea = document.getElementById("menu_area");
 	var creditsArea = document.getElementById("credits_area");

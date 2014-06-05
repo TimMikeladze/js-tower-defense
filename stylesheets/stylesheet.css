@@ -43,7 +43,7 @@ img { margin-bottom: 0px; }
 
 #game_canvas {
 	font-family: 'BadaBoom';
-	font-size: 80px;
+	font-size: 20px;
 	color: #FFFFFF;
   	letter-spacing: 2px;
 	border: 0px solid red;
