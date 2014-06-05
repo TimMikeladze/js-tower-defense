@@ -2,7 +2,7 @@ var MapEditor = function (canvas, socket) {
 	this.canvas = canvas;
 	this.socket = socket;
 
-	this.scale = 25;
+	this.scale = 20;
 
 	this.tileWidth = this.canvas.width / this.scale;
 	this.tileHeight = this.canvas.height / this.scale;
@@ -11,7 +11,8 @@ var MapEditor = function (canvas, socket) {
 
 	this.tiles = [];
 	this.controlPoints = [];
-	this.paths = [];
+	this.paths = {};
+	this.pathsPixels = [];
 
 	this.pathID = null;
 	this.recordingPath = false;
@@ -20,7 +21,7 @@ var MapEditor = function (canvas, socket) {
 
 	var that = this;
 	document.getElementById("save").addEventListener("click", function () {
-		var json = JSON.stringify({tiles: that.tiles, controlPoints : that.controlPoints});
+		var json = JSON.stringify({tiles: that.tiles, controlPoints: that.controlPoints});
 		var pom = document.createElement('a');
 		pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(json));
 		pom.setAttribute('download', "map.json");
@@ -28,7 +29,7 @@ var MapEditor = function (canvas, socket) {
 	});
 
 	var tileElements = document.getElementsByClassName("tile");
-	Array.prototype.filter.call(tileElements, function(element){
+	Array.prototype.filter.call(tileElements, function (element) {
 		element.addEventListener("click", function () {
 			that.key = "maptiles/" + this.src.substr(this.src.lastIndexOf('/') + 1);
 		});
@@ -50,7 +51,8 @@ var MapEditor = function (canvas, socket) {
 
 		that.tiles = [];
 		that.controlPoints = [];
-		that.paths = [];
+		that.paths = {};
+		that.pathsPixels = [];
 
 		that.pathID = null;
 		that.recordingPath = false;
@@ -59,20 +61,6 @@ var MapEditor = function (canvas, socket) {
 		that.socket.emit("clear");
 	});
 
-
-	document.getElementById("clear").addEventListener("click", function () {
-		that.floatingTile = null;
-
-		that.tiles = [];
-		that.controlPoints = [];
-		that.paths = [];
-
-		that.pathID = null;
-		that.recordingPath = false;
-
-		document.getElementById("path").innerText = "Start Path";
-		that.socket.emit("clear");
-	});
 
 	this.init = function () {
 		this.startInput();
@@ -85,6 +73,28 @@ var MapEditor = function (canvas, socket) {
 			that.loop();
 			requestAnimFrame(gameLoop, that.canvas.canvas);
 		})();
+	};
+
+	this.generatePaths = function() {
+		var that = this;
+		that.paths = {};
+		that.controlPoints.forEach(function (cp) {
+			if (that.paths.hasOwnProperty(cp.id)) {
+				that.paths[cp.id].push(new Vector2(cp.point.x, cp.point.y));
+			} else {
+				that.paths[cp.id] = [];
+				that.paths[cp.id].push(new Vector2(cp.point.x, cp.point.y));
+			}
+		});
+
+		that.pathsPixels = [];
+		for (var path in that.paths) {
+			if(that.paths[path].length > 3) {
+				Bezier.calculateCurve(that.paths[path]).forEach(function(p) {
+					that.pathsPixels.push(p);
+				});
+			}
+		}
 	};
 
 	this.startInput = function () {
@@ -108,8 +118,9 @@ var MapEditor = function (canvas, socket) {
 					that.controlPoints.push(cp);
 					that.socket.emit("addControlPoint", cp);
 				}
-
 			}
+
+			that.generatePaths();
 		}, false);
 
 		this.canvas.addEventListener("mousemove", function (e) {
@@ -159,6 +170,7 @@ var MapEditor = function (canvas, socket) {
 
 		this.socket.on("addControlPoint", function (controlPoint) {
 			that.controlPoints.push({id: controlPoint.pathID, point: controlPoint.point});
+			that.generatePaths();
 		});
 
 		this.socket.on("sendAll", function (everything) {
@@ -171,19 +183,17 @@ var MapEditor = function (canvas, socket) {
 			controlPoints.forEach(function (cp) {
 				that.controlPoints.push({id: cp.pathID, point: cp.point});
 			});
+			that.generatePaths();
 		});
 	};
 
 	this.loop = function () {
-		this.update();
 		this.draw();
 	};
 
-	this.update = function () {
-
-	};
-
 	this.draw = function () {
+		var that = this;
+
 		this.canvas.clear("#000000");
 
 		if (this.floatingTile) {
@@ -191,14 +201,19 @@ var MapEditor = function (canvas, socket) {
 		}
 
 
-		var that = this;
 		this.tiles.forEach(function (t) {
 			t.render(that.canvas);
 		});
 
 		this.controlPoints.forEach(function (p) {
 			canvas.context.fillStyle = "#FF0000";
-			canvas.context.fillRect(p.point.x, p.point.y, 5, 5);
+			canvas.context.fillRect(p.point.x, p.point.y, 2, 2);
+			canvas.context.globalAlpha = 1.0;
+		});
+
+		this.pathsPixels.forEach(function (p) {
+			canvas.context.fillStyle = "#FF0000";
+			canvas.context.fillRect(p.x, p.y, 2, 2);
 			canvas.context.globalAlpha = 1.0;
 		});
 
