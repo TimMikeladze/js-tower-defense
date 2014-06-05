@@ -1,12 +1,12 @@
-var YellowBird = function (position) {
-	Bird.call(this, "birds/ybird0.png", position, 120, 200, 66, 65, 0.75);
+var GreenBird = function (position) {
+	Bird.call(this, "birds/gbird0.png", position, 140, 200, 106, 74, 0.70);
 
 	this.frameSpeeds = [1500, 500];
 	this.animation = new Animation(this.sprite, this.width, this.height, this.scale, this.frameSpeeds);
 	this.animator.setDefaultFrame(0);
 	this.shotInterval = 2000;
 	
-	this.idlingFrames = [0, 1];
+	this.idlingFrames = [1, 2];
 	var renderParent = this.render;
 	this.render = function (canvas) {
 		renderParent.call(this, canvas);
@@ -26,7 +26,7 @@ var YellowBird = function (position) {
 	};
 
 	this.fire = function (destination, engine) {
-		var projectile = new YellowBirdProjectile(this.position.clone(), destination.clone());
+		var projectile = new GreenBirdProjectile(this.position.clone(), destination.clone());
 		projectile.setRotationAngle(this.rotationAngle);
 		projectile.setMaxFlightDistance(this.fireRadius);
 		projectile.fire();
@@ -34,5 +34,5 @@ var YellowBird = function (position) {
 	};
 };
 
-YellowBird.prototype = Object.create(Bird.prototype);
-YellowBird.prototype.constructor = YellowBird;
+GreenBird.prototype = Object.create(Bird.prototype);
+GreenBird.prototype.constructor = GreenBird;
