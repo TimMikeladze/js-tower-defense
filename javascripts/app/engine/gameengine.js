@@ -16,6 +16,7 @@ var GameEngine = function (gameCanvas, sideCanvas) {
 	this.enemyQueue = null;
 
 	this.pauseFlag = false;
+	this.gameOverFlag = false;
 
 	this.map = null;
 	this.sideBar = null;
@@ -66,14 +67,21 @@ var GameEngine = function (gameCanvas, sideCanvas) {
 	};
 
 	this.loop = function () {
-		this.time.tick();
-		if (!this.pauseFlag) {
-			this.update();
-			this.render();
-		} else {
-			this.pause();
+		if (this.sideBar.livesLabel == 0) {
+				this.gameOverFlag = true;
 		}
-		this.click = null;
+		if (!this.gameOverFlag) {
+			this.time.tick();
+			if (!this.pauseFlag) {
+				this.update();
+				this.render();
+			} else {
+				this.pause();
+			}
+			this.click = null;
+		} else {
+			this.gameOver();
+		}
 	};
 
 	this.pause = function () {
@@ -95,6 +103,26 @@ var GameEngine = function (gameCanvas, sideCanvas) {
 		ctx.textBaseline = "top";
 		ctx.fillText("press P to unpause", x + 30, y + 20);
 	};
+
+	this.gameOver = function () {
+		log("Game Over");
+		this.gameCanvas.clear();
+
+		var ctx = this.gameCanvas.context;
+		var img = Require.getImage("menu/paused_title.png");
+
+		var x = this.gameCanvas.width / 2;
+		var y = this.gameCanvas.height / 2;
+
+		ctx.drawImage(Require.getImage("canvasbg/bg1.png"), 0, 0);
+		ctx.drawImage(img, x - img.width / 3, y - img.height);
+
+		ctx.font = "28pt BadaBoom";
+		ctx.fillStyle = "#000";
+		ctx.textAlign = "center";
+		ctx.textBaseline = "top";
+		//ctx.fillText("press P to unpause", x + 30, y + 20);
+	}
 
 	this.update = function () {
 		this.updateEntities(this.pigs);
