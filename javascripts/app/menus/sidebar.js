@@ -104,7 +104,7 @@ var SideBar = function () {
 	};
 
 	this.initValues = function (ctx) {
-		ctx.font = "20px Verdana";
+		ctx.font = "20px BadaBoom";
 		// Init Score, Wave, Left, Gold
 		ctx.fillText(this.scoreLabel, 70, 120);
 		ctx.fillText(this.wavesLeftLabel, 70, 160);
@@ -118,6 +118,7 @@ var SideBar = function () {
 		ctx.save();
 		ctx.globalAlpha = 1;
 		ctx.fillStyle = this.background;
+		ctx.font = "20px BadaBoom";
 		ctx.fillRect(this.borderSize, y - 20, this.width - (2 * this.borderSize), 20);
 		ctx.restore();
 		ctx.fillText(label, 70, y);
@@ -162,6 +163,7 @@ var SideBar = function () {
 				this.wavesLeftLabel = 0;
 				this.updateLevel();
 			}
+			this.updateWaves();
 			this.gameEngine.enemyQueue.addWave(this.wavesLeftLabel, this.level);
 			this.wavesEnabled(false);
 		} else {
@@ -187,7 +189,7 @@ var SideBar = function () {
 			// Grey out
 			this.ctx.save();
 			this.ctx.globalAlpha = 1;
-			this.ctx.fillStyle = "rgba(96,96,96, .5)";
+			this.ctx.fillStyle = "rgba(96,96,96, .9)";
 			this.ctx.fillRect(this.borderSize, 480, this.width - 2 * this.borderSize, 30);
 			this.ctx.restore();
 		}
