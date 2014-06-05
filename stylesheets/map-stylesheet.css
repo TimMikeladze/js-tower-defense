@@ -1,0 +1,24 @@
+body { font-family: Arial, Verdana, sans-serif; }
+
+.box { 
+	margin: auto; 
+	border: 0px solid yellow; 
+	padding: 10px 0;
+}
+
+#container {
+	border: 0px solid red;
+	padding: 10px;
+	width: 900px;
+	height: 100%;
+	margin: auto;
+	text-align: center;
+}
+
+#button_box {
+
+}
+
+#tile_box {
+	background-color: white;
+}

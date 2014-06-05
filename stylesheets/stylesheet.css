@@ -13,11 +13,11 @@ img { margin-bottom: 0px; }
          url('../assets/fonts/BADABB.ttf') format('truetype'),
          url('../assets/fonts/BADABB.svg#BadaBoomBBRegular') format('svg');*/
   	
-    src: url('BADABB.eot');
-    src: url('BADABB.eot') format('embedded-opentype'),
-         url('BADABB.woff') format('woff'),
-         url('BADABB.ttf') format('truetype'),
-         url('BADABB.svg#BadaBoomBBRegular') format('svg');
+    src: url('fonts/BADABB.eot');
+    src: url('fonts/BADABB.eot') format('embedded-opentype'),
+         url('fonts/BADABB.woff') format('woff'),
+         url('fonts/BADABB.ttf') format('truetype'),
+         url('fonts/BADABB.svg#BadaBoomBBRegular') format('svg');
     font-weight: normal;
   	font-style: normal;
   	letter-spacing: 2px;
