@@ -135,10 +135,13 @@ var SideBar = function () {
 	this.updateEnemiesLeft = function (left) {
 		this.enemiesLeftLabel += left;
 		this.repaint(this.ctx, 205, this.enemiesLeftLabel);
+<<<<<<< HEAD
 		if (this.enemiesLeftLabel == 11) {
 			this.wavesEnabled(true);
 			console.log("en");
 		}
+=======
+>>>>>>> d27cbf5edc3f54c20c6a20a88048021b68e6a5cb
 	};
 
 	this.updateGold = function (amount) {
