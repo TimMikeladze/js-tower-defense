@@ -53,15 +53,8 @@ Require.load(function () {
   			log(response);
   			var json = JSON.parse(response);
   			log(json);
-  			// enforce number of high scores at 6
-  			var length;
-  			if (json.length > 6) {
-  				length = 6;
-  			} else {
-  				length = json.length;
-  			}
 
-  			for(var i = 0; i < length; i++) {
+  			for(var i = 0; i < json.length; i++) {
     			var obj = json[i];
     			var tableRef = document.getElementById('scoreTable').getElementsByTagName('tbody')[0];
 
