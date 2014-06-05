@@ -32,12 +32,13 @@ Require.addImage("birds", ["gbird0.png"]);
 Require.addImage("birds", ["bbird0.png"]);
 Require.addImage("canvasbg", ["bg1.png"]);
 Require.addImage("menu", ["paused_title.png", "mini_logo.png", "gameover_title.png"]);
-//Require.addFile("maps", ["map1.json"]);
 
 Require.addImage("towers", ["redbird.png"]);
 Require.addImage("towers", ["yellowbird.png"]);
 Require.addImage("towers", ["greenbird.png"]);
 Require.addImage("towers", ["blackbird.png"]);
+
+Require.addImage("maptiles", ["grass1.png", "grass2.png", "path0.png", "path1.png", "path2.png", "path3.png", "path4.png", "water0.png"]);
 
 Require.load(function () {
 	Logging.DEBUG = true;

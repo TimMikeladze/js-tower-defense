@@ -30,12 +30,13 @@ var GameEngine = function (gameCanvas, sideCanvas) {
 		this.sideBar = new SideBar();
 		this.sideBar.initSideBar(this.sideCanvas, this);
 
+		var that = this;
 		this.map = new Map();
-		this.map.loadMap();
+		this.map.loadMap(null, function() {
+			that.enemyQueue = new EnemyQueue(that);
+			that.startInput();
+		});
 
-		this.enemyQueue = new EnemyQueue(this, this.map.path);
-
-		this.startInput();
 	};
 
 	this.empty = function () {
@@ -70,20 +71,22 @@ var GameEngine = function (gameCanvas, sideCanvas) {
 	};
 
 	this.loop = function () {
-		if (this.sideBar.livesLabel == 0) {
+		if (this.map.loaded) {
+			if (this.sideBar.livesLabel == 0) {
 				this.gameOverFlag = true;
-		}
-		if (!this.gameOverFlag) {
-			this.time.tick();
-			if (!this.pauseFlag) {
-				this.update();
-				this.render();
-			} else {
-				this.pause();
 			}
-			this.click = null;
-		} else {
-			this.gameOver();
+			if (!this.gameOverFlag) {
+				this.time.tick();
+				if (!this.pauseFlag) {
+					this.update();
+					this.render();
+				} else {
+					this.pause();
+				}
+				this.click = null;
+			} else {
+				this.gameOver();
+			}
 		}
 	};
 
