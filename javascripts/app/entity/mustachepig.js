@@ -38,5 +38,5 @@ var MustachePig = function (position) {
 	};
 };
 
-GreenPig.prototype = Object.create(Pig.prototype);
-GreenPig.prototype.constructor = MustachePig;
+MustachePig.prototype = Object.create(Pig.prototype);
+MustachePig.prototype.constructor = MustachePig;

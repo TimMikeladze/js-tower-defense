@@ -37,5 +37,5 @@ var HelmetPig = function (position) {
 	};
 };
 
-GreenPig.prototype = Object.create(Pig.prototype);
-GreenPig.prototype.constructor = HelmetPig;
+HelmetPig.prototype = Object.create(Pig.prototype);
+HelmetPig.prototype.constructor = HelmetPig;

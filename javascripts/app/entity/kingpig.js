@@ -38,5 +38,5 @@ var KingPig = function (position) {
 	};
 };
 
-GreenPig.prototype = Object.create(Pig.prototype);
-GreenPig.prototype.constructor = KingPig;
+KingPig.prototype = Object.create(Pig.prototype);
+KingPig.prototype.constructor = KingPig;
