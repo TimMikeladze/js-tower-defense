@@ -24,9 +24,7 @@ var MapEditor = function (canvas, socket) {
 		var json = JSON.stringify({tiles: that.tiles, controlPoints: that.controlPoints});
 		var name = prompt("Name of map");
 		var level = prompt("Map difficulty (integer from 0 to n)");
-
-		ajax.post("http://71.19.151.5/highscores/add_map.php", {"name": name, level: level, json: json}, function (response) {
-			console.log(response);
+		ajax.post("http://71.19.151.5/highscores/add_map.php", {name: name, level: level, json: json}, function (response) {
 			alert("Map saved");
 		});
 	});
