@@ -108,9 +108,10 @@ var GameEngine = function (gameCanvas, sideCanvas) {
 		log("Game Over");
 		this.gameCanvas.clear();
 		this.gameOverFlag = true;
+		this.highScores();
 
 		var ctx = this.gameCanvas.context;
-		var img = Require.getImage("menu/paused_title.png");
+		var img = Require.getImage("menu/gameover_title.png");
 
 		var x = this.gameCanvas.width / 2;
 		var y = this.gameCanvas.height / 2;
@@ -123,6 +124,13 @@ var GameEngine = function (gameCanvas, sideCanvas) {
 		ctx.textAlign = "center";
 		ctx.textBaseline = "top";
 		//ctx.fillText("press P to unpause", x + 30, y + 20);
+	}
+
+	this.highScores = function() {
+		//ajax.post("http://71.19.151.5/highscores/add_highscore.php", {"name": "choclate cows", score: "700"}, function (response) {
+  			//log(response);
+ 		//});
+
 	}
 
 	this.update = function () {
