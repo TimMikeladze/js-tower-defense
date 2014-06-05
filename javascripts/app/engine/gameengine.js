@@ -22,6 +22,8 @@ var GameEngine = function (gameCanvas, sideCanvas) {
 	this.map = null;
 	this.sideBar = null;
 
+	this.menus = new InGameMenus(this.gameCanvas);
+
 	this.init = function () {
 		this.time = new Time();
 
@@ -86,63 +88,21 @@ var GameEngine = function (gameCanvas, sideCanvas) {
 	};
 
 	this.pause = function () {
-		log("paused");
-		this.gameCanvas.clear();
-
-		var ctx = this.gameCanvas.context;
-		var img = Require.getImage("menu/paused_title.png");
-
-		var x = this.gameCanvas.width / 2;
-		var y = this.gameCanvas.height / 2;
-
-		ctx.drawImage(Require.getImage("canvasbg/bg1.png"), 0, 0);
-		ctx.drawImage(img, x - img.width / 3, y - img.height);
-
-		ctx.font = "28pt BadaBoom";
-		ctx.fillStyle = "#000";
-		ctx.textAlign = "center";
-		ctx.textBaseline = "top";
-		ctx.fillText("press P to unpause", x + 30, y + 20);
+		this.menus.showPause();
 	};
 
 	this.gameOver = function () {
-		log("Game Over");
-		this.gameCanvas.clear();
-		var ctx = this.gameCanvas.context;
-		var img = Require.getImage("menu/gameover_title.png");
+		this.menus.showGameOver();
 
-		var x = this.gameCanvas.width / 2;
-		var y = this.gameCanvas.height / 2;
-
-		ctx.drawImage(Require.getImage("canvasbg/bg1.png"), 0, 0);
-		ctx.drawImage(img, x - img.width / 2 + 20, y - img.height);
-
-		if (this.gameOverFlag == true && this.gameEnd == 0) {
-			this.highScores();
-			this.gameEnd++;
+		if (this.engine.gameOverFlag == true && this.engine.gameEnd == 0) {
+			this.menus.showHighscorePrompt(this);
+			this.engine.gameEnd++;
 		} else {
-			this.gameOverFlag = true;
-			this.gameEnd++;
+			this.engine.gameOverFlag = true;
+			this.engine.gameEnd++;
 		}
-
-		//Something needed here to go back to the main menu
-
-
-		ctx.font = "28pt BadaBoom";
-		ctx.fillStyle = "#000";
-		ctx.textAlign = "center";
-		ctx.textBaseline = "top";
-		//ctx.fillText("press P to unpause", x + 30, y + 20);
 	};
 
-	this.highScores = function() {
-
-		var name = prompt("Congrats on the High Score!\n\nPlease enter your name...");
-		var score2 = this.sideBar.scoreLabel;
-		ajax.post("http://71.19.151.5/highscores/add_highscore.php", {"name": name, score: score2}, function (response) {
-  			log(response);
- 		});
-	};
 
 	this.update = function () {
 		this.updateEntities(this.pigs);

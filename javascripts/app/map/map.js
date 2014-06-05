@@ -24,7 +24,7 @@ var Map = function (mapFile) {
 
 	this.render = function (canvas, drawPath) {
 		this.tiles.forEach(function (tile) {
-			tile.render(canvas);
+		//	tile.render(canvas);
 		});
 
 		if (drawPath) {
