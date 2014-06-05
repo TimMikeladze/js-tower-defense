@@ -12,7 +12,7 @@ var SideBar = function () {
 	this.wavesLeftLabel = 0;
 	this.enemiesLeftLabel = 0;
 	this.level = 1;
-	this.goldLabel = 200;
+	this.goldLabel = 500;
 	this.livesLabel = 5;
 	// Buttons
 	this.pauseButtonX1 = null;
