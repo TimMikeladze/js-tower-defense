@@ -135,7 +135,7 @@ var SideBar = function () {
 	this.updateEnemiesLeft = function (left) {
 		this.enemiesLeftLabel += left;
 		this.repaint(this.ctx, 205, this.enemiesLeftLabel);
-		if (this.enemiesLeftLabel == 0) {
+		if (this.enemiesLeftLabel <= 0) {
 			this.wavesEnabled(true);
 			console.log("en");
 		}
