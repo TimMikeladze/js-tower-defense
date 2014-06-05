@@ -33,6 +33,14 @@ img { margin-bottom: 0px; }
 		url('../assets/img/menu/menu-background0.png');
 }
 
+#loading_div {
+    padding-top: 100px;
+}
+
+#menu_div {
+    display: none;
+}
+
 .area { height: 540px; }
 
 .clear { clear: both; display: none; }

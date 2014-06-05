@@ -13,70 +13,82 @@
 </head>
 
 <body>
-	<div class="container">
+<div class="container">
+	<div id="loading_div">
+		<img src="assets/img/menu/loading.png"  />
+	</div>
+
+	<div id="menu_div">
 		<div id="canvas_area">
-			<canvas id="game_canvas" width ="810" height="540">
+			<canvas id="game_canvas" width="810" height="540">
 			</canvas>
-			<canvas id="side_canvas" width="180" height ="540">
+			<canvas id="side_canvas" width="180" height="540">
 			</canvas>
 			<div class="clear">(Hidden text to load font)</div>
 		</div>
 
 		<div id="menu_area" class="area">
 			<img class="menu_title" src="assets/img/menu/title_logo.png"
-				width="500" height="155">
+				 width="500" height="155">
+
 			<p></p>
 			<img id="play_button"
-				src="assets/img/menu/play0.png"
-				onmouseover="this.src='assets/img/menu/play1.png'"
-				onmouseout="this.src='assets/img/menu/play0.png'">
+				 src="assets/img/menu/play0.png"
+				 onmouseover="this.src='assets/img/menu/play1.png'"
+				 onmouseout="this.src='assets/img/menu/play0.png'">
+
 			<p></p>
 			<img id="high_scores_button"
-				src="assets/img/menu/highscores0.png"
-				onmouseover="this.src='assets/img/menu/highscores1.png'"
-				onmouseout="this.src='assets/img/menu/highscores0.png'">
+				 src="assets/img/menu/highscores0.png"
+				 onmouseover="this.src='assets/img/menu/highscores1.png'"
+				 onmouseout="this.src='assets/img/menu/highscores0.png'">
+
 			<p></p>
 			<img id="credits_button"
-				src="assets/img/menu/credits0.png"
-				onmouseover="this.src='assets/img/menu/credits1.png'"
-				onmouseout="this.src='assets/img/menu/credits0.png'">
+				 src="assets/img/menu/credits0.png"
+				 onmouseover="this.src='assets/img/menu/credits1.png'"
+				 onmouseout="this.src='assets/img/menu/credits0.png'">
 		</div>
 
 		<div id="credits_area" class="area">
 			<img class="menu_title" src="assets/img/menu/credits_title.png">
+
 			<p></p>
 			<img src="assets/img/menu/credits-names0.png"
-				width="300" height="250">
+				 width="300" height="250">
+
 			<p></p>
 			<img id="back_button"
-				src="assets/img/menu/back0.png"
-				onmouseover="this.src='assets/img/menu/back1.png'"
-				onmouseout="this.src='assets/img/menu/back0.png'"
-				width="120" height="50">
+				 src="assets/img/menu/back0.png"
+				 onmouseover="this.src='assets/img/menu/back1.png'"
+				 onmouseout="this.src='assets/img/menu/back0.png'"
+				 width="120" height="50">
 		</div>
 
 		<div id="scores_area" class="area">
 			<img class="menu_title" src="assets/img/menu/highscores_title.png">
 			<br/>
+
 			<div id="score_box">
-			<table id="scoreTable" align="center">
-				<tr>
-  					<th width="400" align="left">Name</th>
-  					<th width="100" align="left">Score</th>
-				</tr>
-				<tbody>
-				</tbody>
-			</table>
+				<table id="scoreTable" align="center">
+					<tr>
+						<th width="400" align="left">Name</th>
+						<th width="100" align="left">Score</th>
+					</tr>
+					<tbody>
+					</tbody>
+				</table>
 			</div>
 
 			<img id="back_button2"
-				src="assets/img/menu/back0.png"
-				onmouseover="this.src='assets/img/menu/back1.png'"
-				onmouseout="this.src='assets/img/menu/back0.png'"
-				width="120" height="50">
+				 src="assets/img/menu/back0.png"
+				 onmouseover="this.src='assets/img/menu/back1.png'"
+				 onmouseout="this.src='assets/img/menu/back0.png'"
+				 width="120" height="50">
 		</div>
-
 	</div>
+
+</div>
 
 </body>
 </html>

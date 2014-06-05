@@ -44,6 +44,9 @@ Require.load(function () {
 	Logging.DEBUG = true;
 	Logging.VERBOSE = false;
 
+	document.getElementById("loading_div").style.display = "none";
+	document.getElementById("menu_div").style.display = "block";
+
 	var canvasArea = document.getElementById("canvas_area");
 	var menuArea = document.getElementById("menu_area");
 	var creditsArea = document.getElementById("credits_area");
