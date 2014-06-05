@@ -41,6 +41,7 @@ img { margin-bottom: 0px; }
 	font-family: 'BadaBoom';
 	font-size: 40px;
   	letter-spacing: 2px;
+  	overflow-y: scroll;
 }
 
 #credits_area img { text-align: center; }
