@@ -94,12 +94,12 @@ var GameEngine = function (gameCanvas, sideCanvas) {
 	this.gameOver = function () {
 		this.menus.showGameOver();
 
-		if (this.engine.gameOverFlag == true && this.engine.gameEnd == 0) {
+		if (this.gameOverFlag == true && this.gameEnd == 0) {
 			this.menus.showHighscorePrompt(this);
-			this.engine.gameEnd++;
+			this.gameEnd++;
 		} else {
-			this.engine.gameOverFlag = true;
-			this.engine.gameEnd++;
+			this.gameOverFlag = true;
+			this.gameEnd++;
 		}
 	};
 
