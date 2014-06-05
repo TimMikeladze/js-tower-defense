@@ -18,8 +18,9 @@ img { margin-bottom: 0px; }
          url('BADABB.woff') format('woff'),
          url('BADABB.ttf') format('truetype'),
          url('BADABB.svg#BadaBoomBBRegular') format('svg');
-     font-weight: normal;
+    font-weight: normal;
   	font-style: normal;
+  	letter-spacing: 2px;
 }
 
 .container {
@@ -47,7 +48,6 @@ img { margin-bottom: 0px; }
 	font-family: 'BadaBoom';
 	font-size: 40px;
   	letter-spacing: 2px;
-  	overflow-y: scroll;
 }
 
 #credits_area img { text-align: center; }
@@ -64,8 +64,30 @@ img { margin-bottom: 0px; }
 }
 
 #side_canvas {
-	border: 0px solid red;
 	float: right;
 	background-image: url('../assets/img/canvasbg/bg3.png');
 	background-position:bottom right;
+}
+
+#score_box {
+	border: 0px solid red;
+	margin: auto;
+	width: 75%;
+	height: 50%;
+  	overflow-y: scroll;
+  	text-align: center;
+  	background:rgba(255,255,255, 0.5);
+  	padding: 5px 0px;
+}
+
+#scoreTable {
+	border: 0px solid blue;
+	text-align: left;
+	font-size: 35px;
+}
+
+#scoreTable th { 
+	font-size: 40px; 
+	padding-bottom: 8px; 
+	border-bottom: 0px solid gray;
 }
