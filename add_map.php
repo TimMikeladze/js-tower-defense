@@ -4,7 +4,7 @@ require("init.php");
 
 $Name = db_string($_POST['name']);
 $Level = (int) $_POST['level'];
-$Data = $_POST['json'];
+$Data = $_POST['map'];
 
 if (!empty($Name) && !empty($Level) && !empty($Data)) {
 	G::$DB->query("INSERT INTO maps (Name, Level, Data) VALUES ('$Name', '$Level', '$Data')");
