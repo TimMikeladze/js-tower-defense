@@ -1,17 +1,20 @@
-var MapEditor = function (canvas) {
+var MapEditor = function (canvas, socket) {
 	this.canvas = canvas;
+	this.socket = socket;
 
 	this.scale = 30;
 
 	this.tileWidth = this.canvas.width / this.scale;
 	this.tileHeight = this.canvas.height / this.scale;
 
-	this.floatingTitle = null;
+	this.floatingTile = null;
 
 	this.tiles = [];
-
 	this.controlPoints = [];
-	this.path = [];
+	this.paths = [];
+
+	this.pathID = null;
+	this.recordingPath = false;
 
 	var that = this;
 	document.getElementById("save").addEventListener("click", function () {
@@ -20,6 +23,30 @@ var MapEditor = function (canvas) {
 		pom.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(json));
 		pom.setAttribute('download', "map.json");
 		pom.click();
+	});
+
+	document.getElementById("path").addEventListener("click", function () {
+		if (!that.recordingPath) {
+			that.pathID = that.generateID();
+			document.getElementById("path").innerText = "Stop Path";
+			that.recordingPath = true;
+		} else {
+			document.getElementById("path").innerText = "Start Path";
+			that.recordingPath = false;
+		}
+	});
+
+	document.getElementById("clear").addEventListener("click", function () {
+		that.floatingTile = null;
+
+		that.tiles = [];
+		that.controlPoints = [];
+		that.paths = [];
+
+		that.pathID = null;
+		that.recordingPath = false;
+
+		document.getElementById("path").innerText = "Start Path";
 	});
 
 	this.init = function () {
@@ -46,16 +73,14 @@ var MapEditor = function (canvas) {
 		this.canvas.addEventListener("click", function (e) {
 			that.click = getClickedPoint(e);
 
-			if (that.floatingTitle) {
-				var tile = new Tile(that.floatingTitle.color, that.floatingTitle.x, that.floatingTitle.y, that.floatingTitle.width, that.floatingTitle.height);
-				tile.applyTile();
-				that.tiles.push(tile);
+			if (that.floatingTile) {
+				that.floatingTile.applyTile();
+				that.tiles.push(that.floatingTile.clone());
 
-				that.controlPoints.push(tile.getCenter());
-				if (that.controlPoints.length > 3) {
-					that.path = Bezier.calculateCurve(that.controlPoints);
-					//		log(that.path);
+				if (that.recordingPath) {
+					that.controlPoints.push({id: that.pathID, point: that.floatingTile.getCenter()});
 				}
+
 			}
 		}, false);
 
@@ -65,11 +90,11 @@ var MapEditor = function (canvas) {
 			var x = Math.floor(that.mouse.x / that.tileWidth) * that.tileWidth;
 			var y = Math.floor(that.mouse.y / that.tileHeight) * that.tileHeight;
 
-			if (!that.floatingTitle) {
-				that.floatingTitle = new Tile("#926239", x, y, that.tileWidth, that.tileHeight);
+			if (!that.floatingTile) {
+				that.floatingTile = new Tile(that.currentPathIndex, x, y, that.tileWidth, that.tileHeight, that.scale);
 			} else {
-				that.floatingTitle.x = x;
-				that.floatingTitle.y = y;
+				that.floatingTile.x = x;
+				that.floatingTile.y = y;
 			}
 		}, false);
 
@@ -88,21 +113,24 @@ var MapEditor = function (canvas) {
 	};
 
 	this.draw = function () {
-		this.canvas.clear("#458B00");
+		this.canvas.clear("#000000");
 
-		if (this.floatingTitle) {
-			this.floatingTitle.render(this.canvas);
+		if (this.floatingTile) {
+			this.floatingTile.render(this.canvas);
 		}
+
 
 		var that = this;
 		this.tiles.forEach(function (t) {
 			t.render(that.canvas);
 		});
 
-		this.path.forEach(function (p) {
+		this.controlPoints.forEach(function(p) {
 			canvas.context.fillStyle = "#FF0000";
-			canvas.context.fillRect(p.x, p.y, 1, 1);
+			canvas.context.fillRect(p.point.x, p.point.y, 5, 5);
+			canvas.context.globalAlpha = 1.0;
 		});
+
 	};
 
 
