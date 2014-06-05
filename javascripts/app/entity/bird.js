@@ -17,10 +17,12 @@ var Bird = function (sprite, position, fireRadius, price, width, height, scale) 
 	var renderParent = this.render;
 	this.render = function (canvas) {
 		renderParent.call(this, canvas);
+		/*
 		canvas.context.beginPath();
 		canvas.context.arc(this.getCenter().x, this.getCenter().y, this.fireRadius, 0, Math.PI * 2, true);
 		canvas.context.stroke();
 		canvas.context.closePath();
+		*/
 
 		if (this.state == Bird.FLOATING) {
 			canvas.context.globalAlpha = this.alpha;
