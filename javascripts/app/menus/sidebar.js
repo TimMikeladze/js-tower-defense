@@ -194,7 +194,7 @@ var SideBar = function () {
 		else if (x > this.quitButtonX1 && x < this.quitButtonX2 &&
 			y > this.quitButtonY1 && y < this.quitButtonY2) {
 			console.log("quit");
-			this.gameEngine.init();
+			this.gameEngine.gameOver();
 		}
 		else if (x > this.nextButtonX1 && x < this.nextButtonX2 &&
 			y > this.nextButtonY1 && y < this.nextButtonY2) {
