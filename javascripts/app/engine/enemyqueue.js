@@ -2,7 +2,7 @@ var EnemyQueue = function (engine, path) {
 	this.engine = engine;
 	this.enemies = EnemyQueue.generateEnemies(path, 10);
 	this.path = path;
-	this.rate = 3000;
+	this.rate = 2000;
 
 	this.nextEnemy = function () {
 		return this.enemies.length > 0 ? this.enemies.shift() : null;
@@ -24,7 +24,6 @@ var EnemyQueue = function (engine, path) {
 	};
 
 	this.addWave = function (wave, level) {
-		this.engine.sideBar.updateWaves();
 		var numEnemiesWave = 10 + (wave * 2);
 		this.engine.sideBar.updateEnemiesLeft(numEnemiesWave);
 		
@@ -35,6 +34,7 @@ var EnemyQueue = function (engine, path) {
 			enemyStrength = 2;
 		} 
 		
+		console.log("enemy strength" + enemyStrength);
 		this.enemies = EnemyQueue.generateEnemies(path, numEnemiesWave, level + enemyStrength);
 		this.populateEngine();
 	};

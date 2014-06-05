@@ -163,6 +163,7 @@ var SideBar = function () {
 				this.wavesLeftLabel = 0;
 				this.updateLevel();
 			}
+			this.updateWaves();
 			this.gameEngine.enemyQueue.addWave(this.wavesLeftLabel, this.level);
 			this.wavesEnabled(false);
 		} else {
