@@ -47,6 +47,7 @@ var MapEditor = function (canvas, socket) {
 		that.recordingPath = false;
 
 		document.getElementById("path").innerText = "Start Path";
+		that.socket.emit("clear");
 	});
 
 	this.init = function () {
@@ -122,6 +123,11 @@ var MapEditor = function (canvas, socket) {
 			log("Players " + players);
 		});
 
+		this.socket.on("clear", function (data) {
+			that.tiles = [];
+			that.controlPoints = [];
+		});
+
 		this.socket.on("addTile", function (recievedTile) {
 			that.tiles.push(new Tile(recievedTile.key, recievedTile.x, recievedTile.y, recievedTile.width, recievedTile.height, recievedTile.scale, true))
 		});
@@ -132,12 +138,12 @@ var MapEditor = function (canvas, socket) {
 
 		this.socket.on("sendAll", function (everything) {
 			var tiles = everything.tiles;
-			tiles.forEach(function(recievedTile) {
+			tiles.forEach(function (recievedTile) {
 				that.tiles.push(new Tile(recievedTile.key, recievedTile.x, recievedTile.y, recievedTile.width, recievedTile.height, recievedTile.scale, true))
 			});
 
 			var controlPoints = everything.controlPoints;
-			controlPoints.forEach(function(cp) {
+			controlPoints.forEach(function (cp) {
 				log(cp);
 				that.controlPoints.push({id: cp.pathID, point: cp.point});
 			});
@@ -166,7 +172,7 @@ var MapEditor = function (canvas, socket) {
 			t.render(that.canvas);
 		});
 
-		this.controlPoints.forEach(function(p) {
+		this.controlPoints.forEach(function (p) {
 			canvas.context.fillStyle = "#FF0000";
 			canvas.context.fillRect(p.point.x, p.point.y, 5, 5);
 			canvas.context.globalAlpha = 1.0;
