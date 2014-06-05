@@ -28,7 +28,6 @@ GameEngine.prototype.startInput = function () {
 		} else {
 			that.floatingEntity.setPosition(that.mouse);
 		}
-
 	}, false);
 
 	this.gameCanvas.addEventListener("mousewheel", function (e) {
