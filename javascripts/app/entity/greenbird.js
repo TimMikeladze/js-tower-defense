@@ -1,10 +1,10 @@
 var GreenBird = function (position) {
-	Bird.call(this, "birds/gbird0.png", position, 140, 200, 106, 74, 0.70);
+	Bird.call(this, "birds/gbird0.png", position, 150, 400, 106, 74, 0.70);
 
 	this.frameSpeeds = [1500, 500];
 	this.animation = new Animation(this.sprite, this.width, this.height, this.scale, this.frameSpeeds);
 	this.animator.setDefaultFrame(0);
-	this.shotInterval = 2000;
+	this.shotInterval = 2500;
 	this.damage = 150;
 	
 	this.idlingFrames = [1, 2];

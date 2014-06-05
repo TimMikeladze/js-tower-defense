@@ -12,7 +12,7 @@ var Bird = function (sprite, position, fireRadius, price, width, height, scale) 
 	this.lastShotTime = null;
 	this.shotInterval = 3000;
 	this.price = price;
-	this.damage = 50;
+	this.damage = 100;
 
 	var renderParent = this.render;
 	this.render = function (canvas) {
