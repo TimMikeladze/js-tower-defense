@@ -53,6 +53,7 @@ var SideBar = function () {
 		this.initStaticText(this.ctx);
 		this.initValues(this.ctx);
 		this.loadImages();
+
 	};
 
 	this.initStaticText = function (ctx) {
@@ -211,6 +212,9 @@ var SideBar = function () {
 	this.updateLevel = function () {
 		this.level += 1;
 		this.repaint(this.ctx, 205, this.level);
+		var sound = new Howl({
+			urls: ['assets/sounds/level_up0.wav']
+		}).play();
 	};
 
 	this.updateGold = function (amount) {

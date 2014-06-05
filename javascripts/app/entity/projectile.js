@@ -84,6 +84,9 @@ var Projectile = function (sprite, position, destination, velocity, width, heigh
 		var that = this;
 		engine.pigs.forEach(function (pig) {
 			if (Collisions.isColliding(pig, that)) {
+				var sound = new Howl({
+					urls: ['assets/sounds/pig_hit3.wav']
+				}).play();
 				pig.health -= that.damage;
 				if (pig.health <= 0) {
 					engine.sideBar.updateScore();

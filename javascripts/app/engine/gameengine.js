@@ -37,6 +37,12 @@ var GameEngine = function (gameCanvas, sideCanvas) {
 			that.startInput();
 		});
 
+		this.startInput();
+
+		var sound = new Howl({
+			urls: ['assets/sounds/theme.mp3'],
+			loop: true
+		}).play();
 	};
 
 	this.empty = function () {
