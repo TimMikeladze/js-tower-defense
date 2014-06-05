@@ -1,5 +1,5 @@
 var KingPig = function (position) {
-	Pig.call(this, "pigs/pig2.png", position, 3, 146, 157, 0.35);
+	Pig.call(this, "pigs/pig2.png", position, 1, 146, 157, 0.35);
 
 	this.animation = new Animation(this.sprite, this.width, this.height, this.scale, [1500, 500, 1000]);
 	this.animator.setDefaultFrame(0);
