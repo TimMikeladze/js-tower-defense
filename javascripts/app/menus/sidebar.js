@@ -105,21 +105,17 @@ var SideBar = function () {
 	};
 
 	this.loadImages = function () {
-		/*
-		var birds = ["assets/img/towers/redbird/redbird.png","assets/img/towers/redbird/yellowbird.png"];
-		var images = null;
+		var redbird = Require.getImage("towers/redbird.png");
+		this.ctx.drawImage(redbird, 20, 340);
 
-		for (i = 0; i < birds.length; i++) {
-			images[i] = new Image();
-			images[i].src = birds[i];
-			images[i].onLoad
-		}*/
+		var yellowbird = Require.getImage("towers/yellowbird.png");
+		this.ctx.drawImage(yellowbird, ((this.width - 10) / 2) + 10, 340);
 
-		redbird = new Image();
-		redbird.src = "assets/img/towers/redbird.png";
-		redbird.onLoad = function () {
-			this.ctx.drawImage(redbird, 20, 340);
-		}
+		var greenbird = Require.getImage("towers/greenbird.png");
+		this.ctx.drawImage(greenbird, 20, 405);
+
+		var blackbird = Require.getImage("towers/blackbird.png");
+		this.ctx.drawImage(blackbird, ((this.width - 10) / 2) + 10, 405);
 	}
 
 	this.initValues = function (ctx) {

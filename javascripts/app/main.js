@@ -34,6 +34,8 @@ Require.addImage("menu", ["paused_title.png", "mini_logo.png", "gameover_title.p
 
 Require.addImage("towers", ["redbird.png"]);
 Require.addImage("towers", ["yellowbird.png"]);
+Require.addImage("towers", ["greenbird.png"]);
+Require.addImage("towers", ["blackbird.png"]);
 
 Require.load(function () {
 	Logging.DEBUG = true;
