@@ -107,6 +107,7 @@ var GameEngine = function (gameCanvas, sideCanvas) {
 	this.gameOver = function () {
 		log("Game Over");
 		this.gameCanvas.clear();
+		this.gameOverFlag = true;
 
 		var ctx = this.gameCanvas.context;
 		var img = Require.getImage("menu/paused_title.png");
