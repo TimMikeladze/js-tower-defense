@@ -189,7 +189,7 @@ var SideBar = function () {
 			// Grey out
 			this.ctx.save();
 			this.ctx.globalAlpha = 1;
-			this.ctx.fillStyle = "rgba(96,96,96, .5)";
+			this.ctx.fillStyle = "rgba(96,96,96, .9)";
 			this.ctx.fillRect(this.borderSize, 480, this.width - 2 * this.borderSize, 30);
 			this.ctx.restore();
 		}
