@@ -135,21 +135,14 @@ var GameEngine = function (gameCanvas, sideCanvas) {
 	};
 
 	this.highScores = function() {
-<<<<<<< HEAD
+
 		var name = prompt("Congrats on the High Score!\n\nPlease enter your name...");
 		var name = "Jordan"
 		var score2 = this.sideBar.scoreLabel;
 		ajax.post("http://71.19.151.5/highscores/add_highscore.php", {"name": name, score: score2}, function (response) {
   			log(response);
  		});
-	}
-=======
-		//ajax.post("http://71.19.151.5/highscores/add_highscore.php", {"name": "choclate cows", score: "700"}, function (response) {
-  			//log(response);
- 		//});
-
 	};
->>>>>>> 01df82d6bbb6d7e662d1c47cd7abca3a9729bdb1
 
 	this.update = function () {
 		this.updateEntities(this.pigs);
