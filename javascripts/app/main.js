@@ -49,7 +49,7 @@ Require.load(function () {
 	scoresButton.bindButton("high_scores_button", function () {
 		scoresArea.style.display = "block";
 		menuArea.style.display = "none";
-		ajax.get("http://71.19.151.5/highscores/get_highscores.php", function (response) {
+		ajax.get("http://71.19.151.5/highscores/get_highscores.php?limit=20", function (response) {
   			log(response);
   			var json = JSON.parse(response);
   			log(json);
