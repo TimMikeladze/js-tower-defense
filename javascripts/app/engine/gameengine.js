@@ -17,6 +17,7 @@ var GameEngine = function (gameCanvas, sideCanvas) {
 
 	this.pauseFlag = false;
 	this.gameOverFlag = false;
+	this.gameEnd = 0;
 
 	this.map = null;
 	this.sideBar = null;
@@ -107,9 +108,6 @@ var GameEngine = function (gameCanvas, sideCanvas) {
 	this.gameOver = function () {
 		log("Game Over");
 		this.gameCanvas.clear();
-		this.gameOverFlag = true;
-		this.highScores();
-
 		var ctx = this.gameCanvas.context;
 		var img = Require.getImage("menu/gameover_title.png");
 
@@ -119,6 +117,16 @@ var GameEngine = function (gameCanvas, sideCanvas) {
 		ctx.drawImage(Require.getImage("canvasbg/bg1.png"), 0, 0);
 		ctx.drawImage(img, x - img.width / 2 + 20, y - img.height);
 
+		if (this.gameOverFlag == true && this.gameEnd == 0) {
+			this.highScores();
+			this.gameEnd++;
+		} else {
+			this.gameOverFlag = true;
+		}
+
+		//Something needed here to go back to the main menu
+
+
 		ctx.font = "28pt BadaBoom";
 		ctx.fillStyle = "#000";
 		ctx.textAlign = "center";
@@ -127,10 +135,12 @@ var GameEngine = function (gameCanvas, sideCanvas) {
 	}
 
 	this.highScores = function() {
-		//ajax.post("http://71.19.151.5/highscores/add_highscore.php", {"name": "choclate cows", score: "700"}, function (response) {
-  			//log(response);
- 		//});
-
+		var name = prompt("Congrats on the High Score!\n\nPlease enter your name...");
+		var name = "Jordan"
+		var score2 = this.sideBar.scoreLabel;
+		ajax.post("http://71.19.151.5/highscores/add_highscore.php", {"name": name, score: score2}, function (response) {
+  			log(response);
+ 		});
 	}
 
 	this.update = function () {
