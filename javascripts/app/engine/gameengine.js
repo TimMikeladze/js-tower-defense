@@ -117,7 +117,7 @@ var GameEngine = function (gameCanvas, sideCanvas) {
 		var y = this.gameCanvas.height / 2;
 
 		ctx.drawImage(Require.getImage("canvasbg/bg1.png"), 0, 0);
-		ctx.drawImage(img, x - img.width / 3, y - img.height);
+		ctx.drawImage(img, x - img.width / 2 + 20, y - img.height);
 
 		ctx.font = "28pt BadaBoom";
 		ctx.fillStyle = "#000";

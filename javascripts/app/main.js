@@ -28,7 +28,7 @@ Require.addImage("pigs", ["pig2.png"]);
 Require.addImage("pigs", ["pig3.png"]);
 Require.addImage("birds", ["rbird1.png"]);
 Require.addImage("canvasbg", ["bg1.png"]);
-Require.addImage("menu", ["paused_title.png", "mini_logo.png"]);
+Require.addImage("menu", ["paused_title.png", "mini_logo.png", "gameover_title.png"]);
 //Require.addFile("maps", ["map1.json"]);
 
 	
