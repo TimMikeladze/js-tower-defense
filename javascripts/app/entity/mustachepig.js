@@ -1,5 +1,5 @@
 var MustachePig = function (position) {
-	Pig.call(this, "pigs/pig1.png", position, 2, 119, 105, 0.45);
+	Pig.call(this, "pigs/pig1.png", position, 3, 119, 105, 0.45);
 
 	this.animation = new Animation(this.sprite, this.width, this.height, this.scale, [1500, 500, 1000]);
 	this.animator.setDefaultFrame(0);
