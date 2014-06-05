@@ -31,6 +31,11 @@ Require.addImage("towers", ["redbird.png", "yellowbird.png", "greenbird.png", "b
 
 Require.addImage("maptiles", ["grass1.png", "grass2.png", "path0.png", "path1.png", "path2.png", "path3.png", "path4.png", "water0.png"]);
 
+var canvasArea;
+var menuArea;
+var creditsArea;
+var scoresArea;
+
 Require.load(function () {
 	Logging.DEBUG = true;
 	Logging.VERBOSE = false;
@@ -38,10 +43,10 @@ Require.load(function () {
 	document.getElementById("loading_div").style.display = "none";
 	document.getElementById("menu_div").style.display = "block";
 
-	var canvasArea = document.getElementById("canvas_area");
-	var menuArea = document.getElementById("menu_area");
-	var creditsArea = document.getElementById("credits_area");
-	var scoresArea = document.getElementById("scores_area");
+	canvasArea = document.getElementById("canvas_area");
+	menuArea = document.getElementById("menu_area");
+	creditsArea = document.getElementById("credits_area");
+	scoresArea = document.getElementById("scores_area");
 
 	var playButton = new MenuButton();
 
