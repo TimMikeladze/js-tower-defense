@@ -11,7 +11,8 @@ var SideBar = function () {
 	this.scoreLabel = 0;
 	this.wavesLeftLabel = 0;
 	this.enemiesLeftLabel = 0;
-	this.goldLabel = 100;
+	this.level = 1;
+	this.goldLabel = 200;
 	this.livesLabel = 5;
 	// Buttons
 	this.pauseButtonX1 = null;
@@ -48,7 +49,7 @@ var SideBar = function () {
 		ctx.font = "15pt BadaBoom";
 		ctx.fillText("Score:", (this.borderSize + textBorder), 100);
 		ctx.fillText("Wave:", (this.borderSize + textBorder), 140);
-		ctx.fillText("Remaining:", (this.borderSize + textBorder), 180);
+		ctx.fillText("Level:", (this.borderSize + textBorder), 180);
 		ctx.fillText("Gold:", (this.borderSize + textBorder), 225);
 		ctx.fillText("Lives:", (this.borderSize + textBorder), 265);
 
@@ -103,11 +104,11 @@ var SideBar = function () {
 	};
 
 	this.initValues = function (ctx) {
-		ctx.font = "20px Verdana";
+		ctx.font = "20px BadaBoom";
 		// Init Score, Wave, Left, Gold
 		ctx.fillText(this.scoreLabel, 70, 120);
 		ctx.fillText(this.wavesLeftLabel, 70, 160);
-		ctx.fillText(this.enemiesLeftLabel, 70, 205);
+		ctx.fillText(this.level, 70, 205);
 		ctx.fillText(this.goldLabel, 70, 245);
 		ctx.fillText(this.livesLabel, 70, 290);
 	};
@@ -117,6 +118,7 @@ var SideBar = function () {
 		ctx.save();
 		ctx.globalAlpha = 1;
 		ctx.fillStyle = this.background;
+		ctx.font = "20px BadaBoom";
 		ctx.fillRect(this.borderSize, y - 20, this.width - (2 * this.borderSize), 20);
 		ctx.restore();
 		ctx.fillText(label, 70, y);
@@ -134,11 +136,15 @@ var SideBar = function () {
 
 	this.updateEnemiesLeft = function (left) {
 		this.enemiesLeftLabel += left;
-		this.repaint(this.ctx, 205, this.enemiesLeftLabel);
 		if (this.enemiesLeftLabel <= 0) {
 			this.wavesEnabled(true);
 			console.log("en");
 		}
+	};
+
+	this.updateLevel = function () {
+		this.level += 1;
+		this.repaint(this.ctx, 205, this.level);
 	};
 
 	this.updateGold = function (amount) {
@@ -152,15 +158,18 @@ var SideBar = function () {
 	};
 
 	this.newWave = function () {
-		if ( this.enemiesLeftLabel == 0 ) {
-			this.gameEngine.enemyQueue.addWave(1);
+		if (this.enemiesLeftLabel <= 0) {
+			if (this.wavesLeftLabel > 10) {
+				this.wavesLeftLabel = 0;
+				this.updateLevel();
+			}
+			this.updateWaves();
+			this.gameEngine.enemyQueue.addWave(this.wavesLeftLabel, this.level);
 			this.wavesEnabled(false);
-			console.log("dis")
-		}
-		else {
+		} else {
 			console.log("There are still enemies out there bud!");
 		}
-	}
+	};
 
 	this.wavesEnabled = function (status) {
 		if (status) {
@@ -180,11 +189,11 @@ var SideBar = function () {
 			// Grey out
 			this.ctx.save();
 			this.ctx.globalAlpha = 1;
-			this.ctx.fillStyle = "rgba(96,96,96, .5)";
+			this.ctx.fillStyle = "rgba(96,96,96, .9)";
 			this.ctx.fillRect(this.borderSize, 480, this.width - 2 * this.borderSize, 30);
 			this.ctx.restore();
 		}
-	}
+	};
 
 	this.checkButton = function (x, y) {
 		if (x > this.pauseButtonX1 && x < this.pauseButtonX2 &&

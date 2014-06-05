@@ -16,7 +16,7 @@ var Entity = function (sprite, position, width, height, scale) {
 
 	this.animator = new Animator();
 
-	this.id = Entity.generateID();
+	this.id = this.generateID();
 
 	this.toString = function () {
 		return this.position.toString();
@@ -44,10 +44,3 @@ var Entity = function (sprite, position, width, height, scale) {
 
 };
 
-Entity.generateID = function () {
-	var s = "";
-	for (var i = 0; i < 32; i++) {
-		s += Math.floor(Math.random() * 0xF).toString(0xF);
-	}
-	return s;
-};

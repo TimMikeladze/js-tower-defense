@@ -132,9 +132,10 @@ var GameEngine = function (gameCanvas, sideCanvas) {
 		ctx.textAlign = "center";
 		ctx.textBaseline = "top";
 		//ctx.fillText("press P to unpause", x + 30, y + 20);
-	}
+	};
 
 	this.highScores = function() {
+<<<<<<< HEAD
 		var name = prompt("Congrats on the High Score!\n\nPlease enter your name...");
 		var name = "Jordan"
 		var score2 = this.sideBar.scoreLabel;
@@ -142,6 +143,13 @@ var GameEngine = function (gameCanvas, sideCanvas) {
   			log(response);
  		});
 	}
+=======
+		//ajax.post("http://71.19.151.5/highscores/add_highscore.php", {"name": "choclate cows", score: "700"}, function (response) {
+  			//log(response);
+ 		//});
+
+	};
+>>>>>>> 01df82d6bbb6d7e662d1c47cd7abca3a9729bdb1
 
 	this.update = function () {
 		this.updateEntities(this.pigs);
