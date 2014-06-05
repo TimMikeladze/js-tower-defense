@@ -6,12 +6,7 @@
          url('../assets/fonts/BADABB.woff') format('woff'),
          url('../assets/fonts/badabb.ttf') format('truetype'),
          url('../assets/fonts/BADABB.svg#BadaBoomBBRegular') format('svg');
-/*
-    src: url('fonts/badabb.eot');
-    src: url('fonts/badabb.eot') format('embedded-opentype'),
-         url('fonts/badabb.woff') format('woff'),
-         url('fonts/badabb.ttf') format('truetype'),
-         url('fonts/badabb.svg#BadaBoomBBRegular') format('svg');*/
+
     font-weight: normal;
   	font-style: normal;
   	letter-spacing: 2px;
