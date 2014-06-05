@@ -1,19 +1,19 @@
 
 @font-face {
     font-family: 'BadaBoom';
-    src: url('../assets/fonts/BADABB.eot');
-    src: url('../assets/fonts/BADABB.eot') format('embedded-opentype'),
-         url('../assets/fonts/BADABB.woff') format('woff'),
+    src: url('../assets/fonts/badabb.eot');
+    src: url('../assets/fonts/badabb.eot') format('embedded-opentype'),
+         url('../assets/fonts/badabb.woff') format('woff'),
          url('../assets/fonts/badabb.ttf') format('truetype'),
-         url('../assets/fonts/BADABB.svg#BadaBoomBBRegular') format('svg');
+         url('../assets/fonts/badabb.svg#BadaBoomBBRegular') format('svg');
 
     font-weight: normal;
   	font-style: normal;
   	letter-spacing: 2px;
 }
 
-body { 
-	font-family: 'BadaBoom'; 
+body {
+	font-family: 'BadaBoom';
 }
 
 canvas {
