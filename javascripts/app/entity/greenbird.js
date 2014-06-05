@@ -4,7 +4,7 @@ var GreenBird = function (position) {
 	this.frameSpeeds = [1500, 500];
 	this.animation = new Animation(this.sprite, this.width, this.height, this.scale, this.frameSpeeds);
 	this.animator.setDefaultFrame(0);
-	this.shotInterval = 2500;
+	this.shotInterval = 1500;
 	this.damage = 150;
 	
 	this.idlingFrames = [1, 2];

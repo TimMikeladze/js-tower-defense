@@ -10,7 +10,7 @@ var Bird = function (sprite, position, fireRadius, price, width, height, scale) 
 	this.minPig = null;
 	this.fireRadius = fireRadius;
 	this.lastShotTime = null;
-	this.shotInterval = 3000;
+	this.shotInterval = 1000;
 	this.price = price;
 	this.damage = 100;
 

@@ -4,7 +4,7 @@ var BlackBird = function (position) {
 	this.frameSpeeds = [1500, 500, 1000];
 	this.animation = new Animation(this.sprite, this.width, this.height, this.scale, this.frameSpeeds);
 	this.animator.setDefaultFrame(0);
-	this.shotInterval = 2000;
+	this.shotInterval = 1500;
 	this.damage = 200;
 
 	this.idlingFrames = [0, 1, 2];
