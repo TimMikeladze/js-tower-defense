@@ -27,6 +27,11 @@ var SideBar = function () {
 	this.nextButtonX2 = null;
 	this.nextButtonY1 = null;
 	this.nextButtonY2 = null;
+	this.redbirdButton = null;
+	this.blackbirdButton = null;
+	this.yellowbirdButton = null;
+	this.greenbirdButton = null;
+
 	// Birds (towers)
 	this.redbird = Require.getImage("towers/redbird.png");
 	this.yellowbird = Require.getImage("towers/yellowbird.png");
@@ -38,6 +43,11 @@ var SideBar = function () {
 		this.gameEngine = gameEngine;
 		this.width = canvas.width;
 		this.height = canvas.length;
+
+		this.redbirdButton = [20, 340, 80, 400];
+		this.blackbirdButton = [((this.width - 10) / 2) + 10, 405, ((this.width - 10) / 2) + 70, 465];
+		this.yellowbirdButton = [((this.width - 10) / 2) + 10, 340, ((this.width - 10) / 2) + 70, 400];
+		this.greenbirdButton = [20, 405, 80, 465];
 
 		this.initShapes(this.ctx);
 		this.initStaticText(this.ctx);
@@ -116,40 +126,34 @@ var SideBar = function () {
 		if (this.goldLabel >= 100) {
 			this.ctx.clearRect(20, 340, 60, 60);
 			this.ctx.drawImage(this.redbird, 20, 340);
-			console.log("r y");
 		}
 		else {
 			this.ctx.clearRect(20, 340, 60, 60);
 			this.ctx.drawImage(this.redbird, 20, 340);
 			this.ctx.fillStyle = this.background;
 			this.ctx.fillRect(20, 340, 60, 60);
-			console.log("r n");
 		}
 
 		if (this.goldLabel >= 200) {
 			this.ctx.clearRect(secondColumn, 340, 60, 60);
 			this.ctx.drawImage(this.yellowbird, secondColumn, 340);
-			console.log("y y");
 		}
 		else {
 			this.ctx.clearRect(secondColumn, 340, 60, 60);
 			this.ctx.drawImage(this.yellowbird, secondColumn, 340);
 			this.ctx.fillStyle = this.background;
 			this.ctx.fillRect(secondColumn, 340, 60, 60);
-			console.log("y n");
 		}
 
 		if (this.goldLabel >= 300) {
 			this.ctx.clearRect(20, 405, 60, 60);
 			this.ctx.drawImage(this.greenbird, 20, 405);
-			console.log("r y");
 		}
 		else {
 			this.ctx.clearRect(20, 405, 60, 60);
 			this.ctx.drawImage(this.greenbird, 20, 405);
 			this.ctx.fillStyle = this.background;
 			this.ctx.fillRect(20, 405, 60, 60);
-			console.log("r n");
 		}
 
 		if (this.goldLabel >= 400) {
@@ -271,5 +275,36 @@ var SideBar = function () {
 			y > this.nextButtonY1 && y < this.nextButtonY2) {
 			this.newWave();
 		}
+		else {
+			this.checkIfTower(x, y);
+		}
 	};
+
+	this.checkIfTower = function (x, y) {
+		if (x > this.redbirdButton[0] && x < this.redbirdButton[2] &&
+			y > this.redbirdButton[1] && y < this.redbirdButton[3]) {
+			if (this.goldLabel >= 100) {
+				this.gameEngine.floatingEntity = new RedBird(this.gameEngine.mouse);
+			}
+		}
+		else if (x > this.yellowbirdButton[0] && x < this.yellowbirdButton[2] &&
+			y > this.yellowbirdButton[1] && y < this.yellowbirdButton[3]) {
+			if (this.goldLabel >= 200) {
+				this.gameEngine.floatingEntity = new YellowBird(this.gameEngine.mouse);
+			}
+		}
+		else if (x > this.greenbirdButton[0] && x < this.greenbirdButton[2] &&
+			y > this.greenbirdButton[1] && y < this.greenbirdButton[3]) {
+			if (this.goldLabel >= 300) {
+				this.gameEngine.floatingEntity = new GreenBird(this.gameEngine.mouse);
+			}
+		}
+		else if (x > this.blackbirdButton[0] && x < this.blackbirdButton[2] &&
+			y > this.blackbirdButton[1] && y < this.blackbirdButton[3]) {
+			if (this.goldLabel >= 400) {
+				this.gameEngine.floatingEntity = new BlackBird(this.gameEngine.mouse);
+			}
+		}
+
+	}
 };
