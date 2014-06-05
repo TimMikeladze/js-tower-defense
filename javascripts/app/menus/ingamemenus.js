@@ -45,6 +45,6 @@ var InGameMenus = function (canvas) {
 		var score2 = engine.sideBar.scoreLabel;
 		ajax.post("http://71.19.151.5/highscores/add_highscore.php", {"name": name, score: score2}, function (response) {
 			console.log(response);
-		}
+		});
 	};
 }
