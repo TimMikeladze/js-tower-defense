@@ -2,7 +2,7 @@ var MapEditor = function (canvas, socket) {
 	this.canvas = canvas;
 	this.socket = socket;
 
-	this.scale = 15;
+	this.scale = 12;
 
 	this.tileWidth = this.canvas.width / this.scale;
 	this.tileHeight = this.canvas.height / this.scale;
