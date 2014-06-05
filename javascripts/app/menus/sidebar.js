@@ -239,27 +239,19 @@ var SideBar = function () {
 	};
 
 	this.wavesEnabled = function (status) {
-		if (status) {
-			// Restore
-			this.ctx.clearRect(this.borderSize, 480, this.width - 2 * this.borderSize, 30);
-			this.ctx.save();
-			this.ctx.globalAlpha = 1;
-			this.ctx.fillStyle = this.background;
-			this.ctx.fillRect(this.borderSize, 480, this.width - 2 * this.borderSize, 30);
-			this.ctx.restore();
-			this.ctx.save();
-			this.ctx.font = "20pt BadaBoom";
-			this.ctx.fillText("Send Wave", (this.borderSize + 5), 505);
-			this.ctx.restore();
+		this.ctx.clearRect(this.borderSize, 480, this.width - 2 * this.borderSize, 30);
+		this.ctx.save();
+		this.ctx.globalAlpha = 1;
+		this.ctx.fillStyle = this.background;
+		this.ctx.fillRect(this.borderSize, 480, this.width - 2 * this.borderSize, 30);
+		this.ctx.restore();
+		this.ctx.save();	
+		this.ctx.font = "20pt BadaBoom";
+		if (!status) {
+			this.ctx.fillStyle = "rgba(0,0,0, 0.2)";
 		}
-		else {
-			// Grey out
-			this.ctx.save();
-			this.ctx.globalAlpha = 1;
-			this.ctx.fillStyle = "rgba(96,96,96, .9)";
-			this.ctx.fillRect(this.borderSize, 480, this.width - 2 * this.borderSize, 30);
-			this.ctx.restore();
-		}
+		this.ctx.fillText("Send Wave", (this.borderSize + 5), 505);
+		this.ctx.restore();
 	};
 
 	this.checkButton = function (x, y) {

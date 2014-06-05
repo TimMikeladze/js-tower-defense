@@ -22,10 +22,7 @@ GameEngine.prototype.startInput = function () {
 
 	this.gameCanvas.addEventListener("mousemove", function (e) {
 		that.mouse = getClickedPoint(e, that.gameCanvas);
-
-		if (that.floatingEntity == null) {
-			that.floatingEntity = new BlackBird(that.mouse);
-		} else {
+		if (that.floatingEntity != null) {
 			that.floatingEntity.setPosition(that.mouse);
 		}
 	}, false);
