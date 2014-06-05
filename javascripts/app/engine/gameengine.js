@@ -36,6 +36,11 @@ var GameEngine = function (gameCanvas, sideCanvas) {
 		this.enemyQueue = new EnemyQueue(this, this.map.path);
 
 		this.startInput();
+
+		var sound = new Howl({
+			urls: ['assets/sounds/theme.mp3'],
+			loop: true
+		}).play();
 	};
 
 	this.empty = function () {
