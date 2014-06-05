@@ -21,6 +21,7 @@ var Pig = function (sprite, position, speed, width, height, scale) {
 		} else {
 			this.destroy = true;
 			engine.sideBar.updateLives();
+			engine.sideBar.updateEnemiesLeft(-1);
 		}
 	};
 

@@ -135,6 +135,10 @@ var SideBar = function () {
 	this.updateEnemiesLeft = function (left) {
 		this.enemiesLeftLabel += left;
 		this.repaint(this.ctx, 205, this.enemiesLeftLabel);
+		if (this.enemiesLeftLabel == 11) {
+			this.wavesEnabled(true);
+			console.log("en");
+		}
 	};
 
 	this.updateGold = function (amount) {
@@ -146,6 +150,41 @@ var SideBar = function () {
 		this.livesLabel -= 1;
 		this.repaint(this.ctx, 290, this.livesLabel);
 	};
+
+	this.newWave = function () {
+		if ( this.enemiesLeftLabel == 0 ) {
+			this.gameEngine.enemyQueue.addWave(1);
+			this.wavesEnabled(false);
+			console.log("dis")
+		}
+		else {
+			console.log("There are still enemies out there bud!");
+		}
+	}
+
+	this.wavesEnabled = function (status) {
+		if (status) {
+			// Restore
+			this.ctx.clearRect(this.borderSize, 480, this.width - 2 * this.borderSize, 30);
+			this.ctx.save();
+			this.ctx.globalAlpha = 1;
+			this.ctx.fillStyle = this.background;
+			this.ctx.fillRect(this.borderSize, 480, this.width - 2 * this.borderSize, 30);
+			this.ctx.restore();
+			this.ctx.save();
+			this.ctx.font = "20pt BadaBoom";
+			this.ctx.fillText("Send Wave", (this.borderSize + 5), 505);
+			this.ctx.restore();
+		}
+		else {
+			// Grey out
+			this.ctx.save();
+			this.ctx.globalAlpha = 1;
+			this.ctx.fillStyle = "rgba(96,96,96, .5)";
+			this.ctx.fillRect(this.borderSize, 480, this.width - 2 * this.borderSize, 30);
+			this.ctx.restore();
+		}
+	}
 
 	this.checkButton = function (x, y) {
 		if (x > this.pauseButtonX1 && x < this.pauseButtonX2 &&
@@ -159,7 +198,7 @@ var SideBar = function () {
 		}
 		else if (x > this.nextButtonX1 && x < this.nextButtonX2 &&
 			y > this.nextButtonY1 && y < this.nextButtonY2) {
-			this.gameEngine.enemyQueue.addWave(1);
+			this.newWave();
 		}
 	};
 };
