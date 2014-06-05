@@ -51,6 +51,7 @@ var MapEditor = function (canvas, socket) {
 
 	this.init = function () {
 		this.startInput();
+		this.setSocketEventHandler();
 	};
 
 	this.start = function () {
@@ -76,7 +77,7 @@ var MapEditor = function (canvas, socket) {
 			if (that.floatingTile) {
 				that.floatingTile.applyTile();
 				that.tiles.push(that.floatingTile.clone());
-
+				that.socket.emit("addTile", that.floatingTile.clone());
 				if (that.recordingPath) {
 					that.controlPoints.push({id: that.pathID, point: that.floatingTile.getCenter()});
 				}
@@ -101,6 +102,33 @@ var MapEditor = function (canvas, socket) {
 		this.canvas.addEventListener("mousewheel", function (e) {
 			that.wheel = e;
 		}, false);
+	};
+
+	this.setSocketEventHandler = function () {
+		var that = this;
+
+		this.socket.on("log", function (data) {
+			log(data);
+		});
+
+		this.socket.on("setGameID", function (gameID) {
+			that.gameID = gameID;
+			log("Game ID: " + gameID);
+		});
+
+		this.socket.on("numberOfPlayers", function (players) {
+			log("Players " + players);
+		});
+
+		this.socket.on("addTile", function (recievedTile) {
+			that.tiles.push(new Tile(recievedTile.key, recievedTile.x, recievedTile.y, recievedTile.width, recievedTile.height, recievedTile.scale, true))
+		});
+
+		this.socket.on("sendTiles", function (tiles) {
+			tiles.forEach(function(recievedTile) {
+				that.tiles.push(new Tile(recievedTile.key, recievedTile.x, recievedTile.y, recievedTile.width, recievedTile.height, recievedTile.scale, true))
+			});
+		});
 	};
 
 	this.loop = function () {

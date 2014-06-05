@@ -14,7 +14,7 @@ Require.addScript("util", ["prototypes", "logging"]);
 Require.addScript("math", ["vector2", "bezier"]);
 Require.addScript("map", ["map", "mapeditor", "tile"]);
 Require.addScript("graphics", ["canvas", "animation"]);
-
+Require.addScript("networking", ["connection"]);
 
 var mapCanvas;
 var connection;
@@ -26,7 +26,9 @@ Require.load(function () {
 	mapCanvas = new Canvas("map_canvas");
 	mapCanvas.clear("#458B00");
 
-	var mapEditor = new MapEditor(mapCanvas);
+	var connection = new Connection(SERVER_URL, SERVER_PORT, false);
+	connection.connect();
+	var mapEditor = new MapEditor(mapCanvas, connection.socket);
 
 	mapEditor.init();
 	mapEditor.start();
