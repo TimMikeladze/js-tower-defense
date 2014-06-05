@@ -9,10 +9,10 @@ var SideBar = function () {
 	this.background = "rgba(34,139,34, .5)";
 	// Score,waves, ememies and gold variables
 	this.scoreLabel = 0;
-	this.wavesLeftLabel = 0;
+	this.wavesLeftLabel = 10;
 	this.enemiesLeftLabel = 0;
 	this.level = 1;
-	this.goldLabel = 600;
+	this.goldLabel = 1000;
 	this.livesLabel = 5;
 	// Buttons
 	this.pauseButtonX1 = null;
@@ -233,6 +233,7 @@ var SideBar = function () {
 			this.updateWaves();
 			if (this.wavesLeftLabel > 10) {
 				this.wavesLeftLabel = 0;
+				this.updateWaves();
 				this.updateLevel();
 			}
 			this.gameEngine.enemyQueue.addWave(this.wavesLeftLabel, this.level);
