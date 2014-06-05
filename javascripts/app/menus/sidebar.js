@@ -230,11 +230,11 @@ var SideBar = function () {
 
 	this.newWave = function () {
 		if (this.enemiesLeftLabel <= 0) {
+			this.updateWaves();
 			if (this.wavesLeftLabel > 10) {
 				this.wavesLeftLabel = 0;
 				this.updateLevel();
 			}
-			this.updateWaves();
 			this.gameEngine.enemyQueue.addWave(this.wavesLeftLabel, this.level);
 			this.wavesEnabled(false);
 		} else {
