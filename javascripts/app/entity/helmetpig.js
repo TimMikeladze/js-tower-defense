@@ -1,5 +1,5 @@
-var KingPig = function (position) {
-	Pig.call(this, "pigs/pig2.png", position, 2, 146, 157, 0.35);
+var HelmetPig = function (position) {
+	Pig.call(this, "pigs/pig3.png", position, 2, 110, 93, 0.50);
 
 	this.animation = new Animation(this.sprite, this.width, this.height, this.scale, [1500, 500, 1000]);
 	this.animator.setDefaultFrame(0);
@@ -7,7 +7,7 @@ var KingPig = function (position) {
 	this.idlingFrames = [0, 1, 2];
 	this.hurtFrames = [3, 4, 5];
 	this.badlyHurtFrames = [6, 7, 8];
-	this.health = 500;
+	this.health = 600;
 
 	var renderParent = this.render;
 	this.render = function (canvas) {
@@ -32,11 +32,10 @@ var KingPig = function (position) {
 			this.state = Pig.IDLING;
 			this.currentFrames = this.idlingFrames;
 		}
-
 		this.animator.tick(time, this.animation, this.currentFrames);
 		tickParent.call(this, time, engine);
 	};
 };
 
 GreenPig.prototype = Object.create(Pig.prototype);
-GreenPig.prototype.constructor = KingPig;
+GreenPig.prototype.constructor = HelmetPig;
