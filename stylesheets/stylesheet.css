@@ -10,14 +10,14 @@ img { margin-bottom: 0px; }
    /* src: url('../assets/fonts/BADABB.eot');
     src: url('../assets/fonts/BADABB.eot') format('embedded-opentype'),
          url('../assets/fonts/BADABB.woff') format('woff'),
-         url('../assets/fonts/BADABB.ttf') format('truetype'),
+         url('../assets/fonts/badabb.ttf') format('truetype'),
          url('../assets/fonts/BADABB.svg#BadaBoomBBRegular') format('svg');*/
-  	
-    src: url('fonts/BADABB.eot');
-    src: url('fonts/BADABB.eot') format('embedded-opentype'),
-         url('fonts/BADABB.woff') format('woff'),
-         url('fonts/BADABB.ttf') format('truetype'),
-         url('fonts/BADABB.svg#BadaBoomBBRegular') format('svg');
+
+    src: url('fonts/badabb.eot');
+    src: url('fonts/badabb.eot') format('embedded-opentype'),
+         url('fonts/badabb.woff') format('woff'),
+         url('fonts/badabb.ttf') format('truetype'),
+         url('fonts/badabb.svg#BadaBoomBBRegular') format('svg');
     font-weight: normal;
   	font-style: normal;
   	letter-spacing: 2px;
@@ -86,8 +86,8 @@ img { margin-bottom: 0px; }
 	font-size: 35px;
 }
 
-#scoreTable th { 
-	font-size: 40px; 
-	padding-bottom: 8px; 
+#scoreTable th {
+	font-size: 40px;
+	padding-bottom: 8px;
 	border-bottom: 0px solid gray;
 }

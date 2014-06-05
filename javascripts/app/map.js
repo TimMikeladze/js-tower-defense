@@ -16,7 +16,7 @@ Require.addScript("map", ["map", "mapeditor", "tile"]);
 Require.addScript("graphics", ["canvas", "animation"]);
 Require.addScript("networking", ["connection"]);
 
-Require.addImage("maptiles", ["grass1.png", "grass2.png", "path0.png", "path1.png"]);
+Require.addImage("maptiles", ["grass1.png", "grass2.png", "path0.png", "path1.png", "path2.png", "path3.png", "path4.png", "water0.png"]);
 
 var mapCanvas;
 var connection;
