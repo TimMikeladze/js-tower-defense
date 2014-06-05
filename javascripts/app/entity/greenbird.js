@@ -5,6 +5,7 @@ var GreenBird = function (position) {
 	this.animation = new Animation(this.sprite, this.width, this.height, this.scale, this.frameSpeeds);
 	this.animator.setDefaultFrame(0);
 	this.shotInterval = 2000;
+	this.damage = 150;
 	
 	this.idlingFrames = [1, 2];
 	var renderParent = this.render;
@@ -29,6 +30,7 @@ var GreenBird = function (position) {
 		var projectile = new GreenBirdProjectile(this.position.clone(), destination.clone());
 		projectile.setRotationAngle(this.rotationAngle);
 		projectile.setMaxFlightDistance(this.fireRadius);
+		projectile.setDamage(this.damage);
 		projectile.fire();
 		engine.addProjectile(projectile);
 	};

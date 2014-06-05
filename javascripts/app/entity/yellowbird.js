@@ -5,6 +5,7 @@ var YellowBird = function (position) {
 	this.animation = new Animation(this.sprite, this.width, this.height, this.scale, this.frameSpeeds);
 	this.animator.setDefaultFrame(0);
 	this.shotInterval = 2000;
+	this.damage = 100;
 	
 	this.idlingFrames = [0, 1];
 	var renderParent = this.render;

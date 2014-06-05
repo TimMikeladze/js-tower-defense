@@ -8,7 +8,6 @@ var BlackBirdProjectile = function (position, destination) {
 
 	this.inFlightFrames = [2];
 	this.maxFlightDistanceFrames = [1];
-
 };
 
 BlackBirdProjectile.prototype = Object.create(Projectile.prototype);

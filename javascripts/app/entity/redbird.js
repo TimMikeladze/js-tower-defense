@@ -28,6 +28,7 @@ var RedBird = function (position) {
 		var projectile = new RedBirdProjectile(this.position.clone(), destination.clone());
 		projectile.setRotationAngle(this.rotationAngle);
 		projectile.setMaxFlightDistance(this.fireRadius);
+		projectile.setDamage(this.damage);
 		projectile.fire();
 		engine.addProjectile(projectile);
 	};

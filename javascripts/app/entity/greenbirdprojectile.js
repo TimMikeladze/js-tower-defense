@@ -8,7 +8,6 @@ var GreenBirdProjectile = function (position, destination) {
 
 	this.inFlightFrames = [2];
 	this.maxFlightDistanceFrames = [1];
-
 };
 
 GreenBirdProjectile.prototype = Object.create(Projectile.prototype);

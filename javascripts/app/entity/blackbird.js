@@ -5,6 +5,7 @@ var BlackBird = function (position) {
 	this.animation = new Animation(this.sprite, this.width, this.height, this.scale, this.frameSpeeds);
 	this.animator.setDefaultFrame(0);
 	this.shotInterval = 1000;
+	this.damage = 200;
 
 	this.idlingFrames = [0, 1, 2];
 	var renderParent = this.render;
@@ -29,6 +30,7 @@ var BlackBird = function (position) {
 		var projectile = new BlackBirdProjectile(this.position.clone(), destination.clone());
 		projectile.setRotationAngle(this.rotationAngle);
 		projectile.setMaxFlightDistance(this.fireRadius);
+		projectile.setDamage(this.damage);
 		projectile.fire();
 		engine.addProjectile(projectile);
 	};

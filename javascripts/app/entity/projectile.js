@@ -15,6 +15,8 @@ var Projectile = function (sprite, position, destination, velocity, width, heigh
 	this.rotationFreeze = false;
 	this.freezeAngle = 0;
 	this.freezeSide = 1;
+	
+	this.damage = 50;
 
 	this.originalPosition = this.position.clone();
 
@@ -24,6 +26,10 @@ var Projectile = function (sprite, position, destination, velocity, width, heigh
 
 	this.setRotationAngle = function (angle) {
 		this.rotationAngle = angle;
+	};
+	
+	this.setDamage = function (dmg) {
+		this.damage = dmg;
 	};
 
 	this.fire = function () {
@@ -78,7 +84,7 @@ var Projectile = function (sprite, position, destination, velocity, width, heigh
 		var that = this;
 		engine.pigs.forEach(function (pig) {
 			if (Collisions.isColliding(pig, that)) {
-				pig.health -= 100; // TODO update this value later
+				pig.health -= that.damage;
 				if (pig.health <= 0) {
 					engine.sideBar.updateScore();
 					engine.sideBar.updateGold(10);
