@@ -353,8 +353,7 @@ var SideBar = function () {
 				this.ctx.fillText("Cost", (this.borderSize + 5), 170);
 				this.ctx.fillText("Damage", (this.borderSize + 5), 200);
 				this.ctx.fillText("Range", (this.borderSize + 5), 230);
-				this.ctx.fillText("Other1", (this.borderSize + 5), 260);
-				this.ctx.fillText("Otehr2", (this.borderSize + 5), 290);
+				this.ctx.fillText("Fire Rate", (this.borderSize + 5), 260);
 				this.ctx.restore();
 				break;
 			case "yellow":
@@ -363,8 +362,7 @@ var SideBar = function () {
 				this.ctx.fillText("Cost", (this.borderSize + 5), 170);
 				this.ctx.fillText("Damage", (this.borderSize + 5), 200);
 				this.ctx.fillText("Range", (this.borderSize + 5), 230);
-				this.ctx.fillText("Other1", (this.borderSize + 5), 260);
-				this.ctx.fillText("Otehr2", (this.borderSize + 5), 290);
+				this.ctx.fillText("Fire Rate", (this.borderSize + 5), 260);
 				this.ctx.restore();
 				break;
 			case "green":
@@ -373,8 +371,7 @@ var SideBar = function () {
 				this.ctx.fillText("Cost", (this.borderSize + 5), 170);
 				this.ctx.fillText("Damage", (this.borderSize + 5), 200);
 				this.ctx.fillText("Range", (this.borderSize + 5), 230);
-				this.ctx.fillText("Other1", (this.borderSize + 5), 260);
-				this.ctx.fillText("Otehr2", (this.borderSize + 5), 290);
+				this.ctx.fillText("Fire Rate", (this.borderSize + 5), 260);
 				this.ctx.restore();
 				break;
 			case "black":
@@ -383,8 +380,7 @@ var SideBar = function () {
 				this.ctx.fillText("Cost", (this.borderSize + 5), 170);
 				this.ctx.fillText("Damage", (this.borderSize + 5), 200);
 				this.ctx.fillText("Range", (this.borderSize + 5), 230);
-				this.ctx.fillText("Other1", (this.borderSize + 5), 260);
-				this.ctx.fillText("Otehr2", (this.borderSize + 5), 290);
+				this.ctx.fillText("Fire Rate", (this.borderSize + 5), 260);
 				this.ctx.restore();
 				break;
 			default:
