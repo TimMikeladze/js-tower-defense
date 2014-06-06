@@ -132,7 +132,7 @@ var SideBar = function () {
 		this.ctx.save();
 		var secondColumn = ((this.width - 10) / 2) + 10;
 
-		if (this.goldLabel >= 200) {
+		if (this.goldLabel >= this.red_bird.price) {
 			this.ctx.clearRect(20, 340, 60, 60);
 			this.ctx.drawImage(this.redbird, 20, 340);
 		}
@@ -143,7 +143,7 @@ var SideBar = function () {
 			this.ctx.fillRect(20, 340, 60, 60);
 		}
 
-		if (this.goldLabel >= 300) {
+		if (this.goldLabel >= this.yellow_bird.price) {
 			this.ctx.clearRect(secondColumn, 340, 60, 60);
 			this.ctx.drawImage(this.yellowbird, secondColumn, 340);
 		}
@@ -154,7 +154,7 @@ var SideBar = function () {
 			this.ctx.fillRect(secondColumn, 340, 60, 60);
 		}
 
-		if (this.goldLabel >= 400) {
+		if (this.goldLabel >= this.green_bird.price) {
 			this.ctx.clearRect(20, 405, 60, 60);
 			this.ctx.drawImage(this.greenbird, 20, 405);
 		}
@@ -165,7 +165,7 @@ var SideBar = function () {
 			this.ctx.fillRect(20, 405, 60, 60);
 		}
 
-		if (this.goldLabel >= 500) {
+		if (this.goldLabel >= this.black_bird.price) {
 			this.ctx.clearRect(secondColumn, 405, 60, 60);
 			this.ctx.drawImage(this.blackbird, secondColumn, 405);
 		}
