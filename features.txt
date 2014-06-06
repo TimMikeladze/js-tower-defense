@@ -1,0 +1,34 @@
+Graphics/Animation: Evaluation is based on the number, originality, and complexity of graphics and animations.
+4 types of enemies (pigs)
+4 types of towers (birds)
+8 map tiles 
+10 different custom maps
+custom font face: angry birds font "BadaBoom"
+tower logos for side menu
+wallpaper images for sidebar, main menu, pause menu
+custom angry birds tower defense logo (using font named above)
+
+Control: Evaluation is based on the number, originality and operation of the control features of the game.
+All tower defense game controls (pressing on the tower icon to select tower, placing the towers, starting new waves, etc)
+
+Interaction: Evaluation is based on complexity and performance of game element interaction like collision detection, game logic, seeking behavior, pathfinding, etc.
+created our own bezier curves for pigs to follow path
+map maker allows us an easy way to generate our own maps for the game
+collision detection (projectile to enemy, towers can't be placed on enemy path, towers can't be placed on top of other towers)
+towers have a range radius and when enemies enter, the tower always faces the closest one and shoots projectiles at it)
+each tower and enemy has their own specifications (enemies: speed, health | towers: range, rate of fire, price, damage per hit)
+
+Completeness: Evaluation is based on the game having all the elements necessary for it feel like a true game or simulator. These criteria change from genre to genre but in general include the ability to both succeed or fail at the goals presented by the game.
+All elements follow a tower defense type of game play:
+Win each level by shooting pigs in all waves without exceeding Lives
+Lose the game by allowing the pigs (number indicated by Lives) reach the end of the path
+
+Creativity: Evaluation is based on creative implementation of any of the above elements and other added features.
+all angry birds inspired graphics: font, characters, custom logo, custom button images, backgrounds, etc
+making a tower defense game out of an existing inspiration that is meant to be played in a different way
+custom maps which were created by a custom map editor with 8 different tile types
+angry birds sounds
+
+Sparkles/Gravy: Evaluation is based on any features that are above and beyond the basic expectations in any of the above categories, or in artificial agent control, or in networking/database access, or in any other way that you may have expanded on your project.
+high scores
+custom map editor that adds maps straight to the game (http://timmikeladze.github.io/js-tower-defense/map.html) The game randomly chooses a map in the beginning of the game or based on level (if we choose to). For demonstration purposes, we made it so whenever the user quits the game (or refreshes the page), a random map from the map pool will be selected. This way all maps can be seen right away in level 1. Warning: if you decide to make a custom map through the editor, make sure it is functional before saving it, non working maps could be selected as well.
