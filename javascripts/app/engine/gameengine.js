@@ -33,7 +33,7 @@ var GameEngine = function (gameCanvas, sideCanvas) {
 
 		var that = this;
 		this.map = new Map();
-		this.map.loadMap(null, function() {
+		this.map.loadMap(1, function() {
 			that.enemyQueue = new EnemyQueue(that);
 			that.startInput();
 		});

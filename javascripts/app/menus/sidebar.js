@@ -9,10 +9,10 @@ var SideBar = function () {
 	this.background = "rgba(34,139,34, .5)";
 	// Score,waves, ememies and gold variables
 	this.scoreLabel = 0;
-	this.wavesLeftLabel = 10;
+	this.wavesLeftLabel = 1;
 	this.enemiesLeftLabel = 0;
-	this.level = 1;
-	this.goldLabel = 1000;
+	this.level = 7;
+	this.goldLabel = 400;
 	this.livesLabel = 5;
 	// Buttons
 	this.pauseButtonX1 = null;

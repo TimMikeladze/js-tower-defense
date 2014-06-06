@@ -2,7 +2,7 @@ var EnemyQueue = function (engine) {
 	this.engine = engine;
 	this.map = engine.map;
 	this.enemies = EnemyQueue.generateEnemies(this.map.path, 10);
-	this.rate = 2000;
+	this.rate = 3000;
 
 	this.nextEnemy = function () {
 		return this.enemies.length > 0 ? this.enemies.shift() : null;
