@@ -7,7 +7,7 @@ var MustachePig = function (position) {
 	this.idlingFrames = [0, 1, 2];
 	this.hurtFrames = [3, 4, 5];
 	this.badlyHurtFrames = [6, 7, 8];
-	this.health = 500;
+	this.health = 600;
 
 	var renderParent = this.render;
 	this.render = function (canvas) {
@@ -22,10 +22,10 @@ var MustachePig = function (position) {
 	this.tick = function (time, engine) {
 		this.time = this.time == null ? time.stamp : this.time;
 		
-		if (this.health <= 125) {
+		if (this.health <= 200) {
 			this.state = Pig.BADLY_HURT;
 			this.currentFrames = this.badlyHurtFrames;
-		} else if (this.health <= 250) {
+		} else if (this.health <= 400) {
 			this.state = Pig.HURT;
 			this.currentFrames = this.hurtFrames;
 		} else {

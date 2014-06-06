@@ -1,10 +1,10 @@
 var YellowBird = function (position) {
-	Bird.call(this, "birds/ybird0.png", position, 130, 300, 66, 65, 0.75);
+	Bird.call(this, "birds/ybird0.png", position, 130, 400, 66, 65, 0.75);
 
 	this.frameSpeeds = [1500, 500];
 	this.animation = new Animation(this.sprite, this.width, this.height, this.scale, this.frameSpeeds);
 	this.animator.setDefaultFrame(0);
-	this.shotInterval = 1000;
+	this.shotInterval = 2000;
 	this.damage = 125;
 	
 	this.idlingFrames = [0, 1];

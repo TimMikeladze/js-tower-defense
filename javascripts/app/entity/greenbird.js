@@ -1,5 +1,5 @@
 var GreenBird = function (position) {
-	Bird.call(this, "birds/gbird0.png", position, 160, 400, 106, 74, 0.70);
+	Bird.call(this, "birds/gbird0.png", position, 160, 500, 106, 74, 0.70);
 
 	this.frameSpeeds = [1500, 500];
 	this.animation = new Animation(this.sprite, this.width, this.height, this.scale, this.frameSpeeds);
