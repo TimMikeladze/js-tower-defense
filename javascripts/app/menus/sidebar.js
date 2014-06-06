@@ -9,10 +9,10 @@ var SideBar = function () {
 	this.background = "rgba(34,139,34, .5)";
 	// Score,waves, ememies and gold variables
 	this.scoreLabel = 0;
-	this.wavesLeftLabel = 9;
+	this.wavesLeftLabel = 1;
 	this.enemiesLeftLabel = 0;
-	this.level = 1;
-	this.goldLabel = 600;
+	this.level = 7;
+	this.goldLabel = 400;
 	this.livesLabel = 5;
 	// Buttons
 	this.pauseButtonX1 = null;
@@ -273,14 +273,14 @@ var SideBar = function () {
 			this.newWave();
 		}
 		else {
-			this.checkIfTower(x, y, true);
+			this.checkIfTower(x, y);
 		}
 	};
 
-	this.checkIfTower = function (x, y, grabFloatingEntity) {
+	this.checkIfTower = function (x, y) {
 		if (x > this.redbirdButton[0] && x < this.redbirdButton[2] &&
 			y > this.redbirdButton[1] && y < this.redbirdButton[3]) {
-			if (this.goldLabel >= 200 && grabFloatingEntity) {
+			if (this.goldLabel >= 200) {
 				this.gameEngine.floatingEntity = new RedBird(this.gameEngine.mouse);
 				
 			}
@@ -288,7 +288,7 @@ var SideBar = function () {
 		}
 		else if (x > this.yellowbirdButton[0] && x < this.yellowbirdButton[2] &&
 			y > this.yellowbirdButton[1] && y < this.yellowbirdButton[3]) {
-			if (this.goldLabel >= 300 && grabFloatingEntity) {
+			if (this.goldLabel >= 300) {
 				this.gameEngine.floatingEntity = new YellowBird(this.gameEngine.mouse);
 				
 			}
@@ -296,7 +296,7 @@ var SideBar = function () {
 		}
 		else if (x > this.greenbirdButton[0] && x < this.greenbirdButton[2] &&
 			y > this.greenbirdButton[1] && y < this.greenbirdButton[3]) {
-			if (this.goldLabel >= 400 && grabFloatingEntity) {
+			if (this.goldLabel >= 400) {
 				this.gameEngine.floatingEntity = new GreenBird(this.gameEngine.mouse);
 				
 			}
@@ -304,12 +304,98 @@ var SideBar = function () {
 		}
 		else if (x > this.blackbirdButton[0] && x < this.blackbirdButton[2] &&
 			y > this.blackbirdButton[1] && y < this.blackbirdButton[3]) {
-			if (this.goldLabel >= 500 && grabFloatingEntity) {
+			if (this.goldLabel >= 500) {
 				this.gameEngine.floatingEntity = new BlackBird(this.gameEngine.mouse);
 
 			}
 			return "black";
 		}
 
+	}
+
+	this.checkHover = function (x, y) {
+		if (x > this.redbirdButton[0] && x < this.redbirdButton[2] &&
+			y > this.redbirdButton[1] && y < this.redbirdButton[3]) {
+			this.hoverRepaint("red");
+		}
+		else if (x > this.yellowbirdButton[0] && x < this.yellowbirdButton[2] &&
+			y > this.yellowbirdButton[1] && y < this.yellowbirdButton[3]) {
+			this.hoverRepaint("yellow");
+		}
+		else if (x > this.greenbirdButton[0] && x < this.greenbirdButton[2] &&
+			y > this.greenbirdButton[1] && y < this.greenbirdButton[3]) {
+			this.hoverRepaint("green");
+		}
+		else if (x > this.blackbirdButton[0] && x < this.blackbirdButton[2] &&
+			y > this.blackbirdButton[1] && y < this.blackbirdButton[3]) {
+			this.hoverRepaint("black");
+		}
+		else {
+			this.hoverRepaint();
+		}
+	}
+
+	this.hoverRepaint = function (bird) {
+		this.ctx.save();
+		var secondColumn = ((this.width - 10) / 2) + 10;
+		var textStyle = "rgba(255,0,0, .5)";
+		var redbirdstats = ["Red Bird", "200 Gold", "3 Liters", "2 cups/sec", "1 "];
+		var yellowbirdstats = ["Yellow Bird"];
+		var greenbirdstats = ["Green Bird"];
+		var blackbirdstats = ["Black Bird"];
+
+		if (bird == "red") {
+			this.ctx.clearRect(20, 340, 60, 60);
+			this.ctx.drawImage(this.redbird, 20, 340);
+			this.ctx.fillStyle = this.background;
+			this.ctx.fillRect(20, 340, 60, 60);
+			this.ctx.fillStyle = textStyle;
+			this.ctx.font = "15px BadaBoom";
+			for (i = 0; i < redbirdstats.length; i++) {
+				this.ctx.fillText(redbirdstats[i], 22, 360);
+			}
+		}
+		else {
+			this.ctx.clearRect(20, 340, 60, 60);
+			this.ctx.drawImage(this.redbird, 20, 340);
+		}
+
+		if (bird == "yellow") {
+			this.ctx.clearRect(secondColumn, 340, 60, 60);
+			this.ctx.drawImage(this.yellowbird, secondColumn, 340);
+			this.ctx.fillStyle = this.background;
+			this.ctx.fillRect(secondColumn, 340, 60, 60);
+		}
+		else {
+			this.ctx.clearRect(secondColumn, 340, 60, 60);
+			this.ctx.drawImage(this.yellowbird, secondColumn, 340);
+			
+		}
+
+		if (bird == "green") {
+			this.ctx.clearRect(20, 405, 60, 60);
+			this.ctx.drawImage(this.greenbird, 20, 405);
+			this.ctx.fillStyle = this.background;
+			this.ctx.fillRect(20, 405, 60, 60);
+		}
+		else {
+			this.ctx.clearRect(20, 405, 60, 60);
+			this.ctx.drawImage(this.greenbird, 20, 405);
+			
+		}
+
+		if (bird == "black") {
+			this.ctx.clearRect(secondColumn, 405, 60, 60);
+			this.ctx.drawImage(this.blackbird, secondColumn, 405);
+			this.ctx.fillStyle = this.background;
+			this.ctx.fillRect(secondColumn, 405, 60, 60);
+		}
+		else {
+			this.ctx.clearRect(secondColumn, 405, 60, 60);
+			this.ctx.drawImage(this.blackbird, secondColumn, 405);
+			
+		}
+
+		this.ctx.restore();
 	}
 };

@@ -40,19 +40,7 @@ GameEngine.prototype.startInput = function () {
 
 	this.sideCanvas.addEventListener("mousemove", function (e) {
 		that.click = getClickedPoint(e, that.sideCanvas);
-		console.log("x: " + that.click.x + " y: " + that.click.y);
-
-
-
-		if (that.sideBar.checkIfTower(that.click.x,that.click.y, false) == "red") {
-			//do something
-		} else if (that.sideBar.checkIfTower(that.click.x,that.click.y, false) == "gold") {
-
-		} else if (that.sideBar.checkIfTower(that.click.x,that.click.y, false) == "green") {
-
-		} else if (that.sideBar.checkIfTower(that.click.x,that.click.y, false) == "black") {
-
-		}
+		that.sideBar.checkHover(that.click.x, that.click.y);
 	}, false);
 
 	window.addEventListener("keydown", function (e) {
