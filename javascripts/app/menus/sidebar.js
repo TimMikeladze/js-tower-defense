@@ -9,9 +9,9 @@ var SideBar = function () {
 	this.background = "rgba(34,139,34, .5)";
 	// Score,waves, ememies and gold variables
 	this.scoreLabel = 0;
-	this.wavesLeftLabel = 1;
+	this.wavesLeftLabel = 0;
 	this.enemiesLeftLabel = 0;
-	this.level = 7;
+	this.level = 1;
 	this.goldLabel = 400;
 	this.livesLabel = 5;
 	// Buttons
@@ -37,6 +37,12 @@ var SideBar = function () {
 	this.yellowbird = Require.getImage("towers/yellowbird.png");
 	this.greenbird = Require.getImage("towers/greenbird.png");
 	this.blackbird = Require.getImage("towers/blackbird.png");
+	
+	// Birds for info
+	this.red_bird = new RedBird();
+	this.yellow_bird = new YellowBird();
+	this.green_bird = new GreenBird();
+	this.black_bird = new BlackBird();
 
 	this.initSideBar = function (canvas, gameEngine) {
 		this.ctx = canvas.context;
@@ -280,7 +286,7 @@ var SideBar = function () {
 	this.checkIfTower = function (x, y) {
 		if (x > this.redbirdButton[0] && x < this.redbirdButton[2] &&
 			y > this.redbirdButton[1] && y < this.redbirdButton[3]) {
-			if (this.goldLabel >= 200) {
+			if (this.goldLabel >= this.red_bird.price) {
 				this.gameEngine.floatingEntity = new RedBird(this.gameEngine.mouse);
 				
 			}
@@ -288,7 +294,7 @@ var SideBar = function () {
 		}
 		else if (x > this.yellowbirdButton[0] && x < this.yellowbirdButton[2] &&
 			y > this.yellowbirdButton[1] && y < this.yellowbirdButton[3]) {
-			if (this.goldLabel >= 300) {
+			if (this.goldLabel >= this.yellow_bird.price) {
 				this.gameEngine.floatingEntity = new YellowBird(this.gameEngine.mouse);
 				
 			}
@@ -296,7 +302,7 @@ var SideBar = function () {
 		}
 		else if (x > this.greenbirdButton[0] && x < this.greenbirdButton[2] &&
 			y > this.greenbirdButton[1] && y < this.greenbirdButton[3]) {
-			if (this.goldLabel >= 400) {
+			if (this.goldLabel >= this.green_bird.price) {
 				this.gameEngine.floatingEntity = new GreenBird(this.gameEngine.mouse);
 				
 			}
@@ -304,7 +310,7 @@ var SideBar = function () {
 		}
 		else if (x > this.blackbirdButton[0] && x < this.blackbirdButton[2] &&
 			y > this.blackbirdButton[1] && y < this.blackbirdButton[3]) {
-			if (this.goldLabel >= 500) {
+			if (this.goldLabel >= this.green_bird.price) {
 				this.gameEngine.floatingEntity = new BlackBird(this.gameEngine.mouse);
 
 			}
@@ -348,38 +354,58 @@ var SideBar = function () {
 		switch (bird) {
 			case "red":
 				this.ctx.save();
-				this.ctx.fillText("Red Bird", (this.borderSize + 5), 140);
-				this.ctx.fillText("Cost", (this.borderSize + 5), 170);
-				this.ctx.fillText("Damage", (this.borderSize + 5), 200);
-				this.ctx.fillText("Range", (this.borderSize + 5), 230);
-				this.ctx.fillText("Fire Rate", (this.borderSize + 5), 260);
+				this.ctx.fillText("Red Bird", (this.borderSize + 5), 160);
+				this.ctx.fillText("Cost", (this.borderSize + 5), 190);
+				this.ctx.fillText("Damage", (this.borderSize + 5), 220);
+				this.ctx.fillText("Range", (this.borderSize + 5), 250);
+				this.ctx.fillText("Fire Rate", (this.borderSize + 5), 280);
+				this.ctx.font = "20px BadaBoom";
+				this.ctx.fillText(this.red_bird.price, 100, 190);
+				this.ctx.fillText(this.red_bird.damage, 100, 220);
+				this.ctx.fillText(this.red_bird.fireRadius, 100, 250);
+				this.ctx.fillText(this.red_bird.shotInterval, 100, 280);
 				this.ctx.restore();
 				break;
 			case "yellow":
 				this.ctx.save();
-				this.ctx.fillText("Red Bird", (this.borderSize + 5), 140);
-				this.ctx.fillText("Cost", (this.borderSize + 5), 170);
-				this.ctx.fillText("Damage", (this.borderSize + 5), 200);
-				this.ctx.fillText("Range", (this.borderSize + 5), 230);
-				this.ctx.fillText("Fire Rate", (this.borderSize + 5), 260);
+				this.ctx.fillText("Yellow Bird", (this.borderSize + 5), 160);
+				this.ctx.fillText("Cost", (this.borderSize + 5), 190);
+				this.ctx.fillText("Damage", (this.borderSize + 5), 220);
+				this.ctx.fillText("Range", (this.borderSize + 5), 250);
+				this.ctx.fillText("Fire Rate", (this.borderSize + 5), 280);
+				this.ctx.font = "20px BadaBoom";
+				this.ctx.fillText(this.yellow_bird.price, 100, 190);
+				this.ctx.fillText(this.yellow_bird.damage, 100, 220);
+				this.ctx.fillText(this.yellow_bird.fireRadius, 100, 250);
+				this.ctx.fillText(this.yellow_bird.shotInterval, 100, 280);
 				this.ctx.restore();
 				break;
 			case "green":
 				this.ctx.save();
-				this.ctx.fillText("Red Bird", (this.borderSize + 5), 140);
-				this.ctx.fillText("Cost", (this.borderSize + 5), 170);
-				this.ctx.fillText("Damage", (this.borderSize + 5), 200);
-				this.ctx.fillText("Range", (this.borderSize + 5), 230);
-				this.ctx.fillText("Fire Rate", (this.borderSize + 5), 260);
+				this.ctx.fillText("Green Bird", (this.borderSize + 5), 160);
+				this.ctx.fillText("Cost", (this.borderSize + 5), 190);
+				this.ctx.fillText("Damage", (this.borderSize + 5), 220);
+				this.ctx.fillText("Range", (this.borderSize + 5), 250);
+				this.ctx.fillText("Fire Rate", (this.borderSize + 5), 280);
+				this.ctx.font = "20px BadaBoom";
+				this.ctx.fillText(this.green_bird.price, 100, 190);
+				this.ctx.fillText(this.green_bird.damage, 100, 220);
+				this.ctx.fillText(this.green_bird.fireRadius, 100, 250);
+				this.ctx.fillText(this.green_bird.shotInterval, 100, 280);
 				this.ctx.restore();
 				break;
 			case "black":
 				this.ctx.save();
-				this.ctx.fillText("Red Bird", (this.borderSize + 5), 140);
-				this.ctx.fillText("Cost", (this.borderSize + 5), 170);
-				this.ctx.fillText("Damage", (this.borderSize + 5), 200);
-				this.ctx.fillText("Range", (this.borderSize + 5), 230);
-				this.ctx.fillText("Fire Rate", (this.borderSize + 5), 260);
+				this.ctx.fillText("Black Bird", (this.borderSize + 5), 160);
+				this.ctx.fillText("Cost", (this.borderSize + 5), 190);
+				this.ctx.fillText("Damage", (this.borderSize + 5), 220);
+				this.ctx.fillText("Range", (this.borderSize + 5), 250);
+				this.ctx.fillText("Fire Rate", (this.borderSize + 5), 280);
+				this.ctx.font = "20px BadaBoom";
+				this.ctx.fillText(this.black_bird.price, 100, 190);
+				this.ctx.fillText(this.black_bird.damage, 100, 220);
+				this.ctx.fillText(this.black_bird.fireRadius, 100, 250);
+				this.ctx.fillText(this.black_bird.shotInterval, 100, 280);
 				this.ctx.restore();
 				break;
 			default:
