@@ -338,64 +338,50 @@ var SideBar = function () {
 	this.hoverRepaint = function (bird) {
 		this.ctx.save();
 		var secondColumn = ((this.width - 10) / 2) + 10;
-		var textStyle = "rgba(255,0,0, .5)";
-		var redbirdstats = ["Red Bird", "200 Gold", "3 Liters", "2 cups/sec", "1 "];
-		var yellowbirdstats = ["Yellow Bird"];
-		var greenbirdstats = ["Green Bird"];
-		var blackbirdstats = ["Black Bird"];
 
-		if (bird == "red") {
-			this.ctx.clearRect(20, 340, 60, 60);
-			this.ctx.drawImage(this.redbird, 20, 340);
-			this.ctx.fillStyle = this.background;
-			this.ctx.fillRect(20, 340, 60, 60);
-			this.ctx.fillStyle = textStyle;
-			this.ctx.font = "15px BadaBoom";
-			for (i = 0; i < redbirdstats.length; i++) {
-				this.ctx.fillText(redbirdstats[i], 22, 360);
-			}
-		}
-		else {
-			this.ctx.clearRect(20, 340, 60, 60);
-			this.ctx.drawImage(this.redbird, 20, 340);
-		}
-
-		if (bird == "yellow") {
-			this.ctx.clearRect(secondColumn, 340, 60, 60);
-			this.ctx.drawImage(this.yellowbird, secondColumn, 340);
-			this.ctx.fillStyle = this.background;
-			this.ctx.fillRect(secondColumn, 340, 60, 60);
-		}
-		else {
-			this.ctx.clearRect(secondColumn, 340, 60, 60);
-			this.ctx.drawImage(this.yellowbird, secondColumn, 340);
-			
-		}
-
-		if (bird == "green") {
-			this.ctx.clearRect(20, 405, 60, 60);
-			this.ctx.drawImage(this.greenbird, 20, 405);
-			this.ctx.fillStyle = this.background;
-			this.ctx.fillRect(20, 405, 60, 60);
-		}
-		else {
-			this.ctx.clearRect(20, 405, 60, 60);
-			this.ctx.drawImage(this.greenbird, 20, 405);
-			
-		}
-
-		if (bird == "black") {
-			this.ctx.clearRect(secondColumn, 405, 60, 60);
-			this.ctx.drawImage(this.blackbird, secondColumn, 405);
-			this.ctx.fillStyle = this.background;
-			this.ctx.fillRect(secondColumn, 405, 60, 60);
-		}
-		else {
-			this.ctx.clearRect(secondColumn, 405, 60, 60);
-			this.ctx.drawImage(this.blackbird, secondColumn, 405);
-			
-		}
-
+		this.ctx.fillStyle = this.background;
+		this.ctx.clearRect(this.borderSize, 480, this.width - 2 * this.borderSize, 100);
+		this.ctx.fillRect(this.borderSize, 480, this.width - 2 * this.borderSize, 100);
 		this.ctx.restore();
+		switch (bird) {
+			case "red":
+				this.ctx.save();
+				this.fillStyle = "rgb(255,0,0)";
+				this.ctx.fillText("Red Bird", (this.borderSize + 5), 505);
+				this.ctx.restore();
+				break;
+			case "yellow":
+
+				break;
+			case "green":
+
+				break;
+			case "black":
+
+				break;
+			default:
+				this.ctx.save();
+				this.ctx.fillStyle = this.background;
+				this.ctx.globalAlpha = 1;
+				this.ctx.clearRect(this.borderSize, 480, this.width - 2 * this.borderSize, 100);
+				// Next Wave box
+				this.ctx.fillRect(this.borderSize, 480, this.width - 2 * this.borderSize, 30);
+				// Pause button
+				this.ctx.fillRect(this.borderSize, 515, (this.width - 30) / 2, 20);
+				// Quit button
+				this.ctx.fillRect(((this.width - this.borderSize) / 2) + this.borderSize, 515,
+					(this.width - (3 * this.borderSize)) / 2, (2 * this.borderSize));
+				this.ctx.restore();
+				this.ctx.save();
+				// Next button
+				this.ctx.font = "20pt BadaBoom";
+				this.ctx.fillText("Send Wave", (this.borderSize + 5), 505);
+				// Pause, Quit
+				this.ctx.font = "14pt BadaBoom";
+				this.ctx.fillText("Pause", (this.borderSize + 5), 532);
+				this.ctx.fillText("Quit", ((this.width) / 2) + 10, 532);
+				this.ctx.restore();
+				break;
+		}
 	}
 };
