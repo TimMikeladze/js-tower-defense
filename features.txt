@@ -9,7 +9,7 @@ wallpaper images for sidebar, main menu, pause menu
 custom angry birds tower defense logo (using font named above)
 
 Control: Evaluation is based on the number, originality and operation of the control features of the game.
-All tower defense game controls (pressing on the tower icon to select tower, placing the towers, starting new waves, etc)
+All tower defense game controls (hover over tower icon to read info, pressing on the tower icon to select tower, placing the towers, starting new waves, etc)
 
 Interaction: Evaluation is based on complexity and performance of game element interaction like collision detection, game logic, seeking behavior, pathfinding, etc.
 created our own bezier curves for pigs to follow path
