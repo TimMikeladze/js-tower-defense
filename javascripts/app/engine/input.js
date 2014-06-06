@@ -41,7 +41,9 @@ GameEngine.prototype.startInput = function () {
 	this.sideCanvas.addEventListener("mousemove", function (e) {
 		that.click = getClickedPoint(e, that.sideCanvas);
 		that.sideBar.checkHover(that.click.x, that.click.y);
+		that.sideBar.canPaint(that.click.x, that.click.y);
 	}, false);
+
 
 	window.addEventListener("keydown", function (e) {
 		e.preventDefault();

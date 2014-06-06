@@ -14,6 +14,7 @@ var SideBar = function () {
 	this.level = 1;
 	this.goldLabel = 400;
 	this.livesLabel = 5;
+	this.mouseoff = true;
 	// Buttons
 	this.pauseButtonX1 = null;
 	this.pauseButtonX2 = null;
@@ -189,14 +190,16 @@ var SideBar = function () {
 	};
 
 	this.repaint = function (ctx, y, label) {
-		ctx.clearRect(this.borderSize, y - 20, this.width - (2 * this.borderSize), 20);
-		ctx.save();
-		ctx.globalAlpha = 1;
-		ctx.fillStyle = this.background;
-		ctx.font = "20px BadaBoom";
-		ctx.fillRect(this.borderSize, y - 20, this.width - (2 * this.borderSize), 20);
-		ctx.restore();
-		ctx.fillText(label, 70, y);
+		if (this.mouseoff) {
+			ctx.clearRect(this.borderSize, y - 20, this.width - (2 * this.borderSize), 20);
+			ctx.save();
+			ctx.globalAlpha = 1;
+			ctx.fillStyle = this.background;
+			ctx.font = "20px BadaBoom";
+			ctx.fillRect(this.borderSize, y - 20, this.width - (2 * this.borderSize), 20);
+			ctx.restore();
+			ctx.fillText(label, 70, y);
+		}
 	};
 
 	this.updateScore = function () {
@@ -339,6 +342,28 @@ var SideBar = function () {
 		}
 		else {
 			this.hoverRepaint();
+		}
+	}
+
+	this.canPaint = function (x, y) {
+		if (x > this.redbirdButton[0] && x < this.redbirdButton[2] &&
+			y > this.redbirdButton[1] && y < this.redbirdButton[3]) {
+			this.mouseoff = false;
+		}
+		else if (x > this.yellowbirdButton[0] && x < this.yellowbirdButton[2] &&
+			y > this.yellowbirdButton[1] && y < this.yellowbirdButton[3]) {
+			this.mouseoff = false;
+		}
+		else if (x > this.greenbirdButton[0] && x < this.greenbirdButton[2] &&
+			y > this.greenbirdButton[1] && y < this.greenbirdButton[3]) {
+			this.mouseoff = false;
+		}
+		else if (x > this.blackbirdButton[0] && x < this.blackbirdButton[2] &&
+			y > this.blackbirdButton[1] && y < this.blackbirdButton[3]) {
+			this.mouseoff = false;
+		}
+		else {
+			this.mouseoff = true;
 		}
 	}
 
