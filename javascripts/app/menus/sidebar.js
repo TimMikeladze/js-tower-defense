@@ -87,6 +87,7 @@ var SideBar = function () {
 		ctx.globalAlpha = 1;
 		ctx.fillStyle = this.background;
 		// Score and info box
+		ctx.clearRect(this.borderSize, 80, this.width - (2 * this.borderSize), 220);
 		ctx.fillRect(this.borderSize, 80, this.width - (2 * this.borderSize), 220);
 		// Towers box
 		ctx.fillRect(this.borderSize, 310, this.width - 2 * this.borderSize, 165);
