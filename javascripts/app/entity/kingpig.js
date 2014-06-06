@@ -7,7 +7,7 @@ var KingPig = function (position) {
 	this.idlingFrames = [0, 1, 2];
 	this.hurtFrames = [3, 4, 5];
 	this.badlyHurtFrames = [6, 7, 8];
-	this.health = 500;
+	this.health = 750;
 
 	var renderParent = this.render;
 	this.render = function (canvas) {
