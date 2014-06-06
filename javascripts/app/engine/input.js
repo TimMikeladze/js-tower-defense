@@ -44,13 +44,13 @@ GameEngine.prototype.startInput = function () {
 
 
 
-		if (that.sideBar.checkIfTower(that.click.x,that.click.y) == "red") {
+		if (that.sideBar.checkIfTower(that.click.x,that.click.y, false) == "red") {
 			//do something
-		} else if (that.sideBar.checkIfTower(that.click.x,that.click.y) == "gold") {
+		} else if (that.sideBar.checkIfTower(that.click.x,that.click.y, false) == "gold") {
 
-		} else if (that.sideBar.checkIfTower(that.click.x,that.click.y) == "green") {
+		} else if (that.sideBar.checkIfTower(that.click.x,that.click.y, false) == "green") {
 
-		} else if (that.sideBar.checkIfTower(that.click.x,that.click.y) == "black") {
+		} else if (that.sideBar.checkIfTower(that.click.x,that.click.y, false) == "black") {
 
 		}
 	}, false);

@@ -9,10 +9,10 @@ var SideBar = function () {
 	this.background = "rgba(34,139,34, .5)";
 	// Score,waves, ememies and gold variables
 	this.scoreLabel = 0;
-	this.wavesLeftLabel = 1;
+	this.wavesLeftLabel = 9;
 	this.enemiesLeftLabel = 0;
-	this.level = 7;
-	this.goldLabel = 400;
+	this.level = 1;
+	this.goldLabel = 600;
 	this.livesLabel = 5;
 	// Buttons
 	this.pauseButtonX1 = null;
@@ -273,14 +273,14 @@ var SideBar = function () {
 			this.newWave();
 		}
 		else {
-			this.checkIfTower(x, y);
+			this.checkIfTower(x, y, true);
 		}
 	};
 
-	this.checkIfTower = function (x, y) {
+	this.checkIfTower = function (x, y, grabFloatingEntity) {
 		if (x > this.redbirdButton[0] && x < this.redbirdButton[2] &&
 			y > this.redbirdButton[1] && y < this.redbirdButton[3]) {
-			if (this.goldLabel >= 200) {
+			if (this.goldLabel >= 200 && grabFloatingEntity) {
 				this.gameEngine.floatingEntity = new RedBird(this.gameEngine.mouse);
 				
 			}
@@ -288,7 +288,7 @@ var SideBar = function () {
 		}
 		else if (x > this.yellowbirdButton[0] && x < this.yellowbirdButton[2] &&
 			y > this.yellowbirdButton[1] && y < this.yellowbirdButton[3]) {
-			if (this.goldLabel >= 300) {
+			if (this.goldLabel >= 300 && grabFloatingEntity) {
 				this.gameEngine.floatingEntity = new YellowBird(this.gameEngine.mouse);
 				
 			}
@@ -296,7 +296,7 @@ var SideBar = function () {
 		}
 		else if (x > this.greenbirdButton[0] && x < this.greenbirdButton[2] &&
 			y > this.greenbirdButton[1] && y < this.greenbirdButton[3]) {
-			if (this.goldLabel >= 400) {
+			if (this.goldLabel >= 400 && grabFloatingEntity) {
 				this.gameEngine.floatingEntity = new GreenBird(this.gameEngine.mouse);
 				
 			}
@@ -304,7 +304,7 @@ var SideBar = function () {
 		}
 		else if (x > this.blackbirdButton[0] && x < this.blackbirdButton[2] &&
 			y > this.blackbirdButton[1] && y < this.blackbirdButton[3]) {
-			if (this.goldLabel >= 500) {
+			if (this.goldLabel >= 500 && grabFloatingEntity) {
 				this.gameEngine.floatingEntity = new BlackBird(this.gameEngine.mouse);
 
 			}
