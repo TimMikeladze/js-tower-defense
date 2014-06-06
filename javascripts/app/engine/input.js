@@ -23,7 +23,8 @@ GameEngine.prototype.startInput = function () {
 	this.gameCanvas.addEventListener("mousemove", function (e) {
 		that.mouse = getClickedPoint(e, that.gameCanvas);
 		if (that.floatingEntity != null) {
-			that.floatingEntity.setPosition(that.mouse);
+			var vector = new Vector2(that.mouse.x - (that.floatingEntity.width / 2), that.mouse.y - (that.floatingEntity.height / 2 ));
+			that.floatingEntity.setPosition(vector);
 		}
 	}, false);
 
