@@ -282,25 +282,33 @@ var SideBar = function () {
 			y > this.redbirdButton[1] && y < this.redbirdButton[3]) {
 			if (this.goldLabel >= 200) {
 				this.gameEngine.floatingEntity = new RedBird(this.gameEngine.mouse);
+				
 			}
+			return "red";
 		}
 		else if (x > this.yellowbirdButton[0] && x < this.yellowbirdButton[2] &&
 			y > this.yellowbirdButton[1] && y < this.yellowbirdButton[3]) {
 			if (this.goldLabel >= 300) {
 				this.gameEngine.floatingEntity = new YellowBird(this.gameEngine.mouse);
+				
 			}
+			return "gold";
 		}
 		else if (x > this.greenbirdButton[0] && x < this.greenbirdButton[2] &&
 			y > this.greenbirdButton[1] && y < this.greenbirdButton[3]) {
 			if (this.goldLabel >= 400) {
 				this.gameEngine.floatingEntity = new GreenBird(this.gameEngine.mouse);
+				
 			}
+			return "green";
 		}
 		else if (x > this.blackbirdButton[0] && x < this.blackbirdButton[2] &&
 			y > this.blackbirdButton[1] && y < this.blackbirdButton[3]) {
 			if (this.goldLabel >= 500) {
 				this.gameEngine.floatingEntity = new BlackBird(this.gameEngine.mouse);
+
 			}
+			return "black";
 		}
 
 	}

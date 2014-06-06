@@ -38,6 +38,23 @@ GameEngine.prototype.startInput = function () {
 
 	}, false);
 
+	this.sideCanvas.addEventListener("mousemove", function (e) {
+		that.click = getClickedPoint(e, that.sideCanvas);
+		console.log("x: " + that.click.x + " y: " + that.click.y);
+
+
+
+		if (that.sideBar.checkIfTower(that.click.x,that.click.y) == "red") {
+			//do something
+		} else if (that.sideBar.checkIfTower(that.click.x,that.click.y) == "gold") {
+
+		} else if (that.sideBar.checkIfTower(that.click.x,that.click.y) == "green") {
+
+		} else if (that.sideBar.checkIfTower(that.click.x,that.click.y) == "black") {
+
+		}
+	}, false);
+
 	window.addEventListener("keydown", function (e) {
 		e.preventDefault();
 		if (e.keyCode === 80) {
