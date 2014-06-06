@@ -3,7 +3,7 @@ var KingPig = function (position) {
 
 	this.animation = new Animation(this.sprite, this.width, this.height, this.scale, [1500, 500, 1000]);
 	this.animator.setDefaultFrame(0);
-
+ 
 	this.idlingFrames = [0, 1, 2];
 	this.hurtFrames = [3, 4, 5];
 	this.badlyHurtFrames = [6, 7, 8];
