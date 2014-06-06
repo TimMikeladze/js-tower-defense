@@ -340,14 +340,16 @@ var SideBar = function () {
 		var secondColumn = ((this.width - 10) / 2) + 10;
 
 		this.ctx.fillStyle = this.background;
-		this.ctx.clearRect(this.borderSize, 480, this.width - 2 * this.borderSize, 100);
-		this.ctx.fillRect(this.borderSize, 480, this.width - 2 * this.borderSize, 100);
+		this.ctx.clearRect(this.borderSize, 80, this.width - (2 * this.borderSize), 220);
+		this.ctx.fillRect(this.borderSize, 80, this.width - (2 * this.borderSize), 220);
 		this.ctx.restore();
+		this.ctx.fillText("Gold:", (this.borderSize + 5), 100);
+		this.ctx.fillText(this.goldLabel, 70, 120);
 		switch (bird) {
 			case "red":
 				this.ctx.save();
-				this.fillStyle = "rgb(255,0,0)";
-				this.ctx.fillText("Red Bird", (this.borderSize + 5), 505);
+				this.ctx.fillText("Red Bird", (this.borderSize + 5), 140);
+				this.ctx.fillText("Cost", (this.borderSize + 5), 170);
 				this.ctx.restore();
 				break;
 			case "yellow":
@@ -363,23 +365,24 @@ var SideBar = function () {
 				this.ctx.save();
 				this.ctx.fillStyle = this.background;
 				this.ctx.globalAlpha = 1;
-				this.ctx.clearRect(this.borderSize, 480, this.width - 2 * this.borderSize, 100);
-				// Next Wave box
-				this.ctx.fillRect(this.borderSize, 480, this.width - 2 * this.borderSize, 30);
-				// Pause button
-				this.ctx.fillRect(this.borderSize, 515, (this.width - 30) / 2, 20);
-				// Quit button
-				this.ctx.fillRect(((this.width - this.borderSize) / 2) + this.borderSize, 515,
-					(this.width - (3 * this.borderSize)) / 2, (2 * this.borderSize));
+				this.ctx.clearRect(this.borderSize, 80, this.width - (2 * this.borderSize), 220);
+				this.ctx.fillRect(this.borderSize, 80, this.width - (2 * this.borderSize), 220);
 				this.ctx.restore();
 				this.ctx.save();
 				// Next button
-				this.ctx.font = "20pt BadaBoom";
-				this.ctx.fillText("Send Wave", (this.borderSize + 5), 505);
-				// Pause, Quit
-				this.ctx.font = "14pt BadaBoom";
-				this.ctx.fillText("Pause", (this.borderSize + 5), 532);
-				this.ctx.fillText("Quit", ((this.width) / 2) + 10, 532);
+				this.ctx.font = "15pt BadaBoom";
+				this.ctx.fillText("Score:", (this.borderSize + 5), 100);
+				this.ctx.fillText("Wave:", (this.borderSize + 5), 140);
+				this.ctx.fillText("Level:", (this.borderSize + 5), 180);
+				this.ctx.fillText("Gold:", (this.borderSize + 5), 225);
+				this.ctx.fillText("Lives:", (this.borderSize + 5), 265);
+				this.ctx.font = "20px BadaBoom";
+				// Init Score, Wave, Left, Gold
+				this.ctx.fillText(this.scoreLabel, 70, 120);
+				this.ctx.fillText(this.wavesLeftLabel, 70, 160);
+				this.ctx.fillText(this.level, 70, 205);
+				this.ctx.fillText(this.goldLabel, 70, 245);
+				this.ctx.fillText(this.livesLabel, 70, 290);
 				this.ctx.restore();
 				break;
 		}
