@@ -83,7 +83,7 @@ var GameEngine = function (gameCanvas, sideCanvas) {
 	this.loop = function () {
 		if (!this.stopFlag) {
 			if (this.map.loaded) {
-				if (this.sideBar.livesLabel == 0) {
+				if (this.sideBar.livesLabel <= 0) {
 					this.gameOverFlag = true;
 				}
 				if (!this.gameOverFlag) {
