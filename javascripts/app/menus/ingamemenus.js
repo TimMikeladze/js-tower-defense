@@ -46,7 +46,7 @@ var InGameMenus = function (canvas) {
 	};
 
 	this.showHighscorePrompt = function (score2) {
-		var name = prompt("Congrats on the High Score!\n\nPlease enter your name...");
+		var name = prompt("Please enter your name so we can save your score!");
 		if (name.trim() != "") {
 			ajax.post("http://71.19.151.5/highscores/add_highscore.php", {"name": name, score: score2}, function (response) {
 				console.log(response);
