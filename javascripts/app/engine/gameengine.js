@@ -17,7 +17,7 @@ var GameEngine = function (gameCanvas, sideCanvas) {
 
 	this.pauseFlag = false;
 	this.gameOverFlag = false;
-	this.gameEnd = 0;
+	this.highScore = false;
 
 	this.map = null;
 	this.sideBar = null;
@@ -69,10 +69,12 @@ var GameEngine = function (gameCanvas, sideCanvas) {
 		this.enemyQueue = null;
 
 		this.pauseFlag = false;
-		this.gameOverFlag = false;
 		this.gameEnd = 0;
 
 		this.map = null;
+		if (this.sideBar.scoreLabel > 0) {
+			this.highScore = true;
+		}
 		this.sideBar = null;
 		this.menus = new InGameMenus(this.gameCanvas);
 	};
@@ -106,13 +108,11 @@ var GameEngine = function (gameCanvas, sideCanvas) {
 	this.gameOver = function () {
 		this.menus.showGameOver();
 		this.stop();
-		if (this.gameOverFlag == true && this.gameEnd == 0) {
+		if (this.gameOverFlag && this.highScore) {
 			this.menus.showHighscorePrompt(this);
-			this.gameEnd++;
-		} else {
-			this.gameOverFlag = true;
-			this.gameEnd++;
-		}
+			this.gameOverFlag = false;
+			this.highScore = false;
+		} 
 	};
 
 
