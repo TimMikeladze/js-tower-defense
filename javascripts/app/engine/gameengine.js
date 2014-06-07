@@ -106,7 +106,7 @@ var GameEngine = function (gameCanvas, sideCanvas) {
 	};
 
 	this.gameOver = function () {
-		this.menus.showGameOver();
+		this.menus.showGameOver(this);
 		if (this.gameOverFlag && this.highScore) {
 			this.menus.showHighscorePrompt(this);
 			this.gameOverFlag = false;
