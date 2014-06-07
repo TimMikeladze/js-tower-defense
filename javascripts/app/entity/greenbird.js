@@ -6,7 +6,7 @@ var GreenBird = function (position) {
 	this.animator.setDefaultFrame(0);
 	this.shotInterval = 1500;
 	this.damage = 150;
-	
+	 
 	this.idlingFrames = [1, 2];
 	var renderParent = this.render;
 	this.render = function (canvas) {
