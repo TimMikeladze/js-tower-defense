@@ -8,6 +8,7 @@ var GameEngine = function (gameCanvas, sideCanvas) {
 	this.click = null;
 	this.mouse = null;
 	this.wheel = null;
+	this.theScore = 0;
 
 	this.pigs = [];
 	this.birds = [];
@@ -106,10 +107,11 @@ var GameEngine = function (gameCanvas, sideCanvas) {
 	};
 
 	this.gameOver = function () {
-		this.menus.showGameOver(this);
+		this.theScore = this.sideBar.scoreLabel;
+		this.menus.showGameOver();
 		this.stop();
 		if (this.gameOverFlag && this.highScore) {
-			this.menus.showHighscorePrompt(this);
+			this.menus.showHighscorePrompt(this.theScore);
 			this.gameOverFlag = false;
 			this.highScore = false;
 		} 
