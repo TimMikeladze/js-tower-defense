@@ -67,10 +67,10 @@ var GameEngine = function (gameCanvas, sideCanvas) {
 		this.projectiles = [];
 		this.floatingEntity = null;
 		this.enemyQueue = null;
- 
+  
 		this.pauseFlag = false;
 		this.gameEnd = 0;
-
+ 
 		this.map = null;
 		if (this.sideBar.scoreLabel > 0) {
 			this.highScore = true;
