@@ -61,7 +61,7 @@ var GameEngine = function (gameCanvas, sideCanvas) {
 		this.click = null;
 		this.mouse = null;
 		this.wheel = null;
-
+ 
 		this.pigs = [];
 		this.birds = [];
 		this.projectiles = [];
