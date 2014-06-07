@@ -1,5 +1,6 @@
 var InGameMenus = function (canvas) {
 	this.canvas = canvas;
+	this.score2 = null;
 
 	this.showPause = function () {
 		this.canvas.clear();
@@ -20,7 +21,8 @@ var InGameMenus = function (canvas) {
 		ctx.fillText("press P to unpause", x + 30, y + 20);
 	};
 
-	this.showGameOver = function () {
+	this.showGameOver = function (engine) {
+		this.score2 = engine.sideBar.scoreLabel;
 		this.canvas.clear();
 
 		var ctx = this.canvas.context;
@@ -49,9 +51,8 @@ var InGameMenus = function (canvas) {
 
 	this.showHighscorePrompt = function (engine) {
 		var name = prompt("Congrats on the High Score!\n\nPlease enter your name...");
-		var score2 = engine.sideBar.scoreLabel;
 		if (name.trim() != "") {
-			ajax.post("http://71.19.151.5/highscores/add_highscore.php", {"name": name, score: score2}, function (response) {
+			ajax.post("http://71.19.151.5/highscores/add_highscore.php", {"name": name, score: this.score2}, function (response) {
 				console.log(response);
 			});
 		}
