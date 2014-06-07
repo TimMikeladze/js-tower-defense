@@ -20,8 +20,10 @@ HighScores.showHighScores = function(limit) {
 			var newCell2 = newRow.insertCell(1);
 
 			// Append a text node to the cell
+			var newTextNum  = document.createTextNode(i + 1 + ". ");
 			var newText  = document.createTextNode(obj.Name);
 			var newText2 = document.createTextNode(obj.Score);
+			newCell.appendChild(newTextNum);
 			newCell.appendChild(newText);
 			newCell2.appendChild(newText2);
 		}
