@@ -57,7 +57,7 @@ var GameEngine = function (gameCanvas, sideCanvas) {
 
 		this.gameID = null;
 		this.time = null;
-
+ 
 		this.click = null;
 		this.mouse = null;
 		this.wheel = null;
