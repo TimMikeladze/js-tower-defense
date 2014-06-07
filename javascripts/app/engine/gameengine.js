@@ -115,7 +115,6 @@ var GameEngine = function (gameCanvas, sideCanvas) {
 		} 
 	};
 
-
 	this.update = function () {
 		this.updateEntities(this.pigs);
 		this.updateEntities(this.birds);
